@@ -1,18 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.edu.a0817moacn01c_3.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <Button
+        android:id="@+id/buttonIrAPachorra"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:text="Pachorra en la cama"
+        android:onClick="irAPachorra"
+        android:gravity="center"
+        android:layout_weight="1"
+        android:background="#d50000"
+        android:textSize="20dp"
+        />
+    <Button
+        android:id="@+id/buttonIrACine"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:text="Cine"
+        android:layout_weight="1"
+        android:textSize="20dp"
+        android:background="#388e3c"
+        />
 
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>

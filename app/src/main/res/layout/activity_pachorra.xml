@@ -5,5 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.edu.a0817moacn01c_3.PachorraActivity">
+    <FrameLayout
+        android:id="@+id/contenedorDeFragments"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
+    </FrameLayout>
 </android.support.constraint.ConstraintLayout>

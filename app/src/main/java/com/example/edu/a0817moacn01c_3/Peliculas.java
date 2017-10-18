@@ -13,7 +13,7 @@ public class Peliculas {
     private Integer puntuacion;
     private String aptoParaPublico;
 
-    public Peliculas(String nombre, Integer imagen, String genero, String desc,Integer puntuacion,String aptoParaPublico,Integer imagenPortada) {
+    public Peliculas(String nombre, Integer imagen,Integer imagenPortada, String genero, String desc,Integer puntuacion,String aptoParaPublico) {
         this.nombre = nombre;
         this.imagen = imagen;
         this.genero = genero;
