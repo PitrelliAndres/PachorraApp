@@ -6,25 +6,30 @@
     android:layout_height="match_parent"
     tools:context="com.example.edu.a0817moacn01c_3.MainActivity">
 
-    <Button
+    <ImageButton
         android:id="@+id/buttonIrAPachorra"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:text="Pachorra en la cama"
-        android:onClick="irAPachorra"
-        android:gravity="center"
         android:layout_weight="1"
-        android:background="#d50000"
-        android:textSize="20dp"
-        />
-    <Button
+        android:background="@color/colorPrimaryDark"
+        android:gravity="center"
+        android:onClick="irAPachorra"
+        android:scaleType="fitCenter"
+        android:src="@drawable/pachorra"
+        android:text="Pachorra en la cama"
+        android:padding="@dimen/espacioStd"
+        android:textSize="@dimen/espacioStd" />
+
+    <ImageButton
         android:id="@+id/buttonIrACine"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:text="Cine"
         android:layout_weight="1"
-        android:textSize="20dp"
-        android:background="#388e3c"
-        />
+        android:background="@color/colorAccent"
+        android:scaleType="fitCenter"
+        android:src="@drawable/cine"
+        android:text="Cine"
+        android:padding="@dimen/espacioStd"
+        android:textSize="@dimen/espacioStd" />
 
 </LinearLayout>
