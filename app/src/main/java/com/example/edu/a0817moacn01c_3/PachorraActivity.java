@@ -34,6 +34,7 @@ public class PachorraActivity extends AppCompatActivity implements PachorraFragm
         unBundle.putInt("imagenPortada",imagenPortada);
         unBundle.putString("genero",genero);
         unBundle.putInt("puntuacion",puntuacion);
+        unBundle.putString("descripcion",desc);
         unBundle.putString("aptoTodoPublico",aptoTodoPublico);
 
         unIntent.putExtras(unBundle);

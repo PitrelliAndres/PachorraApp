@@ -34,7 +34,7 @@ public class DetalleFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         Bundle unBundle = getArguments();
-        pelicula = new Peliculas(unBundle.getString("nombre"),unBundle.getInt("imagen"),unBundle.getInt("imagenPortada"),unBundle.getString("genero"),unBundle.getString("desc"),unBundle.getInt("puntuacion"),unBundle.getString("aptoTodoPublico"));
+        pelicula = new Peliculas(unBundle.getString("nombre"),unBundle.getInt("imagen"),unBundle.getInt("imagenPortada"),unBundle.getString("genero"),unBundle.getString("descripcion"),unBundle.getInt("puntuacion"),unBundle.getString("aptoTodoPublico"));
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_detalle, container, false);
         this.imagen = view.findViewById(R.id.imageView_ImagenPelicula);
@@ -56,7 +56,7 @@ public class DetalleFragment extends Fragment {
         getActivity().setTitle(pelicula.getNombre());
         imagen.setImageResource(pelicula.getImagen());
         imagenPortada.setImageResource(pelicula.getImagenPortada());
-        //puntuacion.setText(pelicula.getPuntuacion());
+        puntuacion.setText(pelicula.getPuntuacion().toString());
         //ano.setText(pelicula.getAno());
         genero.setText(pelicula.getGenero());
         clasificacion.setText(pelicula.getAptoParaPublico());
