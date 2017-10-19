@@ -84,7 +84,8 @@ public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapt
     }
     private void cargarPeliculasRecomendadasAmigos(){
         listaPeliculasRecomendadas = new ArrayList<>();
-        listaPeliculasRecomendadas.add(new Peliculas("arma_mortal",R.drawable.arma_mortal,R.drawable.arma_mortal,"accion","desc",10,"ATP"));
+        String descArmaMortal = "Una pareja de policías tiene como misión proteger a un individuo que va a testificar en contra de una organización de traficantes de droga. Las cosas se complican cuando uno de ellos decide iniciar la investigación por su cuenta sin comunicarlo a la comisaría.";
+        listaPeliculasRecomendadas.add(new Peliculas("Arma Mortal",R.drawable.arma_mortal,R.drawable.arma_mortal,"accion",descArmaMortal,10,"ATP"));
         listaPeliculasRecomendadas.add(new Peliculas("Derek",R.drawable.derek,R.drawable.derek_backdrop,"Mockumentary","desc",10,"ATP"));
         listaPeliculasRecomendadas.add(new Peliculas("avatar",R.drawable.avatar,R.drawable.avatar,"accion","desc",0,"ATP"));
         listaPeliculasRecomendadas.add(new Peliculas("el_dia_de_la_marmota",R.drawable.el_dia_de_la_marmota,R.drawable.dia_de_la_marmota_backdrop,"accion","desc",10,"ATP"));
@@ -94,7 +95,7 @@ public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapt
     }
     private void cargarPeliculasMasVistas(){
         listaPeliculasMasVistas = new ArrayList<>();
-        listaPeliculasMasVistas.add(new Peliculas("arma_mortal",R.drawable.arma_mortal,R.drawable.arma_mortal,"accion","desc",10,"ATP"));
+        listaPeliculasMasVistas.add(new Peliculas("arma_mortal",R.drawable.arma_mortal,R.drawable.arma_mortal,"Ciencia Ficción","desc",10,"ATP"));
         listaPeliculasMasVistas.add(new Peliculas("Marte",R.drawable.the_martian,R.drawable.the_martian_backdrop,"Ciencia Ficción","desc",10,"ATP"));
         listaPeliculasMasVistas.add(new Peliculas("avatar",R.drawable.avatar,R.drawable.avatar,"accion","desc",0,"ATP"));
         listaPeliculasMasVistas.add(new Peliculas("el_dia_de_la_marmota",R.drawable.el_dia_de_la_marmota,R.drawable.dia_de_la_marmota_backdrop,"accion","desc",10,"ATP"));
