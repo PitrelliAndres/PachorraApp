@@ -18,20 +18,20 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapter1.ClickieablePeliRecomendada,PeliculasRecyclerAdapter2.ClickeablePelicula,PeliculasRecyclerAdapter3.ClickeablePelicula{
+public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapter.ClickieablePeliRecomendada{
     private List<Peliculas> listaPeliculasRecomendadas;
     private List<Peliculas> listaPeliculasMasVistas;
     private List<Peliculas> listaPeliculasEstrenos;
-    private PeliculasRecyclerAdapter1 unAdapter;
+    private PeliculasRecyclerAdapter unAdapter;
     private NotificadorDatos escuchadorPelicula;
-    private PeliculasRecyclerAdapter2 unAdapter2;
-    private PeliculasRecyclerAdapter3 unAdapter3;
+    private PeliculasRecyclerAdapter unAdapter2;
+    private PeliculasRecyclerAdapter unAdapter3;
     private TextView tituloRecomendadas;
     private TextView tituloMasvistas;
     private TextView tituloEstrenos;
     public PachorraFragment()
+    // Required empty public constructor
     {
-        // Required empty public constructor
     }
 
     public void onAttach(Context context){
@@ -48,7 +48,7 @@ public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapt
         RecyclerView unRecyclerView= view.findViewById(R.id.recyclerPachorra1);
         RecyclerView unRecyclerView2= view.findViewById(R.id.recyclerPachorra2);
         RecyclerView unRecyclerView3= view.findViewById(R.id.recyclerPachorra3);
-
+//constrain
         RecyclerView.LayoutManager unLayoutManager = new GridLayoutManager(getContext(),1,GridLayoutManager.HORIZONTAL,false);
         RecyclerView.LayoutManager unLayoutManager2 = new GridLayoutManager(getContext(),1,GridLayoutManager.HORIZONTAL,false);
         RecyclerView.LayoutManager unLayoutManager3 = new GridLayoutManager(getContext(),1,GridLayoutManager.HORIZONTAL,false);
@@ -72,9 +72,9 @@ public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapt
         unRecyclerView2.setHasFixedSize(true);
         unRecyclerView3.setHasFixedSize(true);
 
-        unAdapter2 = new PeliculasRecyclerAdapter2(listaPeliculasMasVistas,getContext(),this);
-        unAdapter = new PeliculasRecyclerAdapter1(listaPeliculasRecomendadas,getContext(),this);
-        unAdapter3= new PeliculasRecyclerAdapter3(listaPeliculasEstrenos,getContext(),this);
+        unAdapter2 = new PeliculasRecyclerAdapter(listaPeliculasMasVistas,getContext(),this);
+        unAdapter = new PeliculasRecyclerAdapter(listaPeliculasRecomendadas,getContext(),this);
+        unAdapter3= new PeliculasRecyclerAdapter(listaPeliculasEstrenos,getContext(),this);
         //Le seteo el adaptador al recycler
         unRecyclerView.setAdapter(unAdapter);
         unRecyclerView2.setAdapter(unAdapter2);

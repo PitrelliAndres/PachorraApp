@@ -13,35 +13,35 @@ import java.util.List;
  * Created by Andiy on 18/10/2017.
  */
 
-public class PeliculasRecyclerAdapter3 extends RecyclerView.Adapter {
+public class PeliculasRecyclerAdapter extends RecyclerView.Adapter{
     private List<Peliculas> listaPeliculas;
     private Context contexto;
-    private ClickeablePelicula clickeablePelicula;
+    private ClickieablePeliRecomendada clickieablePeliRecomendada;
 
-    public PeliculasRecyclerAdapter3(List<Peliculas> listaPeliculas, Context contexto, ClickeablePelicula clickeablePelicula) {
+    public PeliculasRecyclerAdapter(List<Peliculas> listaPeliculas, Context contexto, ClickieablePeliRecomendada clickieablePeliRecomendada) {
         this.listaPeliculas = listaPeliculas;
         this.contexto = contexto;
-        this.clickeablePelicula = clickeablePelicula;
+        this.clickieablePeliRecomendada = clickieablePeliRecomendada;
     }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        LayoutInflater unInflador = LayoutInflater.from(contexto);
-        View view = unInflador.inflate(R.layout.celdapeliculas, parent, false);
-        PeliculasViewHolder peliculasViewHolder = new PeliculasViewHolder(view);
+        LayoutInflater unInflador= LayoutInflater.from(contexto);
+        View view= unInflador.inflate(R.layout.celdapeliculas,parent,false);
+        PeliculasViewHolder peliculasViewHolder= new PeliculasViewHolder(view);
         return peliculasViewHolder;
 
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        final Peliculas peliculas = listaPeliculas.get(position);
-        PeliculasRecyclerAdapter3.PeliculasViewHolder peliculasViewHolder = (PeliculasViewHolder) holder;
+        final Peliculas peliculas= listaPeliculas.get(position);
+        PeliculasViewHolder peliculasViewHolder=(PeliculasViewHolder) holder;
         peliculasViewHolder.cargarPelicula(peliculas);
 
-        peliculasViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                clickeablePelicula.mandarSeleccion(peliculas);
+        peliculasViewHolder.itemView.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view){
+                clickieablePeliRecomendada.mandarSeleccion(peliculas);
             }
         });
     }
@@ -51,20 +51,19 @@ public class PeliculasRecyclerAdapter3 extends RecyclerView.Adapter {
         return listaPeliculas.size();
     }
 
-    private class PeliculasViewHolder extends RecyclerView.ViewHolder {
+
+    private class PeliculasViewHolder extends RecyclerView.ViewHolder{
         private ImageView imagenPelicula;
 
-        public PeliculasViewHolder(View itemView) {
+        public PeliculasViewHolder(View itemView){
             super(itemView);
-            imagenPelicula = itemView.findViewById(R.id.imageView_ImagenPelicula);
+            imagenPelicula=itemView.findViewById(R.id.imageView_ImagenPelicula);
         }
-
-        public void cargarPelicula(Peliculas unaPelicula) {
+        public void cargarPelicula(Peliculas unaPelicula){
             imagenPelicula.setImageResource(unaPelicula.getImagen());
         }
     }
-
-    public interface ClickeablePelicula {
+    public interface ClickieablePeliRecomendada{
         public void mandarSeleccion(Peliculas unaPelicula);
         //public void mandarSeleccion(Peliculas unaPelicula,Context unContexto);
     }
