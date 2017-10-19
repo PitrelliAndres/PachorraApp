@@ -26,7 +26,7 @@ public class DetalleActivity extends AppCompatActivity{
         detalleFragment.setArguments(unBundle);
         fragmentTransaction.replace(R.id.contenedorDeFragmentsDetalle, detalleFragment);
         fragmentTransaction.commit();
-
+        //dsdsadsad
 
     }
 
