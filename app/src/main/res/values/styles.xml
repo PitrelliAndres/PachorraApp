@@ -7,5 +7,7 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
-
+    <style name="detalleAfiche">
+        <item name="android:layout_marginLeft">@dimen/espacioStd</item>
+    </style>
 </resources>
