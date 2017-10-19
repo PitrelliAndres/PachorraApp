@@ -16,7 +16,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DetalleActivity" />
+        <activity android:name=".DetalleActivity" android:parentActivityName=".PachorraActivity" />
         <activity android:name=".PachorraActivity"></activity>
     </application>
 
