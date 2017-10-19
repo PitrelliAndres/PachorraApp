@@ -85,8 +85,9 @@ public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapt
     private void cargarPeliculasRecomendadasAmigos(){
         listaPeliculasRecomendadas = new ArrayList<>();
         listaPeliculasRecomendadas.add(new Peliculas("arma_mortal",R.drawable.arma_mortal,R.drawable.arma_mortal,"accion","desc",10,"ATP"));
+        listaPeliculasRecomendadas.add(new Peliculas("Derek",R.drawable.derek,R.drawable.derek_backdrop,"Mockumentary","desc",10,"ATP"));
         listaPeliculasRecomendadas.add(new Peliculas("avatar",R.drawable.avatar,R.drawable.avatar,"accion","desc",0,"ATP"));
-        listaPeliculasRecomendadas.add(new Peliculas("el_dia_de_la_marmota",R.drawable.el_dia_de_la_marmota,R.drawable.el_dia_de_la_marmota,"accion","desc",10,"ATP"));
+        listaPeliculasRecomendadas.add(new Peliculas("el_dia_de_la_marmota",R.drawable.el_dia_de_la_marmota,R.drawable.dia_de_la_marmota_backdrop,"accion","desc",10,"ATP"));
         listaPeliculasRecomendadas.add(new Peliculas("el_senor_de_los_anillos",R.drawable.el_senor_de_los_anillos,R.drawable.el_senor_de_los_anillos,"accion","desc",10,"ATP"));
         listaPeliculasRecomendadas.add(new Peliculas("forrest_gump",R.drawable.forrest_gump,R.drawable.forrest_gump,"accion","desc",10,"ATP"));
         listaPeliculasRecomendadas.add(new Peliculas("indiana_jones",R.drawable.indiana_jones,R.drawable.indiana_jones,"accion","desc",10,"ATP"));
@@ -94,8 +95,9 @@ public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapt
     private void cargarPeliculasMasVistas(){
         listaPeliculasMasVistas = new ArrayList<>();
         listaPeliculasMasVistas.add(new Peliculas("arma_mortal",R.drawable.arma_mortal,R.drawable.arma_mortal,"accion","desc",10,"ATP"));
+        listaPeliculasMasVistas.add(new Peliculas("Marte",R.drawable.the_martian,R.drawable.the_martian_backdrop,"Ciencia Ficción","desc",10,"ATP"));
         listaPeliculasMasVistas.add(new Peliculas("avatar",R.drawable.avatar,R.drawable.avatar,"accion","desc",0,"ATP"));
-        listaPeliculasMasVistas.add(new Peliculas("el_dia_de_la_marmota",R.drawable.el_dia_de_la_marmota,R.drawable.el_dia_de_la_marmota,"accion","desc",10,"ATP"));
+        listaPeliculasMasVistas.add(new Peliculas("el_dia_de_la_marmota",R.drawable.el_dia_de_la_marmota,R.drawable.dia_de_la_marmota_backdrop,"accion","desc",10,"ATP"));
         listaPeliculasMasVistas.add(new Peliculas("el_senor_de_los_anillos",R.drawable.el_senor_de_los_anillos,R.drawable.el_senor_de_los_anillos,"accion","desc",10,"ATP"));
         listaPeliculasMasVistas.add(new Peliculas("forrest_gump",R.drawable.forrest_gump,R.drawable.forrest_gump,"accion","desc",10,"ATP"));
         listaPeliculasMasVistas.add(new Peliculas("indiana_jones",R.drawable.indiana_jones,R.drawable.indiana_jones,"accion","desc",10,"ATP"));
@@ -104,7 +106,7 @@ public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapt
         listaPeliculasEstrenos = new ArrayList<>();
         listaPeliculasEstrenos.add(new Peliculas("arma_mortal",R.drawable.arma_mortal,R.drawable.arma_mortal,"accion","desc",10,"ATP"));
         listaPeliculasEstrenos.add(new Peliculas("avatar",R.drawable.avatar,R.drawable.avatar,"accion","desc",0,"ATP"));
-        listaPeliculasEstrenos.add(new Peliculas("el_dia_de_la_marmota",R.drawable.el_dia_de_la_marmota,R.drawable.el_dia_de_la_marmota,"accion","desc",10,"ATP"));
+        listaPeliculasEstrenos.add(new Peliculas("el_dia_de_la_marmota",R.drawable.el_dia_de_la_marmota,R.drawable.dia_de_la_marmota_backdrop,"accion","desc",10,"ATP"));
         listaPeliculasEstrenos.add(new Peliculas("el_senor_de_los_anillos",R.drawable.el_senor_de_los_anillos,R.drawable.el_senor_de_los_anillos,"accion","desc",10,"ATP"));
         listaPeliculasEstrenos.add(new Peliculas("forrest_gump",R.drawable.forrest_gump,R.drawable.forrest_gump,"accion","desc",10,"ATP"));
         listaPeliculasEstrenos.add(new Peliculas("indiana_jones",R.drawable.indiana_jones,R.drawable.indiana_jones,"accion","desc",10,"ATP"));
