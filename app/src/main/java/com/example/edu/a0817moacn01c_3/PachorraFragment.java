@@ -95,23 +95,25 @@ public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapt
     }
     private void cargarPeliculasMasVistas(){
         listaPeliculasMasVistas = new ArrayList<>();
-        listaPeliculasMasVistas.add(new Peliculas("Logan",R.drawable.logan,R.drawable.loganback,"Accion","desc",10.0,"ATP"));
-        listaPeliculasMasVistas.add(new Peliculas("Spider man: Homecoming",R.drawable.spidermanhomecoming,R.drawable.spidermanhomecomingback,"Ciencia Ficción","desc",8.0,"ATP"));
-        listaPeliculasMasVistas.add(new Peliculas("It",R.drawable.it,R.drawable.itback,"Terror","desc",7.0,"+16"));
-        listaPeliculasMasVistas.add(new Peliculas("Mi Villano Favorito 3",R.drawable.mivillanofavorito,R.drawable.mivillanofavoritoback,"Comedia","desc",8.0,"ATP"));
-        listaPeliculasMasVistas.add(new Peliculas("La Bella Y La Bestia",R.drawable.labellaylabestia,R.drawable.labellaylabestiaback,"Infantil","desc",9.0,"ATP"));
-        listaPeliculasMasVistas.add(new Peliculas("Guardianes de la galaxia 2",R.drawable.guardianesdelagalaxia2,R.drawable.guardianesdelagalaxiaback,"Ciencia ficcion","desc",9.0,"ATP"));
-        listaPeliculasMasVistas.add(new Peliculas("Rapidos y Furiosos 8",R.drawable.rapidoyfurioso,R.drawable.rapidoyfuriosoback,"Accion","desc",6.0,"ATP"));
+        String descArmaMortal = "Una pareja de policías tiene como misión proteger a un individuo que va a testificar en contra de una organización de traficantes de droga. Las cosas se complican cuando uno de ellos decide iniciar la investigación por su cuenta sin comunicarlo a la comisaría. Una pareja de policías tiene como misión proteger a un individuo que va a testificar en contra de una organización de traficantes de droga. Las cosas se complican cuando uno de ellos decide iniciar la investigación por su cuenta sin comunicarlo a la comisaría. Una pareja de policías tiene como misión proteger a un individuo que va a testificar en contra de una organización de traficantes de droga. Las cosas se complican cuando uno de ellos decide iniciar la investigación por su cuenta sin comunicarlo a la comisaría. Una pareja de policías tiene como misión proteger a un individuo que va a testificar en contra de una organización de traficantes de droga. Las cosas se complican cuando uno de ellos decide iniciar la investigación por su cuenta sin comunicarlo a la comisaría. Una pareja de policías tiene como misión proteger a un individuo que va a testificar en contra de una organización de traficantes de droga. Las cosas se complican cuando uno de ellos decide iniciar la investigación por su cuenta sin comunicarlo a la comisaría.";
+        listaPeliculasMasVistas.add(new Peliculas("Logan",R.drawable.logan,R.drawable.loganback,"Accion",descArmaMortal,10.0,"ATP"));
+        listaPeliculasMasVistas.add(new Peliculas("Spider man: Homecoming",R.drawable.spidermanhomecoming,R.drawable.spidermanhomecomingback,"Ciencia Ficción",descArmaMortal,8.0,"ATP"));
+        listaPeliculasMasVistas.add(new Peliculas("It",R.drawable.it,R.drawable.itback,"Terror",descArmaMortal,7.0,"+16"));
+        listaPeliculasMasVistas.add(new Peliculas("Mi Villano Favorito 3",R.drawable.mivillanofavorito,R.drawable.mivillanofavoritoback,"Comedia",descArmaMortal,8.0,"ATP"));
+        listaPeliculasMasVistas.add(new Peliculas("La Bella Y La Bestia",R.drawable.labellaylabestia,R.drawable.labellaylabestiaback,"Infantil",descArmaMortal,9.0,"ATP"));
+        listaPeliculasMasVistas.add(new Peliculas("Guardianes de la galaxia 2",R.drawable.guardianesdelagalaxia2,R.drawable.guardianesdelagalaxiaback,"Ciencia ficcion",descArmaMortal,9.0,"ATP"));
+        listaPeliculasMasVistas.add(new Peliculas("Rapidos y Furiosos 8",R.drawable.rapidoyfurioso,R.drawable.rapidoyfuriosoback,"Accion",descArmaMortal,6.0,"ATP"));
     }
     private void cargarPeliculasEstrenos(){
         listaPeliculasEstrenos = new ArrayList<>();
-        listaPeliculasEstrenos.add(new Peliculas("Blade Runner ",R.drawable.bladerunner,R.drawable.bladerunnerback,"ciencia ficcion","desc",9.0,"ATP"));
-        listaPeliculasEstrenos.add(new Peliculas("El Muñeco De Nieve",R.drawable.elmunecodenieve,R.drawable.elmunecodenieveback,"drama","desc",5.0,"ATP"));
-        listaPeliculasEstrenos.add(new Peliculas("El Ultimo Traje",R.drawable.elultimotraje,R.drawable.elultimotrajeback,"drama","desc",8.0,"ATP"));
-        listaPeliculasEstrenos.add(new Peliculas("La Cabaña",R.drawable.lacabana,R.drawable.lacabalaback,"drama","desc",8.0,"ATP"));
-        listaPeliculasEstrenos.add(new Peliculas("Anabelle 2",R.drawable.anabelle,R.drawable.anabellebackground,"Terror","desc",6.0,"+16"));
-        listaPeliculasEstrenos.add(new Peliculas("Mal Genio",R.drawable.malgenio,R.drawable.malgenioback,"Comedia","desc",8.0,"ATP"));
-        listaPeliculasEstrenos.add(new Peliculas("La Llamada",R.drawable.lallamada,R.drawable.lallamadaback,"Comedia Musical","desc",7.0,"ATP"));
+        String descArmaMortal = "Una pareja de policías tiene como misión proteger a un individuo que va a testificar en contra de una organización de traficantes de droga. Las cosas se complican cuando uno de ellos decide iniciar la investigación por su cuenta sin comunicarlo a la comisaría. Una pareja de policías tiene como misión proteger a un individuo que va a testificar en contra de una organización de traficantes de droga. Las cosas se complican cuando uno de ellos decide iniciar la investigación por su cuenta sin comunicarlo a la comisaría. Una pareja de policías tiene como misión proteger a un individuo que va a testificar en contra de una organización de traficantes de droga. Las cosas se complican cuando uno de ellos decide iniciar la investigación por su cuenta sin comunicarlo a la comisaría. Una pareja de policías tiene como misión proteger a un individuo que va a testificar en contra de una organización de traficantes de droga. Las cosas se complican cuando uno de ellos decide iniciar la investigación por su cuenta sin comunicarlo a la comisaría. Una pareja de policías tiene como misión proteger a un individuo que va a testificar en contra de una organización de traficantes de droga. Las cosas se complican cuando uno de ellos decide iniciar la investigación por su cuenta sin comunicarlo a la comisaría.";
+        listaPeliculasEstrenos.add(new Peliculas("Blade Runner ",R.drawable.bladerunner,R.drawable.bladerunnerback,"ciencia ficcion",descArmaMortal,9.0,"ATP"));
+        listaPeliculasEstrenos.add(new Peliculas("El Muñeco De Nieve",R.drawable.elmunecodenieve,R.drawable.elmunecodenieveback,"drama",descArmaMortal,5.0,"ATP"));
+        listaPeliculasEstrenos.add(new Peliculas("El Ultimo Traje",R.drawable.elultimotraje,R.drawable.elultimotrajeback,"drama",descArmaMortal,8.0,"ATP"));
+        listaPeliculasEstrenos.add(new Peliculas("La Cabaña",R.drawable.lacabana,R.drawable.lacabalaback,"drama",descArmaMortal,8.0,"ATP"));
+        listaPeliculasEstrenos.add(new Peliculas("Anabelle 2",R.drawable.anabelle,R.drawable.anabellebackground,"Terror",descArmaMortal,6.0,"+16"));
+        listaPeliculasEstrenos.add(new Peliculas("Mal Genio",R.drawable.malgenio,R.drawable.malgenioback,"Comedia",descArmaMortal,8.0,"ATP"));
+        listaPeliculasEstrenos.add(new Peliculas("La Llamada",R.drawable.lallamada,R.drawable.lallamadaback,"Comedia Musical",descArmaMortal,7.0,"ATP"));
     }
 
     @Override
