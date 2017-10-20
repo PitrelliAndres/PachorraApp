@@ -76,7 +76,6 @@
                 android:text="Acción"
                 />
             </android.support.v7.widget.CardView>
-            <!--android:textSize="@dimen/espacioS"-->
             <android.support.v7.widget.CardView
                 android:id="@+id/cardview_Año"
                 android:layout_width="40dp"
