@@ -62,7 +62,8 @@
                     android:layout_centerHorizontal="true"
                     android:text="0.0"
                     android:textColor="@color/colorAccent"
-                    android:textSize="@dimen/textoEspecial" />
+                    android:textSize="@dimen/textoEspecial"
+                    android:textStyle="bold"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -72,7 +73,8 @@
                     android:layout_gravity="end"
                     android:layout_marginTop="2dp"
                     android:text="IMDB"
-                    android:textSize="@dimen/espacioS" />
+                    android:textSize="@dimen/espacioS"
+                    android:textStyle="bold"/>
             </RelativeLayout>
 
 
@@ -95,7 +97,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:textSize="10sp"
+                android:textSize="12sp"
                 android:text="Acción" />
 
         </android.support.v7.widget.CardView>
@@ -165,14 +167,17 @@
                     style="@style/detalleTitulos"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Sinopsis" />
+                    android:text="Sinopsis"
+                    android:textSize="18sp"
+                    android:textStyle="bold"/>
 
                 <TextView
                     android:id="@+id/textview_descripcion"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/textview_Sinopsis"
-                    android:text="@string/lorem_ipsum" />
+                    android:text="@string/lorem_ipsum"
+                    android:textSize="15sp"/>
 
             </RelativeLayout>
         </ScrollView>
