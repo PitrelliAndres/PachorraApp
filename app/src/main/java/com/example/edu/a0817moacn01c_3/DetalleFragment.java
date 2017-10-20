@@ -27,6 +27,8 @@ public class DetalleFragment extends Fragment {
 
     public DetalleFragment() {
         // Required empty public constructor
+
+        // Required empty public constructor
     }
 
 
