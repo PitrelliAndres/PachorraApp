@@ -144,16 +144,17 @@
         android:id="@+id/scrollView2">
 
         <RelativeLayout
+            android:layout_marginTop="@dimen/espacioStd"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/espacioS"
+            android:paddingLeft="@dimen/espacioStd"
             >
 
             <TextView
                 android:id="@+id/textview_Sinopsis"
+                style="@style/titulo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/espacioS"
                 android:text="Sinopsis" />
 
             <TextView
