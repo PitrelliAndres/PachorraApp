@@ -48,7 +48,7 @@ public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapt
         RecyclerView unRecyclerView= view.findViewById(R.id.recyclerPachorra1);
         RecyclerView unRecyclerView2= view.findViewById(R.id.recyclerPachorra2);
         RecyclerView unRecyclerView3= view.findViewById(R.id.recyclerPachorra3);
-//constrain
+        //constrain
         RecyclerView.LayoutManager unLayoutManager = new GridLayoutManager(getContext(),1,GridLayoutManager.HORIZONTAL,false);
         RecyclerView.LayoutManager unLayoutManager2 = new GridLayoutManager(getContext(),1,GridLayoutManager.HORIZONTAL,false);
         RecyclerView.LayoutManager unLayoutManager3 = new GridLayoutManager(getContext(),1,GridLayoutManager.HORIZONTAL,false);

@@ -1,6 +1,7 @@
 package com.example.edu.a0817moacn01c_3;
 
 import android.content.Context;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -54,10 +55,12 @@ public class PeliculasRecyclerAdapter extends RecyclerView.Adapter{
 
     private class PeliculasViewHolder extends RecyclerView.ViewHolder{
         private ImageView imagenPelicula;
+        private CardView cardPeli;
 
         public PeliculasViewHolder(View itemView){
             super(itemView);
             imagenPelicula=itemView.findViewById(R.id.imageView_ImagenPelicula);
+            cardPeli=itemView.findViewById(R.id.cardview_ImagenPelicula);
         }
         public void cargarPelicula(Peliculas unaPelicula){
             imagenPelicula.setImageResource(unaPelicula.getImagen());
