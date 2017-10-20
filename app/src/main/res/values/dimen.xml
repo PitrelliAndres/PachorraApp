@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="espacioStd">10dp</dimen>
-    <dimen name="espacioS">6dp</dimen>
+    <dimen name="espacioStd">12dp</dimen>
+    <dimen name="espacioS">8dp</dimen>
+    <dimen name="textoEspecial">12sp</dimen>
 </resources>

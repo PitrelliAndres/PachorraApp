@@ -6,6 +6,10 @@
     android:layout_height="match_parent"
     tools:context="com.example.edu.a0817moacn01c_3.DetalleFragment">
 
+<RelativeLayout
+    android:id="@+id/contenidosDetalle"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <RelativeLayout
         android:id="@+id/contenidosEncabezado"
@@ -21,27 +25,35 @@
 
         <ImageView
             android:id="@+id/imageView_ImagenPelicula"
+            android:layout_alignBottom="@id/imageview_detalleBackdrop"
+            android:layout_marginBottom="-60dp"
             style="@style/detalleAfiche"
             android:layout_width="100dp"
             android:layout_height="150dp"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="60dp"
             android:src="@drawable/derek"
             />
+        <!--
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="60dp"
+        -->
 
         <android.support.v7.widget.CardView
             android:id="@+id/cardView_puntaje"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/imageview_detalleBackdrop"
+            android:layout_alignBottom="@id/imageView_ImagenPelicula"
             android:layout_marginLeft="@dimen/espacioS"
             android:layout_marginTop="@dimen/espacioS"
-            android:layout_toRightOf="@id/imageView_ImagenPelicula">
+            android:layout_toRightOf="@id/imageView_ImagenPelicula"
+            >
 
             <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/espacioS">
+                style="@style/detalleCardviews"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
 
                 <TextView
                     android:id="@+id/textview_detallePuntuacion"
@@ -50,7 +62,7 @@
                     android:layout_centerHorizontal="true"
                     android:text="0.0"
                     android:textColor="@color/colorAccent"
-                    android:textSize="@dimen/espacioStd" />
+                    android:textSize="@dimen/textoEspecial" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -71,20 +83,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignTop="@+id/cardView_puntaje"
+            android:layout_alignBottom="@id/imageView_ImagenPelicula"
             android:layout_marginLeft="@dimen/espacioS"
             android:layout_toRightOf="@id/cardView_puntaje"
-            android:layout_above="@+id/scrollView2"
             >
 
 
-                <TextView
-                    android:id="@+id/textview_genero"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="@dimen/espacioS"
-                    android:layout_marginRight="@dimen/espacioS"
-                    android:gravity="center"
-                    android:text="Acción" />
+            <TextView
+                style="@style/detalleCardviews"
+                android:id="@+id/textview_genero"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:textSize="10sp"
+                android:text="Acción" />
 
         </android.support.v7.widget.CardView>
 
@@ -98,13 +110,13 @@
             android:layout_toRightOf="@+id/cardview_Genero">
 
             <TextView
-                android:padding="5dp"
                 android:id="@+id/textview_año"
+                style="@style/detalleCardviews"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:text="2010"
-                android:textSize="@dimen/espacioStd" />
+                />
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
@@ -118,58 +130,62 @@
 
             <TextView
                 android:id="@+id/textview_clasificacion"
+                style="@style/detalleCardviews"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:padding="5dp"
                 android:text="ATP"
-                android:textSize="@dimen/espacioStd" />
+                />
 
         </android.support.v7.widget.CardView>
- <!--   </RelativeLayout>
-<RelativeLayout
-    android:id="@+id/contenidosCuerpo"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">-->
-
-    <ScrollView
-        android:layout_below="@id/imageView_ImagenPelicula"
+<!--
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/contenidosCuerpo"
+        android:layout_below="@id/contenidosEncabezado"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/scrollView2">
-
-        <RelativeLayout
-            android:layout_marginTop="@dimen/espacioStd"
+        android:layout_height="wrap_content">
+-->
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="@dimen/espacioStd"
-            >
+            android:layout_below="@id/cardView_puntaje"
+            android:id="@+id/scrollView2">
+            <!--android:layout_below="@id/imageView_ImagenPelicula"-->
 
-            <TextView
-                android:id="@+id/textview_Sinopsis"
-                style="@style/titulo"
+            <RelativeLayout
+                android:layout_marginTop="@dimen/espacioStd"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Sinopsis" />
+                android:paddingLeft="@dimen/espacioStd"
+                >
 
-            <TextView
-                android:id="@+id/textview_descripcion"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/textview_Sinopsis"
-                android:text="@string/lorem_ipsum" />
+                <TextView
+                    android:id="@+id/textview_Sinopsis"
+                    style="@style/detalleTitulos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Sinopsis" />
 
-        </RelativeLayout>
-    </ScrollView>
+                <TextView
+                    android:id="@+id/textview_descripcion"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/textview_Sinopsis"
+                    android:text="@string/lorem_ipsum" />
+
+            </RelativeLayout>
+        </ScrollView>
+    </RelativeLayout>
+
 </RelativeLayout>
-
-
+    <!--app:layout_anchor="@id/coordinator_detalle"-->
     <android.support.design.widget.FloatingActionButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/espacioStd"
         android:src="@android:drawable/ic_menu_share"
-        app:layout_anchorGravity="bottom|right" />
-    <!--app:layout_anchor="@id/coordinator_detalle"-->
-
+        app:layout_anchorGravity="bottom|right"
+        app:layout_anchor="@id/contenidosDetalle"
+        />
 </android.support.design.widget.CoordinatorLayout>

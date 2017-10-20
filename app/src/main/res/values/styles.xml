@@ -10,8 +10,13 @@
     <style name="detalleAfiche">
         <item name="android:layout_marginLeft">@dimen/espacioStd</item>
     </style>
-    <style name="titulo">
+    <style name="detalleCardviews">
+        <item name="android:layout_marginRight">0dp</item>
+        <item name="android:padding">@dimen/espacioS</item>
+    </style>
+    <style name="detalleTitulos">
         <item name="android:layout_marginBottom">@dimen/espacioS</item>
         <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:textSize">@dimen/textoEspecial</item>
     </style>
 </resources>

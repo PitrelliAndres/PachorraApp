@@ -55,12 +55,14 @@ public class DetalleFragment extends Fragment {
     }
 
     public void mostrarInformacion(){
+        String generoTexto = pelicula.getGenero().replace(",","\r\n");
+
         getActivity().setTitle(pelicula.getNombre());
         imagen.setImageResource(pelicula.getImagen());
         imagenPortada.setImageResource(pelicula.getImagenPortada());
         puntuacion.setText(pelicula.getPuntuacion().toString());
         //ano.setText(pelicula.getAno());
-        genero.setText(pelicula.getGenero());
+        genero.setText(generoTexto);
         clasificacion.setText(pelicula.getAptoParaPublico());
         sinopsis.setText(pelicula.getDesc());
 
