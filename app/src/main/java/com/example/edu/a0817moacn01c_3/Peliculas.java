@@ -10,10 +10,10 @@ public class Peliculas {
     private Integer imagenPortada;
     private String genero;
     private String desc;
-    private Integer puntuacion;
+    private Double puntuacion;
     private String aptoParaPublico;
 
-    public Peliculas(String nombre, Integer imagen,Integer imagenPortada, String genero, String desc,Integer puntuacion,String aptoParaPublico) {
+    public Peliculas(String nombre, Integer imagen,Integer imagenPortada, String genero, String desc,Double puntuacion,String aptoParaPublico) {
         this.nombre = nombre;
         this.imagen = imagen;
         this.genero = genero;
@@ -43,7 +43,7 @@ public class Peliculas {
         return imagenPortada;
     }
 
-    public Integer getPuntuacion() {
+    public Double getPuntuacion() {
         return puntuacion;
     }
 

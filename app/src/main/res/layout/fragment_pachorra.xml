@@ -1,10 +1,12 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
     tools:context="com.example.edu.a0817moacn01c_3.PachorraFragment">
-
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
     <!-- TODO: Update blank fragment layout -->
     <RelativeLayout
         android:layout_width="match_parent"
@@ -70,5 +72,7 @@
         android:layout_below="@id/textView_tituloLista3"
         android:layout_marginLeft="10dp"
         />
+
     </RelativeLayout>
 </ScrollView>
+</android.support.design.widget.CoordinatorLayout>

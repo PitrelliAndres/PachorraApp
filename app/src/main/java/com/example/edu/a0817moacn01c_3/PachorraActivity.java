@@ -25,7 +25,7 @@ public class PachorraActivity extends AppCompatActivity implements PachorraFragm
 
     @Override
     //metodo para enviar la informacion de la pelicula al detalle activity
-    public void mandarDatos(String nombre, Integer imagen, Integer imagenPortada, String genero, String desc, Integer puntuacion, String aptoTodoPublico) {
+    public void mandarDatos(String nombre, Integer imagen, Integer imagenPortada, String genero, String desc, Double puntuacion, String aptoTodoPublico) {
         Intent unIntent = new Intent(this,DetalleActivity.class);
 
         Bundle unBundle= new Bundle();
@@ -33,7 +33,7 @@ public class PachorraActivity extends AppCompatActivity implements PachorraFragm
         unBundle.putInt("imagen",imagen);
         unBundle.putInt("imagenPortada",imagenPortada);
         unBundle.putString("genero",genero);
-        unBundle.putInt("puntuacion",puntuacion);
+        unBundle.putDouble("puntuacion",puntuacion);
         unBundle.putString("descripcion",desc);
         unBundle.putString("aptoTodoPublico",aptoTodoPublico);
 

@@ -6,10 +6,10 @@
     android:layout_height="match_parent"
     tools:context="com.example.edu.a0817moacn01c_3.DetalleFragment">
 
-    <LinearLayout
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
         <ImageView
             android:id="@+id/imageview_detalleBackdrop"
@@ -18,96 +18,138 @@
             android:scaleType="centerCrop"
             android:src="@drawable/derek_backdrop" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/espacioStd"
-            android:layout_marginTop="@dimen/espacioStd"
-            android:orientation="horizontal"
-            android:paddingLeft="140dp">
 
-            <LinearLayout
+
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cardView_puntaje"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="@dimen/espacioS"
-                android:orientation="vertical">
+                android:layout_below="@id/imageview_detalleBackdrop"
+                android:layout_toRightOf="@id/imageView_ImagenPelicula"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp">
 
-                <TextView
-                    android:id="@+id/textview_detallePuntuacion"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="0.0"
-                    android:textColor="@color/colorAccent"
-                    android:textSize="@dimen/espacioStd" />
+               <RelativeLayout
+                   android:layout_width="30dp"
+                   android:layout_height="40dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="IMDB"
-                    android:textSize="@dimen/espacioS" />
+                    <TextView
+                        android:id="@+id/textview_detallePuntuacion"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0.0"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="@dimen/espacioStd"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="2dp"/>
 
-            </LinearLayout>
+                    <TextView
+                        android:layout_below="@id/textview_detallePuntuacion"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:text="IMDB"
+                        android:textSize="@dimen/espacioS"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="2dp"/>
+               </RelativeLayout>
 
+
+            </android.support.v7.widget.CardView>
+            <android.support.v7.widget.CardView
+                android:id="@+id/cardview_Genero"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/cardView_puntaje"
+                android:layout_toRightOf="@id/cardView_puntaje"
+                android:layout_marginLeft="10dp">
             <TextView
                 android:id="@+id/textview_genero"
-                android:text="Acción"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="10dp"
                 android:layout_marginRight="@dimen/espacioS"
-                />
-                <!--android:textSize="@dimen/espacioS"-->
+                android:gravity="center_vertical"
 
+
+                android:text="Acción"
+                />
+            </android.support.v7.widget.CardView>
+            <!--android:textSize="@dimen/espacioS"-->
+            <android.support.v7.widget.CardView
+                android:id="@+id/cardview_Año"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/cardView_puntaje"
+                android:layout_toRightOf="@+id/cardview_Genero"
+                android:layout_marginLeft="10dp"
+
+               >
             <TextView
                 android:id="@+id/textview_ano"
-                android:text="2010"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
                 android:layout_marginRight="@dimen/espacioS"
-                android:textSize="@dimen/espacioStd" />
+                android:gravity="center"
+                android:text="2010"
+                android:textSize="@dimen/espacioStd"
 
+
+
+
+
+                />
+            </android.support.v7.widget.CardView>
+
+           <android.support.v7.widget.CardView
+               android:layout_width="40dp"
+               android:layout_height="wrap_content"
+               android:layout_alignBottom="@id/cardView_puntaje"
+               android:layout_toRightOf="@id/cardview_Año"
+               android:layout_marginLeft="10dp">
             <TextView
                 android:id="@+id/textview_clasificacion"
-                android:textSize="@dimen/espacioStd"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent" />
-        </LinearLayout>
-<ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:text="ATP"
+                android:gravity="center"
+                android:textSize="@dimen/espacioStd" />
 
-        <LinearLayout
+           </android.support.v7.widget.CardView>
+
+        <TextView
+            android:id="@+id/textview_Sinopsis"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="@dimen/espacioStd"
-            android:layout_marginRight="@dimen/espacioStd"
-            android:layout_marginTop="@dimen/espacioS"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:layout_below="@id/imageView_ImagenPelicula"
+            android:layout_marginBottom="@dimen/espacioS"
+            android:text="Sinopsis"
+            android:layout_marginTop="10dp" android:layout_marginLeft="5dp"
+            />
 
-            <TextView
-                android:text="Sinopsis"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/espacioS"
-                />
+        <TextView
 
-            <TextView
-                android:id="@+id/textview_descripcion"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/lorem_ipsum" />
-        </LinearLayout>
-</ScrollView>
-    </LinearLayout>
+            android:id="@+id/textview_descripcion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textview_Sinopsis"
+            android:text="@string/lorem_ipsum"
+            android:layout_marginLeft="5dp"/>
 
-    <ImageView
-        android:id="@+id/imageView_ImagenPelicula"
-        style="@style/detalleAfiche"
-        android:layout_width="100dp"
-        android:layout_height="150dp"
-        android:src="@drawable/derek"
-        app:layout_anchor="@id/imageview_detalleBackdrop"
-        app:layout_anchorGravity="bottom|left" />
+
+        <ImageView
+            android:id="@+id/imageView_ImagenPelicula"
+            style="@style/detalleAfiche"
+            android:layout_width="100dp"
+            android:layout_height="150dp"
+            android:src="@drawable/derek"
+            app:layout_anchor="@id/imageview_detalleBackdrop"
+            app:layout_anchorGravity="bottom|left"
+            android:layout_marginTop="40dp"/>
+
+    </RelativeLayout>
+
 
     <android.support.design.widget.FloatingActionButton
         android:layout_width="wrap_content"
