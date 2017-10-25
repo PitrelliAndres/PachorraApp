@@ -64,9 +64,10 @@ public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapt
         unRecyclerView2.setLayoutManager(unLayoutManager2);
         unRecyclerView3.setLayoutManager(unLayoutManager3);
         //Cargo las 3 listas
-        cargarPeliculasRecomendadasAmigos();
-        cargarPeliculasMasVistas();
-        cargarPeliculasEstrenos();
+        PeliculasCargadas peliculasCargadas = new PeliculasCargadas();
+        listaPeliculasRecomendadas=peliculasCargadas.cargarPeliculasRecomendadasAmigos();
+        listaPeliculasMasVistas=peliculasCargadas.cargarPeliculasMasVistas();
+        listaPeliculasEstrenos=peliculasCargadas.cargarPeliculasEstrenos();
 
         unRecyclerView.setHasFixedSize(true);
         unRecyclerView2.setHasFixedSize(true);
@@ -82,49 +83,17 @@ public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapt
 
         return view;
     }
-    private void cargarPeliculasRecomendadasAmigos(){
-        listaPeliculasRecomendadas = new ArrayList<>();
-        String descArmaMortal = "Una pareja de policías tiene como misión proteger a un individuo que va a testificar en contra de una organización de traficantes de droga. Las cosas se complican cuando uno de ellos decide iniciar la investigación por su cuenta sin comunicarlo a la comisaría. Una pareja de policías tiene como misión proteger a un individuo que va a testificar en contra de una organización de traficantes de droga. Las cosas se complican cuando uno de ellos decide iniciar la investigación por su cuenta sin comunicarlo a la comisaría. Una pareja de policías tiene como misión proteger a un individuo que va a testificar en contra de una organización de traficantes de droga. Las cosas se complican cuando uno de ellos decide iniciar la investigación por su cuenta sin comunicarlo a la comisaría. Una pareja de policías tiene como misión proteger a un individuo que va a testificar en contra de una organización de traficantes de droga. Las cosas se complican cuando uno de ellos decide iniciar la investigación por su cuenta sin comunicarlo a la comisaría. Una pareja de policías tiene como misión proteger a un individuo que va a testificar en contra de una organización de traficantes de droga. Las cosas se complican cuando uno de ellos decide iniciar la investigación por su cuenta sin comunicarlo a la comisaría.";
-        listaPeliculasRecomendadas.add(new Peliculas("Arma Mortal",R.drawable.arma_mortal,R.drawable.arma_mortal,"accion",descArmaMortal,10.0,"ATP"));
-        listaPeliculasRecomendadas.add(new Peliculas("Derek",R.drawable.derek,R.drawable.derek_backdrop,"Mockumentary, Ciencia Ficción",descArmaMortal,9.5,"ATP"));
-        listaPeliculasRecomendadas.add(new Peliculas("avatar",R.drawable.avatar,R.drawable.avatar,"accion",descArmaMortal,6.0,"ATP"));
-        listaPeliculasRecomendadas.add(new Peliculas("El Dia De La Marmota",R.drawable.el_dia_de_la_marmota,R.drawable.dia_de_la_marmota_backdrop,"accion",descArmaMortal,8.0,"ATP"));
-        listaPeliculasRecomendadas.add(new Peliculas("El Senor De Los_Anillos",R.drawable.el_senor_de_los_anillos,R.drawable.el_senor_de_los_anillos,"accion",descArmaMortal,10.0,"ATP"));
-        listaPeliculasRecomendadas.add(new Peliculas("Forrest Gump",R.drawable.forrest_gump,R.drawable.forrest_gump,"accion",descArmaMortal,10.0,"ATP"));
-        listaPeliculasRecomendadas.add(new Peliculas("Indiana Jones",R.drawable.indiana_jones,R.drawable.indiana_jones,"accion",descArmaMortal,10.0,"ATP"));
-    }
-    private void cargarPeliculasMasVistas(){
-        listaPeliculasMasVistas = new ArrayList<>();
-        String descArmaMortal = "Una pareja de policías tiene como misión proteger a un individuo que va a testificar en contra de una organización de traficantes de droga. Las cosas se complican cuando uno de ellos decide iniciar la investigación por su cuenta sin comunicarlo a la comisaría. Una pareja de policías tiene como misión proteger a un individuo que va a testificar en contra de una organización de traficantes de droga. Las cosas se complican cuando uno de ellos decide iniciar la investigación por su cuenta sin comunicarlo a la comisaría. Una pareja de policías tiene como misión proteger a un individuo que va a testificar en contra de una organización de traficantes de droga. Las cosas se complican cuando uno de ellos decide iniciar la investigación por su cuenta sin comunicarlo a la comisaría. Una pareja de policías tiene como misión proteger a un individuo que va a testificar en contra de una organización de traficantes de droga. Las cosas se complican cuando uno de ellos decide iniciar la investigación por su cuenta sin comunicarlo a la comisaría. Una pareja de policías tiene como misión proteger a un individuo que va a testificar en contra de una organización de traficantes de droga. Las cosas se complican cuando uno de ellos decide iniciar la investigación por su cuenta sin comunicarlo a la comisaría.";
-        listaPeliculasMasVistas.add(new Peliculas("Logan",R.drawable.arma_mortal,R.drawable.arma_mortal,"Accion",descArmaMortal,10.0,"ATP"));
-        listaPeliculasMasVistas.add(new Peliculas("Spider man: Homecoming",R.drawable.arma_mortal,R.drawable.arma_mortal,"Ciencia Ficción",descArmaMortal,8.0,"ATP"));
-        listaPeliculasMasVistas.add(new Peliculas("It",R.drawable.arma_mortal,R.drawable.arma_mortal,"Terror",descArmaMortal,7.0,"+16"));
-        listaPeliculasMasVistas.add(new Peliculas("Mi Villano Favorito 3",R.drawable.arma_mortal,R.drawable.arma_mortal,"Comedia",descArmaMortal,8.0,"ATP"));
-        listaPeliculasMasVistas.add(new Peliculas("La Bella Y La Bestia",R.drawable.arma_mortal,R.drawable.arma_mortal,"Infantil",descArmaMortal,9.0,"ATP"));
-        listaPeliculasMasVistas.add(new Peliculas("Guardianes de la galaxia 2",R.drawable.arma_mortal,R.drawable.arma_mortal,"Ciencia ficcion",descArmaMortal,9.0,"ATP"));
-        listaPeliculasMasVistas.add(new Peliculas("Rapidos y Furiosos 8",R.drawable.arma_mortal,R.drawable.arma_mortal,"Accion",descArmaMortal,6.0,"ATP"));
-    }
-    private void cargarPeliculasEstrenos(){
-        listaPeliculasEstrenos = new ArrayList<>();
-        String descArmaMortal = "Una pareja de policías tiene como misión proteger a un individuo que va a testificar en contra de una organización de traficantes de droga. Las cosas se complican cuando uno de ellos decide iniciar la investigación por su cuenta sin comunicarlo a la comisaría. Una pareja de policías tiene como misión proteger a un individuo que va a testificar en contra de una organización de traficantes de droga. Las cosas se complican cuando uno de ellos decide iniciar la investigación por su cuenta sin comunicarlo a la comisaría. Una pareja de policías tiene como misión proteger a un individuo que va a testificar en contra de una organización de traficantes de droga. Las cosas se complican cuando uno de ellos decide iniciar la investigación por su cuenta sin comunicarlo a la comisaría. Una pareja de policías tiene como misión proteger a un individuo que va a testificar en contra de una organización de traficantes de droga. Las cosas se complican cuando uno de ellos decide iniciar la investigación por su cuenta sin comunicarlo a la comisaría. Una pareja de policías tiene como misión proteger a un individuo que va a testificar en contra de una organización de traficantes de droga. Las cosas se complican cuando uno de ellos decide iniciar la investigación por su cuenta sin comunicarlo a la comisaría.";
-        listaPeliculasEstrenos.add(new Peliculas("Blade Runner ",R.drawable.arma_mortal,R.drawable.arma_mortal,"ciencia ficcion",descArmaMortal,9.0,"ATP"));
-        listaPeliculasEstrenos.add(new Peliculas("El Muñeco De Nieve",R.drawable.arma_mortal,R.drawable.arma_mortal,"drama",descArmaMortal,5.0,"ATP"));
-        listaPeliculasEstrenos.add(new Peliculas("El Ultimo Traje",R.drawable.arma_mortal,R.drawable.arma_mortal,"drama",descArmaMortal,8.0,"ATP"));
-        listaPeliculasEstrenos.add(new Peliculas("La Cabaña",R.drawable.arma_mortal,R.drawable.arma_mortal,"drama",descArmaMortal,8.0,"ATP"));
-        listaPeliculasEstrenos.add(new Peliculas("Anabelle 2",R.drawable.arma_mortal,R.drawable.arma_mortal,"Terror",descArmaMortal,6.0,"+16"));
-        listaPeliculasEstrenos.add(new Peliculas("Mal Genio",R.drawable.arma_mortal,R.drawable.arma_mortal,"Comedia",descArmaMortal,8.0,"ATP"));
-        listaPeliculasEstrenos.add(new Peliculas("La Llamada",R.drawable.arma_mortal,R.drawable.arma_mortal,"Comedia Musical",descArmaMortal,7.0,"ATP"));
-    }
+
 
     @Override
     //metodo para comunicar el recycler con el activity mediante el fragment
-    public void mandarSeleccion(Peliculas unaPelicula) {
+    public void mandarSeleccion(Integer position) {
 
-        escuchadorPelicula.mandarDatos(unaPelicula.getNombre(),unaPelicula.getImagen(),unaPelicula.getImagenPortada(),unaPelicula.getGenero(),unaPelicula.getDesc(),unaPelicula.getPuntuacion(),unaPelicula.getAptoParaPublico());
+        escuchadorPelicula.mandarDatos(position);
     }
 
     public interface NotificadorDatos{
-        public void mandarDatos(String nombre, Integer imagen,Integer imagenPortada, String genero, String desc,Double puntuacion,String aptoTodoPublico);
+        public void mandarDatos(Integer position);
         //public void mandarDatos(String nombre, Integer imagen, Integer precio, String desc,Context unContexto);
     }
 }

@@ -1,6 +1,7 @@
 package com.example.edu.a0817moacn01c_3;
 
 import android.content.Context;
+import android.support.v7.widget.ActivityChooserView;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -35,14 +36,14 @@ public class PeliculasRecyclerAdapter extends RecyclerView.Adapter{
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
         final Peliculas peliculas= listaPeliculas.get(position);
         PeliculasViewHolder peliculasViewHolder=(PeliculasViewHolder) holder;
         peliculasViewHolder.cargarPelicula(peliculas);
 
         peliculasViewHolder.itemView.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-                clickieablePeliRecomendada.mandarSeleccion(peliculas);
+                clickieablePeliRecomendada.mandarSeleccion(position);
             }
         });
     }
@@ -67,7 +68,7 @@ public class PeliculasRecyclerAdapter extends RecyclerView.Adapter{
         }
     }
     public interface ClickieablePeliRecomendada{
-        public void mandarSeleccion(Peliculas unaPelicula);
+        public void mandarSeleccion(Integer position);
         //public void mandarSeleccion(Peliculas unaPelicula,Context unContexto);
     }
 }

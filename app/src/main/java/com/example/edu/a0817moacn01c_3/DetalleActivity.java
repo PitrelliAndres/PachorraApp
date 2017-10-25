@@ -3,6 +3,7 @@ package com.example.edu.a0817moacn01c_3;
 import android.content.Intent;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -15,19 +16,17 @@ public class DetalleActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalle);
 
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-
-        detalleFragment = new DetalleFragment();
-
-        // Obtener info en del Bundle en el Intent emitido
         recibirDatos();
+        // detallesViewPager.setArguments(unBundle);
 
-        detalleFragment.setArguments(unBundle);
-        fragmentTransaction.replace(R.id.contenedorDeFragmentsDetalle, detalleFragment);
-        fragmentTransaction.commit();
-        //dsdsadsad
+        ViewPager viewPager = (ViewPager) findViewById(R.id.viewPager_Detalles);
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        AdaptadorDetallesViewPager adaptadorDetallesViewPager= new AdaptadorDetallesViewPager(fragmentManager);
+        viewPager.setAdapter(adaptadorDetallesViewPager);
 
+        Integer posicion = unBundle.getInt("position");
+
+        viewPager.setCurrentItem(posicion);
     }
 
     public void recibirDatos(){

@@ -30,7 +30,19 @@ public class DetalleFragment extends Fragment {
 
         // Required empty public constructor
     }
-
+    public static DetalleFragment dameDetalleFragment(String nombre, Integer imagen,Integer imagenPortada, String genero, String desc,Double puntuacion,String aptoParaPublico){
+        DetalleFragment detalleFragment = new DetalleFragment();
+        Bundle unBundle= new Bundle();
+        unBundle.putString("nombre",nombre);
+        unBundle.putInt("imagen",imagen);
+        unBundle.putInt("imagenPortada",imagenPortada);
+        unBundle.putString("genero",genero);
+        unBundle.putDouble("puntuacion",puntuacion);
+        unBundle.putString("descripcion",desc);
+        unBundle.putString("aptoTodoPublico",aptoParaPublico);
+        detalleFragment.setArguments(unBundle);
+        return detalleFragment;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
