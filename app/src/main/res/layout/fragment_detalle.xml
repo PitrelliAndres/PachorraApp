@@ -176,17 +176,42 @@
 </FrameLayout>
     <com.github.clans.fab.FloatingActionMenu
         android:id="@+id/fabDetalle"
+        app:menu_fab_show_animation="@anim/fab_scale_up"
+        app:menu_fab_hide_animation="@anim/fab_scale_down"
+        app:menu_animationDelayPerItem="50"
         app:layout_anchor="@id/contenidosDetalle"
         app:layout_anchorGravity="bottom|right"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         >
         <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/fabMenuDetalle"
+            android:id="@+id/fabMenuPedirRecomendacion"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            app:fabSize="mini"
+            android:src="@drawable/ic_peliculas_24dp"
+            app:fab_label="Acción 1"
             />
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/fabMenuRecomendar"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:src="@drawable/ic_series_24dp"
+            app:fab_label="Acción 2"
+            />
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/fabMenuCompartir"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:src="@drawable/ic_share_white_24dp"
+            app:fab_label="Compartir"
+            android:onClick="botonCompartir"
+            />
+        <!--
+        Favoritos
+        Compartir
+        Pedir recomendación
+        Recomendar a amigos
+        -->
     </com.github.clans.fab.FloatingActionMenu>
     <!--
     <android.support.design.widget.FloatingActionButton
@@ -196,7 +221,6 @@
         android:src="@android:drawable/ic_menu_share"
         app:layout_anchorGravity="bottom|right"
         app:layout_anchor="@id/contenidosDetalle"
-        android:onClick="botonCompartir"
         />
         -->
 </android.support.design.widget.CoordinatorLayout>
