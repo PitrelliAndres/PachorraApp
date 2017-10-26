@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#006064</color>
-    <color name="colorPrimaryDark">#00363a</color>
-    <color name="colorAccent">#dd2c00</color>
+    <color name="colorPrimary">#025060</color>
+    <color name="colorPrimaryTransp">#cc025060</color>
+    <color name="colorPrimaryDark">#092040</color>
+    <color name="colorPrimaryDarkTransp">#cc092040</color>
+
+    <color name="colorAccent">#bf2a2a</color>
+    <color name="colorSeries">#f2c777</color>
+    <color name="colorPeliculas">#f24738</color>
 </resources>

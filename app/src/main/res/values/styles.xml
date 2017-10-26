@@ -7,9 +7,11 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+
     <style name="detalleAfiche">
         <item name="android:layout_marginLeft">@dimen/espacioStd</item>
     </style>
+
     <style name="detalleCardviews">
         <item name="android:layout_marginRight">0dp</item>
         <item name="android:padding">@dimen/espacioS</item>
@@ -17,9 +19,29 @@
         <item name="android:textStyle">bold</item>
 
     </style>
+
     <style name="detalleTitulos">
         <item name="android:layout_marginBottom">@dimen/espacioS</item>
         <item name="android:textColor">@color/colorAccent</item>
         <item name="android:textSize">@dimen/textoEspecial</item>
+    </style>
+
+    <style name="infoAficheLista">
+        <item name="android:layout_gravity">bottom</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@color/colorPrimaryDarkTransp</item>
+        <item name="android:paddingBottom">2dp</item>
+        <item name="android:paddingLeft">5dp</item>
+        <item name="android:paddingRight">5dp</item>
+        <item name="android:paddingTop">2dp</item>
+    </style>
+
+    <style name="iconoAficheLista">
+        <item name="android:layout_width">24dp</item>
+        <item name="android:layout_height">24dp</item>
+        <item name="android:layout_marginRight">@dimen/espacioS</item>
+        <item name="android:layout_gravity">center</item>
     </style>
 </resources>
