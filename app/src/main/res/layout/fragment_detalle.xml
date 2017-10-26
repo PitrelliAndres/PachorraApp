@@ -174,7 +174,21 @@
     </RelativeLayout>
 
 </FrameLayout>
-    <!--app:layout_anchor="@id/coordinator_detalle"-->
+    <com.github.clans.fab.FloatingActionMenu
+        android:id="@+id/fabDetalle"
+        app:layout_anchor="@id/contenidosDetalle"
+        app:layout_anchorGravity="bottom|right"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        >
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/fabMenuDetalle"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            app:fabSize="mini"
+            />
+    </com.github.clans.fab.FloatingActionMenu>
+    <!--
     <android.support.design.widget.FloatingActionButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -184,4 +198,5 @@
         app:layout_anchor="@id/contenidosDetalle"
         android:onClick="botonCompartir"
         />
+        -->
 </android.support.design.widget.CoordinatorLayout>
