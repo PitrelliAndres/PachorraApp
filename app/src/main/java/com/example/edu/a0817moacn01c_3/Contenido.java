@@ -5,6 +5,7 @@ package com.example.edu.a0817moacn01c_3;
  */
 
 public class Contenido {
+    private Integer id;
     private String nombre;
     private Integer imagen;
     private Integer imagenPortada;
@@ -15,7 +16,8 @@ public class Contenido {
     private String tipoContenido;
 
 
-    public Contenido(String nombre, Integer imagen, Integer imagenPortada, String genero, String desc, Double puntuacion, String aptoParaPublico) {
+    public Contenido(Integer id, String nombre, Integer imagen, Integer imagenPortada, String genero, String desc, Double puntuacion, String aptoParaPublico, String tipoContenido) {
+        this.id = id;
         this.nombre = nombre;
         this.imagen = imagen;
         this.imagenPortada = imagenPortada;
@@ -23,6 +25,7 @@ public class Contenido {
         this.desc = desc;
         this.puntuacion = puntuacion;
         this.aptoParaPublico = aptoParaPublico;
+        this.tipoContenido = tipoContenido;
     }
 
     public String getNombre() {
@@ -52,4 +55,14 @@ public class Contenido {
     public String getAptoParaPublico() {
         return aptoParaPublico;
     }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public String getTipoContenido() {
+        return tipoContenido;
+    }
 }
+
+

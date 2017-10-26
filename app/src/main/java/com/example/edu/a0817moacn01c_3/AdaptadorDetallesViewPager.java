@@ -28,7 +28,7 @@ import java.util.List;
         listasEstrenos=peliculasCargadas.cargarPeliculasEstrenos();
 
 
-        for (Peliculas unaPelicula:listaRecomendadas) {
+        for (Contenido unaPelicula:listaRecomendadas) {
 
             fragmentList.add(DetalleFragment.dameDetalleFragment(
                     unaPelicula.getNombre(),
