@@ -28,19 +28,9 @@ import java.util.List;
         listasEstrenos=peliculasCargadas.cargarPeliculasEstrenos();
 
 
-        for (Contenido unaPelicula:listaRecomendadas) {
+        for (Contenido unContenido:listaRecomendadas) {
 
-            fragmentList.add(DetalleFragment.dameDetalleFragment(
-                    unaPelicula.getNombre(),
-                    unaPelicula.getImagen(),
-                    unaPelicula.getImagenPortada(),
-                    unaPelicula.getGenero(),
-                    unaPelicula.getDesc(),
-                    unaPelicula.getPuntuacion(),
-                    unaPelicula.getAptoParaPublico(),
-                    unaPelicula.getDuracion(),
-                    unaPelicula.getUrl()
-            ));
+            fragmentList.add(DetalleFragment.dameDetalleFragment(unContenido));
         }
       }
 

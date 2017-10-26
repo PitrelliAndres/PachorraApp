@@ -29,18 +29,29 @@ public class DetalleFragment extends Fragment {
 
         // Required empty public constructor
     }
-    public static DetalleFragment dameDetalleFragment(String nombre, Integer imagen,Integer imagenPortada, String genero, String desc,Double puntuacion,String aptoParaPublico, Integer duracion, String url){
+    public static DetalleFragment dameDetalleFragment(Contenido unContenido){
         DetalleFragment detalleFragment = new DetalleFragment();
+
         Bundle unBundle= new Bundle();
-        unBundle.putString("nombre",nombre);
-        unBundle.putInt("imagen",imagen);
-        unBundle.putInt("imagenPortada",imagenPortada);
-        unBundle.putString("genero",genero);
-        unBundle.putDouble("puntuacion",puntuacion);
-        unBundle.putString("descripcion",desc);
-        unBundle.putString("aptoTodoPublico",aptoParaPublico);
-        unBundle.putInt("duracion", duracion);
-        unBundle.putString("url", url);
+        unBundle.putInt("id",unContenido.getId());
+        unBundle.putString("nombre",unContenido.getNombre());
+        unBundle.putInt("imagen",unContenido.getImagen());
+        unBundle.putInt("imagenPortada",unContenido.getImagenPortada());
+        unBundle.putString("genero",unContenido.getGenero());
+        unBundle.putDouble("puntuacion",unContenido.getPuntuacion());
+        unBundle.putString("descripcion",unContenido.getDesc());
+        unBundle.putString("aptoTodoPublico",unContenido.getAptoParaPublico());
+        unBundle.putInt("duracion", unContenido.);
+        unBundle.putString("tipo",unContenido.getTipoContenido());
+
+        if(unContenido.getTipoContenido()=="Pelicula"){
+            Peliculas unapelicula= (Peliculas)unContenido;
+            unBundle.putString("tipo",unapelicula.getUrl());
+        } else {
+            Series unaSerie= (Series)unContenido;
+            unBundle.putInt("cantidadTemporada", unaSerie.getCantidadTemporada());
+            unBundle.putInt("cantidadEpisodios", unaSerie.getCantidadCapitulos());
+        }
         detalleFragment.setArguments(unBundle);
         return detalleFragment;
     }
@@ -50,9 +61,13 @@ public class DetalleFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_detalle, container, false);
+
+
         Bundle unBundle = getArguments();
+        if(unBundle.getString("tipo")=="Peliculas"){
+            View view = inflater.inflate(R.layout.fragment_detalle, container, false);
         pelicula = new Peliculas(
+                unBundle.getInt("id"),
                 unBundle.getString("nombre"),
                 unBundle.getInt("imagen"),
                 unBundle.getInt("imagenPortada"),
@@ -61,15 +76,23 @@ public class DetalleFragment extends Fragment {
                 unBundle.getDouble("puntuacion"),
                 unBundle.getString("aptoTodoPublico"),
                 unBundle.getInt("duracion"),
-                unBundle.getString("url")
+                unBundle.getString("url"),
+                unBundle.getString("tipo")
+
         );
-        this.imagen = view.findViewById(R.id.imageView_ImagenContenido);
-        this.imagenPortada = view.findViewById(R.id.imageview_detalleBackdrop);
-        this.puntuacion = view.findViewById(R.id.textview_detallePuntuacion);
-        //this.ano =
-        this.genero = view.findViewById(R.id.textview_genero);
-        this.clasificacion = view.findViewById(R.id.textview_clasificacion);
-        this.sinopsis = view.findViewById(R.id.textview_descripcion);
+            this.imagen = view.findViewById(R.id.imageView_ImagenContenido);
+            this.imagenPortada = view.findViewById(R.id.imageview_detalleBackdrop);
+            this.puntuacion = view.findViewById(R.id.textview_detallePuntuacion);
+            //this.ano =
+            this.genero = view.findViewById(R.id.textview_genero);
+            this.clasificacion = view.findViewById(R.id.textview_clasificacion);
+            this.sinopsis = view.findViewById(R.id.textview_descripcion);
+            mostrarInformacion();
+            return view;
+        } else {
+            View view = inflater.inflate(R.layout.fragment_detalle, container, false);
+        }
+
 
         mostrarInformacion();
 
