@@ -8,9 +8,9 @@ import java.util.List;
  */
 
 public class PeliculasCargadas {
-    private List<Peliculas>peliculasRecomendadas;
-    private List<Peliculas>peliculasmasVistas;
-    private List<Peliculas>pelicuasEstrenos;
+    private List<Contenido>peliculasRecomendadas;
+    private List<Contenido>peliculasmasVistas;
+    private List<Contenido>pelicuasEstrenos;
 
     public PeliculasCargadas() {
 
