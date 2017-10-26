@@ -11,14 +11,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapter.ClickieablePeliRecomendada{
+public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapter.ContenidoClickeable {
     private List<Peliculas> listaPeliculasRecomendadas;
     private List<Peliculas> listaPeliculasMasVistas;
     private List<Peliculas> listaPeliculasEstrenos;

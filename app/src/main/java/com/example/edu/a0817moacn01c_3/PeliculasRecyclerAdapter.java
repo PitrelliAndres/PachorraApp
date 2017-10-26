@@ -1,7 +1,6 @@
 package com.example.edu.a0817moacn01c_3;
 
 import android.content.Context;
-import android.support.v7.widget.ActivityChooserView;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -17,19 +16,20 @@ import java.util.List;
 
 public class PeliculasRecyclerAdapter extends RecyclerView.Adapter{
     private List<Peliculas> listaPeliculas;
+    private List<Series> listaSeries;
     private Context contexto;
-    private ClickieablePeliRecomendada clickieablePeliRecomendada;
+    private ContenidoClickeable contenidoClickeable;
 
-    public PeliculasRecyclerAdapter(List<Peliculas> listaPeliculas, Context contexto, ClickieablePeliRecomendada clickieablePeliRecomendada) {
+    public PeliculasRecyclerAdapter(List<Peliculas> listaPeliculas, Context contexto, ContenidoClickeable contenidoClickeable) {
         this.listaPeliculas = listaPeliculas;
         this.contexto = contexto;
-        this.clickieablePeliRecomendada = clickieablePeliRecomendada;
+        this.contenidoClickeable = contenidoClickeable;
     }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater unInflador= LayoutInflater.from(contexto);
-        View view= unInflador.inflate(R.layout.celdapeliculas,parent,false);
+        View view= unInflador.inflate(R.layout.celdacontenido,parent,false);
         PeliculasViewHolder peliculasViewHolder= new PeliculasViewHolder(view);
         return peliculasViewHolder;
 
@@ -43,7 +43,7 @@ public class PeliculasRecyclerAdapter extends RecyclerView.Adapter{
 
         peliculasViewHolder.itemView.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-                clickieablePeliRecomendada.mandarSeleccion(position);
+                contenidoClickeable.mandarSeleccion(position);
             }
         });
     }
@@ -67,7 +67,7 @@ public class PeliculasRecyclerAdapter extends RecyclerView.Adapter{
             imagenPelicula.setImageResource(unaPelicula.getImagen());
         }
     }
-    public interface ClickieablePeliRecomendada{
+    public interface ContenidoClickeable{
         public void mandarSeleccion(Integer position);
         //public void mandarSeleccion(Peliculas unaPelicula,Context unContexto);
     }
