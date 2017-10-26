@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 
 public class DetalleActivity extends AppCompatActivity{
     private DetalleFragment detalleFragment;
@@ -34,5 +35,13 @@ public class DetalleActivity extends AppCompatActivity{
         this.unBundle = unIntent.getExtras();
         // Creo que masa adelante solo pasamos un identificador y el fragment hace la consulta en BD y/o API
     }
+    public void botonCompartir(View view){
 
+        Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+        sharingIntent.setType("text/plain");
+        String shareBody = "Here is the share content body";
+        sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Subject Here");
+        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
+        startActivity(Intent.createChooser(sharingIntent, "Share via"));
+    }
 }

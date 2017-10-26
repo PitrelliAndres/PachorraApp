@@ -182,5 +182,6 @@
         android:src="@android:drawable/ic_menu_share"
         app:layout_anchorGravity="bottom|right"
         app:layout_anchor="@id/contenidosDetalle"
+        android:onClick="botonCompartir"
         />
 </android.support.design.widget.CoordinatorLayout>

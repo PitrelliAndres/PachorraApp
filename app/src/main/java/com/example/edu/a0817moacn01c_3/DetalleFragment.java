@@ -2,6 +2,7 @@ package com.example.edu.a0817moacn01c_3;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -62,6 +63,8 @@ public class DetalleFragment extends Fragment {
 
         mostrarInformacion();
 
+
+
         return view;
 
 
@@ -80,5 +83,7 @@ public class DetalleFragment extends Fragment {
         sinopsis.setText(pelicula.getDesc());
 
     }
+
+
 
 }
