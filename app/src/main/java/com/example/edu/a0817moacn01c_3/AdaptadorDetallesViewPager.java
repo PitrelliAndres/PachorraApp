@@ -30,7 +30,17 @@ import java.util.List;
 
         for (Peliculas unaPelicula:listaRecomendadas) {
 
-            fragmentList.add(DetalleFragment.dameDetalleFragment(unaPelicula.getNombre(),unaPelicula.getImagen(),unaPelicula.getImagenPortada(),unaPelicula.getGenero(),unaPelicula.getDesc(),unaPelicula.getPuntuacion(),unaPelicula.getAptoParaPublico()));
+            fragmentList.add(DetalleFragment.dameDetalleFragment(
+                    unaPelicula.getNombre(),
+                    unaPelicula.getImagen(),
+                    unaPelicula.getImagenPortada(),
+                    unaPelicula.getGenero(),
+                    unaPelicula.getDesc(),
+                    unaPelicula.getPuntuacion(),
+                    unaPelicula.getAptoParaPublico(),
+                    unaPelicula.getDuracion(),
+                    unaPelicula.getUrl()
+            ));
         }
       }
 

@@ -17,7 +17,7 @@
         app:cardElevation="2dp"
         >
         <ImageView
-            android:id="@+id/imageView_ImagenPelicula"
+            android:id="@+id/imageView_ImagenContenido"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"/>
@@ -26,10 +26,11 @@
             >
 
             <ImageView
+                android:id="@+id/imageView_IconoContenido"
                 style="@style/iconoAficheLista"
                 app:srcCompat="@drawable/ic_peliculas_24dp" />
             <TextView
-                android:id="@+id/textView_tituloPelicula"
+                android:id="@+id/textView_tituloContenido"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/app_name"

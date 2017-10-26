@@ -1,8 +1,6 @@
 package com.example.edu.a0817moacn01c_3;
 
 
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -31,7 +29,7 @@ public class DetalleFragment extends Fragment {
 
         // Required empty public constructor
     }
-    public static DetalleFragment dameDetalleFragment(String nombre, Integer imagen,Integer imagenPortada, String genero, String desc,Double puntuacion,String aptoParaPublico){
+    public static DetalleFragment dameDetalleFragment(String nombre, Integer imagen,Integer imagenPortada, String genero, String desc,Double puntuacion,String aptoParaPublico, Integer duracion, String url){
         DetalleFragment detalleFragment = new DetalleFragment();
         Bundle unBundle= new Bundle();
         unBundle.putString("nombre",nombre);
@@ -41,6 +39,8 @@ public class DetalleFragment extends Fragment {
         unBundle.putDouble("puntuacion",puntuacion);
         unBundle.putString("descripcion",desc);
         unBundle.putString("aptoTodoPublico",aptoParaPublico);
+        unBundle.putInt("duracion", duracion);
+        unBundle.putString("url", url);
         detalleFragment.setArguments(unBundle);
         return detalleFragment;
     }
@@ -52,8 +52,18 @@ public class DetalleFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_detalle, container, false);
         Bundle unBundle = getArguments();
-        pelicula = new Peliculas(unBundle.getString("nombre"),unBundle.getInt("imagen"),unBundle.getInt("imagenPortada"),unBundle.getString("genero"),unBundle.getString("descripcion"),unBundle.getDouble("puntuacion"),unBundle.getString("aptoTodoPublico"));
-        this.imagen = view.findViewById(R.id.imageView_ImagenPelicula);
+        pelicula = new Peliculas(
+                unBundle.getString("nombre"),
+                unBundle.getInt("imagen"),
+                unBundle.getInt("imagenPortada"),
+                unBundle.getString("genero"),
+                unBundle.getString("descripcion"),
+                unBundle.getDouble("puntuacion"),
+                unBundle.getString("aptoTodoPublico"),
+                unBundle.getInt("duracion"),
+                unBundle.getString("url")
+        );
+        this.imagen = view.findViewById(R.id.imageView_ImagenContenido);
         this.imagenPortada = view.findViewById(R.id.imageview_detalleBackdrop);
         this.puntuacion = view.findViewById(R.id.textview_detallePuntuacion);
         //this.ano =

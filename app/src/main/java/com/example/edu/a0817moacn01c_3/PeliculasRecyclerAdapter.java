@@ -60,7 +60,7 @@ public class PeliculasRecyclerAdapter extends RecyclerView.Adapter{
 
         public PeliculasViewHolder(View itemView){
             super(itemView);
-            imagenPelicula=itemView.findViewById(R.id.imageView_ImagenPelicula);
+            imagenPelicula=itemView.findViewById(R.id.imageView_ImagenContenido);
             cardPeli=itemView.findViewById(R.id.cardview_ImagenPelicula);
         }
         public void cargarPelicula(Peliculas unaPelicula){
