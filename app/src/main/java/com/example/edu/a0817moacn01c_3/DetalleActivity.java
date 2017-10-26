@@ -16,7 +16,8 @@ public class DetalleActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalle);
 
-        recibirDatos();
+        Intent unIntent = getIntent();
+        this.unBundle = unIntent.getExtras();
         // detallesViewPager.setArguments(unBundle);
 
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewPager_Detalles);
@@ -25,7 +26,6 @@ public class DetalleActivity extends AppCompatActivity{
         viewPager.setAdapter(adaptadorDetallesViewPager);
 
         Integer posicion = unBundle.getInt("position");
-
         viewPager.setCurrentItem(posicion);
     }
 

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context="com.example.edu.a0817moacn01c_3.DetalleFragment">
 
-<RelativeLayout
+<FrameLayout
     android:id="@+id/contenidosDetalle"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -173,7 +173,7 @@
         </ScrollView>
     </RelativeLayout>
 
-</RelativeLayout>
+</FrameLayout>
     <!--app:layout_anchor="@id/coordinator_detalle"-->
     <android.support.design.widget.FloatingActionButton
         android:layout_width="wrap_content"
