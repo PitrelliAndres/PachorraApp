@@ -8,6 +8,12 @@ public class Peliculas extends Contenido{
     private Integer duracion;
     private String url;
 
+    public Peliculas(String nombre, Integer imagen, Integer imagenPortada, String genero, String desc, Double puntuacion, String aptoParaPublico) {
+        super(nombre, imagen, imagenPortada, genero, desc, puntuacion, aptoParaPublico);
+        this.duracion = 0;
+        this.url=null;
+    }
+
     public Peliculas(String nombre, Integer imagen, Integer imagenPortada, String genero, String desc, Double puntuacion, String aptoParaPublico, Integer duracion,String url) {
         super(nombre, imagen, imagenPortada, genero, desc, puntuacion, aptoParaPublico);
         this.duracion = duracion;

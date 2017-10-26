@@ -24,7 +24,7 @@
             android:src="@drawable/derek_backdrop" />
 
         <ImageView
-            android:id="@+id/imageView_ImagenPelicula"
+            android:id="@+id/imageView_ImagenContenido"
             android:layout_alignBottom="@id/imageview_detalleBackdrop"
             android:layout_marginBottom="-60dp"
             style="@style/detalleAfiche"
@@ -42,10 +42,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/imageview_detalleBackdrop"
-            android:layout_alignBottom="@id/imageView_ImagenPelicula"
+            android:layout_alignBottom="@id/imageView_ImagenContenido"
             android:layout_marginLeft="@dimen/espacioS"
             android:layout_marginTop="@dimen/espacioS"
-            android:layout_toRightOf="@id/imageView_ImagenPelicula"
+            android:layout_toRightOf="@id/imageView_ImagenContenido"
             >
 
             <RelativeLayout
@@ -84,7 +84,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignTop="@+id/cardView_puntaje"
-            android:layout_alignBottom="@id/imageView_ImagenPelicula"
+            android:layout_alignBottom="@id/imageView_ImagenContenido"
             android:layout_marginLeft="@dimen/espacioS"
             android:layout_toRightOf="@id/cardView_puntaje"
             >
@@ -184,6 +184,13 @@
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         >
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/fabMenuFavoritos"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:src="@drawable/ic_favorite_24dp"
+            app:fab_label="Favoritos"
+            />
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/fabMenuPedirRecomendacion"
             android:layout_height="wrap_content"
