@@ -1,0 +1,234 @@
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/coordinator_detalle"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.edu.a0817moacn01c_3.DetalleFragment">
+
+<FrameLayout
+    android:id="@+id/contenidosDetalle"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/contenidosEncabezado"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/imageview_detalleBackdrop"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/derek_backdrop" />
+
+        <ImageView
+            android:id="@+id/imageView_ImagenContenido"
+            android:layout_alignBottom="@id/imageview_detalleBackdrop"
+            android:layout_marginBottom="-60dp"
+            style="@style/detalleAfiche"
+            android:layout_width="100dp"
+            android:layout_height="150dp"
+            android:src="@drawable/derek"
+            />
+        <!--
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="60dp"
+        -->
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/cardView_puntaje"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/imageview_detalleBackdrop"
+            android:layout_alignBottom="@id/imageView_ImagenContenido"
+            android:layout_marginLeft="@dimen/espacioS"
+            android:layout_marginTop="@dimen/espacioS"
+            android:layout_toRightOf="@id/imageView_ImagenContenido"
+            >
+
+            <RelativeLayout
+                style="@style/detalleCardviews"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
+
+                <TextView
+                    android:id="@+id/textview_detallePuntuacion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:text="0.0"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="@dimen/textoEspecial"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/textview_detallePuntuacion"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="2dp"
+                    android:text="IMDB"
+                    android:textSize="@dimen/espacioS"
+                    android:textStyle="bold"/>
+            </RelativeLayout>
+
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/cardview_Genero"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/cardView_puntaje"
+            android:layout_alignBottom="@id/imageView_ImagenContenido"
+            android:layout_marginLeft="@dimen/espacioS"
+            android:layout_toRightOf="@id/cardView_puntaje"
+            >
+
+
+            <TextView
+                style="@style/detalleCardviews"
+                android:id="@+id/textview_genero"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:textSize="12sp"
+                android:text="Acción" />
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/cardview_Año"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/cardView_puntaje"
+            android:layout_alignTop="@+id/cardView_puntaje"
+            android:layout_marginLeft="@dimen/espacioS"
+            android:layout_toRightOf="@+id/cardview_Genero">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center">
+            <TextView
+                android:id="@+id/textview_año"
+                style="@style/detalleCardviews"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2010"
+                android:textSize="@dimen/espacioStd"
+                android:textStyle="bold"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true" />
+            <TextView
+                android:id="@+id/textview_clasificacion"
+                style="@style/detalleCardviews"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ATP"
+                android:textSize="@dimen/espacioS"
+                android:textStyle="bold"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true" />
+         </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/cardView_puntaje"
+            android:id="@+id/scrollView2">
+            <!--android:layout_below="@id/imageView_ImagenPelicula"-->
+
+            <RelativeLayout
+                android:layout_marginTop="@dimen/espacioStd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/espacioStd"
+                >
+
+                <TextView
+                    android:id="@+id/textview_Sinopsis"
+                    style="@style/detalleTitulos"
+                    android:textColor="@color/colorSeries"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Sinopsis de Serie"
+                    android:textSize="18sp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/textview_descripcion"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/textview_Sinopsis"
+                    android:text="@string/lorem_ipsum"
+                    android:textSize="15sp"/>
+
+            </RelativeLayout>
+        </ScrollView>
+    </RelativeLayout>
+
+</FrameLayout>
+    <com.github.clans.fab.FloatingActionMenu
+        android:id="@+id/fabDetalle"
+        app:menu_fab_show_animation="@anim/fab_scale_up"
+        app:menu_fab_hide_animation="@anim/fab_scale_down"
+        app:menu_animationDelayPerItem="50"
+        app:layout_anchor="@id/contenidosDetalle"
+        app:layout_anchorGravity="bottom|right"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        >
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/fabMenuFavoritos"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:src="@drawable/ic_favorite_24dp"
+            app:fab_label="Favoritos"
+            />
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/fabMenuPedirRecomendacion"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:src="@drawable/ic_peliculas_24dp"
+            app:fab_label="Acción 1"
+            />
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/fabMenuRecomendar"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:src="@drawable/ic_series_24dp"
+            app:fab_label="Acción 2"
+            />
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/fabMenuCompartir"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:src="@drawable/ic_share_white_24dp"
+            app:fab_label="Compartir"
+            android:onClick="botonCompartir"
+            />
+        <!--
+        Favoritos
+        Compartir
+        Pedir recomendación
+        Recomendar a amigos
+        -->
+    </com.github.clans.fab.FloatingActionMenu>
+    <!--
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/espacioStd"
+        android:src="@android:drawable/ic_menu_share"
+        app:layout_anchorGravity="bottom|right"
+        app:layout_anchor="@id/contenidosDetalle"
+        />
+        -->
+</android.support.design.widget.CoordinatorLayout>
