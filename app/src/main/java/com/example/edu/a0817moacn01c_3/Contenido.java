@@ -5,6 +5,8 @@ package com.example.edu.a0817moacn01c_3;
  */
 
 public class Contenido {
+    public static final String PELICULA = "Pelicula";
+    public static final String SERIE = "Serie";
     private Integer id;
     private String nombre;
     private Integer imagen;
@@ -28,6 +30,13 @@ public class Contenido {
         this.aptoParaPublico = aptoParaPublico;
         this.tipoContenido = tipoContenido;
         this.duracion=duracion;
+    }
+
+    public Boolean esPelicula(){
+        return this.tipoContenido.equals(Contenido.PELICULA);
+    }
+    public Boolean esSerie(){
+        return this.tipoContenido.equals(Contenido.SERIE);
     }
 
     public String getNombre() {

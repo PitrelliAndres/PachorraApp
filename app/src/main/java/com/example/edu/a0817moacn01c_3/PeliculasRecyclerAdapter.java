@@ -69,6 +69,6 @@ public class PeliculasRecyclerAdapter extends RecyclerView.Adapter{
     }
     public interface ContenidoClickeable{
         public void mandarSeleccion(Integer position);
-        //public void mandarSeleccion(Peliculas unaPelicula,Context unContexto);
+        //public void mandarSeleccion(Pelicula unaPelicula,Context unContexto);
     }
 }

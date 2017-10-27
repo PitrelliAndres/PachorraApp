@@ -14,8 +14,8 @@ import android.widget.TextView;
  * A simple {@link Fragment} subclass.
  */
 public class DetalleFragment extends Fragment {
-    private Peliculas pelicula;
-    private Series series;
+    private Pelicula unaPelicula;
+    private Serie unaSerie;
     private ImageView imagen;
     private ImageView imagenPortada;
     private TextView puntuacion;
@@ -24,33 +24,33 @@ public class DetalleFragment extends Fragment {
     private TextView clasificacion;
     private TextView sinopsis;
 
-
     public DetalleFragment() {
         // Required empty public constructor
 
         // Required empty public constructor
     }
-    public static DetalleFragment dameDetalleFragment(Contenido unContenido){
+
+    public static DetalleFragment dameDetalleFragment(Contenido unContenido) {
         DetalleFragment detalleFragment = new DetalleFragment();
 
-        Bundle unBundle= new Bundle();
-        unBundle.putInt("id",unContenido.getId());
-        unBundle.putString("nombre",unContenido.getNombre());
-        unBundle.putInt("imagen",unContenido.getImagen());
-        unBundle.putInt("imagenPortada",unContenido.getImagenPortada());
-        unBundle.putString("genero",unContenido.getGenero());
-        unBundle.putDouble("puntuacion",unContenido.getPuntuacion());
-        unBundle.putString("descripcion",unContenido.getDesc());
-        unBundle.putString("aptoTodoPublico",unContenido.getAptoParaPublico());
+        Bundle unBundle = new Bundle();
+        unBundle.putInt("id", unContenido.getId());
+        unBundle.putString("nombre", unContenido.getNombre());
+        unBundle.putInt("imagen", unContenido.getImagen());
+        unBundle.putInt("imagenPortada", unContenido.getImagenPortada());
+        unBundle.putString("genero", unContenido.getGenero());
+        unBundle.putDouble("puntuacion", unContenido.getPuntuacion());
+        unBundle.putString("descripcion", unContenido.getDesc());
+        unBundle.putString("aptoTodoPublico", unContenido.getAptoParaPublico());
         unBundle.putInt("duracion", unContenido.getDuracion());
-        unBundle.putString("tipo",unContenido.getTipoContenido());
+        unBundle.putString("tipo", unContenido.getTipoContenido());
 
-        if(unContenido.getTipoContenido()=="Pelicula"){
-            Peliculas unapelicula= (Peliculas)unContenido;
-            unBundle.putString("url",unapelicula.getUrl());
+        if (unContenido.getTipoContenido().equals(Contenido.PELICULA)) {
+            Pelicula unapelicula = (Pelicula) unContenido;
+            unBundle.putString("url", unapelicula.getUrl());
         } else {
-            Series unaSerie= (Series)unContenido;
-            unBundle.putInt("cantidadTemporada", unaSerie.getCantidadTemporada());
+            Serie unaSerie = (Serie) unContenido;
+            unBundle.putInt("cantidadTemporada", unaSerie.getCantidadTemporadas());
             unBundle.putInt("cantidadCapitulos", unaSerie.getCantidadCapitulos());
         }
         detalleFragment.setArguments(unBundle);
@@ -62,13 +62,10 @@ public class DetalleFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         // Inflate the layout for this fragment
-        View view=null;
+        View view = null;
 
         Bundle unBundle = getArguments();
-        if(unBundle.getString("tipo")=="Peliculas"){
-           view = inflater.inflate(R.layout.fragment_detallepeliculas, container, false);
-        pelicula = new Peliculas(
-                unBundle.getInt("id"),
+        Contenido unaPeliculaOSerie = new Contenido(unBundle.getInt("id"),
                 unBundle.getString("nombre"),
                 unBundle.getInt("imagen"),
                 unBundle.getInt("imagenPortada"),
@@ -77,75 +74,63 @@ public class DetalleFragment extends Fragment {
                 unBundle.getDouble("puntuacion"),
                 unBundle.getString("aptoTodoPublico"),
                 unBundle.getInt("duracion"),
-                unBundle.getString("url"),
                 unBundle.getString("tipo")
-
         );
+        if (unaPeliculaOSerie.esPelicula()) {
+            view = inflater.inflate(R.layout.fragment_detallepeliculas, container, false);
+            unaPelicula = new Pelicula(unaPeliculaOSerie, unBundle.getString("url"));
+
             this.imagen = view.findViewById(R.id.imageView_ImagenContenido);
             this.imagenPortada = view.findViewById(R.id.imageview_detalleBackdrop);
             this.puntuacion = view.findViewById(R.id.textview_detallePuntuacion);
-            //this.ano =
             this.genero = view.findViewById(R.id.textview_genero);
             this.clasificacion = view.findViewById(R.id.textview_clasificacion);
             this.sinopsis = view.findViewById(R.id.textview_descripcion);
-            mostrarInformacion(pelicula);
+            mostrarInformacion(unaPelicula);
 
         } else {
-           view = inflater.inflate(R.layout.fragment_detalleseries, container, false);
-            series = new Series(
-                    unBundle.getInt("id"),
-                    unBundle.getString("nombre"),
-                    unBundle.getInt("imagen"),
-                    unBundle.getInt("imagenPortada"),
-                    unBundle.getString("genero"),
-                    unBundle.getString("descripcion"),
-                    unBundle.getDouble("puntuacion"),
-                    unBundle.getString("aptoTodoPublico"),
-                    unBundle.getInt("cantidadTemporada"),
-                    unBundle.getInt("cantidadCapitulos"),
-                    unBundle.getInt("duracion"),
-                    unBundle.getString("tipo")
-            );
+            view = inflater.inflate(R.layout.fragment_detalleseries, container, false);
+            unaSerie = new Serie(unaPeliculaOSerie, unBundle.getInt("cantidadTemporada"), unBundle.getInt("cantidadCapitulos"));
+
             this.imagen = view.findViewById(R.id.imageView_ImagenContenido);
             this.imagenPortada = view.findViewById(R.id.imageview_detalleBackdrop);
             this.puntuacion = view.findViewById(R.id.textview_detallePuntuacion);
-            //this.ano =
             this.genero = view.findViewById(R.id.textview_genero);
             this.clasificacion = view.findViewById(R.id.textview_clasificacion);
             this.sinopsis = view.findViewById(R.id.textview_descripcion);
-            mostrarInformacion(series);
+            mostrarInformacion(unaSerie);
 
         }
         return view;
     }
 
-    public void mostrarInformacion(Peliculas pelicula){
-        String generoTexto = pelicula.getGenero().replace(",","\r\n");
+    public void mostrarInformacion(Pelicula pelicula) {
+        String generoTexto = pelicula.getGenero().replace(", ", "\r\n");
 
         getActivity().setTitle(pelicula.getNombre());
         imagen.setImageResource(pelicula.getImagen());
         imagenPortada.setImageResource(pelicula.getImagenPortada());
         puntuacion.setText(pelicula.getPuntuacion().toString());
-        //ano.setText(pelicula.getAno());
+        //ano.setText(unaPelicula.getAno());
         genero.setText(generoTexto);
         clasificacion.setText(pelicula.getAptoParaPublico());
         sinopsis.setText(pelicula.getDesc());
 
     }
-    public void mostrarInformacion(Series serie){
-        String generoTexto = serie.getGenero().replace(",","\r\n");
+
+    public void mostrarInformacion(Serie serie) {
+        String generoTexto = serie.getGenero().replace(", ", "\r\n");
 
         getActivity().setTitle(serie.getNombre());
         imagen.setImageResource(serie.getImagen());
         imagenPortada.setImageResource(serie.getImagenPortada());
         puntuacion.setText(serie.getPuntuacion().toString());
-        //ano.setText(pelicula.getAno());
+        //ano.setText(unaPelicula.getAno());
         genero.setText(generoTexto);
         clasificacion.setText(serie.getAptoParaPublico());
         sinopsis.setText(serie.getDesc());
 
     }
-
 
 
 }
