@@ -1,13 +1,13 @@
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/coordinator_detalle"
+    android:id="@+id/coordinator_detallepelicula"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.edu.a0817moacn01c_3.DetalleFragment">
 
 <FrameLayout
-    android:id="@+id/contenidosDetalle"
+    android:id="@+id/contenidosDetallePeliculas"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -17,15 +17,15 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/imageview_detalleBackdrop"
+            android:id="@+id/imageview_detalleBackdropPeliculas"
             android:layout_width="match_parent"
             android:layout_height="160dp"
             android:scaleType="centerCrop"
             android:src="@drawable/derek_backdrop" />
 
         <ImageView
-            android:id="@+id/imageView_ImagenContenido"
-            android:layout_alignBottom="@id/imageview_detalleBackdrop"
+            android:id="@+id/imageView_ImagenContenidoPeliculas"
+            android:layout_alignBottom="@id/imageview_detalleBackdropPeliculas"
             android:layout_marginBottom="-60dp"
             style="@style/detalleAfiche"
             android:layout_width="100dp"
@@ -38,25 +38,25 @@
         -->
 
         <android.support.v7.widget.CardView
-            android:id="@+id/cardView_puntaje"
+            android:id="@+id/cardView_puntajePeliculas"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/imageview_detalleBackdrop"
-            android:layout_alignBottom="@id/imageView_ImagenContenido"
+            android:layout_below="@id/imageview_detalleBackdropPeliculas"
+            android:layout_alignBottom="@id/imageView_ImagenContenidoPeliculas"
             android:layout_marginLeft="@dimen/espacioS"
             android:layout_marginTop="@dimen/espacioS"
-            android:layout_toRightOf="@id/imageView_ImagenContenido"
+            android:layout_toRightOf="@id/imageView_ImagenContenidoPeliculas"
             >
 
             <RelativeLayout
-                style="@style/detalleCardviews"
+                style="@style/detalleCardviewsPeliculas"
                 android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 >
 
                 <TextView
-                    android:id="@+id/textview_detallePuntuacion"
+                    android:id="@+id/textview_detallePuntuacionPeliculas"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
@@ -68,7 +68,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/textview_detallePuntuacion"
+                    android:layout_below="@id/textview_detallePuntuacionPeliculas"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="2dp"
                     android:text="IMDB"
@@ -83,16 +83,16 @@
             android:id="@+id/cardview_Genero"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/cardView_puntaje"
-            android:layout_alignBottom="@id/imageView_ImagenContenido"
+            android:layout_alignTop="@+id/cardView_puntajePeliculas"
+            android:layout_alignBottom="@id/imageView_ImagenContenidoPeliculas"
             android:layout_marginLeft="@dimen/espacioS"
-            android:layout_toRightOf="@id/cardView_puntaje"
+            android:layout_toRightOf="@id/cardView_puntajePeliculas"
             >
 
 
             <TextView
-                style="@style/detalleCardviews"
-                android:id="@+id/textview_genero"
+                style="@style/detalleCardviewsPeliculas"
+                android:id="@+id/textview_generoPeliculas"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
@@ -105,8 +105,8 @@
             android:id="@+id/cardview_Año"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@id/cardView_puntaje"
-            android:layout_alignTop="@+id/cardView_puntaje"
+            android:layout_alignBottom="@id/cardView_puntajePeliculas"
+            android:layout_alignTop="@+id/cardView_puntajePeliculas"
             android:layout_marginLeft="@dimen/espacioS"
             android:layout_toRightOf="@+id/cardview_Genero">
     <RelativeLayout
@@ -114,8 +114,8 @@
         android:layout_height="match_parent"
         android:gravity="center">
             <TextView
-                android:id="@+id/textview_año"
-                style="@style/detalleCardviews"
+                android:id="@+id/textview_añoPeliculas"
+                style="@style/detalleCardviewsPeliculas"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="2010"
@@ -124,8 +124,8 @@
                 android:layout_alignParentTop="true"
                 android:layout_alignParentStart="true" />
             <TextView
-                android:id="@+id/textview_clasificacion"
-                style="@style/detalleCardviews"
+                android:id="@+id/textview_clasificacionPeliculas"
+                style="@style/detalleCardviewsPeliculas"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="ATP"
@@ -141,7 +141,7 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/cardView_puntaje"
+            android:layout_below="@id/cardView_puntajePeliculas"
             android:id="@+id/scrollView2">
             <!--android:layout_below="@id/imageView_ImagenPelicula"-->
 
@@ -153,7 +153,7 @@
                 >
 
                 <TextView
-                    android:id="@+id/textview_Sinopsis"
+                    android:id="@+id/textview_SinopsisPeliculas"
                     style="@style/detalleTitulos"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -162,10 +162,10 @@
                     android:textStyle="bold"/>
 
                 <TextView
-                    android:id="@+id/textview_descripcion"
+                    android:id="@+id/textview_descripcionPeliculas"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/textview_Sinopsis"
+                    android:layout_below="@id/textview_SinopsisPeliculas"
                     android:text="@string/lorem_ipsum"
                     android:textSize="15sp"/>
 
@@ -179,7 +179,7 @@
         app:menu_fab_show_animation="@anim/fab_scale_up"
         app:menu_fab_hide_animation="@anim/fab_scale_down"
         app:menu_animationDelayPerItem="50"
-        app:layout_anchor="@id/contenidosDetalle"
+        app:layout_anchor="@id/contenidosDetallePeliculas"
         app:layout_anchorGravity="bottom|right"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"

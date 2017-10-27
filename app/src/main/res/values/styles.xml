@@ -12,7 +12,7 @@
         <item name="android:layout_marginLeft">@dimen/espacioStd</item>
     </style>
 
-    <style name="detalleCardviews">
+    <style name="detalleCardviewsPeliculas">
         <item name="android:layout_marginRight">0dp</item>
         <item name="android:padding">@dimen/espacioS</item>
         <item name="android:textSize">14sp</item>

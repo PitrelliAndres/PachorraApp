@@ -62,10 +62,11 @@ public class DetalleFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         // Inflate the layout for this fragment
-        View view=null;
+        View view;
 
         Bundle unBundle = getArguments();
-        if(unBundle.getString("tipo")=="Peliculas"){
+        String tipo=unBundle.getString("tipo");
+        if(tipo=="Pelicula"){
            view = inflater.inflate(R.layout.fragment_detallepeliculas, container, false);
         pelicula = new Peliculas(
                 unBundle.getInt("id"),
@@ -78,16 +79,16 @@ public class DetalleFragment extends Fragment {
                 unBundle.getString("aptoTodoPublico"),
                 unBundle.getInt("duracion"),
                 unBundle.getString("url"),
-                unBundle.getString("tipo")
+                tipo
 
         );
-            this.imagen = view.findViewById(R.id.imageView_ImagenContenido);
-            this.imagenPortada = view.findViewById(R.id.imageview_detalleBackdrop);
-            this.puntuacion = view.findViewById(R.id.textview_detallePuntuacion);
+            this.imagen = view.findViewById(R.id.imageView_ImagenContenidoPeliculas);
+            this.imagenPortada = view.findViewById(R.id.imageview_detalleBackdropPeliculas);
+            this.puntuacion = view.findViewById(R.id.textview_detallePuntuacionPeliculas);
             //this.ano =
-            this.genero = view.findViewById(R.id.textview_genero);
-            this.clasificacion = view.findViewById(R.id.textview_clasificacion);
-            this.sinopsis = view.findViewById(R.id.textview_descripcion);
+            this.genero = view.findViewById(R.id.textview_generoPeliculas);
+            this.clasificacion = view.findViewById(R.id.textview_clasificacionPeliculas);
+            this.sinopsis = view.findViewById(R.id.textview_descripcionPeliculas);
             mostrarInformacion(pelicula);
 
         } else {
@@ -104,15 +105,15 @@ public class DetalleFragment extends Fragment {
                     unBundle.getInt("cantidadTemporada"),
                     unBundle.getInt("cantidadCapitulos"),
                     unBundle.getInt("duracion"),
-                    unBundle.getString("tipo")
+                    tipo
             );
-            this.imagen = view.findViewById(R.id.imageView_ImagenContenido);
-            this.imagenPortada = view.findViewById(R.id.imageview_detalleBackdrop);
-            this.puntuacion = view.findViewById(R.id.textview_detallePuntuacion);
+            this.imagen = view.findViewById(R.id.imageView_ImagenContenidoSeries);
+            this.imagenPortada = view.findViewById(R.id.imageview_detalleBackdropSeries);
+            this.puntuacion = view.findViewById(R.id.textview_detallePuntuacionSeries);
             //this.ano =
-            this.genero = view.findViewById(R.id.textview_genero);
-            this.clasificacion = view.findViewById(R.id.textview_clasificacion);
-            this.sinopsis = view.findViewById(R.id.textview_descripcion);
+            this.genero = view.findViewById(R.id.textview_generoSeries);
+            this.clasificacion = view.findViewById(R.id.textview_clasificacionSeries);
+            this.sinopsis = view.findViewById(R.id.textview_descripcionSeries);
             mostrarInformacion(series);
 
         }

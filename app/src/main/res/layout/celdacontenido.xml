@@ -17,7 +17,7 @@
         app:cardElevation="2dp"
         >
         <ImageView
-            android:id="@+id/imageView_ImagenContenido"
+            android:id="@+id/imageView_ImagenContenidoPeliculas"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"/>
