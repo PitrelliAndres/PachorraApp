@@ -44,4 +44,16 @@
         <item name="android:layout_marginRight">@dimen/espacioS</item>
         <item name="android:layout_gravity">center</item>
     </style>
+    <style name="fabmenu">
+        <item name="menu_fab_show_animation">@anim/fab_scale_up</item>
+        <item name="menu_fab_hide_animation">@anim/fab_scale_down</item>
+        <item name="menu_colorNormal">@color/colorAccent</item>
+        <item name="menu_labels_colorNormal">@color/colorAccent</item>
+        <item name="menu_animationDelayPerItem">50</item>
+    </style>
+    <style name="fabmenuboton">
+        <item name="fab_colorNormal">@color/colorAccent</item>
+        <item name="fab_size">mini</item>
+    </style>
+
 </resources>
