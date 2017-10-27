@@ -13,22 +13,15 @@ import java.util.List;
 
     public class AdaptadorDetallesViewPager extends FragmentStatePagerAdapter {
         private List<Fragment> fragmentList;
-        private List<Contenido> listaRecomendadas;
-        private List<Contenido> listaMasVistas;
-        private List<Contenido> listasEstrenos;
 
-    public AdaptadorDetallesViewPager(FragmentManager fm) {
+
+    public AdaptadorDetallesViewPager(FragmentManager fm,List<Contenido> listaContenido) {
         super(fm);
 
         fragmentList = new ArrayList<>();
 
-        PeliculasCargadas peliculasCargadas = new PeliculasCargadas();
-        listaRecomendadas=peliculasCargadas.cargarPeliculasRecomendadasAmigos();
-        listaMasVistas=peliculasCargadas.getPeliculasmasVistas();
-        listasEstrenos=peliculasCargadas.cargarPeliculasEstrenos();
 
-
-        for (Contenido unContenido:listaRecomendadas) {
+        for (Contenido unContenido:listaContenido) {
 
             fragmentList.add(DetalleFragment.dameDetalleFragment(unContenido));
         }

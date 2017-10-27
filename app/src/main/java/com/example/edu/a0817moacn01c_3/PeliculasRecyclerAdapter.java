@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -19,15 +20,21 @@ import java.util.List;
 
 public class PeliculasRecyclerAdapter extends RecyclerView.Adapter{
     private List<Contenido> listaPeliculas;
-
+    private Integer idListas;
     private Context contexto;
     private ContenidoClickeable contenidoClickeable;
-
-    public PeliculasRecyclerAdapter(List<Contenido> listaPeliculas, Context contexto, ContenidoClickeable contenidoClickeable) {
+    public PeliculasRecyclerAdapter(List<Contenido> listaPeliculas, Context contexto, ContenidoClickeable contenidoClickeable,Integer idLista) {
         this.listaPeliculas = listaPeliculas;
         this.contexto = contexto;
         this.contenidoClickeable = contenidoClickeable;
+        this.idListas=idLista;
     }
+
+    public Integer getIdListas() {
+        return idListas;
+    }
+
+
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -44,9 +51,11 @@ public class PeliculasRecyclerAdapter extends RecyclerView.Adapter{
         PeliculasViewHolder peliculasViewHolder=(PeliculasViewHolder) holder;
         peliculasViewHolder.cargarContenido(peliculas);
 
+
+
         peliculasViewHolder.itemView.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-                contenidoClickeable.mandarSeleccion(position);
+                contenidoClickeable.mandarSeleccion(position,getIdListas());
             }
         });
     }
@@ -95,7 +104,7 @@ public class PeliculasRecyclerAdapter extends RecyclerView.Adapter{
         }
     }
     public interface ContenidoClickeable{
-        public void mandarSeleccion(Integer position);
+        public void mandarSeleccion(Integer position,Integer nroListaContenido);
         //public void mandarSeleccion(Pelicula unaPelicula,Context unContexto);
     }
 }

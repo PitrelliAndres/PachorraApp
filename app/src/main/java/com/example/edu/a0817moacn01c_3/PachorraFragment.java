@@ -28,6 +28,7 @@ public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapt
     private TextView tituloRecomendadas;
     private TextView tituloMasvistas;
     private TextView tituloEstrenos;
+
     public PachorraFragment()
     // Required empty public constructor
     {
@@ -63,18 +64,19 @@ public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapt
         unRecyclerView2.setLayoutManager(unLayoutManager2);
         unRecyclerView3.setLayoutManager(unLayoutManager3);
         //Cargo las 3 listas
-        PeliculasCargadas peliculasCargadas = new PeliculasCargadas();
-        listaPeliculasRecomendadas=peliculasCargadas.cargarPeliculasRecomendadasAmigos();
-        listaPeliculasMasVistas=peliculasCargadas.cargarPeliculasMasVistas();
-        listaPeliculasEstrenos=peliculasCargadas.cargarPeliculasEstrenos();
+        CargarContenido cargarContenido = new CargarContenido();
+
+        listaPeliculasRecomendadas= cargarContenido.cargarPeliculasRecomendadasAmigos();
+        listaPeliculasMasVistas= cargarContenido.cargarPeliculasMasVistas();
+        listaPeliculasEstrenos= cargarContenido.cargarPeliculasEstrenos();
 
         unRecyclerView.setHasFixedSize(true);
         unRecyclerView2.setHasFixedSize(true);
         unRecyclerView3.setHasFixedSize(true);
 
-        unAdapter2 = new PeliculasRecyclerAdapter(listaPeliculasMasVistas,getContext(),this);
-        unAdapter = new PeliculasRecyclerAdapter(listaPeliculasRecomendadas,getContext(),this);
-        unAdapter3= new PeliculasRecyclerAdapter(listaPeliculasEstrenos,getContext(),this);
+        unAdapter = new PeliculasRecyclerAdapter(listaPeliculasRecomendadas,getContext(),this,1);
+        unAdapter2 = new PeliculasRecyclerAdapter(listaPeliculasMasVistas,getContext(),this,2);
+        unAdapter3= new PeliculasRecyclerAdapter(listaPeliculasEstrenos,getContext(),this,3);
         //Le seteo el adaptador al recycler
         unRecyclerView.setAdapter(unAdapter);
         unRecyclerView2.setAdapter(unAdapter2);
@@ -86,13 +88,12 @@ public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapt
 
     @Override
     //metodo para comunicar el recycler con el activity mediante el fragment
-    public void mandarSeleccion(Integer position) {
-
-        escuchadorPelicula.mandarDatos(position);
+    public void mandarSeleccion(Integer position,Integer nroListaContenido) {
+        escuchadorPelicula.mandarDatos(position,nroListaContenido);
     }
 
     public interface NotificadorDatos{
-        public void mandarDatos(Integer position);
+        public void mandarDatos(Integer position,Integer nroListaContenido);
         //public void mandarDatos(String nombre, Integer imagen, Integer precio, String desc,Context unContexto);
     }
 }
