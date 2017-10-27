@@ -62,7 +62,7 @@ public class DetalleFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         // Inflate the layout for this fragment
-        View view = null;
+        View view;
 
         Bundle unBundle = getArguments();
         Contenido unaPeliculaOSerie = new Contenido(unBundle.getInt("id"),
@@ -76,28 +76,29 @@ public class DetalleFragment extends Fragment {
                 unBundle.getInt("duracion"),
                 unBundle.getString("tipo")
         );
+
         if (unaPeliculaOSerie.esPelicula()) {
             view = inflater.inflate(R.layout.fragment_detallepeliculas, container, false);
             unaPelicula = new Pelicula(unaPeliculaOSerie, unBundle.getString("url"));
 
-            this.imagen = view.findViewById(R.id.imageView_ImagenContenido);
-            this.imagenPortada = view.findViewById(R.id.imageview_detalleBackdrop);
-            this.puntuacion = view.findViewById(R.id.textview_detallePuntuacion);
-            this.genero = view.findViewById(R.id.textview_genero);
-            this.clasificacion = view.findViewById(R.id.textview_clasificacion);
-            this.sinopsis = view.findViewById(R.id.textview_descripcion);
+            this.imagen = view.findViewById(R.id.imageView_ImagenContenidoPeliculas);
+            this.imagenPortada = view.findViewById(R.id.imageview_detalleBackdropPeliculas);
+            this.puntuacion = view.findViewById(R.id.textview_detallePuntuacionPeliculas);
+            this.genero = view.findViewById(R.id.textview_generoPeliculas);
+            this.clasificacion = view.findViewById(R.id.textview_clasificacionPeliculas);
+            this.sinopsis = view.findViewById(R.id.textview_descripcionPeliculas);
             mostrarInformacion(unaPelicula);
 
         } else {
             view = inflater.inflate(R.layout.fragment_detalleseries, container, false);
             unaSerie = new Serie(unaPeliculaOSerie, unBundle.getInt("cantidadTemporada"), unBundle.getInt("cantidadCapitulos"));
 
-            this.imagen = view.findViewById(R.id.imageView_ImagenContenido);
-            this.imagenPortada = view.findViewById(R.id.imageview_detalleBackdrop);
-            this.puntuacion = view.findViewById(R.id.textview_detallePuntuacion);
-            this.genero = view.findViewById(R.id.textview_genero);
-            this.clasificacion = view.findViewById(R.id.textview_clasificacion);
-            this.sinopsis = view.findViewById(R.id.textview_descripcion);
+            this.imagen = view.findViewById(R.id.imageView_ImagenContenidoSeries);
+            this.imagenPortada = view.findViewById(R.id.imageview_detalleBackdropSeries);
+            this.puntuacion = view.findViewById(R.id.textview_detallePuntuacionSeries);
+            this.clasificacion = view.findViewById(R.id.textview_clasificacionSeries);
+            this.genero = view.findViewById(R.id.textview_generoSeries);
+            this.sinopsis = view.findViewById(R.id.textview_descripcionSeries);
             mostrarInformacion(unaSerie);
 
         }
@@ -126,7 +127,7 @@ public class DetalleFragment extends Fragment {
         imagenPortada.setImageResource(serie.getImagenPortada());
         puntuacion.setText(serie.getPuntuacion().toString());
         //ano.setText(unaPelicula.getAno());
-        genero.setText(generoTexto);
+        this.genero.setText(generoTexto);
         clasificacion.setText(serie.getAptoParaPublico());
         sinopsis.setText(serie.getDesc());
 
