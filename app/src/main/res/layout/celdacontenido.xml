@@ -31,6 +31,8 @@
                 app:srcCompat="@drawable/ic_peliculas_24dp" />
             <TextView
                 android:id="@+id/textView_tituloContenido"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/app_name"
