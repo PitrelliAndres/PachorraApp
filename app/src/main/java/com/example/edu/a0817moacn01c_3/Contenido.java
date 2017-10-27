@@ -13,10 +13,11 @@ public class Contenido {
     private String desc;
     private Double puntuacion;
     private String aptoParaPublico;
+    private Integer duracion;
     private String tipoContenido;
 
 
-    public Contenido(Integer id, String nombre, Integer imagen, Integer imagenPortada, String genero, String desc, Double puntuacion, String aptoParaPublico, String tipoContenido) {
+    public Contenido(Integer id, String nombre, Integer imagen, Integer imagenPortada, String genero, String desc, Double puntuacion, String aptoParaPublico,Integer duracion, String tipoContenido) {
         this.id = id;
         this.nombre = nombre;
         this.imagen = imagen;
@@ -26,6 +27,7 @@ public class Contenido {
         this.puntuacion = puntuacion;
         this.aptoParaPublico = aptoParaPublico;
         this.tipoContenido = tipoContenido;
+        this.duracion=duracion;
     }
 
     public String getNombre() {
@@ -62,6 +64,10 @@ public class Contenido {
 
     public String getTipoContenido() {
         return tipoContenido;
+    }
+
+    public Integer getDuracion() {
+        return duracion;
     }
 }
 

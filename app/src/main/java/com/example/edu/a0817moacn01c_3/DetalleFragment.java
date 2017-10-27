@@ -15,6 +15,7 @@ import android.widget.TextView;
  */
 public class DetalleFragment extends Fragment {
     private Peliculas pelicula;
+    private Series series;
     private ImageView imagen;
     private ImageView imagenPortada;
     private TextView puntuacion;
@@ -41,16 +42,16 @@ public class DetalleFragment extends Fragment {
         unBundle.putDouble("puntuacion",unContenido.getPuntuacion());
         unBundle.putString("descripcion",unContenido.getDesc());
         unBundle.putString("aptoTodoPublico",unContenido.getAptoParaPublico());
-        unBundle.putInt("duracion", unContenido.);
+        unBundle.putInt("duracion", unContenido.getDuracion());
         unBundle.putString("tipo",unContenido.getTipoContenido());
 
         if(unContenido.getTipoContenido()=="Pelicula"){
             Peliculas unapelicula= (Peliculas)unContenido;
-            unBundle.putString("tipo",unapelicula.getUrl());
+            unBundle.putString("url",unapelicula.getUrl());
         } else {
             Series unaSerie= (Series)unContenido;
             unBundle.putInt("cantidadTemporada", unaSerie.getCantidadTemporada());
-            unBundle.putInt("cantidadEpisodios", unaSerie.getCantidadCapitulos());
+            unBundle.putInt("cantidadCapitulos", unaSerie.getCantidadCapitulos());
         }
         detalleFragment.setArguments(unBundle);
         return detalleFragment;
@@ -61,11 +62,11 @@ public class DetalleFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         // Inflate the layout for this fragment
-
+        View view=null;
 
         Bundle unBundle = getArguments();
         if(unBundle.getString("tipo")=="Peliculas"){
-            View view = inflater.inflate(R.layout.fragment_detalle, container, false);
+           view = inflater.inflate(R.layout.fragment_detallepeliculas, container, false);
         pelicula = new Peliculas(
                 unBundle.getInt("id"),
                 unBundle.getString("nombre"),
@@ -88,19 +89,34 @@ public class DetalleFragment extends Fragment {
             this.clasificacion = view.findViewById(R.id.textview_clasificacion);
             this.sinopsis = view.findViewById(R.id.textview_descripcion);
             mostrarInformacion();
-            return view;
+
         } else {
-            View view = inflater.inflate(R.layout.fragment_detalle, container, false);
+           view = inflater.inflate(R.layout.fragment_detalleseries, container, false);
+            series = new Series(
+                    unBundle.getInt("id"),
+                    unBundle.getString("nombre"),
+                    unBundle.getInt("imagen"),
+                    unBundle.getInt("imagenPortada"),
+                    unBundle.getString("genero"),
+                    unBundle.getString("descripcion"),
+                    unBundle.getDouble("puntuacion"),
+                    unBundle.getString("aptoTodoPublico"),
+                    unBundle.getInt("cantidadTemporada"),
+                    unBundle.getInt("cantidadCapitulos"),
+                    unBundle.getInt("duracion"),
+                    unBundle.getString("tipo")
+            );
+            this.imagen = view.findViewById(R.id.imageView_ImagenContenido);
+            this.imagenPortada = view.findViewById(R.id.imageview_detalleBackdrop);
+            this.puntuacion = view.findViewById(R.id.textview_detallePuntuacion);
+            //this.ano =
+            this.genero = view.findViewById(R.id.textview_genero);
+            this.clasificacion = view.findViewById(R.id.textview_clasificacion);
+            this.sinopsis = view.findViewById(R.id.textview_descripcion);
+            mostrarInformacion();
+
         }
-
-
-        mostrarInformacion();
-
-
-
         return view;
-
-
     }
 
     public void mostrarInformacion(){

@@ -18,9 +18,9 @@ import java.util.List;
  * A simple {@link Fragment} subclass.
  */
 public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapter.ContenidoClickeable {
-    private List<Peliculas> listaPeliculasRecomendadas;
-    private List<Peliculas> listaPeliculasMasVistas;
-    private List<Peliculas> listaPeliculasEstrenos;
+    private List<Contenido> listaPeliculasRecomendadas;
+    private List<Contenido> listaPeliculasMasVistas;
+    private List<Contenido> listaPeliculasEstrenos;
     private PeliculasRecyclerAdapter unAdapter;
     private NotificadorDatos escuchadorPelicula;
     private PeliculasRecyclerAdapter unAdapter2;

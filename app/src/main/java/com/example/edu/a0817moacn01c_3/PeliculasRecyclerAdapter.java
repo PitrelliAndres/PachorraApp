@@ -15,12 +15,12 @@ import java.util.List;
  */
 
 public class PeliculasRecyclerAdapter extends RecyclerView.Adapter{
-    private List<Peliculas> listaPeliculas;
-    private List<Series> listaSeries;
+    private List<Contenido> listaPeliculas;
+
     private Context contexto;
     private ContenidoClickeable contenidoClickeable;
 
-    public PeliculasRecyclerAdapter(List<Peliculas> listaPeliculas, Context contexto, ContenidoClickeable contenidoClickeable) {
+    public PeliculasRecyclerAdapter(List<Contenido> listaPeliculas, Context contexto, ContenidoClickeable contenidoClickeable) {
         this.listaPeliculas = listaPeliculas;
         this.contexto = contexto;
         this.contenidoClickeable = contenidoClickeable;
@@ -37,7 +37,7 @@ public class PeliculasRecyclerAdapter extends RecyclerView.Adapter{
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
-        final Peliculas peliculas= listaPeliculas.get(position);
+        final Contenido peliculas= listaPeliculas.get(position);
         PeliculasViewHolder peliculasViewHolder=(PeliculasViewHolder) holder;
         peliculasViewHolder.cargarPelicula(peliculas);
 
@@ -63,7 +63,7 @@ public class PeliculasRecyclerAdapter extends RecyclerView.Adapter{
             imagenPelicula=itemView.findViewById(R.id.imageView_ImagenContenido);
             cardPeli=itemView.findViewById(R.id.cardview_ImagenPelicula);
         }
-        public void cargarPelicula(Peliculas unaPelicula){
+        public void cargarPelicula(Contenido unaPelicula){
             imagenPelicula.setImageResource(unaPelicula.getImagen());
         }
     }
