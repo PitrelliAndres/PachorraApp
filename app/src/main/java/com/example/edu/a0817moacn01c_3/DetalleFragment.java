@@ -88,7 +88,7 @@ public class DetalleFragment extends Fragment {
             this.genero = view.findViewById(R.id.textview_genero);
             this.clasificacion = view.findViewById(R.id.textview_clasificacion);
             this.sinopsis = view.findViewById(R.id.textview_descripcion);
-            mostrarInformacion();
+            mostrarInformacion(pelicula);
 
         } else {
            view = inflater.inflate(R.layout.fragment_detalleseries, container, false);
@@ -113,13 +113,13 @@ public class DetalleFragment extends Fragment {
             this.genero = view.findViewById(R.id.textview_genero);
             this.clasificacion = view.findViewById(R.id.textview_clasificacion);
             this.sinopsis = view.findViewById(R.id.textview_descripcion);
-            mostrarInformacion();
+            mostrarInformacion(series);
 
         }
         return view;
     }
 
-    public void mostrarInformacion(){
+    public void mostrarInformacion(Peliculas pelicula){
         String generoTexto = pelicula.getGenero().replace(",","\r\n");
 
         getActivity().setTitle(pelicula.getNombre());
@@ -130,6 +130,19 @@ public class DetalleFragment extends Fragment {
         genero.setText(generoTexto);
         clasificacion.setText(pelicula.getAptoParaPublico());
         sinopsis.setText(pelicula.getDesc());
+
+    }
+    public void mostrarInformacion(Series serie){
+        String generoTexto = serie.getGenero().replace(",","\r\n");
+
+        getActivity().setTitle(serie.getNombre());
+        imagen.setImageResource(serie.getImagen());
+        imagenPortada.setImageResource(serie.getImagenPortada());
+        puntuacion.setText(serie.getPuntuacion().toString());
+        //ano.setText(pelicula.getAno());
+        genero.setText(generoTexto);
+        clasificacion.setText(serie.getAptoParaPublico());
+        sinopsis.setText(serie.getDesc());
 
     }
 
