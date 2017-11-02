@@ -1,4 +1,6 @@
-package com.example.edu.a0817moacn01c_3;
+package com.example.edu.a0817moacn01c_3.Model;
+
+import com.example.edu.a0817moacn01c_3.Model.Contenido;
 
 /**
  * Created by ma on 17/10/17.

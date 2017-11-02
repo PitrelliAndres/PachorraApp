@@ -1,4 +1,4 @@
-package com.example.edu.a0817moacn01c_3;
+package com.example.edu.a0817moacn01c_3.View;
 
 
 import android.content.Context;
@@ -10,6 +10,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.example.edu.a0817moacn01c_3.CargarContenido;
+import com.example.edu.a0817moacn01c_3.Model.Contenido;
+import com.example.edu.a0817moacn01c_3.R;
 
 import java.util.List;
 

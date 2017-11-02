@@ -1,4 +1,4 @@
-package com.example.edu.a0817moacn01c_3;
+package com.example.edu.a0817moacn01c_3.View;
 
 
 import android.os.Bundle;
@@ -8,6 +8,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.edu.a0817moacn01c_3.Model.Contenido;
+import com.example.edu.a0817moacn01c_3.Model.Pelicula;
+import com.example.edu.a0817moacn01c_3.R;
+import com.example.edu.a0817moacn01c_3.Model.Serie;
 
 
 /**

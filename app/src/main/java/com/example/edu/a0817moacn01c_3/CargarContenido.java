@@ -1,5 +1,9 @@
 package com.example.edu.a0817moacn01c_3;
 
+import com.example.edu.a0817moacn01c_3.Model.Contenido;
+import com.example.edu.a0817moacn01c_3.Model.Pelicula;
+import com.example.edu.a0817moacn01c_3.Model.Serie;
+
 import java.util.ArrayList;
 import java.util.List;
 

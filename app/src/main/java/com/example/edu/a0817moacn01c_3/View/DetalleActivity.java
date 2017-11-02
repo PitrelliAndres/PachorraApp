@@ -1,4 +1,4 @@
-package com.example.edu.a0817moacn01c_3;
+package com.example.edu.a0817moacn01c_3.View;
 
 import android.content.Intent;
 import android.support.v4.app.FragmentManager;
@@ -6,6 +6,11 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+
+import com.example.edu.a0817moacn01c_3.CargarContenido;
+import com.example.edu.a0817moacn01c_3.Model.Contenido;
+import com.example.edu.a0817moacn01c_3.R;
+import com.example.edu.a0817moacn01c_3.View.AdaptadorDetallesViewPager;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,16 +1,12 @@
-package com.example.edu.a0817moacn01c_3;
+package com.example.edu.a0817moacn01c_3.View;
 
 import android.content.Intent;
-import android.os.Parcelable;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import com.example.edu.a0817moacn01c_3.R;
 
 public class PachorraActivity extends AppCompatActivity implements PachorraFragment.NotificadorDatos {
 
