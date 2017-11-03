@@ -7,10 +7,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-import com.example.edu.a0817moacn01c_3.CargarContenido;
+import com.example.edu.a0817moacn01c_3.Controller.ControllerContenido;
 import com.example.edu.a0817moacn01c_3.Model.Contenido;
 import com.example.edu.a0817moacn01c_3.R;
-import com.example.edu.a0817moacn01c_3.View.AdaptadorDetallesViewPager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,10 +33,12 @@ public class DetalleActivity extends AppCompatActivity{
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewPager_Detalles);
         FragmentManager fragmentManager = getSupportFragmentManager();
 
-        CargarContenido cargarPeliculas = new CargarContenido();
-        listaRecomendados=cargarPeliculas.cargarPeliculasRecomendadasAmigos();
-        listaMasVistos=cargarPeliculas.cargarPeliculasMasVistas();
-        ListaEstrenos=cargarPeliculas.cargarPeliculasEstrenos();
+        ControllerContenido controllerContenido = new ControllerContenido();
+
+        listaRecomendados= controllerContenido.getListaMasrecomendados();
+        listaMasVistos= controllerContenido.getListaMasvistos();
+        ListaEstrenos= controllerContenido.getListaEstrenos();
+
 
         Intent unIntent = getIntent();
         this.unBundle = unIntent.getExtras();

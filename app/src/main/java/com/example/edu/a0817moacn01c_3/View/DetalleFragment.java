@@ -47,7 +47,6 @@ public class DetalleFragment extends Fragment {
         unBundle.putDouble("puntuacion", unContenido.getPuntuacion());
         unBundle.putString("descripcion", unContenido.getDesc());
         unBundle.putString("aptoTodoPublico", unContenido.getAptoParaPublico());
-        unBundle.putInt("duracion", unContenido.getDuracion());
         unBundle.putString("tipo", unContenido.getTipoContenido());
 
         if (unContenido.getTipoContenido().equals(Contenido.PELICULA)) {
@@ -78,7 +77,6 @@ public class DetalleFragment extends Fragment {
                 unBundle.getString("descripcion"),
                 unBundle.getDouble("puntuacion"),
                 unBundle.getString("aptoTodoPublico"),
-                unBundle.getInt("duracion"),
                 unBundle.getString("tipo")
         );
 

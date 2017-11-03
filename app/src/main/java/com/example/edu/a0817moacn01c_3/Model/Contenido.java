@@ -19,7 +19,7 @@ public class Contenido {
     private String tipoContenido;
 
 
-    public Contenido(Integer id, String nombre, Integer imagen, Integer imagenPortada, String genero, String desc, Double puntuacion, String aptoParaPublico,Integer duracion, String tipoContenido) {
+    public Contenido(Integer id, String nombre, Integer imagen, Integer imagenPortada, String genero, String desc, Double puntuacion, String aptoParaPublico, String tipoContenido) {
         this.id = id;
         this.nombre = nombre;
         this.imagen = imagen;

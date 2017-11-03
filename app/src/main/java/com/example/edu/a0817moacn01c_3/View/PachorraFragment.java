@@ -11,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.edu.a0817moacn01c_3.CargarContenido;
+import com.example.edu.a0817moacn01c_3.Controller.ControllerContenido;
 import com.example.edu.a0817moacn01c_3.Model.Contenido;
 import com.example.edu.a0817moacn01c_3.R;
 
@@ -68,11 +68,11 @@ public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapt
         unRecyclerView2.setLayoutManager(unLayoutManager2);
         unRecyclerView3.setLayoutManager(unLayoutManager3);
         //Cargo las 3 listas
-        CargarContenido cargarContenido = new CargarContenido();
+        ControllerContenido controllerContenido = new ControllerContenido();
 
-        listaPeliculasRecomendadas= cargarContenido.cargarPeliculasRecomendadasAmigos();
-        listaPeliculasMasVistas= cargarContenido.cargarPeliculasMasVistas();
-        listaPeliculasEstrenos= cargarContenido.cargarPeliculasEstrenos();
+        listaPeliculasRecomendadas= controllerContenido.getListaMasrecomendados();
+        listaPeliculasMasVistas= controllerContenido.getListaMasvistos();
+        listaPeliculasEstrenos= controllerContenido.getListaEstrenos();
 
         unRecyclerView.setHasFixedSize(true);
         unRecyclerView2.setHasFixedSize(true);

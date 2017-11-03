@@ -34,7 +34,7 @@ public class PachorraActivity extends AppCompatActivity implements PachorraFragm
 
         unBundle.putInt("position",position);
         unBundle.putInt("nroLista", nroListaContenido);
-        //unIntent.putExtra("HashMap",unHashmap);
+
 
         unIntent.putExtras(unBundle);
         startActivity(unIntent);

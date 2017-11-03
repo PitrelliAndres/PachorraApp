@@ -13,9 +13,19 @@ import java.util.List;
 
 public class ControllerContenido {
 
-    public List<Contenido> getListDeProductos(Context context){
+    public List<Contenido> getListaMasrecomendados(){
         DAOContenido daoContenido = new DAOContenido();
-        List<Contenido> contenidoList = daoContenido.getListaDeContenidoFromArchivo(context);
+        List<Contenido> contenidoList = daoContenido.obtenerListaRecomendadas();
+        return contenidoList;
+    }
+    public List<Contenido> getListaMasvistos(){
+        DAOContenido daoContenido = new DAOContenido();
+        List<Contenido> contenidoList = daoContenido.obtenerListaMasVistas();
+        return contenidoList;
+    }
+    public List<Contenido> getListaEstrenos(){
+        DAOContenido daoContenido = new DAOContenido();
+        List<Contenido> contenidoList = daoContenido.obtenerListaEstrenos();
         return contenidoList;
     }
 }
