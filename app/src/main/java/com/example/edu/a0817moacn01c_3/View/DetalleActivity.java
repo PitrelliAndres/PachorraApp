@@ -66,13 +66,26 @@ public class DetalleActivity extends AppCompatActivity{
                 viewPager.setCurrentItem(posicion3);
                 break;
         }
+        getSupportActionBar().setTitle(listaSeleccionada.get(unBundle.getInt("position")).getNombre());
+
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                getSupportActionBar().setTitle(listaSeleccionada.get(position).getNombre());
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
 
     }
 
-    public void recibirDatos(){
-
-        // Creo que masa adelante solo pasamos un identificador y el fragment hace la consulta en BD y/o API
-    }
     public void botonCompartir(View view){
 
         Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);

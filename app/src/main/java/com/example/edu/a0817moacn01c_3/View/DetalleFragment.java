@@ -111,7 +111,7 @@ public class DetalleFragment extends Fragment {
     public void mostrarInformacion(Pelicula pelicula) {
         String generoTexto = pelicula.getGenero().replace(", ", "\r\n");
 
-        getActivity().setTitle(pelicula.getNombre());
+        //getActivity().setTitle(pelicula.getNombre());
         imagen.setImageResource(pelicula.getImagen());
         imagenPortada.setImageResource(pelicula.getImagenPortada());
         puntuacion.setText(pelicula.getPuntuacion().toString());
