@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
-    tools:context="com.example.edu.a0817moacn01c_3.DetalleActivity">
+    tools:context="com.example.edu.a0817moacn01c_3.View.DetalleActivity">
 
     <android.support.v4.view.ViewPager
         android:id="@+id/viewPager_Detalles"

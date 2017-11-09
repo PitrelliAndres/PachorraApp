@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.edu.a0817moacn01c_3.MainActivity">
+    tools:context="com.example.edu.a0817moacn01c_3.View.MainActivity">
 
     <ImageButton
         android:id="@+id/buttonIrAPachorra"
