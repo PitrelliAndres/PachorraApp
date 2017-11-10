@@ -13,25 +13,26 @@ import android.view.MenuItem;
 import com.example.edu.a0817moacn01c_3.R;
 
 public class PachorraActivity extends AppCompatActivity implements PachorraFragment.NotificadorDatos {
-
+    private BottomNavigationView bottomNavigationView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pachorra);
 
-        ViewPager viewPager=(ViewPager)findViewById(R.id.viewpager_Pachorra);
+        final ViewPager viewPager=(ViewPager)findViewById(R.id.viewpager_Pachorra);
         FragmentManager fragmentManager = getSupportFragmentManager();
         AdaptadorPachorraViewPager adaptadorPachorraViewPager= new AdaptadorPachorraViewPager(fragmentManager);
         viewPager.setAdapter(adaptadorPachorraViewPager);
+        viewPager.setCurrentItem(1,false);
 
-
-
-        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
+        bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(
                 new BottomNavigationView.OnNavigationItemSelectedListener() {
                     @Override
                     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                         /*switch ()*/
+                        Integer i = item.getOrder();
+                        viewPager.setCurrentItem(1,true);
 
                         return false;
                     }

@@ -109,6 +109,15 @@ public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapt
 
         switch (nroContenido) {
             case 1:
+                unAdapter = new PeliculasRecyclerAdapter(listaPeliculasRecomendadasPeliculas, getContext(), this, 4);
+                unAdapter2 = new PeliculasRecyclerAdapter(listaPeliculasMasVistasPeliculas, getContext(), this, 5);
+                unAdapter3 = new PeliculasRecyclerAdapter(listaPeliculasEstrenosPeliculas, getContext(), this, 6);
+
+                unRecyclerView.setAdapter(unAdapter);
+                unRecyclerView2.setAdapter(unAdapter2);
+                unRecyclerView3.setAdapter(unAdapter3);
+                break;
+            case 2:
 
                 unAdapter = new PeliculasRecyclerAdapter(listaPeliculasRecomendadasMixto, getContext(), this, 1);
                 unAdapter2 = new PeliculasRecyclerAdapter(listaPeliculasMasVistasMixto, getContext(), this, 2);
@@ -118,15 +127,6 @@ public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapt
                 unRecyclerView2.setAdapter(unAdapter2);
                 unRecyclerView3.setAdapter(unAdapter3);
 
-                break;
-            case 2:
-                unAdapter = new PeliculasRecyclerAdapter(listaPeliculasRecomendadasPeliculas, getContext(), this, 4);
-                unAdapter2 = new PeliculasRecyclerAdapter(listaPeliculasMasVistasPeliculas, getContext(), this, 5);
-                unAdapter3 = new PeliculasRecyclerAdapter(listaPeliculasEstrenosPeliculas, getContext(), this, 6);
-
-                unRecyclerView.setAdapter(unAdapter);
-                unRecyclerView2.setAdapter(unAdapter2);
-                unRecyclerView3.setAdapter(unAdapter3);
                 break;
             case 3:
                 unAdapter = new PeliculasRecyclerAdapter(listaPeliculasRecomendadasSeries, getContext(), this, 7);

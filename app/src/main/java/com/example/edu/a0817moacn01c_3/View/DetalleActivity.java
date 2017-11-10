@@ -45,7 +45,7 @@ public class DetalleActivity extends AppCompatActivity{
 
 
 
-        ControllerContenido controllerContenido = new ControllerContenido();
+        final ControllerContenido controllerContenido = new ControllerContenido();
         listaPeliculasRecomendadasMixto = controllerContenido.getListaMasrecomendados();
         listaPeliculasMasVistasMixto = controllerContenido.getListaMasvistos();
         listaPeliculasEstrenosMixto = controllerContenido.getListaEstrenos();

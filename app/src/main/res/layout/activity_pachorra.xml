@@ -12,15 +12,18 @@
         >
 
     </android.support.v4.view.ViewPager>
+
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         app:menu="@menu/bottom_navigation_pachorra"
-        app:itemBackground="@color/colorPrimary"
-        app:itemTextColor="#000"
-        app:itemIconTint="#1a237e"
+        android:background="@color/colorPrimary"
+
+        app:itemTextColor="#fff"
+        app:itemIconTint="#fff"
 
         />
+
 </RelativeLayout>
