@@ -44,7 +44,7 @@ public class ControllerContenido {
 
     public List<Contenido> getLista(String filtro, List<Contenido> lista){
         List<Contenido> listaPosta = new ArrayList<>();
-        for (Contenido contenido : getListaEstrenos()) {
+        for (Contenido contenido : lista) {
          if(contenido.getTipoContenido().equals(filtro)){
              listaPosta.add(contenido);
          }

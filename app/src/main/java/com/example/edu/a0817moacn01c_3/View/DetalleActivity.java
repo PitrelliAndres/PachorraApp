@@ -39,7 +39,6 @@ public class DetalleActivity extends AppCompatActivity{
         listaMasVistos= controllerContenido.getListaMasvistos();
         ListaEstrenos= controllerContenido.getListaEstrenos();
 
-
         Intent unIntent = getIntent();
         this.unBundle = unIntent.getExtras();
         Integer nroLista = unBundle.getInt("nroLista");

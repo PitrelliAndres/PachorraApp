@@ -5,13 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.edu.a0817moacn01c_3.View.PachorraActivity">
-    <FrameLayout
-        android:id="@+id/contenedorDeFragments"
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager_Pachorra"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:animateLayoutChanges="true">
+        >
 
-    </FrameLayout>
+    </android.support.v4.view.ViewPager>
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"

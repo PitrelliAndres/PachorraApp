@@ -64,7 +64,7 @@ public class DAOContenido {
         try {
             AssetManager manager = context.getAssets();
             InputStream productsJson = null;
-            productsJson = manager.open("listadeproductos.json");
+            productsJson = manager.open("listadecontenido.json");
             BufferedReader bufferReaderIn = new BufferedReader(new InputStreamReader(productsJson));
 
             Gson gson = new Gson();

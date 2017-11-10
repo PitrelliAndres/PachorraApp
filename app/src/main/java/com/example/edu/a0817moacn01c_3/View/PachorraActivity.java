@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -17,15 +18,14 @@ public class PachorraActivity extends AppCompatActivity implements PachorraFragm
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pachorra);
+
+        ViewPager viewPager=(ViewPager)findViewById(R.id.viewpager_Pachorra);
         FragmentManager fragmentManager = getSupportFragmentManager();
+        AdaptadorPachorraViewPager adaptadorPachorraViewPager= new AdaptadorPachorraViewPager(fragmentManager);
+        viewPager.setAdapter(adaptadorPachorraViewPager);
 
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
-        PachorraFragment mainFragment = new PachorraFragment();
 
-        fragmentTransaction.replace(R.id.contenedorDeFragments, mainFragment);
-
-        fragmentTransaction.commit();
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(
                 new BottomNavigationView.OnNavigationItemSelectedListener() {
