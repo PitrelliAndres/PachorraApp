@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+  >
+    <item
+        android:id="@+id/action_mostrarSoloPeliculas"
+        android:enabled="true"
+        android:icon="@drawable/ic_peliculas_24dp"
+        android:title="Pelicuas"
+        android:iconTint="@color/colorPeliculas"
+      />
+    <item
+        android:id="@+id/action_mostrarFiltros"
+        android:enabled="true"
+        android:icon="@drawable/ic_filter_list_black_24dp"
+        android:title="Filtro"
+      />
+    <item
+        android:id="@+id/action_mostrarSoloSeries"
+        android:enabled="true"
+        android:icon="@drawable/ic_series_24dp"
+        android:title="Series"
+        android:iconTint="@color/colorSeries"
+    />
+</menu>

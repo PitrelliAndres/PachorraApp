@@ -86,6 +86,7 @@ public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapt
         unRecyclerView2.setAdapter(unAdapter2);
         unRecyclerView3.setAdapter(unAdapter3);
 
+
         return view;
     }
 
