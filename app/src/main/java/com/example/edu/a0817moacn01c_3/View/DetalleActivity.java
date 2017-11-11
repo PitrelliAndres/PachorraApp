@@ -161,7 +161,7 @@ public class DetalleActivity extends AppCompatActivity{
 
         getSupportActionBar().setTitle(listaSeleccionada.get(unBundle.getInt("position")).getNombre());
 
-/*
+
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -179,7 +179,7 @@ public class DetalleActivity extends AppCompatActivity{
                 }
             }
         });
-*/
+
 
 
     }

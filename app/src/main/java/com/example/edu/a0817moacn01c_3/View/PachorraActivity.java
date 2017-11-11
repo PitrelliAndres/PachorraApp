@@ -14,6 +14,10 @@ import com.example.edu.a0817moacn01c_3.R;
 
 public class PachorraActivity extends AppCompatActivity implements PachorraFragment.NotificadorDatos {
     private BottomNavigationView bottomNavigationView;
+    public static final String tituloFragmentPeliculas = "Peliculas";
+    public static final String tituloFragmentSeries = "Series";
+    public static final String tituloFragmentMixto = "Inicio";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,15 +30,27 @@ public class PachorraActivity extends AppCompatActivity implements PachorraFragm
         viewPager.setCurrentItem(1,false);
 
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
-        bottomNavigationView.setOnNavigationItemSelectedListener(
-                new BottomNavigationView.OnNavigationItemSelectedListener() {
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
                     @Override
                     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                        /*switch ()*/
+                        String titulo = item.getTitle().toString();
                         Integer i = item.getOrder();
-                        viewPager.setCurrentItem(1,true);
+                        switch (titulo){
+                            case tituloFragmentPeliculas:
+                                viewPager.setCurrentItem(0,true);
+                                break;
+                            case tituloFragmentMixto:
+                                viewPager.setCurrentItem(1, true);
+                                break;
+                            case tituloFragmentSeries:
+                                viewPager.setCurrentItem(2, true);
+                                break;
+                            default:
+                                viewPager.setCurrentItem(1, true);
+                                break;
+                        }
 
-                        return false;
+                        return true;
                     }
                 }
         );

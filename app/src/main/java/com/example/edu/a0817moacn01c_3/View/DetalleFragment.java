@@ -28,6 +28,8 @@ public class DetalleFragment extends Fragment {
     private TextView genero;
     private TextView clasificacion;
     private TextView sinopsis;
+    private TextView temporadas;
+    private TextView episodios;
 
     public DetalleFragment() {
         // Required empty public constructor
@@ -102,6 +104,8 @@ public class DetalleFragment extends Fragment {
             this.clasificacion = view.findViewById(R.id.textview_clasificacionSeries);
             this.genero = view.findViewById(R.id.textview_generoSeries);
             this.sinopsis = view.findViewById(R.id.textview_descripcionSeries);
+            this.temporadas = view.findViewById(R.id.textview_temporadasSerie);
+            this.episodios = view.findViewById(R.id.textview_episodiosSerie);
             mostrarInformacion(unaSerie);
 
         }
@@ -133,6 +137,8 @@ public class DetalleFragment extends Fragment {
         this.genero.setText(generoTexto);
         clasificacion.setText(serie.getAptoParaPublico());
         sinopsis.setText(serie.getDesc());
+        this.temporadas.setText("Temporadas " + serie.getCantidadTemporadas().toString());
+        this.episodios.setText("Capitulos " + serie.getCantidadCapitulos().toString());
 
     }
 

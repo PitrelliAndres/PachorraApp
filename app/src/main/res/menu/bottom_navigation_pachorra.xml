@@ -5,20 +5,20 @@
         android:id="@+id/action_mostrarSoloPeliculas"
         android:enabled="true"
         android:icon="@drawable/ic_peliculas_24dp"
-        android:title="Peliculas"
+        android:title="@string/tabPeliculas"
         android:iconTint="@color/colorPeliculas"
       />
     <item
         android:id="@+id/action_mostrarFiltros"
         android:enabled="true"
         android:icon="@drawable/ic_filter_list_black_24dp"
-        android:title="Filtro"
+        android:title="@string/tabFiltros"
       />
     <item
         android:id="@+id/action_mostrarSoloSeries"
         android:enabled="true"
         android:icon="@drawable/ic_series_24dp"
-        android:title="Series"
+        android:title="@string/tabSeries"
         android:iconTint="@color/colorSeries"
     />
 </menu>
