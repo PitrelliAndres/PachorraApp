@@ -7,29 +7,84 @@ package com.example.edu.a0817moacn01c_3.Model;
 public class Contenido {
     public static final String PELICULA = "Pelicula";
     public static final String SERIE = "Serie";
+
+
     private Integer id;
     private String nombre;
-    private Integer imagen;
-    private Integer imagenPortada;
-    private String genero;
-    private String desc;
-    private Double puntuacion;
-    private String aptoParaPublico;
+    private String sinopsis;
+    private String urlafiche;
+    private String urlfondo;
+    private Double popularidad;
+    private String estreno;
+    private String year;
     private Integer duracion;
+    private String estado;
+    private Double puntuacion;
+    private Integer cantidadvotos;
+
     private String tipoContenido;
 
-
-    public Contenido(Integer id, String nombre, Integer imagen, Integer imagenPortada, String genero, String desc, Double puntuacion, String aptoParaPublico, String tipoContenido) {
+    public Contenido(Integer id, String nombre, String sinopsis, String urlafiche, String urlfondo, Double popularidad, String estreno, Integer duracion, String estado, Double puntuacion, Integer cantidadvotos) {
         this.id = id;
         this.nombre = nombre;
-        this.imagen = imagen;
-        this.imagenPortada = imagenPortada;
-        this.genero = genero;
-        this.desc = desc;
+        this.sinopsis = sinopsis;
+        this.urlafiche = urlafiche;
+        this.urlfondo = urlfondo;
+        this.popularidad = popularidad;
+        this.estreno = estreno;
+        this.duracion = duracion;
+        this.estado = estado;
         this.puntuacion = puntuacion;
-        this.aptoParaPublico = aptoParaPublico;
-        this.tipoContenido = tipoContenido;
-        this.duracion=duracion;
+        this.cantidadvotos = cantidadvotos;
+        this.year = estreno.substring(0,3);
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getSinopsis() {
+        return sinopsis;
+    }
+
+    public String getUrlafiche() {
+        return urlafiche;
+    }
+
+    public String getUrlfondo() {
+        return urlfondo;
+    }
+
+    public Double getPopularidad() {
+        return popularidad;
+    }
+
+    public String getEstreno() {
+        return estreno;
+    }
+
+    public String getYear() {
+        return year;
+    }
+
+    public Integer getDuracion() {
+        return duracion;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public Double getPuntuacion() {
+        return puntuacion;
+    }
+
+    public Integer getCantidadvotos() {
+        return cantidadvotos;
     }
 
     public Boolean esPelicula(){
@@ -38,46 +93,10 @@ public class Contenido {
     public Boolean esSerie(){
         return this.tipoContenido.equals(Contenido.SERIE);
     }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public Integer getImagen() {
-        return imagen;
-    }
-
-    public Integer getImagenPortada() {
-        return imagenPortada;
-    }
-
-    public String getGenero() {
-        return genero;
-    }
-
-    public String getDesc() {
-        return desc;
-    }
-
-    public Double getPuntuacion() {
-        return puntuacion;
-    }
-
-    public String getAptoParaPublico() {
-        return aptoParaPublico;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
     public String getTipoContenido() {
         return tipoContenido;
     }
 
-    public Integer getDuracion() {
-        return duracion;
-    }
 }
 
 
