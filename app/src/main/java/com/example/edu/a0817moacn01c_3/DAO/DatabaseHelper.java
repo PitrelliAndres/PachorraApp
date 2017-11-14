@@ -17,8 +17,31 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onCreate(SQLiteDatabase sqLiteDatabase) {
+    public void onCreate(SQLiteDatabase db) {
+        String createTablePeliculas = "CREATE TABLE " + DAODBPelicula.TABLENAME + " ("
+                + DAODBPelicula.ID + " INTEGER PRIMARY KEY,"
+                + DAODBPelicula.IMDBID + " TEXT, "
+                + DAODBPelicula.TITULOORG + " TEXT, "
+                + DAODBPelicula.TITULO + " TEXT, "
+                + DAODBPelicula.SINOPSIS + " TEXT, "
+                + DAODBPelicula.URLIMAGEN + " TEXT, "
+                + DAODBPelicula.URLFONDO + " TEXT, "
+                + DAODBPelicula.ADULTO + " INTEGER, "
+                + DAODBPelicula.POPULARIDAD + " REAL, "
+                + DAODBPelicula.ESTRENO + " TEXT, "
+                + DAODBPelicula.DURACION + " INTEGER, "
+                + DAODBPelicula.ESTADO + " TEXT, "
+                + DAODBPelicula.LEMA + " TEXT, "
+                + DAODBPelicula.VIDEO + " TEXT, "
+                + DAODBPelicula.PUNTUACION + " REAL, "
+                + DAODBPelicula.CANTIDADVOTOS + " INTEGER)";
 
+        String createTableGeneros = "CREATE TABLE " + DAODBGenero.TABLENAME + " ("
+                + DAODBGenero.ID + " INTEGER PRIMARY KEY, "
+                + DAODBGenero.NAME + "TEXT NOT NULL)";
+
+        db.execSQL(createTablePeliculas);
+        db.execSQL(createTableGeneros);
     }
 
     @Override
