@@ -7,33 +7,48 @@ import com.example.edu.a0817moacn01c_3.Model.Contenido;
  */
 
 public class Pelicula extends Contenido {
-    private String url;
 
-    public Pelicula(Integer id, String nombre, Integer imagen, Integer imagenPortada, String genero, String desc, Double puntuacion, String aptoParaPublico) {
-        super(id, nombre, imagen, imagenPortada, genero, desc, puntuacion, aptoParaPublico, Contenido.PELICULA);
+    private String imdbid;
+    private String tituloorg = "tituo_original";
+    private String adulto = "adulto";
+    private String lema = "tagline";
+    private String video = "video";
 
-        this.url = null;
+    public String getImdbid() {
+        return imdbid;
     }
 
-    public Pelicula(Integer id, String nombre, Integer imagen, Integer imagenPortada, String genero, String desc, Double puntuacion, String aptoParaPublico, String url) {
-        super(id, nombre, imagen, imagenPortada, genero, desc, puntuacion, aptoParaPublico, Contenido.PELICULA);
-        this.url = url;
+    public String getTituloorg() {
+        return tituloorg;
     }
 
-    public Pelicula(Contenido unContenido, String unaUrl) {
-        this(unContenido.getId(),
-                unContenido.getNombre(),
-                unContenido.getImagen(),
-                unContenido.getImagenPortada(),
-                unContenido.getGenero(),
-                unContenido.getDesc(),
-                unContenido.getPuntuacion(),
-                unContenido.getAptoParaPublico(),
-                unaUrl);
+    public String getAdulto() {
+        return adulto;
     }
 
+    public String getLema() {
+        return lema;
+    }
 
-    public String getUrl() {
-        return url;
+    public String getVideo() {
+        return video;
+    }
+
+    public Boolean tieneVideo(){
+        if(getVideo()=="false"||getVideo()=="0"){
+            return false;
+        }
+        return true;
+    }
+
+    public Boolean esAdulto(){
+        if(getVideo()=="true"||getVideo()=="1"){
+            return true;
+        }
+        return false;
+    }
+
+    public Pelicula(Integer id, String nombre, String sinopsis, String urlafiche, String urlfondo, Double popularidad, String estreno, Integer duracion, String estado, Double puntuacion, Integer cantidadvotos) {
+        super(id, nombre, sinopsis, urlafiche, urlfondo, popularidad, estreno, duracion, estado, puntuacion, cantidadvotos, Contenido.PELICULA);
     }
 }

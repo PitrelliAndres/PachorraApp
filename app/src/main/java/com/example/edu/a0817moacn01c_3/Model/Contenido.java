@@ -24,7 +24,7 @@ public class Contenido {
 
     private String tipoContenido;
 
-    public Contenido(Integer id, String nombre, String sinopsis, String urlafiche, String urlfondo, Double popularidad, String estreno, Integer duracion, String estado, Double puntuacion, Integer cantidadvotos) {
+    public Contenido(Integer id, String nombre, String sinopsis, String urlafiche, String urlfondo, Double popularidad, String estreno, Integer duracion, String estado, Double puntuacion, Integer cantidadvotos, String tipoContenido) {
         this.id = id;
         this.nombre = nombre;
         this.sinopsis = sinopsis;
@@ -37,6 +37,7 @@ public class Contenido {
         this.puntuacion = puntuacion;
         this.cantidadvotos = cantidadvotos;
         this.year = estreno.substring(0,3);
+        this.tipoContenido = tipoContenido;
     }
 
     public Integer getId() {
