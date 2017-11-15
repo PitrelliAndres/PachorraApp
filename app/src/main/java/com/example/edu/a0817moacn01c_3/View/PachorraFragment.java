@@ -14,7 +14,9 @@ import android.widget.TextView;
 
 import com.example.edu.a0817moacn01c_3.Controller.ControllerContenido;
 import com.example.edu.a0817moacn01c_3.Model.Contenido;
+import com.example.edu.a0817moacn01c_3.Model.Pelicula;
 import com.example.edu.a0817moacn01c_3.R;
+import com.example.edu.a0817moacn01c_3.utils.ResultListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,6 +42,8 @@ public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapt
     private TextView tituloRecomendadas;
     private TextView tituloMasvistas;
     private TextView tituloEstrenos;
+    private ControllerContenido controllerContenido;
+
 
     public PachorraFragment()
     // Required empty public constructor
@@ -91,7 +95,7 @@ public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapt
         unRecyclerView2.setHasFixedSize(true);
         unRecyclerView3.setHasFixedSize(true);
 
-        Integer nroContenido = bundle.getInt("nrocontenido");
+/*        Integer nroContenido = bundle.getInt("nrocontenido");
 
         ControllerContenido controllerContenido = new ControllerContenido();
         listaPeliculasRecomendadasMixto = controllerContenido.getListaMasrecomendados();
@@ -136,7 +140,10 @@ public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapt
                 unRecyclerView.setAdapter(unAdapter);
                 unRecyclerView2.setAdapter(unAdapter2);
                 unRecyclerView3.setAdapter(unAdapter3);
-        }
+        }*/
+
+        controllerContenido = new ControllerContenido(getContext());
+        update();
 
         return view;
 
@@ -151,6 +158,20 @@ public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapt
 
     public interface NotificadorDatos {
         public void mandarDatos(Integer position, Integer nroListaContenido);
-        //public void mandarDatos(String nombre, Integer imagen, Integer precio, String desc,Context unContexto);
+   }
+
+    private void update() {
+
+        controllerContenido.getPeliculasPopulares(new ResultListener<List<Contenido>>() {
+            @Override
+            public void finish(List<Contenido> resultado) {
+
+                unAdapter.setProductList(resultado);
+
+                unAdapter.notifyDataSetChanged();
+
+            }
+        }, getContext());
+
     }
 }

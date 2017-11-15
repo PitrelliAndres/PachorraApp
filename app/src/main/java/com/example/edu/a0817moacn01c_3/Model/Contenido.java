@@ -1,5 +1,7 @@
 package com.example.edu.a0817moacn01c_3.Model;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by Andy on 26/10/2017.
  */
@@ -10,18 +12,17 @@ public class Contenido {
 
 
     private Integer id;
-    private String nombre;
-    private String sinopsis;
-    private String urlafiche;
-    private String urlfondo;
-    private Double popularidad;
-    private String estreno;
+    @SerializedName("title") private String nombre;
+    @SerializedName("overview") private String sinopsis;
+    @SerializedName("poster_path") private String urlafiche;
+    @SerializedName("backdrop_path") private String urlfondo;
+    @SerializedName("popularity") private Double popularidad;
+    @SerializedName("release_date") private String estreno;
     private String year;
-    private Integer duracion;
-    private String estado;
-    private Double puntuacion;
-    private Integer cantidadvotos;
-
+    @SerializedName("runtime") private Integer duracion;
+    @SerializedName("status") private String estado;
+    @SerializedName("vote_average") private Double puntuacion;
+    @SerializedName("vote_count")private Integer cantidadvotos;
     private String tipoContenido;
 
     public Contenido() {

@@ -11,14 +11,13 @@ public class Serie extends Contenido {
     private Integer cantidadTemporadas;
     private Integer cantidadCapitulos;
 
-    public Serie(Integer id, String nombre, Integer imagen, Integer imagenPortada, String genero, String desc, Double puntuacion, String aptoParaPublico, Integer cantidadTemporadas, Integer cantidadCapitulos) {
-        super(id, nombre, imagen, imagenPortada, genero, desc, puntuacion, aptoParaPublico, Contenido.SERIE);
-
+    public Serie(Integer id, String nombre, String sinopsis, String urlafiche, String urlfondo, Double popularidad, String estreno, Integer duracion, String estado, Double puntuacion, Integer cantidadvotos, String tipoContenido, Integer cantidadTemporadas, Integer cantidadCapitulos) {
+        super(id, nombre, sinopsis, urlafiche, urlfondo, popularidad, estreno, duracion, estado, puntuacion, cantidadvotos, tipoContenido);
         this.cantidadTemporadas = cantidadTemporadas;
         this.cantidadCapitulos = cantidadCapitulos;
     }
 
-    public Serie(Contenido unContenido, Integer unaCantidadTemporadas, Integer unaCantidadCapitulos) {
+/*    public Serie(Contenido unContenido, Integer unaCantidadTemporadas, Integer unaCantidadCapitulos) {
         this(unContenido.getId(),
                 unContenido.getNombre(),
                 unContenido.getImagen(),
@@ -30,7 +29,7 @@ public class Serie extends Contenido {
                 unaCantidadTemporadas,
                 unaCantidadCapitulos
         );
-    }
+    }*/
 
     public Integer getCantidadTemporadas() {
         return cantidadTemporadas;

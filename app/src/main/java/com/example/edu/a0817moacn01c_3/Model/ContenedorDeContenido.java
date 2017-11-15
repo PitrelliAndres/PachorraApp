@@ -1,5 +1,7 @@
 package com.example.edu.a0817moacn01c_3.Model;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 
 /**
@@ -7,6 +9,7 @@ import java.util.List;
  */
 
 public class ContenedorDeContenido {
+    @SerializedName("result")
     List<Contenido> contenidos;
 
     public List<Contenido> getContenidos(){

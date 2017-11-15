@@ -43,17 +43,20 @@ public class DetalleFragment extends Fragment {
         Bundle unBundle = new Bundle();
         unBundle.putInt("id", unContenido.getId());
         unBundle.putString("nombre", unContenido.getNombre());
-        unBundle.putInt("imagen", unContenido.getImagen());
-        unBundle.putInt("imagenPortada", unContenido.getImagenPortada());
-        unBundle.putString("genero", unContenido.getGenero());
+        unBundle.putString("imagen", unContenido.getUrlafiche());
+        unBundle.putString("imagenPortada", unContenido.getUrlfondo());
         unBundle.putDouble("puntuacion", unContenido.getPuntuacion());
-        unBundle.putString("descripcion", unContenido.getDesc());
-        unBundle.putString("aptoTodoPublico", unContenido.getAptoParaPublico());
+        unBundle.putString("descripcion", unContenido.getSinopsis());
+        unBundle.putString("releaseestreno", unContenido.getEstreno());
+        unBundle.putDouble("popularidad", unContenido.getPopularidad());
+        unBundle.putString("estado", unContenido.getEstado());
+        unBundle.putInt("cantidadvotos", unContenido.getCantidadvotos());
         unBundle.putString("tipo", unContenido.getTipoContenido());
 
         if (unContenido.getTipoContenido().equals(Contenido.PELICULA)) {
             Pelicula unapelicula = (Pelicula) unContenido;
-            unBundle.putString("url", unapelicula.getUrl());
+            unBundle.putString("aptoTodoPublico", unapelicula.getAdulto());
+
         } else {
             Serie unaSerie = (Serie) unContenido;
             unBundle.putInt("cantidadTemporada", unaSerie.getCantidadTemporadas());

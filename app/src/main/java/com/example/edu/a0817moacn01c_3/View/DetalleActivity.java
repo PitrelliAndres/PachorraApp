@@ -45,7 +45,7 @@ public class DetalleActivity extends AppCompatActivity{
 
 
 
-        final ControllerContenido controllerContenido = new ControllerContenido();
+/*        final ControllerContenido controllerContenido = new ControllerContenido();
         listaPeliculasRecomendadasMixto = controllerContenido.getListaMasrecomendados();
         listaPeliculasMasVistasMixto = controllerContenido.getListaMasvistos();
         listaPeliculasEstrenosMixto = controllerContenido.getListaEstrenos();
@@ -57,7 +57,7 @@ public class DetalleActivity extends AppCompatActivity{
 
         listaPeliculasRecomendadasSeries=controllerContenido.getListaMasRecomendados(Contenido.SERIE);
         listaPeliculasMasVistasSeries=controllerContenido.getListaMasVistos(Contenido.SERIE);
-        listaPeliculasEstrenosSeries=controllerContenido.getListaEstreno(Contenido.SERIE);
+        listaPeliculasEstrenosSeries=controllerContenido.getListaEstreno(Contenido.SERIE);*/
         Intent unIntent = getIntent();
         this.unBundle = unIntent.getExtras();
         Integer nroLista = unBundle.getInt("nroLista");

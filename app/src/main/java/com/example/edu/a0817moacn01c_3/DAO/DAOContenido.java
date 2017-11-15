@@ -21,9 +21,9 @@ import java.util.List;
  * Created by Andiy on 30/10/2017.
  */
 
-public class DAOContenido {
+public class DAOContenido {}
 
-    public List<Contenido> obtenerListaRecomendadas(){
+/*   public List<Contenido> obtenerListaRecomendadas(){
         List<Contenido> contenidos= new ArrayList<>();
         String textdescPreparacion="Fusce hendrerit nisl a lectus porttitor egestas. Aenean viverra dignissim vehicula. Sed vestibulum felis sapien, in pretium est dictum eget. Nullam pharetra luctus tortor, vitae placerat massa placerat id. Fusce vel augue sed lorem rutrum vestibulum eget eget dolor. Aliquam molestie, odio et auctor mollis, ex turpis interdum felis, ac suscipit elit metus non velit. Praesent et sagittis lectus. Phasellus eget magna sagittis, tristac suscipit elit metus non velit. Praesent et sagittis lectus. Phasellus eget magna sagittis, tristique lectus ac, auctor ante. Vivamus ac ultricies est, non maximus lacus. Ut aliquet finibus lacus vel accumsan. Praesent ultrices dui nec luctus posuere. Mauris non erat sem. Integer vulputate, dolor et tincidunt ultrices, sapien erat lobortis lectus, eget rhoncus tellus urna in diam. Lorem ipsum dolor sit amet, consectetur adipiscing elit.";
 
@@ -59,7 +59,7 @@ public class DAOContenido {
         contenidos.add(new Pelicula(6,"Forrest Gump", R.drawable.forrest_gump,R.drawable.forrest_gump,"accion",textdescPreparacion,10.0,"ATP","a"));
         return contenidos;
     }
-/*    public List<Contenido> getListaDeContenidoFromArchivo(Context context){
+   public List<Contenido> getListaDeContenidoFromArchivo(Context context){
         ContenedorDeContenido contenedorDeContenido = null;
         try {
             AssetManager manager = context.getAssets();
@@ -76,4 +76,4 @@ public class DAOContenido {
         return contenedorDeContenido.getContenidos();
     }*/
 
-}
+

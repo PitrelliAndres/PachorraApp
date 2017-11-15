@@ -34,7 +34,9 @@ public class PeliculasRecyclerAdapter extends RecyclerView.Adapter{
         return idListas;
     }
 
-
+    public void setProductList(List<Contenido> listaPeliculas) {
+        this.listaPeliculas = listaPeliculas;
+    }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -96,7 +98,7 @@ public class PeliculasRecyclerAdapter extends RecyclerView.Adapter{
                     colorContenido = R.color.colorAccent;
                     break;
             }
-            imagenPelicula.setImageResource(unContenido.getImagen());
+            /*imagenPelicula.setImageResource(unContenido.getImagen());*/
             iconoContenido.setImageResource(icono);
             tituloContenido.setText(unContenido.getNombre());
             //tituloContenido.setTextColor(ContextCompat.getColor(contexto, colorContenido));
