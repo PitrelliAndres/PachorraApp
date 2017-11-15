@@ -24,6 +24,9 @@ public class Contenido {
 
     private String tipoContenido;
 
+    public Contenido() {
+    }
+
     public Contenido(Integer id, String nombre, String sinopsis, String urlafiche, String urlfondo, Double popularidad, String estreno, Integer duracion, String estado, Double puntuacion, Integer cantidadvotos, String tipoContenido) {
         this.id = id;
         this.nombre = nombre;

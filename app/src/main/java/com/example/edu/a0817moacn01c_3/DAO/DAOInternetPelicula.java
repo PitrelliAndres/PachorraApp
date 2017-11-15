@@ -1,7 +1,8 @@
-package com.example.edu.a0817moacn01c_3.Model;
+package com.example.edu.a0817moacn01c_3.DAO;
 
 import android.os.AsyncTask;
 
+import com.example.edu.a0817moacn01c_3.Model.Pelicula;
 import com.example.edu.a0817moacn01c_3.utils.ResultListener;
 
 import java.util.List;

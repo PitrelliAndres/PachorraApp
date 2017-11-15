@@ -9,10 +9,10 @@ import com.example.edu.a0817moacn01c_3.Model.Contenido;
 public class Pelicula extends Contenido {
 
     private String imdbid;
-    private String tituloorg = "tituo_original";
-    private String adulto = "adulto";
-    private String lema = "tagline";
-    private String video = "video";
+    private String tituloorg;
+    private String adulto;
+    private String lema;
+    private String video;
 
     public String getImdbid() {
         return imdbid;
@@ -48,7 +48,18 @@ public class Pelicula extends Contenido {
         return false;
     }
 
+    public Pelicula(){}
+
     public Pelicula(Integer id, String nombre, String sinopsis, String urlafiche, String urlfondo, Double popularidad, String estreno, Integer duracion, String estado, Double puntuacion, Integer cantidadvotos) {
         super(id, nombre, sinopsis, urlafiche, urlfondo, popularidad, estreno, duracion, estado, puntuacion, cantidadvotos, Contenido.PELICULA);
+    }
+
+    public Pelicula(Integer id, String nombre, String sinopsis, String urlafiche, String urlfondo, Double popularidad, String estreno, Integer duracion, String estado, Double puntuacion, Integer cantidadvotos, String imdbid, String tituloorg, String adulto, String lema, String video) {
+        super(id, nombre, sinopsis, urlafiche, urlfondo, popularidad, estreno, duracion, estado, puntuacion, cantidadvotos, Contenido.PELICULA);
+        this.imdbid = imdbid;
+        this.tituloorg = tituloorg;
+        this.adulto = adulto;
+        this.lema = lema;
+        this.video = video;
     }
 }
