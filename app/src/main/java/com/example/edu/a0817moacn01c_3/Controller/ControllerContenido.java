@@ -29,11 +29,11 @@ public class ControllerContenido {
         this.context = context;
     }
 
-    public void getPeliculasPopulares(final ResultListener<List<Contenido>> listenerDeLaView,Context unContext){
+    public void getPeliculasPopulares(final ResultListener<List<Pelicula>> listenerDeLaView,Context unContext){
         if(HTTPConnectionManager.isNetworkingOnline(context)) {
-            ResultListener<List<Contenido>> escuchadorDelControlador = new ResultListener<List<Contenido>>() {
+            ResultListener<List<Pelicula>> escuchadorDelControlador = new ResultListener<List<Pelicula>>() {
                 @Override
-                public void finish(List<Contenido> resultado) {
+                public void finish(List<Pelicula> resultado) {
                     listenerDeLaView.finish(resultado);
                 }
             };

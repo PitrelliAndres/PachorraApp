@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.example.edu.a0817moacn01c_3.Controller.ControllerContenido;
 import com.example.edu.a0817moacn01c_3.Model.ContenedorDeContenido;
+import com.example.edu.a0817moacn01c_3.Model.ContenedorDePelicula;
 import com.example.edu.a0817moacn01c_3.Model.Contenido;
 import com.example.edu.a0817moacn01c_3.Model.Pelicula;
 import com.example.edu.a0817moacn01c_3.utils.HTTPConnectionManager;
@@ -34,7 +35,7 @@ import java.util.List;
 public class DAOInternetPelicula {
     private Minion unMinion;
 
-    public void getPeliculasPopulares(ResultListener<List<Contenido>> listener){
+    public void getPeliculasPopulares(ResultListener<List<Pelicula>> listener){
 
         String url = TMDBHelper.getPopularMovies(TMDBHelper.language_SPANISH,1);
         unMinion = new Minion(url);
@@ -42,8 +43,8 @@ public class DAOInternetPelicula {
         unMinion.execute();
     }
 
-    public class Minion extends AsyncTask<String,Void,List<Contenido>>{
-        private ResultListener<List<Contenido>>escuchadorPeliculasControlador;
+    public class Minion extends AsyncTask<String,Void,List<Pelicula>>{
+        private ResultListener<List<Pelicula>>escuchadorPeliculasControlador;
         private String url;
         HttpURLConnection urlConnection;
 
@@ -51,12 +52,12 @@ public class DAOInternetPelicula {
             this.url=url;
         }
 
-        public void setEscuchadorPeliculasControlador(ResultListener<List<Contenido>> escuchadorPeliculasControlador) {
+        public void setEscuchadorPeliculasControlador(ResultListener<List<Pelicula>> escuchadorPeliculasControlador) {
             this.escuchadorPeliculasControlador = escuchadorPeliculasControlador;
         }
 
         @Override
-        protected List<Contenido> doInBackground(String... strings) {
+        protected List<Pelicula> doInBackground(String... strings) {
 
             HTTPConnectionManager connectionManager = new HTTPConnectionManager();
             String input = null;
@@ -70,9 +71,9 @@ public class DAOInternetPelicula {
 
             Gson gson = new Gson();
 
-            ContenedorDeContenido contenedorDeContenido = gson.fromJson(input,ContenedorDeContenido.class);
+            ContenedorDePelicula contenedorDePelicula = gson.fromJson(input,ContenedorDePelicula.class);
 
-            return contenedorDeContenido.getContenidos();
+            return contenedorDePelicula.getContenidos();
             /*List<Pelicula> listaLeidaInternet= new ArrayList<Pelicula>();
             try {
                 URL urlFinal= new URL(url);
@@ -118,9 +119,9 @@ public class DAOInternetPelicula {
 
         }
         @Override
-        protected void onPostExecute(List<Contenido> postList) {
+        protected void onPostExecute(List<Pelicula> listaPeliculas) {
 
-            this.escuchadorPeliculasControlador.finish(postList);
+            this.escuchadorPeliculasControlador.finish(listaPeliculas);
         }
     }
 }

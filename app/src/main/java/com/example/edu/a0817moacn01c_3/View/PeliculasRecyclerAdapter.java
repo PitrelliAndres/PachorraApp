@@ -24,8 +24,10 @@ public class PeliculasRecyclerAdapter extends RecyclerView.Adapter{
     private Context contexto;
     private ContenidoClickeable contenidoClickeable;
 
-    public PeliculasRecyclerAdapter(Context contexto) {
+    public PeliculasRecyclerAdapter(List<Contenido> listaContenidos, Context contexto, ContenidoClickeable contenidoClickeable) {
+        this.listaContenidos = listaContenidos;
         this.contexto = contexto;
+        this.contenidoClickeable = contenidoClickeable;
     }
 
     public PeliculasRecyclerAdapter(List<Contenido> listaPeliculas, Context contexto, ContenidoClickeable contenidoClickeable, Integer idLista) {
@@ -78,6 +80,8 @@ public class PeliculasRecyclerAdapter extends RecyclerView.Adapter{
         private CardView cardPeli;
         private ImageView iconoContenido;
         private TextView tituloContenido;
+
+        // TODO para Andy: Investigar Glide
 
         public PeliculasViewHolder(View itemView){
             super(itemView);

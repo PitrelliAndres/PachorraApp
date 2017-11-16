@@ -13,9 +13,11 @@ import android.widget.TextView;
 
 import com.example.edu.a0817moacn01c_3.Controller.ControllerContenido;
 import com.example.edu.a0817moacn01c_3.Model.Contenido;
+import com.example.edu.a0817moacn01c_3.Model.Pelicula;
 import com.example.edu.a0817moacn01c_3.R;
 import com.example.edu.a0817moacn01c_3.utils.ResultListener;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -143,7 +145,7 @@ public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapt
         }*/
 
         // 2: Adapter
-        unAdapter = new PeliculasRecyclerAdapter(getContext());
+        unAdapter = new PeliculasRecyclerAdapter(new ArrayList<Contenido>(),getContext(),this);
 
         // 3: Adapter con recycler
         unRecyclerView.setAdapter(unAdapter);
@@ -168,11 +170,15 @@ public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapt
 
     private void update() {
 
-        controllerContenido.getPeliculasPopulares(new ResultListener<List<Contenido>>() {
+        controllerContenido.getPeliculasPopulares(new ResultListener<List<Pelicula>>() {
             @Override
-            public void finish(List<Contenido> resultado) {
+            public void finish(List<Pelicula> resultado) {
 
-                unAdapter.setListaContenidos(resultado);
+                List<Contenido> blablub = new ArrayList<>();
+                blablub.addAll(resultado);
+
+
+                unAdapter.setListaContenidos(blablub);
 
                 unAdapter.notifyDataSetChanged();
 

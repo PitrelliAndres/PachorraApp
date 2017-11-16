@@ -14,6 +14,7 @@ public class Pelicula extends Contenido {
     private String lema;
     private String video;
 
+
     public Pelicula(Contenido unContenido, String imdbid, String tituloOriginal, boolean esParaAdultos, String lema, String video) {
         this(
                 unContenido.getId(),
@@ -65,7 +66,9 @@ public class Pelicula extends Contenido {
         return false;
     }
 
-    public Pelicula(){}
+    public Pelicula(){
+        this.tipoContenido = Contenido.PELICULA;
+    }
 
     public Pelicula(Integer id, String nombre, String sinopsis, String urlafiche, String urlfondo, Double popularidad, String estreno, Integer duracion, String estado, Double puntuacion, Integer cantidadvotos) {
         super(id, nombre, sinopsis, urlafiche, urlfondo, popularidad, estreno, duracion, estado, puntuacion, cantidadvotos, Contenido.PELICULA);

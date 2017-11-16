@@ -10,6 +10,10 @@ public class Serie extends Contenido {
     private Integer nroEpisodios;
     private String canalTV;
 
+    public Serie(){
+        this.tipoContenido = Contenido.SERIE;
+    }
+
     public Serie(Integer id, String nombre, String sinopsis, String urlafiche, String urlfondo, Double popularidad, String estreno, Integer duracion, String estado, Double puntuacion, Integer cantidadvotos, String type, Integer cantidadTemporadas, Integer cantidadCapitulos, String canalTV) {
         super(id, nombre, sinopsis, urlafiche, urlfondo, popularidad, estreno, duracion, estado, puntuacion, cantidadvotos, Contenido.SERIE);
         this.type = type;

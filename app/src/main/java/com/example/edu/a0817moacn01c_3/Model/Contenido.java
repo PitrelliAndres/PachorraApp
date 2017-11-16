@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 /**
  * Created by Andy on 26/10/2017.
  */
-
+//todo contenido fhgghchvcgfgjhg
 public class Contenido {
     public static final String PELICULA = "Pelicula";
     public static final String SERIE = "Serie";
@@ -23,7 +23,7 @@ public class Contenido {
     @SerializedName("status") private String estado;
     @SerializedName("vote_average") private Double puntuacion;
     @SerializedName("vote_count")private Integer cantidadvotos;
-    private String tipoContenido;
+    protected String tipoContenido;
 
     public Contenido() {
     }
