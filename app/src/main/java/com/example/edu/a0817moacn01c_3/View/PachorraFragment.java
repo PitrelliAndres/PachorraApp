@@ -3,7 +3,6 @@ package com.example.edu.a0817moacn01c_3.View;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -14,11 +13,9 @@ import android.widget.TextView;
 
 import com.example.edu.a0817moacn01c_3.Controller.ControllerContenido;
 import com.example.edu.a0817moacn01c_3.Model.Contenido;
-import com.example.edu.a0817moacn01c_3.Model.Pelicula;
 import com.example.edu.a0817moacn01c_3.R;
 import com.example.edu.a0817moacn01c_3.utils.ResultListener;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -76,7 +73,7 @@ public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapt
         RecyclerView unRecyclerView = view.findViewById(R.id.recyclerPachorra1);
         RecyclerView unRecyclerView2 = view.findViewById(R.id.recyclerPachorra2);
         RecyclerView unRecyclerView3 = view.findViewById(R.id.recyclerPachorra3);
-        RecyclerView.LayoutManager unLayoutManager = new GridLayoutManager(getContext(), 1, GridLayoutManager.HORIZONTAL, false);
+        GridLayoutManager unLayoutManager = new GridLayoutManager(getContext(), 1, GridLayoutManager.HORIZONTAL, false);
         RecyclerView.LayoutManager unLayoutManager2 = new GridLayoutManager(getContext(), 1, GridLayoutManager.HORIZONTAL, false);
         RecyclerView.LayoutManager unLayoutManager3 = new GridLayoutManager(getContext(), 1, GridLayoutManager.HORIZONTAL, false);
 
@@ -87,13 +84,16 @@ public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapt
         tituloMasvistas.setText("Los mas vistos");
         tituloEstrenos.setText("Estrenos");
 
+        // 1: Recycler
         unRecyclerView.setLayoutManager(unLayoutManager);
-        unRecyclerView2.setLayoutManager(unLayoutManager2);
-        unRecyclerView3.setLayoutManager(unLayoutManager3);
+        /*unRecyclerView2.setLayoutManager(unLayoutManager2);
+        unRecyclerView3.setLayoutManager(unLayoutManager3);*/
 
         unRecyclerView.setHasFixedSize(true);
-        unRecyclerView2.setHasFixedSize(true);
-        unRecyclerView3.setHasFixedSize(true);
+        /*unRecyclerView2.setHasFixedSize(true);
+        unRecyclerView3.setHasFixedSize(true);*/
+
+
 
 /*        Integer nroContenido = bundle.getInt("nrocontenido");
 
@@ -142,6 +142,12 @@ public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapt
                 unRecyclerView3.setAdapter(unAdapter3);
         }*/
 
+        // 2: Adapter
+        unAdapter = new PeliculasRecyclerAdapter(getContext());
+
+        // 3: Adapter con recycler
+        unRecyclerView.setAdapter(unAdapter);
+        unRecyclerView.setLayoutManager(unLayoutManager);
         controllerContenido = new ControllerContenido(getContext());
         update();
 
@@ -166,7 +172,7 @@ public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapt
             @Override
             public void finish(List<Contenido> resultado) {
 
-                unAdapter.setProductList(resultado);
+                unAdapter.setListaContenidos(resultado);
 
                 unAdapter.notifyDataSetChanged();
 

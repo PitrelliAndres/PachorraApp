@@ -9,13 +9,13 @@ import java.util.List;
  */
 
 public class ContenedorDeContenido {
-    @SerializedName("result")
+    @SerializedName("results")
     List<Contenido> contenidos;
 
     public List<Contenido> getContenidos(){
         return contenidos;
     }
-    public void setProductos(List<Contenido> productos) {
-        this.contenidos = productos;
+    public void setContenidos(List<Contenido> listaContenidos) {
+        this.contenidos = listaContenidos;
     }
 }

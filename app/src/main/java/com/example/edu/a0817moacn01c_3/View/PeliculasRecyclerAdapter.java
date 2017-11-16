@@ -19,12 +19,17 @@ import java.util.List;
  */
 
 public class PeliculasRecyclerAdapter extends RecyclerView.Adapter{
-    private List<Contenido> listaPeliculas;
+    private List<Contenido> listaContenidos;
     private Integer idListas;
     private Context contexto;
     private ContenidoClickeable contenidoClickeable;
-    public PeliculasRecyclerAdapter(List<Contenido> listaPeliculas, Context contexto, ContenidoClickeable contenidoClickeable,Integer idLista) {
-        this.listaPeliculas = listaPeliculas;
+
+    public PeliculasRecyclerAdapter(Context contexto) {
+        this.contexto = contexto;
+    }
+
+    public PeliculasRecyclerAdapter(List<Contenido> listaPeliculas, Context contexto, ContenidoClickeable contenidoClickeable, Integer idLista) {
+        this.listaContenidos = listaPeliculas;
         this.contexto = contexto;
         this.contenidoClickeable = contenidoClickeable;
         this.idListas=idLista;
@@ -34,8 +39,8 @@ public class PeliculasRecyclerAdapter extends RecyclerView.Adapter{
         return idListas;
     }
 
-    public void setProductList(List<Contenido> listaPeliculas) {
-        this.listaPeliculas = listaPeliculas;
+    public void setListaContenidos(List<Contenido> listaPeliculas) {
+        this.listaContenidos = listaPeliculas;
     }
 
     @Override
@@ -49,7 +54,7 @@ public class PeliculasRecyclerAdapter extends RecyclerView.Adapter{
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
-        final Contenido peliculas= listaPeliculas.get(position);
+        final Contenido peliculas= listaContenidos.get(position);
         PeliculasViewHolder peliculasViewHolder=(PeliculasViewHolder) holder;
         peliculasViewHolder.cargarContenido(peliculas);
 
@@ -64,7 +69,7 @@ public class PeliculasRecyclerAdapter extends RecyclerView.Adapter{
 
     @Override
     public int getItemCount() {
-        return listaPeliculas.size();
+        return listaContenidos.size();
     }
 
 

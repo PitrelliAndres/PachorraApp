@@ -1,6 +1,7 @@
 package com.example.edu.a0817moacn01c_3.DAO;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 import com.example.edu.a0817moacn01c_3.Controller.ControllerContenido;
 import com.example.edu.a0817moacn01c_3.Model.ContenedorDeContenido;
@@ -44,7 +45,7 @@ public class DAOInternetPelicula {
     public class Minion extends AsyncTask<String,Void,List<Contenido>>{
         private ResultListener<List<Contenido>>escuchadorPeliculasControlador;
         private String url;
-       /* HttpURLConnection urlConnection;*/
+        HttpURLConnection urlConnection;
 
         public Minion(String url){
             this.url=url;
@@ -61,6 +62,8 @@ public class DAOInternetPelicula {
             String input = null;
             try{
                 input = connectionManager.getRequestString(url);
+                Log.v("[G3] fetching URL", url);
+                Log.v("[G3] input", input);
             } catch (Exception e) {
                 e.printStackTrace();
             }

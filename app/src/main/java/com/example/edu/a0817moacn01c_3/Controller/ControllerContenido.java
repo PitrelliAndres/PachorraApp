@@ -8,6 +8,7 @@ import com.example.edu.a0817moacn01c_3.DAO.DAOInternetPelicula;
 import com.example.edu.a0817moacn01c_3.Model.Contenido;
 import com.example.edu.a0817moacn01c_3.Model.Pelicula;
 import com.example.edu.a0817moacn01c_3.R;
+import com.example.edu.a0817moacn01c_3.utils.HTTPConnectionManager;
 import com.example.edu.a0817moacn01c_3.utils.ResultListener;
 
 import java.util.ArrayList;
@@ -20,20 +21,43 @@ import java.util.List;
 public class ControllerContenido {
     private Context context;
     private DAOInternetPelicula daoInternetPelicula= new DAOInternetPelicula();
+
+    public ControllerContenido() {
+    }
+
     public ControllerContenido(Context context) {
         this.context = context;
     }
 
     public void getPeliculasPopulares(final ResultListener<List<Contenido>> listenerDeLaView,Context unContext){
-       /* if(HTTPConnectionManager.isNetworkingOnline(context)){}*/
-        ResultListener<List<Contenido>>escuchadorDelControlador= new ResultListener<List<Contenido>>() {
-            @Override
-            public void finish(List<Contenido> resultado) {
-                listenerDeLaView.finish(resultado);
-            }
-        };
-        daoInternetPelicula.getPeliculasPopulares(escuchadorDelControlador);
+        if(HTTPConnectionManager.isNetworkingOnline(context)) {
+            ResultListener<List<Contenido>> escuchadorDelControlador = new ResultListener<List<Contenido>>() {
+                @Override
+                public void finish(List<Contenido> resultado) {
+                    listenerDeLaView.finish(resultado);
+                }
+            };
+            daoInternetPelicula.getPeliculasPopulares(escuchadorDelControlador);
+        }
     }
+
+    public Integer getColor(Contenido contenido){
+        Integer color;
+        switch (contenido.getTipoContenido()){
+            case Contenido.PELICULA:
+                color = R.color.colorPeliculas;
+                break;
+            case Contenido.SERIE:
+                color = R.color.colorSeries;
+                break;
+            default:
+                color = R.color.colorAccent;
+                break;
+        }
+
+        return color;
+    }
+
 }
 
 
@@ -77,20 +101,5 @@ public class ControllerContenido {
         }
         return listaPosta;
     }
-    public Integer getColor(Contenido contenido){
-        Integer color;
-        switch (contenido.getTipoContenido()){
-            case Contenido.PELICULA:
-                color = R.color.colorPeliculas;
-                break;
-            case Contenido.SERIE:
-                color = R.color.colorSeries;
-                break;
-            default:
-                color = R.color.colorAccent;
-                break;
-        }
-
-        return color;
-    }*/
+*/
 
