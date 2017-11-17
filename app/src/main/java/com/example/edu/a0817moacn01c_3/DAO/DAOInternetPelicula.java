@@ -74,48 +74,6 @@ public class DAOInternetPelicula {
             ContenedorDePelicula contenedorDePelicula = gson.fromJson(input,ContenedorDePelicula.class);
 
             return contenedorDePelicula.getContenidos();
-            /*List<Pelicula> listaLeidaInternet= new ArrayList<Pelicula>();
-            try {
-                URL urlFinal= new URL(url);
-                urlConnection=(HttpURLConnection) urlFinal.openConnection();
-                InputStream in = new BufferedInputStream(urlConnection.getInputStream());
-                BufferedReader reader = new BufferedReader(new InputStreamReader(in));
-                JSONArray jsonArray= new JSONArray(url);
-               for(int i=0;i<jsonArray.length();i++){
-                   JSONObject jsonObject = jsonArray.getJSONObject(i);
-                   id= jsonObject.getString("id");
-                   nombre= jsonObject.getString("title");
-                   sinopsis= jsonObject.getString("overview");
-                   urlafiche= jsonObject.getString("poster_path");
-                   urlfondo= jsonObject.getString("backdrop_path");
-                   popularidad= jsonObject.getString("popularity");
-                   estreno= jsonObject.getString("release_date");
-                   duracion= jsonObject.getString("runtime");
-                   estado= jsonObject.getString("status");
-                   puntuacion= jsonObject.getString("vote_average");
-                   cantidadvotos= jsonObject.getString("vote_count");
-                   imdbid= jsonObject.getString("imdb_id");
-                   tituloorg= jsonObject.getString("original_title");
-                   adulto= jsonObject.getString("adult");
-                   lema= jsonObject.getString("tagline");
-                   video= jsonObject.getString("video");
-
-                   Pelicula unaPelicula= new Pelicula(Integer.parseInt(id),nombre,sinopsis,urlafiche,urlfondo,Double.parseDouble(popularidad),estreno,Integer.parseInt(duracion),estado,Double.parseDouble(puntuacion),Integer.parseInt(cantidadvotos),imdbid,tituloorg,adulto,lema,video);
-                   listaLeidaInternet.add(unaPelicula);
-               }
-
-
-            } catch (IOException e) {
-                e.printStackTrace();
-
-            } catch (JSONException e) {
-                e.printStackTrace();
-            } finally {
-                urlConnection.disconnect();
-            }
-
-
-            return listaLeidaInternet;*/
 
         }
         @Override
