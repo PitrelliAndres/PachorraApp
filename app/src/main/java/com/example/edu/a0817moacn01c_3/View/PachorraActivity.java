@@ -10,9 +10,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.example.edu.a0817moacn01c_3.Model.Contenido;
 import com.example.edu.a0817moacn01c_3.R;
+import com.google.gson.Gson;
 
-public class PachorraActivity extends AppCompatActivity implements PachorraFragment.NotificadorDatos {
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+public class PachorraActivity extends AppCompatActivity implements PachorraFragment.NotificadorDatos,Serializable{
     private BottomNavigationView bottomNavigationView;
     public static final String tituloFragmentPeliculas = "Peliculas";
     public static final String tituloFragmentSeries = "Series";
@@ -57,17 +63,18 @@ public class PachorraActivity extends AppCompatActivity implements PachorraFragm
     }
 
     @Override
+
     //metodo para enviar la informacion de la pelicula al detalle activity
-    public void mandarDatos(Integer position,Integer nroListaContenido) {
+
+    //Todo : preguntar como hacer el seralizable para pasar una lista de objetos
+    public void mandarDatos(Integer position, List<Contenido> listaContenidoClickeada) {
         Intent unIntent = new Intent(this,DetalleActivity.class);
 
         Bundle unBundle= new Bundle();
 
         unBundle.putInt("position",position);
-        unBundle.putInt("nroLista", nroListaContenido);
+        unIntent.putExtra("listaSeleccionada",(Serializable) listaContenidoClickeada).putExtras(unBundle);
 
-
-        unIntent.putExtras(unBundle);
         startActivity(unIntent);
 
     }

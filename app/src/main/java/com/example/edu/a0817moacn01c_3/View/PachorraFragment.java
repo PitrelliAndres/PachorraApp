@@ -17,6 +17,7 @@ import com.example.edu.a0817moacn01c_3.Model.Pelicula;
 import com.example.edu.a0817moacn01c_3.R;
 import com.example.edu.a0817moacn01c_3.utils.ResultListener;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +25,7 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapter.ContenidoClickeable {
+public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapter.ContenidoClickeable, Serializable {
     private List<Contenido> listaPeliculasRecomendadasMixto;
     private List<Contenido> listaPeliculasMasVistasMixto;
     private List<Contenido> listaPeliculasEstrenosMixto;
@@ -160,12 +161,12 @@ public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapt
 
     @Override
     //metodo para comunicar el recycler con el activity mediante el fragment
-    public void mandarSeleccion(Integer position, Integer nroListaContenido) {
-        escuchadorPelicula.mandarDatos(position, nroListaContenido);
+    public void mandarSeleccion(Integer position, List<Contenido> listaContenidoClickeada) {
+        escuchadorPelicula.mandarDatos(position, listaContenidoClickeada);
     }
 
     public interface NotificadorDatos {
-        public void mandarDatos(Integer position, Integer nroListaContenido);
+        public void mandarDatos(Integer position, List<Contenido> listaContenidoClickeada);
    }
 
     private void update() {

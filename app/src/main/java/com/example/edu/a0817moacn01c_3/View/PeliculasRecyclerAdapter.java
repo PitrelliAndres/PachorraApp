@@ -9,16 +9,19 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.edu.a0817moacn01c_3.Model.Contenido;
 import com.example.edu.a0817moacn01c_3.R;
+import com.example.edu.a0817moacn01c_3.utils.TMDBHelper;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by Andiy on 18/10/2017.
  */
 
-public class PeliculasRecyclerAdapter extends RecyclerView.Adapter{
+public class PeliculasRecyclerAdapter extends RecyclerView.Adapter implements Serializable{
     private List<Contenido> listaContenidos;
     private Integer idListas;
     private Context contexto;
@@ -64,7 +67,7 @@ public class PeliculasRecyclerAdapter extends RecyclerView.Adapter{
 
         peliculasViewHolder.itemView.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-                contenidoClickeable.mandarSeleccion(position,getIdListas());
+                contenidoClickeable.mandarSeleccion(position,listaContenidos);
             }
         });
     }
@@ -80,6 +83,8 @@ public class PeliculasRecyclerAdapter extends RecyclerView.Adapter{
         private CardView cardPeli;
         private ImageView iconoContenido;
         private TextView tituloContenido;
+        private String urlImagenAfiche;
+
 
         // TODO para Andy: Investigar Glide
 
@@ -107,7 +112,9 @@ public class PeliculasRecyclerAdapter extends RecyclerView.Adapter{
                     colorContenido = R.color.colorAccent;
                     break;
             }
-            /*imagenPelicula.setImageResource(unContenido.getImagen());*/
+            urlImagenAfiche= TMDBHelper.getImagePoster("w300/",unContenido.getUrlafiche());
+
+            Glide.with(contexto).load(urlImagenAfiche).into(imagenPelicula);
             iconoContenido.setImageResource(icono);
             tituloContenido.setText(unContenido.getNombre());
             //tituloContenido.setTextColor(ContextCompat.getColor(contexto, colorContenido));
@@ -115,7 +122,7 @@ public class PeliculasRecyclerAdapter extends RecyclerView.Adapter{
         }
     }
     public interface ContenidoClickeable{
-        public void mandarSeleccion(Integer position,Integer nroListaContenido);
+        public void mandarSeleccion(Integer position,List<Contenido> listaContenidoClickeada);
         //public void mandarSeleccion(Pelicula unaPelicula,Context unContexto);
     }
 }

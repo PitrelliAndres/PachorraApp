@@ -9,10 +9,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.edu.a0817moacn01c_3.Model.Contenido;
 import com.example.edu.a0817moacn01c_3.Model.Pelicula;
 import com.example.edu.a0817moacn01c_3.R;
 import com.example.edu.a0817moacn01c_3.Model.Serie;
+import com.example.edu.a0817moacn01c_3.utils.TMDBHelper;
 
 
 /**
@@ -32,7 +34,7 @@ public class DetalleFragment extends Fragment {
     private TextView episodios;
 
     public static final String TIPOCONTENIDO = "tipo de contenido";
-    public final static String ID = "id";
+    public static final String ID = "id";
     public static final String NOMBRE = "tituo";
     public static final String SINOPSIS = "sinopsis";
     public static final String URLAFICHE = "url_afiche";
@@ -159,12 +161,14 @@ public class DetalleFragment extends Fragment {
     }
 
     public void mostrarInformacion(Pelicula pelicula) {
-        /*
+        String imagenAfiche;
+        String imagenFondo;
         // TODO: objeto Pelicula con Generos, traer imagenes con Glide
-        String generoTexto = pelicula.getGenero().replace(", ", "\r\n");
-        imagen.setImageResource(pelicula.getImagen());
-        imagenPortada.setImageResource(pelicula.getImagenPortada());
-        */
+        imagenAfiche=TMDBHelper.getImagePoster("w300/",pelicula.getUrlafiche());
+        imagenFondo=TMDBHelper.getImagePoster("w500/",pelicula.getUrlfondo());
+        Glide.with(getContext()).load(imagenAfiche).into(imagen);
+        Glide.with(getContext()).load(imagenFondo).into(imagenPortada);
+
         puntuacion.setText(pelicula.getPuntuacion().toString());
         //ano.setText(unaPelicula.getAno());
         genero.setText("Genero");

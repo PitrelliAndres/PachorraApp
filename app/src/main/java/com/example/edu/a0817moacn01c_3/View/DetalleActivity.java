@@ -13,6 +13,7 @@ import com.example.edu.a0817moacn01c_3.Model.Contenido;
 import com.example.edu.a0817moacn01c_3.R;
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,8 +61,10 @@ public class DetalleActivity extends AppCompatActivity{
         listaPeliculasEstrenosSeries=controllerContenido.getListaEstreno(Contenido.SERIE);*/
         Intent unIntent = getIntent();
         this.unBundle = unIntent.getExtras();
-        Integer nroLista = unBundle.getInt("nroLista");
-        switch(nroLista){
+
+
+        listaSeleccionada = (List<Contenido>) unIntent.getSerializableExtra("listaSeleccionada");
+/*        switch(nroLista){
             case 1:
                 listaSeleccionada=listaPeliculasRecomendadasMixto;
                 break;
@@ -89,7 +92,7 @@ public class DetalleActivity extends AppCompatActivity{
             case 9:
                 listaSeleccionada=listaPeliculasEstrenosSeries;
                 break;
-        }
+        }*/
         AdaptadorDetallesViewPager adaptadorDetallesViewPager= new AdaptadorDetallesViewPager(fragmentManager,listaSeleccionada);
         viewPager.setAdapter(adaptadorDetallesViewPager);
         Integer posicion = unBundle.getInt("position");
