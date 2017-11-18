@@ -19,12 +19,14 @@ public class Pelicula extends Contenido {
     @SerializedName("video")
     private String video;
 
+
     public Pelicula(){
-        this.tipoContenido = Contenido.PELICULA;
+        super.setTipoContenido(Contenido.PELICULA);
     }
 
     public Pelicula(Integer id, String nombre, String sinopsis, String urlafiche, String urlfondo, Double popularidad, String estreno, Integer duracion, String estado, Double puntuacion, Integer cantidadvotos) {
         super(id, nombre, sinopsis, urlafiche, urlfondo, popularidad, estreno, duracion, estado, puntuacion, cantidadvotos, Contenido.PELICULA);
+        super.setTipoContenido(Contenido.PELICULA);
     }
 
     public Pelicula(Integer id, String nombre, String sinopsis, String urlafiche, String urlfondo, Double popularidad, String estreno, Integer duracion, String estado, Double puntuacion, Integer cantidadvotos, String imdbid, String tituloorg, Boolean adulto, String lema, String video) {
@@ -34,6 +36,7 @@ public class Pelicula extends Contenido {
         this.adulto = adulto;
         this.lema = lema;
         this.video = video;
+        super.setTipoContenido(Contenido.PELICULA);
     }
 
     public Pelicula(Contenido unContenido, String imdbid, String tituloOriginal, boolean esParaAdultos, String lema, String video) {
@@ -51,10 +54,10 @@ public class Pelicula extends Contenido {
                 unContenido.getCantidadvotos(),
                 imdbid, tituloOriginal, esParaAdultos, lema, video
         );
+        super.setTipoContenido(Contenido.PELICULA);
     }
 
     public void setImdbid(String imdbid) {
-        this.tipoContenido = Contenido.PELICULA;
         this.imdbid = imdbid;
     }
 
@@ -104,5 +107,16 @@ public class Pelicula extends Contenido {
             aptoPara = "ATP";
         }
         return aptoPara;
+    }
+
+    @Override
+    public String toString() {
+        return "Pelicula{" +
+                "imdbid='" + imdbid + '\'' +
+                ", tituloorg='" + tituloorg + '\'' +
+                ", adulto=" + adulto +
+                ", lema='" + lema + '\'' +
+                ", video='" + video + '\'' +
+                "} " + super.toString();
     }
 }

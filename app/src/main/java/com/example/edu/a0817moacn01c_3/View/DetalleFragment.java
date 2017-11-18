@@ -3,6 +3,7 @@ package com.example.edu.a0817moacn01c_3.View;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -69,26 +70,27 @@ public class DetalleFragment extends Fragment {
         DetalleFragment detalleFragment = new DetalleFragment();
 
         Bundle unBundle = new Bundle();
-        unBundle.putInt("id", unContenido.getId());
-        unBundle.putString("nombre", unContenido.getNombre());
-        unBundle.putString("imagen", unContenido.getUrlafiche());
-        unBundle.putString("imagenPortada", unContenido.getUrlfondo());
-        unBundle.putDouble("puntuacion", unContenido.getPuntuacion());
-        unBundle.putString("descripcion", unContenido.getSinopsis());
-        unBundle.putString("releaseestreno", unContenido.getEstreno());
-        unBundle.putDouble("popularidad", unContenido.getPopularidad());
-        unBundle.putString("estado", unContenido.getEstado());
-        unBundle.putInt("cantidadvotos", unContenido.getCantidadvotos());
-        unBundle.putString("tipo", unContenido.getTipoContenido());
+        unBundle.putInt(ID, unContenido.getId());
+        unBundle.putString(NOMBRE, unContenido.getNombre());
+        unBundle.putString(URLAFICHE, unContenido.getUrlafiche());
+        unBundle.putString(URLFONDO, unContenido.getUrlfondo());
+        unBundle.putDouble(PUNTUACION, unContenido.getPuntuacion());
+        unBundle.putString(SINOPSIS, unContenido.getSinopsis());
+        unBundle.putString(ESTRENO, unContenido.getEstreno());
+        unBundle.putDouble(POPULARIDAD, unContenido.getPopularidad());
+        unBundle.putString(ESTADO, unContenido.getEstado());
+        unBundle.putInt(CANTIDADVOTOS, unContenido.getCantidadvotos());
+        unBundle.putString(TYPE, unContenido.getTipoContenido());
+        //Log.v(DetalleActivity.LISTASELECCIONADA,unBundle.getSerializable(DetalleActivity.LISTASELECCIONADA).toString());
 
         if (unContenido.getTipoContenido().equals(Contenido.PELICULA)) {
             Pelicula unapelicula = (Pelicula) unContenido;
-            unBundle.putBoolean("aptoTodoPublico", unapelicula.getAdulto());
+            unBundle.putBoolean(ADULTO, unapelicula.getAdulto());
 
         } else {
             Serie unaSerie = (Serie) unContenido;
-            unBundle.putInt("cantidadTemporada", unaSerie.getNroSeasons());
-            unBundle.putInt("cantidadCapitulos", unaSerie.getNroEpisodios());
+            unBundle.putInt(NROSEASONS, unaSerie.getNroSeasons());
+            unBundle.putInt(NROEPISODES, unaSerie.getNroEpisodios());
         }
         detalleFragment.setArguments(unBundle);
         return detalleFragment;
@@ -98,7 +100,7 @@ public class DetalleFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        // Inflate the layout for this fragment
+        // Inflar el layout para este fragment
         View view;
 
         Bundle unBundle = getArguments();
@@ -164,8 +166,8 @@ public class DetalleFragment extends Fragment {
         String imagenAfiche;
         String imagenFondo;
         // TODO: objeto Pelicula con Generos, traer imagenes con Glide
-        imagenAfiche=TMDBHelper.getImagePoster("w300/",pelicula.getUrlafiche());
-        imagenFondo=TMDBHelper.getImagePoster("w500/",pelicula.getUrlfondo());
+        imagenAfiche=TMDBHelper.getImagePoster(TMDBHelper.IMAGE_SIZE_W300,pelicula.getUrlafiche());
+        imagenFondo=TMDBHelper.getImagePoster(TMDBHelper.IMAGE_SIZE_W780,pelicula.getUrlfondo());
         Glide.with(getContext()).load(imagenAfiche).into(imagen);
         Glide.with(getContext()).load(imagenFondo).into(imagenPortada);
 

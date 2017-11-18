@@ -1,5 +1,7 @@
 package com.example.edu.a0817moacn01c_3.Model;
 
+import android.util.Log;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
@@ -42,7 +44,7 @@ public class Contenido implements Serializable{
         this.estado = estado;
         this.puntuacion = puntuacion;
         this.cantidadvotos = cantidadvotos;
-        if(estreno==null){this.year = "2017";}else{this.year = estreno.substring(0,3);}
+        if(estreno==null){this.year = "0";}else{this.year = estreno.substring(0,4);}
         this.tipoContenido = tipoContenido;
     }
 
@@ -95,7 +97,7 @@ public class Contenido implements Serializable{
     }
 
     public Boolean esPelicula(){
-        return Contenido.PELICULA.equals(tipoContenido);
+        return Contenido.PELICULA.equals(this.tipoContenido);
     }
     public Boolean esSerie(){
         return Contenido.SERIE.equals(this.tipoContenido);
@@ -104,6 +106,28 @@ public class Contenido implements Serializable{
         return tipoContenido;
     }
 
+    public void setTipoContenido(String tipoContenido) {
+        this.tipoContenido = tipoContenido;
+    }
+
+    @Override
+    public String toString() {
+        return "Contenido{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                ", sinopsis='" + sinopsis + '\'' +
+                ", urlafiche='" + urlafiche + '\'' +
+                ", urlfondo='" + urlfondo + '\'' +
+                ", popularidad=" + popularidad +
+                ", estreno='" + estreno + '\'' +
+                ", year='" + year + '\'' +
+                ", duracion=" + duracion +
+                ", estado='" + estado + '\'' +
+                ", puntuacion=" + puntuacion +
+                ", cantidadvotos=" + cantidadvotos +
+                ", tipoContenido='" + tipoContenido + '\'' +
+                '}';
+    }
 }
 
 

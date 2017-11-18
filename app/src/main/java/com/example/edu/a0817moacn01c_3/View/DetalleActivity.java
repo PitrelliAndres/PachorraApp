@@ -33,6 +33,9 @@ public class DetalleActivity extends AppCompatActivity{
     private List<Contenido> listaPeliculasMasVistasSeries;
     private List<Contenido> listaPeliculasEstrenosSeries;
 
+    public static final String POSITION = "position";
+    public static final String LISTASELECCIONADA = "lista seleccionada";
+
     private FloatingActionMenu fabmenu;
 
     @Override
@@ -63,7 +66,7 @@ public class DetalleActivity extends AppCompatActivity{
         this.unBundle = unIntent.getExtras();
 
 
-        listaSeleccionada = (List<Contenido>) unIntent.getSerializableExtra("listaSeleccionada");
+        listaSeleccionada = (List<Contenido>) unIntent.getSerializableExtra(LISTASELECCIONADA);
 /*        switch(nroLista){
             case 1:
                 listaSeleccionada=listaPeliculasRecomendadasMixto;
@@ -95,7 +98,7 @@ public class DetalleActivity extends AppCompatActivity{
         }*/
         AdaptadorDetallesViewPager adaptadorDetallesViewPager= new AdaptadorDetallesViewPager(fragmentManager,listaSeleccionada);
         viewPager.setAdapter(adaptadorDetallesViewPager);
-        Integer posicion = unBundle.getInt("position");
+        Integer posicion = unBundle.getInt(POSITION);
         viewPager.setCurrentItem(posicion);
 
         //FAB
@@ -130,7 +133,7 @@ public class DetalleActivity extends AppCompatActivity{
             }
         });
 
-        getSupportActionBar().setTitle(listaSeleccionada.get(unBundle.getInt("position")).getNombre());
+        getSupportActionBar().setTitle(listaSeleccionada.get(unBundle.getInt(POSITION)).getNombre());
 
 
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {

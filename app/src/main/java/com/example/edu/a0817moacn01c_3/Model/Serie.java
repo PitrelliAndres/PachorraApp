@@ -13,7 +13,7 @@ public class Serie extends Contenido {
     @SerializedName("networks") private String canalTV;
 
     public Serie(){
-        this.tipoContenido = Contenido.SERIE;
+        super.setTipoContenido(Contenido.SERIE);
     }
 
     public Serie(Integer id, String nombre, String sinopsis, String urlafiche, String urlfondo, Double popularidad, String estreno, Integer duracion, String estado, Double puntuacion, Integer cantidadvotos, String type, Integer cantidadTemporadas, Integer cantidadCapitulos, String canalTV) {
@@ -22,6 +22,7 @@ public class Serie extends Contenido {
         this.nroSeasons = cantidadTemporadas;
         this.nroEpisodios = cantidadCapitulos;
         this.canalTV = canalTV;
+        super.setTipoContenido(Contenido.SERIE);
     }
 
     public Serie(Contenido unContenido, String type, Integer nroSeasons, Integer nroEpisodes, String canalTV) {
@@ -39,6 +40,7 @@ public class Serie extends Contenido {
                 unContenido.getCantidadvotos(),
                 type, nroSeasons, nroEpisodes, canalTV
         );
+        super.setTipoContenido(Contenido.SERIE);
     }
 
     public String getType() {
@@ -56,5 +58,15 @@ public class Serie extends Contenido {
 
     public Integer getNroEpisodios() {
         return nroEpisodios;
+    }
+
+    @Override
+    public String toString() {
+        return "Serie{" +
+                "type='" + type + '\'' +
+                ", nroSeasons=" + nroSeasons +
+                ", nroEpisodios=" + nroEpisodios +
+                ", canalTV='" + canalTV + '\'' +
+                "} " + super.toString();
     }
 }

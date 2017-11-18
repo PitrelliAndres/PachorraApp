@@ -72,8 +72,8 @@ public class PachorraActivity extends AppCompatActivity implements PachorraFragm
 
         Bundle unBundle= new Bundle();
 
-        unBundle.putInt("position",position);
-        unIntent.putExtra("listaSeleccionada",(Serializable) listaContenidoClickeada).putExtras(unBundle);
+        unBundle.putInt(DetalleActivity.POSITION,position);
+        unIntent.putExtra(DetalleActivity.LISTASELECCIONADA,(Serializable) listaContenidoClickeada).putExtras(unBundle);
 
         startActivity(unIntent);
 
