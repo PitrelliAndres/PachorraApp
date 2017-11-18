@@ -1,17 +1,22 @@
 package com.example.edu.a0817moacn01c_3.Model;
 
 import com.example.edu.a0817moacn01c_3.Model.Contenido;
+import com.google.gson.annotations.SerializedName;
 
 /**
  * Created by ma on 17/10/17.
  */
 
 public class Pelicula extends Contenido {
-
+    @SerializedName("imdb_id")
     private String imdbid;
+    @SerializedName("original_title")
     private String tituloorg;
+    @SerializedName("adult")
     private Boolean adulto;
+    @SerializedName("tagline")
     private String lema;
+    @SerializedName("video")
     private String video;
 
     public Pelicula(){
@@ -48,7 +53,15 @@ public class Pelicula extends Contenido {
         );
     }
 
+    public void setImdbid(String imdbid) {
+        this.tipoContenido = Contenido.PELICULA;
+        this.imdbid = imdbid;
+    }
+
     public String getImdbid() {
+        if(imdbid == null){
+            return "";
+        }
         return imdbid;
     }
 
@@ -57,6 +70,7 @@ public class Pelicula extends Contenido {
     }
 
     public Boolean getAdulto() {
+        if(adulto == null){adulto = false;}
         return adulto;
     }
 

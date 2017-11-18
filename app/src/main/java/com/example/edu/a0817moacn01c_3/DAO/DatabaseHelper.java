@@ -40,7 +40,25 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + DAODBGenero.ID + " INTEGER PRIMARY KEY, "
                 + DAODBGenero.NAME + "TEXT NOT NULL)";
 
+        String createTableSeries = "CREATE TABLE " + DAODBSerie.TABLENAME + " ("
+                + DAODBSerie.ID + " INTEGER PRIMARY KEY, "
+                + DAODBSerie.NOMBRE + " TEXT, "
+                + DAODBSerie.FECHAESTRENO + " TEXT, "
+                + DAODBSerie.URLAFICHE + " TEXT, "
+                + DAODBSerie.URLFONDO + " TEXT, "
+                + DAODBSerie.ESTADO + " TEXT, "
+                + DAODBSerie.TYPE + " TEXT, "
+                + DAODBSerie.NROSEASONS + " INTEGER, "
+                + DAODBSerie.NROEPISODES + " INTEGER, "
+                + DAODBSerie.DURACION + " INTEGER, "
+                + DAODBSerie.PUNTUACION + " REAL, "
+                + DAODBSerie.CANTIDADVOTOS + " INTEGER, "
+                + DAODBSerie.CANALTV + " TEXT, "
+                + DAODBSerie.SINOPSIS + " TEXT, "
+                + DAODBSerie.POPULARIDAD + " REAL)";
+
         db.execSQL(createTablePeliculas);
+        db.execSQL(createTableSeries);
         db.execSQL(createTableGeneros);
     }
 

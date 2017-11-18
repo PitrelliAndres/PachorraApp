@@ -8,6 +8,7 @@ import android.content.Context;
 
 public class DAODBSerie extends DatabaseHelper{
     public static final String TABLENAME="series";
+
     public static final String ID="id";
     public static final String NOMBRE="nombre";
     public static final String FECHAESTRENO="fecha_estreno";
@@ -27,4 +28,5 @@ public class DAODBSerie extends DatabaseHelper{
     public DAODBSerie(Context context) {
         super(context);
     }
+
 }

@@ -1,14 +1,16 @@
 package com.example.edu.a0817moacn01c_3.Model;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by Andy on 26/10/2017.
  */
 
 public class Serie extends Contenido {
     private String type;
-    private Integer nroSeasons;
-    private Integer nroEpisodios;
-    private String canalTV;
+    @SerializedName("number_of_seasons") private Integer nroSeasons;
+    @SerializedName("number_of_episodes") private Integer nroEpisodios;
+    @SerializedName("networks") private String canalTV;
 
     public Serie(){
         this.tipoContenido = Contenido.SERIE;

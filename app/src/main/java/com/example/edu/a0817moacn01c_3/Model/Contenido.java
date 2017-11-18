@@ -14,14 +14,14 @@ public class Contenido implements Serializable{
 
 
     private Integer id;
-    @SerializedName("title") private String nombre;
-    @SerializedName("overview") private String sinopsis;
+    @SerializedName(value = "title", alternate={"name"}) private String nombre;
+    @SerializedName(value = "overview", alternate = {"description"}) private String sinopsis;
     @SerializedName("poster_path") private String urlafiche;
     @SerializedName("backdrop_path") private String urlfondo;
     @SerializedName("popularity") private Double popularidad;
-    @SerializedName("release_date") private String estreno;
+    @SerializedName(value = "release_date", alternate = {"first_air_date"}) private String estreno;
     private String year;
-    @SerializedName("runtime") private Integer duracion;
+    @SerializedName(value = "runtime", alternate = {"episode_run_time"}) private Integer duracion;
     @SerializedName("status") private String estado;
     @SerializedName("vote_average") private Double puntuacion;
     @SerializedName("vote_count")private Integer cantidadvotos;
@@ -42,7 +42,7 @@ public class Contenido implements Serializable{
         this.estado = estado;
         this.puntuacion = puntuacion;
         this.cantidadvotos = cantidadvotos;
-        this.year = estreno.substring(0,3);
+        if(estreno==null){this.year = "2017";}else{this.year = estreno.substring(0,3);}
         this.tipoContenido = tipoContenido;
     }
 
@@ -95,10 +95,10 @@ public class Contenido implements Serializable{
     }
 
     public Boolean esPelicula(){
-        return this.tipoContenido.equals(Contenido.PELICULA);
+        return Contenido.PELICULA.equals(tipoContenido);
     }
     public Boolean esSerie(){
-        return this.tipoContenido.equals(Contenido.SERIE);
+        return Contenido.SERIE.equals(this.tipoContenido);
     }
     public String getTipoContenido() {
         return tipoContenido;

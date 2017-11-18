@@ -85,9 +85,6 @@ public class PeliculasRecyclerAdapter extends RecyclerView.Adapter implements Se
         private TextView tituloContenido;
         private String urlImagenAfiche;
 
-
-        // TODO para Andy: Investigar Glide
-
         public PeliculasViewHolder(View itemView){
             super(itemView);
             imagenPelicula=itemView.findViewById(R.id.imageView_ImagenContenidoPeliculas);
@@ -112,7 +109,7 @@ public class PeliculasRecyclerAdapter extends RecyclerView.Adapter implements Se
                     colorContenido = R.color.colorAccent;
                     break;
             }
-            urlImagenAfiche= TMDBHelper.getImagePoster("w300/",unContenido.getUrlafiche());
+            urlImagenAfiche= TMDBHelper.getImagePoster(TMDBHelper.IMAGE_SIZE_W300,unContenido.getUrlafiche());
 
             Glide.with(contexto).load(urlImagenAfiche).into(imagenPelicula);
             iconoContenido.setImageResource(icono);
