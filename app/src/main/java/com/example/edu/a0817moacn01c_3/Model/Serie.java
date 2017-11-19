@@ -1,5 +1,7 @@
 package com.example.edu.a0817moacn01c_3.Model;
 
+import android.util.Log;
+
 import com.google.gson.annotations.SerializedName;
 
 /**
@@ -14,10 +16,11 @@ public class Serie extends Contenido {
 
     public Serie(){
         super.setTipoContenido(Contenido.SERIE);
+        Log.v("Un valor",Contenido.SERIE);
     }
 
-    public Serie(Integer id, String nombre, String sinopsis, String urlafiche, String urlfondo, Double popularidad, String estreno, Integer duracion, String estado, Double puntuacion, Integer cantidadvotos, String type, Integer cantidadTemporadas, Integer cantidadCapitulos, String canalTV) {
-        super(id, nombre, sinopsis, urlafiche, urlfondo, popularidad, estreno, duracion, estado, puntuacion, cantidadvotos, Contenido.SERIE);
+    public Serie(Integer id, String nombre, String sinopsis, String urlafiche, String urlfondo, Double popularidad, String estreno, Integer duracion, String estado, Double puntuacion, Integer cantidadvotos, String type, Integer cantidadTemporadas, Integer cantidadCapitulos, String canalTV,String imbdid) {
+        super(id, nombre, sinopsis, urlafiche, urlfondo, popularidad, estreno, duracion, estado, puntuacion, cantidadvotos, Contenido.SERIE,null);
         this.type = type;
         this.nroSeasons = cantidadTemporadas;
         this.nroEpisodios = cantidadCapitulos;
@@ -38,7 +41,8 @@ public class Serie extends Contenido {
                 unContenido.getEstado(),
                 unContenido.getPuntuacion(),
                 unContenido.getCantidadvotos(),
-                type, nroSeasons, nroEpisodes, canalTV
+                type, nroSeasons, nroEpisodes, canalTV,
+                null
         );
         super.setTipoContenido(Contenido.SERIE);
     }

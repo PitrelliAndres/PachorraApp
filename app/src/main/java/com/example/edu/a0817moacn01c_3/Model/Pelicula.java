@@ -1,5 +1,7 @@
 package com.example.edu.a0817moacn01c_3.Model;
 
+import android.util.Log;
+
 import com.example.edu.a0817moacn01c_3.Model.Contenido;
 import com.google.gson.annotations.SerializedName;
 
@@ -8,38 +10,37 @@ import com.google.gson.annotations.SerializedName;
  */
 
 public class Pelicula extends Contenido {
-    @SerializedName("imdb_id")
-    private String imdbid;
     @SerializedName("original_title")
     private String tituloorg;
-    @SerializedName("adult")
-    private Boolean adulto;
     @SerializedName("tagline")
     private String lema;
     @SerializedName("video")
     private String video;
+    @SerializedName("imdb_id")
+    private String imbdid;
 
 
     public Pelicula(){
         super.setTipoContenido(Contenido.PELICULA);
+        Log.v("Un valor",Contenido.PELICULA);
     }
 
-    public Pelicula(Integer id, String nombre, String sinopsis, String urlafiche, String urlfondo, Double popularidad, String estreno, Integer duracion, String estado, Double puntuacion, Integer cantidadvotos) {
-        super(id, nombre, sinopsis, urlafiche, urlfondo, popularidad, estreno, duracion, estado, puntuacion, cantidadvotos, Contenido.PELICULA);
+    public Pelicula(Integer id, String nombre, String sinopsis, String urlafiche, String urlfondo, Double popularidad, String estreno, Integer duracion, String estado, Double puntuacion, Integer cantidadvotos, Boolean adulto,String imbdid) {
+        super(id, nombre, sinopsis, urlafiche, urlfondo, popularidad, estreno, duracion, estado, puntuacion, cantidadvotos, Contenido.PELICULA,adulto);
         super.setTipoContenido(Contenido.PELICULA);
+        this.imbdid=imbdid;
     }
 
-    public Pelicula(Integer id, String nombre, String sinopsis, String urlafiche, String urlfondo, Double popularidad, String estreno, Integer duracion, String estado, Double puntuacion, Integer cantidadvotos, String imdbid, String tituloorg, Boolean adulto, String lema, String video) {
-        super(id, nombre, sinopsis, urlafiche, urlfondo, popularidad, estreno, duracion, estado, puntuacion, cantidadvotos, Contenido.PELICULA);
-        this.imdbid = imdbid;
+    public Pelicula(Integer id, String nombre, String sinopsis, String urlafiche, String urlfondo, Double popularidad, String estreno, Integer duracion, String estado, Double puntuacion, Integer cantidadvotos, String tituloorg, Boolean adulto, String lema, String video,String imbdid) {
+        super(id, nombre, sinopsis, urlafiche, urlfondo, popularidad, estreno, duracion, estado, puntuacion, cantidadvotos, Contenido.PELICULA,adulto);
         this.tituloorg = tituloorg;
-        this.adulto = adulto;
         this.lema = lema;
         this.video = video;
         super.setTipoContenido(Contenido.PELICULA);
+        this.imbdid=imbdid;
     }
 
-    public Pelicula(Contenido unContenido, String imdbid, String tituloOriginal, boolean esParaAdultos, String lema, String video) {
+    public Pelicula(Contenido unContenido, String tituloOriginal, boolean esParaAdultos, String lema, String video,String imbdid) {
         this(
                 unContenido.getId(),
                 unContenido.getNombre(),
@@ -52,30 +53,19 @@ public class Pelicula extends Contenido {
                 unContenido.getEstado(),
                 unContenido.getPuntuacion(),
                 unContenido.getCantidadvotos(),
-                imdbid, tituloOriginal, esParaAdultos, lema, video
+                tituloOriginal, esParaAdultos, lema, video,imbdid
         );
         super.setTipoContenido(Contenido.PELICULA);
     }
 
-    public void setImdbid(String imdbid) {
-        this.imdbid = imdbid;
-    }
-
-    public String getImdbid() {
-        if(imdbid == null){
-            return "";
-        }
-        return imdbid;
+    public String getImbdid() {
+        return imbdid;
     }
 
     public String getTituloorg() {
         return tituloorg;
     }
 
-    public Boolean getAdulto() {
-        if(adulto == null){adulto = false;}
-        return adulto;
-    }
 
     public String getLema() {
         return lema;
@@ -112,9 +102,7 @@ public class Pelicula extends Contenido {
     @Override
     public String toString() {
         return "Pelicula{" +
-                "imdbid='" + imdbid + '\'' +
                 ", tituloorg='" + tituloorg + '\'' +
-                ", adulto=" + adulto +
                 ", lema='" + lema + '\'' +
                 ", video='" + video + '\'' +
                 "} " + super.toString();

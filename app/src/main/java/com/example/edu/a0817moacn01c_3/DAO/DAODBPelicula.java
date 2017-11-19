@@ -43,22 +43,22 @@ public class DAODBPelicula extends DatabaseHelper {
         SQLiteDatabase sqLiteDatabase = getWritableDatabase();
         ContentValues row = new ContentValues();
 
-        row.put(ID, unaPelicula.getId());
-        row.put(IMDBID, unaPelicula.getImdbid());
-        row.put(TITULOORG, unaPelicula.getTituloorg());
-        row.put(NOMBRE, unaPelicula.getNombre());
-        row.put(SINOPSIS, unaPelicula.getSinopsis());
-        row.put(URLAFICHE, unaPelicula.getUrlafiche());
-        row.put(URLFONDO, unaPelicula.getUrlfondo());
-        row.put(ADULTO, unaPelicula.esAdulto());
-        row.put(POPULARIDAD, unaPelicula.getPopularidad());
-        row.put(ESTRENO, unaPelicula.getEstreno());
-        row.put(DURACION, unaPelicula.getDuracion());
-        row.put(ESTADO, unaPelicula.getEstado());
-        row.put(LEMA, unaPelicula.getLema());
-        row.put(VIDEO, unaPelicula.getVideo());
-        row.put(PUNTUACION, unaPelicula.getPuntuacion());
-        row.put(CANTIDADVOTOS, unaPelicula.getCantidadvotos());
+            row.put(ID, unaPelicula.getId());
+            row.put(TITULOORG, unaPelicula.getTituloorg());
+            row.put(NOMBRE, unaPelicula.getNombre());
+            row.put(SINOPSIS, unaPelicula.getSinopsis());
+            row.put(URLAFICHE, unaPelicula.getUrlafiche());
+            row.put(URLFONDO, unaPelicula.getUrlfondo());
+            row.put(ADULTO, unaPelicula.esAdulto());
+            row.put(POPULARIDAD, unaPelicula.getPopularidad());
+            row.put(ESTRENO, unaPelicula.getEstreno());
+            row.put(DURACION, unaPelicula.getDuracion());
+            row.put(ESTADO, unaPelicula.getEstado());
+            row.put(LEMA, unaPelicula.getLema());
+            row.put(VIDEO, unaPelicula.getVideo());
+            row.put(PUNTUACION, unaPelicula.getPuntuacion());
+            row.put(CANTIDADVOTOS, unaPelicula.getCantidadvotos());
+            row.put(IMDBID, unaPelicula.getImbdid());
 
         sqLiteDatabase.insert(TABLENAME, null, row);
         sqLiteDatabase.close();
@@ -73,7 +73,8 @@ public class DAODBPelicula extends DatabaseHelper {
         String query = "SELECT * FROM " + TABLENAME + ";";
         Cursor cursor = sqLiteDatabase.rawQuery(query, null);
         while (cursor.moveToNext()) {
-            Pelicula unaPelicula = new Pelicula(
+
+                Pelicula unaPelicula = new Pelicula(
                     cursor.getInt(cursor.getColumnIndex(ID)),
                     cursor.getString(cursor.getColumnIndex(NOMBRE)),
                     cursor.getString(cursor.getColumnIndex(SINOPSIS)),
@@ -84,7 +85,13 @@ public class DAODBPelicula extends DatabaseHelper {
                     cursor.getInt(cursor.getColumnIndex(DURACION)),
                     cursor.getString(cursor.getColumnIndex(ESTADO)),
                     cursor.getDouble(cursor.getColumnIndex(PUNTUACION)),
-                    cursor.getInt(cursor.getColumnIndex(CANTIDADVOTOS))
+                    cursor.getInt(cursor.getColumnIndex(CANTIDADVOTOS)),
+                        cursor.getString(cursor.getColumnIndex(TITULOORG)),
+                        (cursor.getInt(cursor.getColumnIndex(ADULTO))==1),
+                        cursor.getString(cursor.getColumnIndex(LEMA)),
+                        cursor.getString(cursor.getColumnIndex(VIDEO)),
+                    cursor.getString(cursor.getColumnIndex(IMDBID))
+
             );
             listaPeliculas.add(unaPelicula);
         }

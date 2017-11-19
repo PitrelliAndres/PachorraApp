@@ -81,11 +81,12 @@ public class DetalleFragment extends Fragment {
         unBundle.putString(ESTADO, unContenido.getEstado());
         unBundle.putInt(CANTIDADVOTOS, unContenido.getCantidadvotos());
         unBundle.putString(TYPE, unContenido.getTipoContenido());
+        unBundle.putBoolean(ADULTO, unContenido.getAdulto());
         //Log.v(DetalleActivity.LISTASELECCIONADA,unBundle.getSerializable(DetalleActivity.LISTASELECCIONADA).toString());
 
         if (unContenido.getTipoContenido().equals(Contenido.PELICULA)) {
             Pelicula unapelicula = (Pelicula) unContenido;
-            unBundle.putBoolean(ADULTO, unapelicula.getAdulto());
+
 
         } else {
             Serie unaSerie = (Serie) unContenido;
@@ -116,18 +117,23 @@ public class DetalleFragment extends Fragment {
                 unBundle.getString(ESTADO),
                 unBundle.getDouble(PUNTUACION),
                 unBundle.getInt(CANTIDADVOTOS),
-                unBundle.getString(TIPOCONTENIDO)
+                unBundle.getString(TIPOCONTENIDO),
+                unBundle.getBoolean(ADULTO)
+
+
         );
 
         if (unaPeliculaOSerie.esPelicula()) {
             view = inflater.inflate(R.layout.fragment_detallepeliculas, container, false);
             // Construir un objeto Pelicula con un constructor que recibe un objeto Contenido + los atributos adicionales de Pelicula
-            unaPelicula = new Pelicula(unaPeliculaOSerie,
-                    unBundle.getString(IMDBID),
+
+                unaPelicula = new Pelicula(unaPeliculaOSerie,
+
                     unBundle.getString(TITULOORG),
                     unBundle.getBoolean(ADULTO),
                     unBundle.getString(LEMA),
-                    unBundle.getString(VIDEO)
+                    unBundle.getString(VIDEO),
+                        unBundle.getString(IMDBID)
                     );
 
             this.imagen = view.findViewById(R.id.imageView_ImagenContenidoPeliculas);
