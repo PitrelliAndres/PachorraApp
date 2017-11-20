@@ -42,11 +42,30 @@ public class DAOInternetPelicula {
         unMinion.setEscuchadorPeliculasControlador(listener);
         unMinion.execute();
     }
+    public void getUltimasPeliculas(ResultListener<List<Pelicula>> listener){
+        String url= TMDBHelper.getLastestMovie(TMDBHelper.language_SPANISH,1);
+        unMinion= new Minion(url);
+        unMinion.setEscuchadorPeliculasControlador(listener);
+        unMinion.execute();
+    }
+    public void getTopRatedPeliculas(ResultListener<List<Pelicula>> listener){
+        String url= TMDBHelper.getTopRatedMovies(TMDBHelper.language_SPANISH,1);
+        unMinion= new Minion(url);
+        unMinion.setEscuchadorPeliculasControlador(listener);
+        unMinion.execute();
+    }
+    public void getUpcomingPeliculas(ResultListener<List<Pelicula>> listener){
+        String url= TMDBHelper.getUpcomingMovies(TMDBHelper.language_SPANISH,1);
+        unMinion= new Minion(url);
+        unMinion.setEscuchadorPeliculasControlador(listener);
+        unMinion.execute();
+    }
+
+
 
     public class Minion extends AsyncTask<String,Void,List<Pelicula>>{
         private ResultListener<List<Pelicula>>escuchadorPeliculasControlador;
         private String url;
-        HttpURLConnection urlConnection;
 
         public Minion(String url){
             this.url=url;

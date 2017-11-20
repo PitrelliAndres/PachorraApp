@@ -26,15 +26,6 @@ import java.util.List;
  * A simple {@link Fragment} subclass.
  */
 public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapter.ContenidoClickeable, Serializable {
-    private List<Contenido> listaPeliculasRecomendadasMixto;
-    private List<Contenido> listaPeliculasMasVistasMixto;
-    private List<Contenido> listaPeliculasEstrenosMixto;
-    private List<Contenido> listaPeliculasRecomendadasPeliculas;
-    private List<Contenido> listaPeliculasMasVistasPeliculas;
-    private List<Contenido> listaPeliculasEstrenosPeliculas;
-    private List<Contenido> listaPeliculasRecomendadasSeries;
-    private List<Contenido> listaPeliculasMasVistasSeries;
-    private List<Contenido> listaPeliculasEstrenosSeries;
     private PeliculasRecyclerAdapter unAdapter;
     private NotificadorDatos escuchadorPelicula;
     private PeliculasRecyclerAdapter unAdapter2;
@@ -77,8 +68,8 @@ public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapt
         RecyclerView unRecyclerView2 = view.findViewById(R.id.recyclerPachorra2);
         RecyclerView unRecyclerView3 = view.findViewById(R.id.recyclerPachorra3);
         GridLayoutManager unLayoutManager = new GridLayoutManager(getContext(), 1, GridLayoutManager.HORIZONTAL, false);
-        RecyclerView.LayoutManager unLayoutManager2 = new GridLayoutManager(getContext(), 1, GridLayoutManager.HORIZONTAL, false);
-        RecyclerView.LayoutManager unLayoutManager3 = new GridLayoutManager(getContext(), 1, GridLayoutManager.HORIZONTAL, false);
+        GridLayoutManager unLayoutManager2 = new GridLayoutManager(getContext(), 1, GridLayoutManager.HORIZONTAL, false);
+        GridLayoutManager unLayoutManager3 = new GridLayoutManager(getContext(), 1, GridLayoutManager.HORIZONTAL, false);
 
         tituloRecomendadas = view.findViewById(R.id.textView_tituloLista1);
         tituloMasvistas = view.findViewById(R.id.textView_tituloLista2);
@@ -89,12 +80,12 @@ public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapt
 
         // 1: Recycler
         unRecyclerView.setLayoutManager(unLayoutManager);
-        /*unRecyclerView2.setLayoutManager(unLayoutManager2);
-        unRecyclerView3.setLayoutManager(unLayoutManager3);*/
+        unRecyclerView2.setLayoutManager(unLayoutManager2);
+        unRecyclerView3.setLayoutManager(unLayoutManager3);
 
         unRecyclerView.setHasFixedSize(true);
-        /*unRecyclerView2.setHasFixedSize(true);
-        unRecyclerView3.setHasFixedSize(true);*/
+        unRecyclerView2.setHasFixedSize(true);
+        unRecyclerView3.setHasFixedSize(true);
 
 
 
@@ -147,10 +138,12 @@ public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapt
 
         // 2: Adapter
         unAdapter = new PeliculasRecyclerAdapter(new ArrayList<Contenido>(),getContext(),this);
-
+        unAdapter2 = new PeliculasRecyclerAdapter(new ArrayList<Contenido>(),getContext(),this);
+        unAdapter3 = new PeliculasRecyclerAdapter(new ArrayList<Contenido>(),getContext(),this);
         // 3: Adapter con recycler
         unRecyclerView.setAdapter(unAdapter);
-        unRecyclerView.setLayoutManager(unLayoutManager);
+        unRecyclerView2.setAdapter(unAdapter2);
+        unRecyclerView3.setAdapter(unAdapter3);
         controllerContenido = new ControllerContenido(getContext());
         update();
 
@@ -171,6 +164,7 @@ public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapt
 
     private void update() {
 
+
         controllerContenido.getPeliculasPopulares(new ResultListener<List<Pelicula>>() {
             @Override
             public void finish(List<Pelicula> resultado) {
@@ -181,10 +175,38 @@ public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapt
 
                 unAdapter.setListaContenidos(blablub);
 
-                unAdapter.notifyDataSetChanged();
+
 
             }
-        }, getContext());
+        });
+        controllerContenido.getUpcomingPeliculas(new ResultListener<List<Pelicula>>() {
+            @Override
+            public void finish(List<Pelicula> resultado) {
+
+                List<Contenido> blablub = new ArrayList<>();
+                blablub.addAll(resultado);
+
+
+                unAdapter2.setListaContenidos(blablub);
+
+
+
+            }
+        });
+        controllerContenido.getUltimasPeliculas(new ResultListener<List<Pelicula>>() {
+            @Override
+            public void finish(List<Pelicula> resultado) {
+
+                List<Contenido> blablub = new ArrayList<>();
+                blablub.addAll(resultado);
+
+
+                unAdapter3.setListaContenidos(blablub);
+
+
+
+            }
+        });
 
     }
 }

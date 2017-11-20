@@ -29,6 +29,21 @@ public class DAOInternetSerie {
         unMinion.setEscuchadorSeriesControlador(listener);
         unMinion.execute();
     }
+    public void getSeriesTopRate(ResultListener<List<Serie>> listener){
+
+        String url = TMDBHelper.getTVTopRated(TMDBHelper.language_SPANISH,1);
+        unMinion = new Minion(url);
+        unMinion.setEscuchadorSeriesControlador(listener);
+        unMinion.execute();
+    }
+    public void getTVAiringToday(ResultListener<List<Serie>> listener){
+
+        String url = TMDBHelper.getTVAiringToday(TMDBHelper.language_SPANISH,1);
+        unMinion = new Minion(url);
+        unMinion.setEscuchadorSeriesControlador(listener);
+        unMinion.execute();
+    }
+
 
     public class Minion extends AsyncTask<String,Void,List<Serie>>{
         private ResultListener<List<Serie>>escuchadorSeriesControlador;

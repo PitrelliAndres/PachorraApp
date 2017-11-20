@@ -12,9 +12,11 @@ public class ContenedorDePelicula {
     @SerializedName("results")
     List<Pelicula> contenidos;
 
+
     public List<Pelicula> getContenidos(){
         return contenidos;
     }
+
     public void setContenidos(List<Pelicula> listaContenidos) {
         this.contenidos = listaContenidos;
     }

@@ -23,7 +23,6 @@ import java.util.List;
 
 public class PeliculasRecyclerAdapter extends RecyclerView.Adapter implements Serializable{
     private List<Contenido> listaContenidos;
-    private Integer idListas;
     private Context contexto;
     private ContenidoClickeable contenidoClickeable;
 
@@ -31,17 +30,6 @@ public class PeliculasRecyclerAdapter extends RecyclerView.Adapter implements Se
         this.listaContenidos = listaContenidos;
         this.contexto = contexto;
         this.contenidoClickeable = contenidoClickeable;
-    }
-
-    public PeliculasRecyclerAdapter(List<Contenido> listaPeliculas, Context contexto, ContenidoClickeable contenidoClickeable, Integer idLista) {
-        this.listaContenidos = listaPeliculas;
-        this.contexto = contexto;
-        this.contenidoClickeable = contenidoClickeable;
-        this.idListas=idLista;
-    }
-
-    public Integer getIdListas() {
-        return idListas;
     }
 
     public void setListaContenidos(List<Contenido> listaPeliculas) {
@@ -114,12 +102,11 @@ public class PeliculasRecyclerAdapter extends RecyclerView.Adapter implements Se
             Glide.with(contexto).load(urlImagenAfiche).into(imagenPelicula);
             iconoContenido.setImageResource(icono);
             tituloContenido.setText(unContenido.getNombre());
-            //tituloContenido.setTextColor(ContextCompat.getColor(contexto, colorContenido));
 
         }
     }
     public interface ContenidoClickeable{
         public void mandarSeleccion(Integer position,List<Contenido> listaContenidoClickeada);
-        //public void mandarSeleccion(Pelicula unaPelicula,Context unContexto);
+
     }
 }
