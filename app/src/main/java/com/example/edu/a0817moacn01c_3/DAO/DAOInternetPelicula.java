@@ -49,13 +49,13 @@ public class DAOInternetPelicula {
         unMinion.execute();
     }
     public void getTopRatedPeliculas(ResultListener<List<Pelicula>> listener){
-        String url= TMDBHelper.getTopRatedMovies(TMDBHelper.language_SPANISH,1);
+        String url= TMDBHelper.getTopRatedMovies(TMDBHelper.language_SPANISH,2);
         unMinion= new Minion(url);
         unMinion.setEscuchadorPeliculasControlador(listener);
         unMinion.execute();
     }
     public void getUpcomingPeliculas(ResultListener<List<Pelicula>> listener){
-        String url= TMDBHelper.getUpcomingMovies(TMDBHelper.language_SPANISH,1);
+        String url= TMDBHelper.getUpcomingMovies(TMDBHelper.language_SPANISH,2);
         unMinion= new Minion(url);
         unMinion.setEscuchadorPeliculasControlador(listener);
         unMinion.execute();

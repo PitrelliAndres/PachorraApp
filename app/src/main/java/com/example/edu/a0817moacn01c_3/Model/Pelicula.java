@@ -5,11 +5,13 @@ import android.util.Log;
 import com.example.edu.a0817moacn01c_3.Model.Contenido;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+
 /**
  * Created by ma on 17/10/17.
  */
 
-public class Pelicula extends Contenido {
+public class Pelicula extends Contenido implements Serializable {
     @SerializedName("original_title")
     private String tituloorg;
     @SerializedName("tagline")
@@ -18,26 +20,23 @@ public class Pelicula extends Contenido {
     private String video;
     @SerializedName("imdb_id")
     private String imbdid;
+    @SerializedName("adult") private Boolean adulto;
 
 
     public Pelicula(){
         super.setTipoContenido(Contenido.PELICULA);
-        Log.v("Un valor",Contenido.PELICULA);
+        tipoContenido = Contenido.PELICULA;
     }
 
-    public Pelicula(Integer id, String nombre, String sinopsis, String urlafiche, String urlfondo, Double popularidad, String estreno, Integer duracion, String estado, Double puntuacion, Integer cantidadvotos, Boolean adulto,String imbdid) {
-        super(id, nombre, sinopsis, urlafiche, urlfondo, popularidad, estreno, duracion, estado, puntuacion, cantidadvotos, Contenido.PELICULA,adulto);
-        super.setTipoContenido(Contenido.PELICULA);
-        this.imbdid=imbdid;
-    }
 
     public Pelicula(Integer id, String nombre, String sinopsis, String urlafiche, String urlfondo, Double popularidad, String estreno, Integer duracion, String estado, Double puntuacion, Integer cantidadvotos, String tituloorg, Boolean adulto, String lema, String video,String imbdid) {
-        super(id, nombre, sinopsis, urlafiche, urlfondo, popularidad, estreno, duracion, estado, puntuacion, cantidadvotos, Contenido.PELICULA,adulto);
+        super(id, nombre, sinopsis, urlafiche, urlfondo, popularidad, estreno, duracion, estado, puntuacion, cantidadvotos, Contenido.PELICULA);
         this.tituloorg = tituloorg;
         this.lema = lema;
         this.video = video;
         super.setTipoContenido(Contenido.PELICULA);
         this.imbdid=imbdid;
+        this.adulto=adulto;
     }
 
     public Pelicula(Contenido unContenido, String tituloOriginal, boolean esParaAdultos, String lema, String video,String imbdid) {
@@ -82,6 +81,10 @@ public class Pelicula extends Contenido {
         return true;
     }
 
+    public Boolean getAdulto() {
+        return adulto;
+    }
+
     public Boolean esAdulto(){
         if(getVideo()=="true"||getVideo()=="1"){
             return true;
@@ -97,6 +100,11 @@ public class Pelicula extends Contenido {
             aptoPara = "ATP";
         }
         return aptoPara;
+    }
+
+    @Override
+    public Boolean esPelicula() {
+        return true;
     }
 
     @Override

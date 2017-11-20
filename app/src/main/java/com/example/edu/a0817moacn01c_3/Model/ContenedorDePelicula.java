@@ -14,6 +14,9 @@ public class ContenedorDePelicula {
 
 
     public List<Pelicula> getContenidos(){
+        for (Pelicula unaPelicula : contenidos) {
+            unaPelicula.setTipoContenido(Contenido.PELICULA);
+        }
         return contenidos;
     }
 

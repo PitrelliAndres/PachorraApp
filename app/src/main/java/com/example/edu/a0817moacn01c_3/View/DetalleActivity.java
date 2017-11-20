@@ -23,15 +23,7 @@ public class DetalleActivity extends AppCompatActivity{
     private Bundle unBundle;
 
     private List<Contenido> listaSeleccionada;
-    private List<Contenido> listaPeliculasRecomendadasMixto;
-    private List<Contenido> listaPeliculasMasVistasMixto;
-    private List<Contenido> listaPeliculasEstrenosMixto;
-    private List<Contenido> listaPeliculasRecomendadasPeliculas;
-    private List<Contenido> listaPeliculasMasVistasPeliculas;
-    private List<Contenido> listaPeliculasEstrenosPeliculas;
-    private List<Contenido> listaPeliculasRecomendadasSeries;
-    private List<Contenido> listaPeliculasMasVistasSeries;
-    private List<Contenido> listaPeliculasEstrenosSeries;
+
 
     public static final String POSITION = "position";
     public static final String LISTASELECCIONADA = "lista seleccionada";
@@ -67,35 +59,7 @@ public class DetalleActivity extends AppCompatActivity{
 
 
         listaSeleccionada = (List<Contenido>) unIntent.getSerializableExtra(LISTASELECCIONADA);
-/*        switch(nroLista){
-            case 1:
-                listaSeleccionada=listaPeliculasRecomendadasMixto;
-                break;
-            case 2:
-                listaSeleccionada=listaPeliculasMasVistasMixto;
-                break;
-            case 3:
-                listaSeleccionada=listaPeliculasEstrenosMixto;
-                break;
-            case 4:
-                listaSeleccionada=listaPeliculasRecomendadasPeliculas;
-                break;
-            case 5:
-                listaSeleccionada=listaPeliculasMasVistasPeliculas;
-                break;
-            case 6:
-                listaSeleccionada=listaPeliculasEstrenosPeliculas;
-                break;
-            case 7:
-                listaSeleccionada=listaPeliculasRecomendadasSeries;
-                break;
-            case 8:
-                listaSeleccionada=listaPeliculasMasVistasSeries;
-                break;
-            case 9:
-                listaSeleccionada=listaPeliculasEstrenosSeries;
-                break;
-        }*/
+
         AdaptadorDetallesViewPager adaptadorDetallesViewPager= new AdaptadorDetallesViewPager(fragmentManager,listaSeleccionada);
         viewPager.setAdapter(adaptadorDetallesViewPager);
         Integer posicion = unBundle.getInt(POSITION);

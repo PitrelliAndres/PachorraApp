@@ -28,12 +28,12 @@ public class Contenido implements Serializable{
     @SerializedName("vote_average") private Double puntuacion;
     @SerializedName("vote_count")private Integer cantidadvotos;
     protected String tipoContenido;
-    @SerializedName("adult") private Boolean adulto;
+
 
     public Contenido() {
     }
 
-    public Contenido(Integer id, String nombre, String sinopsis, String urlafiche, String urlfondo, Double popularidad, String estreno, Integer duracion, String estado, Double puntuacion, Integer cantidadvotos, String tipoContenido,Boolean adulto) {
+    public Contenido(Integer id, String nombre, String sinopsis, String urlafiche, String urlfondo, Double popularidad, String estreno, Integer duracion, String estado, Double puntuacion, Integer cantidadvotos, String tipoContenido) {
         this.id = id;
         this.nombre = nombre;
         this.sinopsis = sinopsis;
@@ -47,7 +47,7 @@ public class Contenido implements Serializable{
         this.cantidadvotos = cantidadvotos;
         if(estreno==null){this.year = "0";}else{this.year = estreno.substring(0,4);}
         this.tipoContenido = tipoContenido;
-        this.adulto=adulto;
+
     }
 
     public Integer getId() {
@@ -99,15 +99,12 @@ public class Contenido implements Serializable{
     }
 
     public Boolean esPelicula(){
-        return adulto!=null;
+        return false;
     }
 
-    public Boolean getAdulto() {
-        return adulto;
-    }
 
     public Boolean esSerie(){
-        return Contenido.SERIE.equals(this.tipoContenido);
+        return false;
     }
     public String getTipoContenido() {
         return tipoContenido;

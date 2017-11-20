@@ -29,8 +29,6 @@ import java.util.List;
         }
       }
 
-
-
     @Override
     public Fragment getItem(int position) {
         return fragmentList.get(position);

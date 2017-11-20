@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.example.edu.a0817moacn01c_3.Controller.ControllerContenido;
 import com.example.edu.a0817moacn01c_3.Model.Contenido;
 import com.example.edu.a0817moacn01c_3.Model.Pelicula;
+import com.example.edu.a0817moacn01c_3.Model.Serie;
 import com.example.edu.a0817moacn01c_3.R;
 import com.example.edu.a0817moacn01c_3.utils.ResultListener;
 
@@ -25,7 +26,7 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapter.ContenidoClickeable, Serializable {
+public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapter.ContenidoClickeable {
     private PeliculasRecyclerAdapter unAdapter;
     private NotificadorDatos escuchadorPelicula;
     private PeliculasRecyclerAdapter unAdapter2;
@@ -86,11 +87,11 @@ public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapt
         unRecyclerView.setHasFixedSize(true);
         unRecyclerView2.setHasFixedSize(true);
         unRecyclerView3.setHasFixedSize(true);
+        Integer nroContenido = bundle.getInt("nrocontenido");
 
 
 
-/*        Integer nroContenido = bundle.getInt("nrocontenido");
-
+/*
         ControllerContenido controllerContenido = new ControllerContenido();
         listaPeliculasRecomendadasMixto = controllerContenido.getListaMasrecomendados();
         listaPeliculasMasVistasMixto = controllerContenido.getListaMasvistos();
@@ -164,7 +165,6 @@ public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapt
 
     private void update() {
 
-
         controllerContenido.getPeliculasPopulares(new ResultListener<List<Pelicula>>() {
             @Override
             public void finish(List<Pelicula> resultado) {
@@ -172,10 +172,8 @@ public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapt
                 List<Contenido> blablub = new ArrayList<>();
                 blablub.addAll(resultado);
 
-
                 unAdapter.setListaContenidos(blablub);
-
-
+                unAdapter.notifyDataSetChanged();
 
             }
         });
@@ -186,24 +184,20 @@ public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapt
                 List<Contenido> blablub = new ArrayList<>();
                 blablub.addAll(resultado);
 
-
                 unAdapter2.setListaContenidos(blablub);
-
-
+                unAdapter2.notifyDataSetChanged();
 
             }
         });
-        controllerContenido.getUltimasPeliculas(new ResultListener<List<Pelicula>>() {
+      controllerContenido.getSeriesPopulares(new ResultListener<List<Serie>>() {
             @Override
-            public void finish(List<Pelicula> resultado) {
+            public void finish(List<Serie> resultado) {
 
                 List<Contenido> blablub = new ArrayList<>();
                 blablub.addAll(resultado);
 
-
                 unAdapter3.setListaContenidos(blablub);
-
-
+                unAdapter3.notifyDataSetChanged();
 
             }
         });
