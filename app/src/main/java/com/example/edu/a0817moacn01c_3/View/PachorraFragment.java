@@ -65,6 +65,8 @@ public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapt
         View view = inflater.inflate(R.layout.fragment_pachorra, container, false);
 
         Bundle bundle = getArguments();
+        Integer nroContenido = bundle.getInt("nrocontenido");
+        
         RecyclerView unRecyclerView = view.findViewById(R.id.recyclerPachorra1);
         RecyclerView unRecyclerView2 = view.findViewById(R.id.recyclerPachorra2);
         RecyclerView unRecyclerView3 = view.findViewById(R.id.recyclerPachorra3);
@@ -87,7 +89,6 @@ public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapt
         unRecyclerView.setHasFixedSize(true);
         unRecyclerView2.setHasFixedSize(true);
         unRecyclerView3.setHasFixedSize(true);
-        Integer nroContenido = bundle.getInt("nrocontenido");
 
 
 

@@ -109,6 +109,9 @@ public class ControllerContenido {
             daoInternetSerie.getTVAiringToday(escuchadorDelControlador);
         }
     }
+    public void getListaMixta(){
+
+    }
     public Integer getColor(Contenido contenido){
         Integer color;
         switch (contenido.getTipoContenido()){

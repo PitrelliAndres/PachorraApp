@@ -36,7 +36,7 @@ public class DetalleFragment extends Fragment {
 
     public static final String TIPOCONTENIDO = "tipo de contenido";
     public static final String ID = "id";
-    public static final String NOMBRE = "tituo";
+    public static final String NOMBRE = "titulo";
     public static final String SINOPSIS = "sinopsis";
     public static final String URLAFICHE = "url_afiche";
     public static final String URLFONDO = "url_fondo";

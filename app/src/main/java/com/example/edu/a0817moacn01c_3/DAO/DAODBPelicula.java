@@ -40,9 +40,16 @@ public class DAODBPelicula extends DatabaseHelper {
     }
 
     public void agregarPelicula(Pelicula unaPelicula) {
-        SQLiteDatabase sqLiteDatabase = getWritableDatabase();
-        ContentValues row = new ContentValues();
+        List<Pelicula> listaDeUnaPelicula = new ArrayList<>();
+        listaDeUnaPelicula.add(unaPelicula);
+        agregarPeliculas(listaDeUnaPelicula);
+    }
 
+    public void agregarPeliculas(List<Pelicula> listaPeliculas) {
+        SQLiteDatabase sqLiteDatabase = getWritableDatabase();
+
+        for (Pelicula unaPelicula : listaPeliculas) {
+            ContentValues row = new ContentValues();
             row.put(ID, unaPelicula.getId());
             row.put(TITULOORG, unaPelicula.getTituloorg());
             row.put(NOMBRE, unaPelicula.getNombre());
@@ -59,12 +66,10 @@ public class DAODBPelicula extends DatabaseHelper {
             row.put(PUNTUACION, unaPelicula.getPuntuacion());
             row.put(CANTIDADVOTOS, unaPelicula.getCantidadvotos());
             row.put(IMDBID, unaPelicula.getImbdid());
+            sqLiteDatabase.insert(TABLENAME, null, row);
+        }
 
-        sqLiteDatabase.insert(TABLENAME, null, row);
         sqLiteDatabase.close();
-    }
-
-    public void agregarPeliculas() {
     }
 
     public List<Pelicula> obtenerTodasLasPeliculas() {

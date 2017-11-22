@@ -23,7 +23,7 @@ public class AdaptadorPachorraViewPager extends FragmentStatePagerAdapter{
         fragmentList = new ArrayList<>();
 
 
-        for (Integer i=1;i<4;i++){
+        for (Integer i=1;i<=3;i++){
 
             fragmentList.add(PachorraFragment.dameListasRecycler(i));
         }
