@@ -70,7 +70,7 @@ public class PachorraActivity extends AppCompatActivity implements PachorraFragm
     public void mandarDatos(Integer position, List<Contenido> listaContenidoClickeada) {
         Intent unIntent = new Intent(this,DetalleActivity.class);
 
-        Bundle unBundle= new Bundle();
+        Bundle unBundle = new Bundle();
 
         unBundle.putInt(DetalleActivity.POSITION,position);
         unIntent.putExtra(DetalleActivity.LISTASELECCIONADA,(Serializable) listaContenidoClickeada).putExtras(unBundle);

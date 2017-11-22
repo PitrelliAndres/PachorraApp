@@ -36,7 +36,7 @@ public class DetalleFragment extends Fragment {
 
     public static final String TIPOCONTENIDO = "tipo de contenido";
     public static final String ID = "id";
-    public static final String NOMBRE = "tituo";
+    public static final String NOMBRE = "titulo";
     public static final String SINOPSIS = "sinopsis";
     public static final String URLAFICHE = "url_afiche";
     public static final String URLFONDO = "url_fondo";
@@ -81,13 +81,15 @@ public class DetalleFragment extends Fragment {
         unBundle.putString(ESTADO, unContenido.getEstado());
         unBundle.putInt(CANTIDADVOTOS, unContenido.getCantidadvotos());
         unBundle.putString(TYPE, unContenido.getTipoContenido());
-        unBundle.putBoolean(ADULTO, unContenido.getAdulto());
+        /*if(unContenido.getAdulto().equals(null)){
+            unBundle.putBoolean(ADULTO, unContenido.getAdulto());
+            }*/
+
         //Log.v(DetalleActivity.LISTASELECCIONADA,unBundle.getSerializable(DetalleActivity.LISTASELECCIONADA).toString());
 
         if (unContenido.getTipoContenido().equals(Contenido.PELICULA)) {
             Pelicula unapelicula = (Pelicula) unContenido;
-
-
+            unBundle.putBoolean(ADULTO, unapelicula.getAdulto());
         } else {
             Serie unaSerie = (Serie) unContenido;
             unBundle.putInt(NROSEASONS, unaSerie.getNroSeasons());
@@ -117,13 +119,11 @@ public class DetalleFragment extends Fragment {
                 unBundle.getString(ESTADO),
                 unBundle.getDouble(PUNTUACION),
                 unBundle.getInt(CANTIDADVOTOS),
-                unBundle.getString(TIPOCONTENIDO),
-                unBundle.getBoolean(ADULTO)
-
-
+                unBundle.getString(TIPOCONTENIDO)
         );
 
-        if (unaPeliculaOSerie.esPelicula()) {
+
+        if (unBundle.get(ADULTO)!=null) {
             view = inflater.inflate(R.layout.fragment_detallepeliculas, container, false);
             // Construir un objeto Pelicula con un constructor que recibe un objeto Contenido + los atributos adicionales de Pelicula
 
@@ -192,6 +192,13 @@ public class DetalleFragment extends Fragment {
         imagen.setImageResource(serie.getImagen());
         imagenPortada.setImageResource(serie.getImagenPortada());
         */
+        String imagenAfiche;
+        String imagenFondo;
+        // TODO: objeto Pelicula con Generos, traer imagenes con Glide
+        imagenAfiche=TMDBHelper.getImagePoster(TMDBHelper.IMAGE_SIZE_W300,serie.getUrlafiche());
+        imagenFondo=TMDBHelper.getImagePoster(TMDBHelper.IMAGE_SIZE_W780,serie.getUrlfondo());
+        Glide.with(getContext()).load(imagenAfiche).into(imagen);
+        Glide.with(getContext()).load(imagenFondo).into(imagenPortada);
         puntuacion.setText(serie.getPuntuacion().toString());
         //ano.setText(unaPelicula.getAno());
         this.genero.setText("Genero");

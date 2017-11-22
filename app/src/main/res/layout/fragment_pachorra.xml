@@ -3,12 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
+    android:id="@+id/coordinator_pachorra"
     tools:context="com.example.edu.a0817moacn01c_3.View.PachorraFragment">
 <ScrollView
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <!-- TODO: Update blank fragment layout -->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">

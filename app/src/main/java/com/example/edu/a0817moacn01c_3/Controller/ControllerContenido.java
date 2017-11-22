@@ -5,8 +5,10 @@ import android.support.v4.content.ContextCompat;
 
 import com.example.edu.a0817moacn01c_3.DAO.DAOContenido;
 import com.example.edu.a0817moacn01c_3.DAO.DAOInternetPelicula;
+import com.example.edu.a0817moacn01c_3.DAO.DAOInternetSerie;
 import com.example.edu.a0817moacn01c_3.Model.Contenido;
 import com.example.edu.a0817moacn01c_3.Model.Pelicula;
+import com.example.edu.a0817moacn01c_3.Model.Serie;
 import com.example.edu.a0817moacn01c_3.R;
 import com.example.edu.a0817moacn01c_3.utils.HTTPConnectionManager;
 import com.example.edu.a0817moacn01c_3.utils.ResultListener;
@@ -21,6 +23,7 @@ import java.util.List;
 public class ControllerContenido {
     private Context context;
     private DAOInternetPelicula daoInternetPelicula= new DAOInternetPelicula();
+    private DAOInternetSerie daoInternetSerie= new DAOInternetSerie();
 
     public ControllerContenido() {
     }
@@ -29,7 +32,7 @@ public class ControllerContenido {
         this.context = context;
     }
 
-    public void getPeliculasPopulares(final ResultListener<List<Pelicula>> listenerDeLaView,Context unContext){
+    public void getPeliculasPopulares(final ResultListener<List<Pelicula>> listenerDeLaView){
         if(HTTPConnectionManager.isNetworkingOnline(context)) {
             ResultListener<List<Pelicula>> escuchadorDelControlador = new ResultListener<List<Pelicula>>() {
                 @Override
@@ -40,7 +43,75 @@ public class ControllerContenido {
             daoInternetPelicula.getPeliculasPopulares(escuchadorDelControlador);
         }
     }
+    public void getUltimasPeliculas(final ResultListener<List<Pelicula>> listenerDeLaView){
+        if(HTTPConnectionManager.isNetworkingOnline(context)) {
+            ResultListener<List<Pelicula>> escuchadorDelControlador = new ResultListener<List<Pelicula>>() {
+                @Override
+                public void finish(List<Pelicula> resultado) {
+                    listenerDeLaView.finish(resultado);
+                }
+            };
+            daoInternetPelicula.getUltimasPeliculas(escuchadorDelControlador);
+        }
+    }
+    public void getTopRatedPeliculas(final ResultListener<List<Pelicula>> listenerDeLaView){
+        if(HTTPConnectionManager.isNetworkingOnline(context)) {
+            ResultListener<List<Pelicula>> escuchadorDelControlador = new ResultListener<List<Pelicula>>() {
+                @Override
+                public void finish(List<Pelicula> resultado) {
+                    listenerDeLaView.finish(resultado);
+                }
+            };
+            daoInternetPelicula.getTopRatedPeliculas(escuchadorDelControlador);
+        }
+    }
+    public void getUpcomingPeliculas(final ResultListener<List<Pelicula>> listenerDeLaView){
+        if(HTTPConnectionManager.isNetworkingOnline(context)) {
+            ResultListener<List<Pelicula>> escuchadorDelControlador = new ResultListener<List<Pelicula>>() {
+                @Override
+                public void finish(List<Pelicula> resultado) {
+                    listenerDeLaView.finish(resultado);
+                }
+            };
+            daoInternetPelicula.getUpcomingPeliculas(escuchadorDelControlador);
+        }
+    }
+    public void getSeriesPopulares(final ResultListener<List<Serie>> listenerDeLaView){
+        if(HTTPConnectionManager.isNetworkingOnline(context)) {
+            ResultListener<List<Serie>> escuchadorDelControlador = new ResultListener<List<Serie>>() {
+                @Override
+                public void finish(List<Serie> resultado) {
+                    listenerDeLaView.finish(resultado);
+                }
+            };
+            daoInternetSerie.getSeriesPopulares(escuchadorDelControlador);
+        }
+    }
+    public void getSeriesTopRate(final ResultListener<List<Serie>> listenerDeLaView){
+        if(HTTPConnectionManager.isNetworkingOnline(context)) {
+            ResultListener<List<Serie>> escuchadorDelControlador = new ResultListener<List<Serie>>() {
+                @Override
+                public void finish(List<Serie> resultado) {
+                    listenerDeLaView.finish(resultado);
+                }
+            };
+            daoInternetSerie.getSeriesTopRate(escuchadorDelControlador);
+        }
+    }
+    public void getTVAiringToday(final ResultListener<List<Serie>> listenerDeLaView){
+        if(HTTPConnectionManager.isNetworkingOnline(context)) {
+            ResultListener<List<Serie>> escuchadorDelControlador = new ResultListener<List<Serie>>() {
+                @Override
+                public void finish(List<Serie> resultado) {
+                    listenerDeLaView.finish(resultado);
+                }
+            };
+            daoInternetSerie.getTVAiringToday(escuchadorDelControlador);
+        }
+    }
+    public void getListaMixta(){
 
+    }
     public Integer getColor(Contenido contenido){
         Integer color;
         switch (contenido.getTipoContenido()){

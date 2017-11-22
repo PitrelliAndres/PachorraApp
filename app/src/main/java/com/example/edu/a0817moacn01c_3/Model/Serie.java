@@ -4,11 +4,13 @@ import android.util.Log;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+
 /**
  * Created by Andy on 26/10/2017.
  */
 
-public class Serie extends Contenido {
+public class Serie extends Contenido implements Serializable{
     private String type;
     @SerializedName("number_of_seasons") private Integer nroSeasons;
     @SerializedName("number_of_episodes") private Integer nroEpisodios;
@@ -16,11 +18,11 @@ public class Serie extends Contenido {
 
     public Serie(){
         super.setTipoContenido(Contenido.SERIE);
-        Log.v("Un valor",Contenido.SERIE);
+        tipoContenido = Contenido.SERIE;
     }
 
     public Serie(Integer id, String nombre, String sinopsis, String urlafiche, String urlfondo, Double popularidad, String estreno, Integer duracion, String estado, Double puntuacion, Integer cantidadvotos, String type, Integer cantidadTemporadas, Integer cantidadCapitulos, String canalTV,String imbdid) {
-        super(id, nombre, sinopsis, urlafiche, urlfondo, popularidad, estreno, duracion, estado, puntuacion, cantidadvotos, Contenido.SERIE,null);
+        super(id, nombre, sinopsis, urlafiche, urlfondo, popularidad, estreno, duracion, estado, puntuacion, cantidadvotos, Contenido.SERIE);
         this.type = type;
         this.nroSeasons = cantidadTemporadas;
         this.nroEpisodios = cantidadCapitulos;
@@ -56,12 +58,23 @@ public class Serie extends Contenido {
     }
 
     public Integer getNroSeasons() {
+        if(nroSeasons == null){
+            return 3;
+        }
         return nroSeasons;
     }
 
 
     public Integer getNroEpisodios() {
+        if(nroEpisodios == null){
+            return 10;
+        }
         return nroEpisodios;
+    }
+
+    @Override
+    public Boolean esSerie() {
+        return true;
     }
 
     @Override
