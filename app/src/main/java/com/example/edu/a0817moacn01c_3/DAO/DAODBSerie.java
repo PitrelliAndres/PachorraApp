@@ -2,8 +2,10 @@ package com.example.edu.a0817moacn01c_3.DAO;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.example.edu.a0817moacn01c_3.Model.Pelicula;
 import com.example.edu.a0817moacn01c_3.Model.Serie;
 
 import java.util.ArrayList;
@@ -65,6 +67,38 @@ public class DAODBSerie extends DatabaseHelper {
         }
 
         sqLiteDatabase.close();
+    }
+
+    public List<Serie> obtenerTodasLasSeries() {
+        List<Serie> listaSeries = new ArrayList<>();
+        SQLiteDatabase sqLiteDatabase = getReadableDatabase();
+        String query = "SELECT * FROM " + TABLENAME + ";";
+        Cursor cursor = sqLiteDatabase.rawQuery(query, null);
+        while (cursor.moveToNext()) {
+            // Creamos el objeto Serie que vamos a agregar a la lista
+            Serie unaSerie = new Serie(
+                    cursor.getInt(cursor.getColumnIndex(ID)),
+                    cursor.getString(cursor.getColumnIndex(NOMBRE)),
+                    cursor.getString(cursor.getColumnIndex(SINOPSIS)),
+                    cursor.getString(cursor.getColumnIndex(URLAFICHE)),
+                    cursor.getString(cursor.getColumnIndex(URLFONDO)),
+                    cursor.getDouble(cursor.getColumnIndex(POPULARIDAD)),
+                    cursor.getString(cursor.getColumnIndex(FECHAESTRENO)),
+                    cursor.getInt(cursor.getColumnIndex(DURACION)),
+                    cursor.getString(cursor.getColumnIndex(ESTADO)),
+                    cursor.getDouble(cursor.getColumnIndex(PUNTUACION)),
+                    cursor.getInt(cursor.getColumnIndex(CANTIDADVOTOS)),
+                    cursor.getString(cursor.getColumnIndex(TYPE)),
+                    cursor.getInt(cursor.getColumnIndex(NROSEASONS)),
+                    cursor.getInt(cursor.getColumnIndex(NROEPISODES)),
+                    cursor.getString(cursor.getColumnIndex(CANALTV)),
+                    "tt00"
+            );
+            listaSeries.add(unaSerie);
+        }
+        cursor.close();
+        sqLiteDatabase.close();
+        return listaSeries;
     }
 
 }

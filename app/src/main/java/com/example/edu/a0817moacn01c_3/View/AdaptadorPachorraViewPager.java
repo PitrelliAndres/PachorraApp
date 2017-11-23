@@ -25,7 +25,7 @@ public class AdaptadorPachorraViewPager extends FragmentStatePagerAdapter{
 
         for (Integer i=1;i<=3;i++){
 
-            fragmentList.add(PachorraFragment.dameListasRecycler(i));
+           /* fragmentList.add(PachorraFragment.dameListasRecycler(i));*/
         }
     }
 
