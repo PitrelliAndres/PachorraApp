@@ -40,21 +40,19 @@ public class PachorraActivity extends AppCompatActivity implements PachorraFragm
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
                     @Override
                     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
                         Integer i = item.getOrder();
-                        PachorraFragment pachorraFragment= new PachorraFragment();
-                        Bundle unBundle = new Bundle();
-                        unBundle.putInt(PachorraFragment.NROTIPOCONTENIDO, i);
-                        pachorraFragment.setArguments(unBundle);
-                        FragmentManager fragmentManager = getSupportFragmentManager();
+                        switch (i){
+                            case 0:
+                                cargarFragment();
+                                break;
+                            case 1:
+                                cargarFragment();
+                                break;
+                            case 2:
+                                cargarFragment();
+                                break;
+                        }
 
-                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-
-                        fragmentTransaction.replace(R.id.contenedorfragments_pachorra,pachorraFragment);
-
-
-
-                        fragmentTransaction.commit();
                         return true;
                     }
                 }
@@ -76,5 +74,18 @@ public class PachorraActivity extends AppCompatActivity implements PachorraFragm
 
         startActivity(unIntent);
 
+    }
+    public void cargarFragment(){
+        AppBarFragment appBarFragment= new AppBarFragment();
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+        fragmentTransaction.replace(R.id.contenedorfragments_pachorra,appBarFragment);
+
+
+
+        fragmentTransaction.commit();
     }
 }

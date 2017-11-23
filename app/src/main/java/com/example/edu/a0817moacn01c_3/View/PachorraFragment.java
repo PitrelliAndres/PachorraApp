@@ -39,12 +39,10 @@ public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapt
     private PeliculasRecyclerAdapter unAdapter3;
     private ControllerContenido controllerContenido;
     private ViewPager vPager;
-    private AdaptadorFragmentsViewPager tAdapter;
     private ActionBar aBar;
     private Bundle bundle;
-    public static final String NROTIPOCONTENIDO= "nrotipoContenido";
-    private boolean yaCargounaVez= false;
-    private  Integer nroContenido;
+    public static final String TIPOCONTENIDO= "key";
+    private  String nroContenido;
 
     public PachorraFragment()
     // Required empty public constructor
@@ -57,15 +55,14 @@ public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapt
     }
 
 
-/*    public static PachorraFragment dameListasRecycler(Integer nroContenido) {
+    public static PachorraFragment damePachorraFragment(String tipo) {
+        Bundle topBundle = new Bundle();
+        topBundle.putString("key",tipo);
         PachorraFragment pachorraFragment = new PachorraFragment();
-        Bundle unBundle = new Bundle();
+        pachorraFragment.setArguments(topBundle);
 
-
-        unBundle.putInt("nrocontenido", nroContenido);
-        pachorraFragment.setArguments(unBundle);
         return pachorraFragment;
-    }*/
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -73,46 +70,40 @@ public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapt
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_pachorra, container, false);
         
-        ViewPager viewPager= (ViewPager)view.findViewById(R.id.viewpager);
-        TabLayout tabs= (TabLayout) view.findViewById(R.id.result_tabs);
+
         RecyclerView unRecyclerView = view.findViewById(R.id.recyclerPachorra);
         GridLayoutManager unLayoutManager = new GridLayoutManager(getContext(), 3, GridLayoutManager.VERTICAL, false);
 
-        tAdapter = new AdaptadorFragmentsViewPager(getFragmentManager());
+
         unRecyclerView.setLayoutManager(unLayoutManager);
+        unAdapter = new PeliculasRecyclerAdapter(new ArrayList<Contenido>(), getContext(), this);
+        // 3: Adapter con recycler
+        unRecyclerView.setAdapter(unAdapter);
+        controllerContenido = new ControllerContenido(getContext());
+        updatePeliculas();
 
-        //unRecyclerView3.setLayoutManager(unLayoutManager3);
 
-        unRecyclerView.setHasFixedSize(true);
-            bundle = getArguments();
-           nroContenido = bundle.getInt(NROTIPOCONTENIDO);
+      unRecyclerView.setHasFixedSize(true);
+           bundle = getArguments();
+           nroContenido = bundle.getString(TIPOCONTENIDO);
             switch (nroContenido) {
-                case 0:
+                case "peli-recom":
                     unAdapter = new PeliculasRecyclerAdapter(new ArrayList<Contenido>(), getContext(), this);
                     // 3: Adapter con recycler
                     unRecyclerView.setAdapter(unAdapter);
                     controllerContenido = new ControllerContenido(getContext());
-                    viewpagerContenido(viewPager);
-                    tabs.setupWithViewPager(viewPager);
                     updatePeliculas();
                     break;
-                case 1:
+                case "peli-top":
                     unAdapter = new PeliculasRecyclerAdapter(new ArrayList<Contenido>(), getContext(), this);
                     // 3: Adapter con recycler
                     unRecyclerView.setAdapter(unAdapter);
                     controllerContenido = new ControllerContenido(getContext());
-                    viewpagerContenido(viewPager);
-                    tabs.setupWithViewPager(viewPager);
+                   // viewpagerContenido(viewPager);
+                   // tabs.setupWithViewPager(viewPager);
                     updateSeries();
 
-                case 2:
-                    unAdapter = new PeliculasRecyclerAdapter(new ArrayList<Contenido>(), getContext(), this);
-                    // 3: Adapter con recycler
-                    unRecyclerView.setAdapter(unAdapter);
-                    controllerContenido = new ControllerContenido(getContext());
-                    viewpagerContenido(viewPager);
-                    tabs.setupWithViewPager(viewPager);
-                    updateSeries();
+
 
             }
 
@@ -191,56 +182,5 @@ public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapt
             }
         });*/
     }
-    static class AdaptadorFragmentsViewPager extends FragmentPagerAdapter {
-        private final List<Fragment> mFragmentList = new ArrayList<>();
-        private final List<String> mFragmentTitleList = new ArrayList<>();
 
-        public AdaptadorFragmentsViewPager(FragmentManager manager) {
-            super(manager);
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            return mFragmentList.get(position);
-        }
-
-        @Override
-        public int getCount() {
-            return mFragmentList.size();
-        }
-
-        public void addFragment(Fragment fragment, String title) {
-            mFragmentList.add(fragment);
-            mFragmentTitleList.add(title);
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-            return mFragmentTitleList.get(position);
-        }
-    }
-    private void viewpagerContenido(ViewPager viewPager) {
-
-
-        AdaptadorFragmentsViewPager adapter = new AdaptadorFragmentsViewPager(getChildFragmentManager());
-        adapter.addFragment(new PachorraFragment(), "Recomendados");
-        adapter.addFragment(new PachorraFragment(), "Top Rate");
-
-        viewPager.setAdapter(adapter);
-
-
-
-    }
-    private void viewpagerMixto(ViewPager viewPager) {
-
-
-        AdaptadorFragmentsViewPager adapter = new AdaptadorFragmentsViewPager(getChildFragmentManager());
-        adapter.addFragment(new PachorraFragment(), "Recomendado del Dia");
-
-
-        viewPager.setAdapter(adapter);
-
-
-
-    }
 }
