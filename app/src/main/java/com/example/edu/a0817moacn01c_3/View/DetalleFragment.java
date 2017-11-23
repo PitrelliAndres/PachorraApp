@@ -34,6 +34,8 @@ public class DetalleFragment extends Fragment {
     private TextView temporadas;
     private TextView episodios;
 
+
+
     public static final String TIPOCONTENIDO = "tipo de contenido";
     public static final String ID = "id";
     public static final String NOMBRE = "titulo";

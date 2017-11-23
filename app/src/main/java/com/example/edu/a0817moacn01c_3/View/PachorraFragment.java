@@ -1,14 +1,20 @@
 package com.example.edu.a0817moacn01c_3.View;
 
 
+import android.app.ActionBar;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TableLayout;
 import android.widget.TextView;
 
 import com.example.edu.a0817moacn01c_3.Controller.ControllerContenido;
@@ -31,11 +37,14 @@ public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapt
     private NotificadorDatos escuchadorPelicula;
     private PeliculasRecyclerAdapter unAdapter2;
     private PeliculasRecyclerAdapter unAdapter3;
-    private TextView tituloRecomendadas;
-    private TextView tituloMasvistas;
-    private TextView tituloEstrenos;
     private ControllerContenido controllerContenido;
-
+    private ViewPager vPager;
+    private AdaptadorFragmentsViewPager tAdapter;
+    private ActionBar aBar;
+    private Bundle bundle;
+    public static final String NROTIPOCONTENIDO= "nrotipoContenido";
+    private boolean yaCargounaVez= false;
+    private  Integer nroContenido;
 
     public PachorraFragment()
     // Required empty public constructor
@@ -48,7 +57,7 @@ public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapt
     }
 
 
-    public static PachorraFragment dameListasRecycler(Integer nroContenido) {
+/*    public static PachorraFragment dameListasRecycler(Integer nroContenido) {
         PachorraFragment pachorraFragment = new PachorraFragment();
         Bundle unBundle = new Bundle();
 
@@ -56,98 +65,56 @@ public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapt
         unBundle.putInt("nrocontenido", nroContenido);
         pachorraFragment.setArguments(unBundle);
         return pachorraFragment;
-    }
+    }*/
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_pachorra, container, false);
-
-        Bundle bundle = getArguments();
-        Integer nroContenido = bundle.getInt("nrocontenido");
         
-        RecyclerView unRecyclerView = view.findViewById(R.id.recyclerPachorra1);
-        RecyclerView unRecyclerView2 = view.findViewById(R.id.recyclerPachorra2);
-        RecyclerView unRecyclerView3 = view.findViewById(R.id.recyclerPachorra3);
-        GridLayoutManager unLayoutManager = new GridLayoutManager(getContext(), 1, GridLayoutManager.HORIZONTAL, false);
-        GridLayoutManager unLayoutManager2 = new GridLayoutManager(getContext(), 1, GridLayoutManager.HORIZONTAL, false);
-        GridLayoutManager unLayoutManager3 = new GridLayoutManager(getContext(), 1, GridLayoutManager.HORIZONTAL, false);
+        ViewPager viewPager= (ViewPager)view.findViewById(R.id.viewpager);
+        TabLayout tabs= (TabLayout) view.findViewById(R.id.result_tabs);
+        RecyclerView unRecyclerView = view.findViewById(R.id.recyclerPachorra);
+        GridLayoutManager unLayoutManager = new GridLayoutManager(getContext(), 3, GridLayoutManager.VERTICAL, false);
 
-        tituloRecomendadas = view.findViewById(R.id.textView_tituloLista1);
-        tituloMasvistas = view.findViewById(R.id.textView_tituloLista2);
-        tituloEstrenos = view.findViewById(R.id.textView_tituloLista3);
-        tituloRecomendadas.setText("Recomendados por Amigos");
-        tituloMasvistas.setText("Los mas vistos");
-        tituloEstrenos.setText("Estrenos");
-
-        // 1: Recycler
+        tAdapter = new AdaptadorFragmentsViewPager(getFragmentManager());
         unRecyclerView.setLayoutManager(unLayoutManager);
-        unRecyclerView2.setLayoutManager(unLayoutManager2);
-        unRecyclerView3.setLayoutManager(unLayoutManager3);
+
+        //unRecyclerView3.setLayoutManager(unLayoutManager3);
 
         unRecyclerView.setHasFixedSize(true);
-        unRecyclerView2.setHasFixedSize(true);
-        unRecyclerView3.setHasFixedSize(true);
+            bundle = getArguments();
+           nroContenido = bundle.getInt(NROTIPOCONTENIDO);
+            switch (nroContenido) {
+                case 0:
+                    unAdapter = new PeliculasRecyclerAdapter(new ArrayList<Contenido>(), getContext(), this);
+                    // 3: Adapter con recycler
+                    unRecyclerView.setAdapter(unAdapter);
+                    controllerContenido = new ControllerContenido(getContext());
+                    viewpagerContenido(viewPager);
+                    tabs.setupWithViewPager(viewPager);
+                    updatePeliculas();
+                    break;
+                case 1:
+                    unAdapter = new PeliculasRecyclerAdapter(new ArrayList<Contenido>(), getContext(), this);
+                    // 3: Adapter con recycler
+                    unRecyclerView.setAdapter(unAdapter);
+                    controllerContenido = new ControllerContenido(getContext());
+                    viewpagerContenido(viewPager);
+                    tabs.setupWithViewPager(viewPager);
+                    updateSeries();
 
+                case 2:
+                    unAdapter = new PeliculasRecyclerAdapter(new ArrayList<Contenido>(), getContext(), this);
+                    // 3: Adapter con recycler
+                    unRecyclerView.setAdapter(unAdapter);
+                    controllerContenido = new ControllerContenido(getContext());
+                    viewpagerContenido(viewPager);
+                    tabs.setupWithViewPager(viewPager);
+                    updateSeries();
 
-
-/*
-        ControllerContenido controllerContenido = new ControllerContenido();
-        listaPeliculasRecomendadasMixto = controllerContenido.getListaMasrecomendados();
-        listaPeliculasMasVistasMixto = controllerContenido.getListaMasvistos();
-        listaPeliculasEstrenosMixto = controllerContenido.getListaEstrenos();
-
-
-        listaPeliculasRecomendadasPeliculas=controllerContenido.getListaMasRecomendados(Contenido.PELICULA);
-        listaPeliculasMasVistasPeliculas=controllerContenido.getListaMasVistos(Contenido.PELICULA);
-        listaPeliculasEstrenosPeliculas=controllerContenido.getListaEstreno(Contenido.PELICULA);
-
-        listaPeliculasRecomendadasSeries=controllerContenido.getListaMasRecomendados(Contenido.SERIE);
-        listaPeliculasMasVistasSeries=controllerContenido.getListaMasVistos(Contenido.SERIE);
-        listaPeliculasEstrenosSeries=controllerContenido.getListaEstreno(Contenido.SERIE);
-
-        switch (nroContenido) {
-            case 1:
-                unAdapter = new PeliculasRecyclerAdapter(listaPeliculasRecomendadasPeliculas, getContext(), this, 4);
-                unAdapter2 = new PeliculasRecyclerAdapter(listaPeliculasMasVistasPeliculas, getContext(), this, 5);
-                unAdapter3 = new PeliculasRecyclerAdapter(listaPeliculasEstrenosPeliculas, getContext(), this, 6);
-
-                unRecyclerView.setAdapter(unAdapter);
-                unRecyclerView2.setAdapter(unAdapter2);
-                unRecyclerView3.setAdapter(unAdapter3);
-                break;
-            case 2:
-
-                unAdapter = new PeliculasRecyclerAdapter(listaPeliculasRecomendadasMixto, getContext(), this, 1);
-                unAdapter2 = new PeliculasRecyclerAdapter(listaPeliculasMasVistasMixto, getContext(), this, 2);
-                unAdapter3 = new PeliculasRecyclerAdapter(listaPeliculasEstrenosMixto, getContext(), this, 3);
-                //Le seteo el adaptador al recycler
-                unRecyclerView.setAdapter(unAdapter);
-                unRecyclerView2.setAdapter(unAdapter2);
-                unRecyclerView3.setAdapter(unAdapter3);
-
-                break;
-            case 3:
-                unAdapter = new PeliculasRecyclerAdapter(listaPeliculasRecomendadasSeries, getContext(), this, 7);
-                unAdapter2 = new PeliculasRecyclerAdapter(listaPeliculasMasVistasSeries, getContext(), this, 8);
-                unAdapter3 = new PeliculasRecyclerAdapter(listaPeliculasEstrenosSeries, getContext(), this, 9);
-
-                unRecyclerView.setAdapter(unAdapter);
-                unRecyclerView2.setAdapter(unAdapter2);
-                unRecyclerView3.setAdapter(unAdapter3);
-        }*/
-
-        // 2: Adapter
-        unAdapter = new PeliculasRecyclerAdapter(new ArrayList<Contenido>(),getContext(),this);
-        unAdapter2 = new PeliculasRecyclerAdapter(new ArrayList<Contenido>(),getContext(),this);
-        unAdapter3 = new PeliculasRecyclerAdapter(new ArrayList<Contenido>(),getContext(),this);
-        // 3: Adapter con recycler
-        unRecyclerView.setAdapter(unAdapter);
-        unRecyclerView2.setAdapter(unAdapter2);
-        unRecyclerView3.setAdapter(unAdapter3);
-        controllerContenido = new ControllerContenido(getContext());
-        update();
+            }
 
         return view;
 
@@ -164,7 +131,7 @@ public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapt
         public void mandarDatos(Integer position, List<Contenido> listaContenidoClickeada);
    }
 
-    private void update() {
+    private void updatePeliculas() {
 
         controllerContenido.getPeliculasPopulares(new ResultListener<List<Pelicula>>() {
             @Override
@@ -178,7 +145,7 @@ public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapt
 
             }
         });
-        controllerContenido.getUpcomingPeliculas(new ResultListener<List<Pelicula>>() {
+/*        controllerContenido.getUpcomingPeliculas(new ResultListener<List<Pelicula>>() {
             @Override
             public void finish(List<Pelicula> resultado) {
 
@@ -189,19 +156,91 @@ public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapt
                 unAdapter2.notifyDataSetChanged();
 
             }
-        });
-      controllerContenido.getSeriesPopulares(new ResultListener<List<Serie>>() {
+        });*/
+
+    }
+    private void updateSeries(){
+        controllerContenido.getSeriesPopulares(new ResultListener<List<Serie>>() {
             @Override
             public void finish(List<Serie> resultado) {
-
-                List<Contenido> blablub = new ArrayList<>();
-                blablub.addAll(resultado);
-
-                unAdapter3.setListaContenidos(blablub);
-                unAdapter3.notifyDataSetChanged();
+                List<Contenido>blablud= new ArrayList<>();
+                blablud.addAll(resultado);
+                unAdapter.setListaContenidos(blablud);
+                unAdapter.notifyDataSetChanged();
 
             }
         });
+/*        controllerContenido.getSeriesTopRate(new ResultListener<List<Serie>>() {
+            @Override
+            public void finish(List<Serie> resultado) {
+                List<Contenido>blablud= new ArrayList<>();
+                blablud.addAll(resultado);
+                unAdapter2.setListaContenidos(blablud);
+                unAdapter2.notifyDataSetChanged();
+
+            }
+        });
+        controllerContenido.getTVAiringToday(new ResultListener<List<Serie>>() {
+            @Override
+            public void finish(List<Serie> resultado) {
+                List<Contenido>blablud= new ArrayList<>();
+                blablud.addAll(resultado);
+                unAdapter3.setListaContenidos(blablud);
+                unAdapter3.notifyDataSetChanged();
+
+            }
+        });*/
+    }
+    static class AdaptadorFragmentsViewPager extends FragmentPagerAdapter {
+        private final List<Fragment> mFragmentList = new ArrayList<>();
+        private final List<String> mFragmentTitleList = new ArrayList<>();
+
+        public AdaptadorFragmentsViewPager(FragmentManager manager) {
+            super(manager);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            return mFragmentList.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return mFragmentList.size();
+        }
+
+        public void addFragment(Fragment fragment, String title) {
+            mFragmentList.add(fragment);
+            mFragmentTitleList.add(title);
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return mFragmentTitleList.get(position);
+        }
+    }
+    private void viewpagerContenido(ViewPager viewPager) {
+
+
+        AdaptadorFragmentsViewPager adapter = new AdaptadorFragmentsViewPager(getChildFragmentManager());
+        adapter.addFragment(new PachorraFragment(), "Recomendados");
+        adapter.addFragment(new PachorraFragment(), "Top Rate");
+
+        viewPager.setAdapter(adapter);
+
+
+
+    }
+    private void viewpagerMixto(ViewPager viewPager) {
+
+
+        AdaptadorFragmentsViewPager adapter = new AdaptadorFragmentsViewPager(getChildFragmentManager());
+        adapter.addFragment(new PachorraFragment(), "Recomendado del Dia");
+
+
+        viewPager.setAdapter(adapter);
+
+
 
     }
 }
