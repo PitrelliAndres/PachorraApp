@@ -41,12 +41,12 @@ public class Contenido implements Serializable{
         this.urlafiche = urlafiche;
         this.urlfondo = urlfondo;
         this.popularidad = popularidad;
-        this.estreno = estreno;
+        if(estreno.equals("")){this.estreno = "0000-00-00";}else{this.estreno = estreno;}
         this.duracion = duracion;
         this.estado = estado;
         this.puntuacion = puntuacion;
         this.cantidadvotos = cantidadvotos;
-        if(estreno==null){this.year = "0";}else{this.year = estreno.substring(0,4);}
+        if(estreno==null){this.year = "0";}else{this.year = this.estreno.substring(0,4);}
         this.tipoContenido = tipoContenido;
 
     }
