@@ -4,18 +4,13 @@ package com.example.edu.a0817moacn01c_3.View;
 import android.app.ActionBar;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TableLayout;
-import android.widget.TextView;
 
 import com.example.edu.a0817moacn01c_3.Controller.ControllerContenido;
 import com.example.edu.a0817moacn01c_3.Model.Contenido;
@@ -24,7 +19,6 @@ import com.example.edu.a0817moacn01c_3.Model.Serie;
 import com.example.edu.a0817moacn01c_3.R;
 import com.example.edu.a0817moacn01c_3.utils.ResultListener;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -170,7 +164,7 @@ public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapt
         });
     }
     private void updateSeriesTopRate(){
-       controllerContenido.getSeriesTopRate(new ResultListener<List<Serie>>() {
+       controllerContenido.getSeriesTopRated(new ResultListener<List<Serie>>() {
             @Override
             public void finish(List<Serie> resultado) {
                 List<Contenido>blablud= new ArrayList<>();

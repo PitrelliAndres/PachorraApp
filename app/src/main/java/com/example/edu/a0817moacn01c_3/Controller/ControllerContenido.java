@@ -5,6 +5,7 @@ import android.support.v4.content.ContextCompat;
 
 import com.example.edu.a0817moacn01c_3.DAO.DAOContenido;
 import com.example.edu.a0817moacn01c_3.DAO.DAODBPelicula;
+import com.example.edu.a0817moacn01c_3.DAO.DAODBSerie;
 import com.example.edu.a0817moacn01c_3.DAO.DAOInternetPelicula;
 import com.example.edu.a0817moacn01c_3.DAO.DAOInternetSerie;
 import com.example.edu.a0817moacn01c_3.DAO.DatabaseHelper;
@@ -99,7 +100,7 @@ public class ControllerContenido {
             daoInternetSerie.getSeriesPopulares(escuchadorDelControlador);
         }
     }
-    public void getSeriesTopRate(final ResultListener<List<Serie>> listenerDeLaView){
+    public void getSeriesTopRated(final ResultListener<List<Serie>> listenerDeLaView){
         if(HTTPConnectionManager.isNetworkingOnline(context)) {
             ResultListener<List<Serie>> escuchadorDelControlador = new ResultListener<List<Serie>>() {
                 @Override
@@ -121,6 +122,22 @@ public class ControllerContenido {
             daoInternetSerie.getTVAiringToday(escuchadorDelControlador);
         }
     }
+    public void getSerie(Integer unID, final ResultListener<Serie> listenerDeLaView){
+        if(HTTPConnectionManager.isNetworkingOnline(context)) {
+            ResultListener<Serie> escuchadorDelControlador = new ResultListener<Serie>() {
+                @Override
+                public void finish(Serie resultado) {
+                    listenerDeLaView.finish(resultado);
+                }
+            };
+        }else{
+            // estamos offline vamos directo a base de datos
+            DAODBSerie daodbSerie = new DAODBSerie(context);
+            Serie unaSerie = daodbSerie.obtenerSeriePorID(unID);
+            listenerDeLaView.finish(unaSerie);
+        }
+    }
+    public void getPelicula(Integer id){}
     public void getListaMixta(){
 
     }
