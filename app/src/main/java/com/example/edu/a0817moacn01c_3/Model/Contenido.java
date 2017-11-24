@@ -41,7 +41,7 @@ public class Contenido implements Serializable{
         this.urlafiche = urlafiche;
         this.urlfondo = urlfondo;
         this.popularidad = popularidad;
-        if(estreno.equals("")){this.estreno = "0000-00-00";}else{this.estreno = estreno;}
+        this.estreno = estreno;
         this.duracion = duracion;
         this.estado = estado;
         this.puntuacion = puntuacion;

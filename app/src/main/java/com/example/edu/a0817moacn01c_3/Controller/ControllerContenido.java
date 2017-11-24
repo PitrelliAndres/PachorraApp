@@ -2,6 +2,7 @@ package com.example.edu.a0817moacn01c_3.Controller;
 
 import android.content.Context;
 import android.support.v4.content.ContextCompat;
+import android.view.ContextMenu;
 
 import com.example.edu.a0817moacn01c_3.DAO.DAOContenido;
 import com.example.edu.a0817moacn01c_3.DAO.DAODBPelicula;
@@ -17,6 +18,7 @@ import com.example.edu.a0817moacn01c_3.utils.HTTPConnectionManager;
 import com.example.edu.a0817moacn01c_3.utils.ResultListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -138,10 +140,16 @@ public class ControllerContenido {
         }
     }
     public void getPelicula(Integer id){}
-    public void getListaMixta(){
+    public List<Contenido> getListaMixta(){
         DAODBSerie daodbSerie = new DAODBSerie(context);
         DAODBPelicula daodbPelicula = new DAODBPelicula(context);
-
+        List<Serie> listaSeriesPopulares = daodbSerie.obtenerSeriesPopulares();
+        List<Pelicula> listaPeliculasPopulares = daodbPelicula.obtenerPeliculasPopulares();
+        List<Contenido> listaMista = new ArrayList<>();
+        listaMista.addAll(listaPeliculasPopulares);
+        listaMista.addAll(listaSeriesPopulares);
+        Collections.shuffle(listaMista);
+        return listaMista;
     }
     public Integer getColor(Contenido contenido){
         Integer color;

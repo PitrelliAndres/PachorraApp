@@ -105,6 +105,39 @@ public class DAODBPelicula extends DatabaseHelper {
 
         return listaPeliculas;
     }
+    public List<Pelicula> obtenerPeliculasPopulares() {
+        List<Pelicula> listaPeliculas = new ArrayList<>();
+        SQLiteDatabase sqLiteDatabase = getReadableDatabase();
+        String query = "SELECT * FROM " + TABLENAME + " ORDER BY "+ POPULARIDAD +" DESC LIMIT 10;";
+        Cursor cursor = sqLiteDatabase.rawQuery(query, null);
+        while (cursor.moveToNext()) {
+
+            Pelicula unaPelicula = new Pelicula(
+                    cursor.getInt(cursor.getColumnIndex(ID)),
+                    cursor.getString(cursor.getColumnIndex(NOMBRE)),
+                    cursor.getString(cursor.getColumnIndex(SINOPSIS)),
+                    cursor.getString(cursor.getColumnIndex(URLAFICHE)),
+                    cursor.getString(cursor.getColumnIndex(URLFONDO)),
+                    cursor.getDouble(cursor.getColumnIndex(POPULARIDAD)),
+                    cursor.getString(cursor.getColumnIndex(ESTRENO)),
+                    cursor.getInt(cursor.getColumnIndex(DURACION)),
+                    cursor.getString(cursor.getColumnIndex(ESTADO)),
+                    cursor.getDouble(cursor.getColumnIndex(PUNTUACION)),
+                    cursor.getInt(cursor.getColumnIndex(CANTIDADVOTOS)),
+                    cursor.getString(cursor.getColumnIndex(TITULOORG)),
+                    (cursor.getInt(cursor.getColumnIndex(ADULTO))==1),
+                    cursor.getString(cursor.getColumnIndex(LEMA)),
+                    cursor.getString(cursor.getColumnIndex(VIDEO)),
+                    cursor.getString(cursor.getColumnIndex(IMDBID))
+
+            );
+            listaPeliculas.add(unaPelicula);
+        }
+        cursor.close();
+        sqLiteDatabase.close();
+
+        return listaPeliculas;
+    }
     public Pelicula obtenerPeliculaPorID(Integer unID){
         SQLiteDatabase sqLiteDatabase = getReadableDatabase();
         String query = "SELECT * FROM " + TABLENAME + " WHERE " + ID + "=" + unID + ";";

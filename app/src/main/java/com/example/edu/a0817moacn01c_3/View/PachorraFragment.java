@@ -95,7 +95,7 @@ public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapt
                     controllerContenido = new ControllerContenido(getContext());
                     // viewpagerContenido(viewPager);
                     // tabs.setupWithViewPager(viewPager);
-                    updateSeriesTopRate();
+                    updateSeriesTopRated();
                     break;
                 case "serie-pop":
                     controllerContenido = new ControllerContenido(getContext());
@@ -103,12 +103,16 @@ public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapt
                     // tabs.setupWithViewPager(viewPager);
                     updateSeriesPopulares();
                     break;
+                case "mixto":
+                    controllerContenido = new ControllerContenido(getContext());
+                    updateListaMixta();
 
             }
 
         return view;
 
     }
+
 
 
     @Override
@@ -163,7 +167,7 @@ public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapt
             }
         });
     }
-    private void updateSeriesTopRate(){
+    private void updateSeriesTopRated(){
        controllerContenido.getSeriesTopRated(new ResultListener<List<Serie>>() {
             @Override
             public void finish(List<Serie> resultado) {
@@ -175,7 +179,7 @@ public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapt
             }
         });
         }
-    private void updateSeriesTVAirinToday(){
+    private void updateSeriesTVAiringToday(){
         controllerContenido.getTVAiringToday(new ResultListener<List<Serie>>() {
             @Override
             public void finish(List<Serie> resultado) {
@@ -188,4 +192,8 @@ public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapt
         });
     }
 
+    private void updateListaMixta() {
+        unAdapter.setListaContenidos(controllerContenido.getListaMixta());
+        unAdapter.notifyDataSetChanged();
+    }
 }

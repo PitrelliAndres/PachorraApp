@@ -100,6 +100,39 @@ public class DAODBSerie extends DatabaseHelper {
         sqLiteDatabase.close();
         return listaSeries;
     }
+
+    public List<Serie> obtenerSeriesPopulares() {
+        List<Serie> listaSeries = new ArrayList<>();
+        SQLiteDatabase sqLiteDatabase = getReadableDatabase();
+        String query = "SELECT * FROM " + TABLENAME + " ORDER BY "+ POPULARIDAD +" DESC LIMIT 10;";
+        Cursor cursor = sqLiteDatabase.rawQuery(query, null);
+        while (cursor.moveToNext()) {
+            // Creamos el objeto Serie que vamos a agregar a la lista
+            Serie unaSerie = new Serie(
+                    cursor.getInt(cursor.getColumnIndex(ID)),
+                    cursor.getString(cursor.getColumnIndex(NOMBRE)),
+                    cursor.getString(cursor.getColumnIndex(SINOPSIS)),
+                    cursor.getString(cursor.getColumnIndex(URLAFICHE)),
+                    cursor.getString(cursor.getColumnIndex(URLFONDO)),
+                    cursor.getDouble(cursor.getColumnIndex(POPULARIDAD)),
+                    cursor.getString(cursor.getColumnIndex(FECHAESTRENO)),
+                    cursor.getInt(cursor.getColumnIndex(DURACION)),
+                    cursor.getString(cursor.getColumnIndex(ESTADO)),
+                    cursor.getDouble(cursor.getColumnIndex(PUNTUACION)),
+                    cursor.getInt(cursor.getColumnIndex(CANTIDADVOTOS)),
+                    cursor.getString(cursor.getColumnIndex(TYPE)),
+                    cursor.getInt(cursor.getColumnIndex(NROSEASONS)),
+                    cursor.getInt(cursor.getColumnIndex(NROEPISODES)),
+                    cursor.getString(cursor.getColumnIndex(CANALTV)),
+                    "tt00"
+            );
+            listaSeries.add(unaSerie);
+        }
+        cursor.close();
+        sqLiteDatabase.close();
+        return listaSeries;
+    }
+
     public Serie obtenerSeriePorID(Integer unID){
         SQLiteDatabase sqLiteDatabase = getReadableDatabase();
         String query = "SELECT * FROM " + TABLENAME + " WHERE " + ID + "=" + unID + ";";
