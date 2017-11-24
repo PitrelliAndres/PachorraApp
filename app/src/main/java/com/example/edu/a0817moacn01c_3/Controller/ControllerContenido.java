@@ -4,8 +4,10 @@ import android.content.Context;
 import android.support.v4.content.ContextCompat;
 
 import com.example.edu.a0817moacn01c_3.DAO.DAOContenido;
+import com.example.edu.a0817moacn01c_3.DAO.DAODBPelicula;
 import com.example.edu.a0817moacn01c_3.DAO.DAOInternetPelicula;
 import com.example.edu.a0817moacn01c_3.DAO.DAOInternetSerie;
+import com.example.edu.a0817moacn01c_3.DAO.DatabaseHelper;
 import com.example.edu.a0817moacn01c_3.Model.Contenido;
 import com.example.edu.a0817moacn01c_3.Model.Pelicula;
 import com.example.edu.a0817moacn01c_3.Model.Serie;
@@ -22,8 +24,9 @@ import java.util.List;
 
 public class ControllerContenido {
     private Context context;
-    private DAOInternetPelicula daoInternetPelicula= new DAOInternetPelicula();
-    private DAOInternetSerie daoInternetSerie= new DAOInternetSerie();
+    private DatabaseHelper databaseHelper;
+    private DAOInternetPelicula daoInternetPelicula = new DAOInternetPelicula();
+    private DAOInternetSerie daoInternetSerie = new DAOInternetSerie();
 
     public ControllerContenido() {
     }
@@ -34,13 +37,22 @@ public class ControllerContenido {
 
     public void getPeliculasPopulares(final ResultListener<List<Pelicula>> listenerDeLaView){
         if(HTTPConnectionManager.isNetworkingOnline(context)) {
+
             ResultListener<List<Pelicula>> escuchadorDelControlador = new ResultListener<List<Pelicula>>() {
                 @Override
                 public void finish(List<Pelicula> resultado) {
+                    //databaseHelper = new DatabaseHelper(context);
+                    DAODBPelicula daodbPelicula = new DAODBPelicula(context);
+                    daodbPelicula.agregarPeliculas(resultado);
                     listenerDeLaView.finish(resultado);
                 }
             };
             daoInternetPelicula.getPeliculasPopulares(escuchadorDelControlador);
+        }else{
+            // estamos offline vamos directo a base de datos
+            DAODBPelicula daodbPelicula = new DAODBPelicula(context);
+            List<Pelicula> listaPeliculas = daodbPelicula.obtenerTodasLasPeliculas();
+            listenerDeLaView.finish(listaPeliculas);
         }
     }
     public void getUltimasPeliculas(final ResultListener<List<Pelicula>> listenerDeLaView){
