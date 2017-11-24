@@ -40,16 +40,16 @@ public class PachorraActivity extends AppCompatActivity implements PachorraFragm
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
                     @Override
                     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                        Integer i = item.getOrder();
+                        Integer i = item.getItemId();
                         switch (i){
-                            case 0:
-                                cargarFragment();
+                            case R.id.action_mostrarSoloPeliculas:
+                                cargarFragment(0);
                                 break;
-                            case 1:
-                                cargarFragment();
+                            case R.id.action_mostrarFiltros:
+                                cargarFragment(1);
                                 break;
-                            case 2:
-                                cargarFragment();
+                            case R.id.action_mostrarSoloSeries:
+                                cargarFragment(2);
                                 break;
                         }
 
@@ -75,17 +75,16 @@ public class PachorraActivity extends AppCompatActivity implements PachorraFragm
         startActivity(unIntent);
 
     }
-    public void cargarFragment(){
+    public void cargarFragment(Integer tipoCargar){
         AppBarFragment appBarFragment= new AppBarFragment();
 
+        Bundle bundle= new Bundle();
+        bundle.putInt("tipocargar",tipoCargar);
+        appBarFragment.setArguments(bundle);
+
         FragmentManager fragmentManager = getSupportFragmentManager();
-
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-
         fragmentTransaction.replace(R.id.contenedorfragments_pachorra,appBarFragment);
-
-
-
         fragmentTransaction.commit();
     }
 }
