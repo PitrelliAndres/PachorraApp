@@ -15,6 +15,7 @@
         android:paddingBottom="@dimen/espacioS"
         app:cardCornerRadius="@dimen/espacioS"
         app:cardElevation="2dp"
+        app:cardPreventCornerOverlap="false"
         >
         <ImageView
             android:id="@+id/imageView_ImagenContenidoPeliculas"
