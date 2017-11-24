@@ -139,6 +139,8 @@ public class ControllerContenido {
     }
     public void getPelicula(Integer id){}
     public void getListaMixta(){
+        DAODBSerie daodbSerie = new DAODBSerie(context);
+        DAODBPelicula daodbPelicula = new DAODBPelicula(context);
 
     }
     public Integer getColor(Contenido contenido){
