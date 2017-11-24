@@ -1,0 +1,38 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.edu.a0817moacn01c_3.View.OnboardingFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+
+
+    <TextView
+        android:id="@+id/textViewOnboarding"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:layout_centerInParent="true"
+
+        />
+
+    <TextView
+        android:id="@+id/textViewTituloONBOARDING"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:layout_above="@id/textViewOnboarding"
+        android:layout_marginBottom="20dp"
+        />
+
+    <Button
+        android:id="@+id/BotonViewPager"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textViewOnboarding"
+        android:onClick="irAPantallaPrincipal"
+        />
+
+
+</RelativeLayout>
