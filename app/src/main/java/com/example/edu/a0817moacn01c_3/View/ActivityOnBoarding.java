@@ -16,7 +16,7 @@ public class ActivityOnBoarding extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_on_boarding);
 
-ViewPager viewPager = (ViewPager)findViewById(R.id.viewpager);
+ViewPager viewPager = (ViewPager)findViewById(R.id.viewPagerOnboarding);
 
         FragmentManager fragmentManager = getSupportFragmentManager();
 
