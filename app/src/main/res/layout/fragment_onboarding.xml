@@ -32,6 +32,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/textViewOnboarding"
         android:onClick="irAPantallaPrincipal"
+        android:layout_centerHorizontal="true"
         />
 
 
