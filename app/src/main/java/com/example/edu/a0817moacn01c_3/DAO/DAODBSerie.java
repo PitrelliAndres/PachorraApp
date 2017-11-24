@@ -100,11 +100,17 @@ public class DAODBSerie extends DatabaseHelper {
         sqLiteDatabase.close();
         return listaSeries;
     }
-
-    public List<Serie> obtenerSeriesPopulares() {
+    public List<Serie> obtenerSeriesPopulares(){
+        return obtenerSeriesPopulares(null);
+    }
+    public List<Serie> obtenerSeriesPopulares(Integer limite) {
+        String filtroLimite = "";
+        if(limite != null){
+            filtroLimite = " LIMIT " +limite.toString();
+        }
         List<Serie> listaSeries = new ArrayList<>();
         SQLiteDatabase sqLiteDatabase = getReadableDatabase();
-        String query = "SELECT * FROM " + TABLENAME + " ORDER BY "+ POPULARIDAD +" DESC LIMIT 10;";
+        String query = "SELECT * FROM " + TABLENAME + " ORDER BY "+ POPULARIDAD +" DESC" + filtroLimite + ";";
         Cursor cursor = sqLiteDatabase.rawQuery(query, null);
         while (cursor.moveToNext()) {
             // Creamos el objeto Serie que vamos a agregar a la lista

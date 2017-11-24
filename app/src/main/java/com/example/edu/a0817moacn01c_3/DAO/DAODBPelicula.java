@@ -105,10 +105,18 @@ public class DAODBPelicula extends DatabaseHelper {
 
         return listaPeliculas;
     }
-    public List<Pelicula> obtenerPeliculasPopulares() {
+    public List<Pelicula> obtenerPeliculasPopulares(){
+        return obtenerPeliculasPopulares(null);
+    }
+
+    public List<Pelicula> obtenerPeliculasPopulares(Integer limite) {
+        String filtroLimite = "";
+        if(limite != null){
+            filtroLimite = " LIMIT " +limite.toString();
+        }
         List<Pelicula> listaPeliculas = new ArrayList<>();
         SQLiteDatabase sqLiteDatabase = getReadableDatabase();
-        String query = "SELECT * FROM " + TABLENAME + " ORDER BY "+ POPULARIDAD +" DESC LIMIT 10;";
+        String query = "SELECT * FROM " + TABLENAME + " ORDER BY "+ POPULARIDAD +" DESC" + filtroLimite + ";";
         Cursor cursor = sqLiteDatabase.rawQuery(query, null);
         while (cursor.moveToNext()) {
 

@@ -54,7 +54,7 @@ public class ControllerContenido {
         }else{
             // estamos offline vamos directo a base de datos
             DAODBPelicula daodbPelicula = new DAODBPelicula(context);
-            List<Pelicula> listaPeliculas = daodbPelicula.obtenerTodasLasPeliculas();
+            List<Pelicula> listaPeliculas = daodbPelicula.obtenerPeliculasPopulares();
             listenerDeLaView.finish(listaPeliculas);
         }
     }
@@ -89,6 +89,12 @@ public class ControllerContenido {
                 }
             };
             daoInternetPelicula.getUpcomingPeliculas(escuchadorDelControlador);
+        }else{
+            // estamos offline vamos directo a base de datos
+            DAODBPelicula daodbPelicula = new DAODBPelicula(context);
+            List<Pelicula> listaPeliculas = daodbPelicula.obtenerTodasLasPeliculas();
+            Collections.shuffle(listaPeliculas);
+            listenerDeLaView.finish(listaPeliculas);
         }
     }
     public void getSeriesPopulares(final ResultListener<List<Serie>> listenerDeLaView){
@@ -96,10 +102,17 @@ public class ControllerContenido {
             ResultListener<List<Serie>> escuchadorDelControlador = new ResultListener<List<Serie>>() {
                 @Override
                 public void finish(List<Serie> resultado) {
+                    DAODBSerie daodbSerie = new DAODBSerie(context);
+                    daodbSerie.agregarSeries(resultado);
                     listenerDeLaView.finish(resultado);
                 }
             };
             daoInternetSerie.getSeriesPopulares(escuchadorDelControlador);
+        }else{
+            // offline
+            DAODBSerie daodbSerie = new DAODBSerie(context);
+            List<Serie> listaSeries = daodbSerie.obtenerTodasLasSeries();
+            listenerDeLaView.finish(listaSeries);
         }
     }
     public void getSeriesTopRated(final ResultListener<List<Serie>> listenerDeLaView){
@@ -111,6 +124,12 @@ public class ControllerContenido {
                 }
             };
             daoInternetSerie.getSeriesTopRate(escuchadorDelControlador);
+        }else{
+            // offline
+            DAODBSerie daodbSerie = new DAODBSerie(context);
+            List<Serie> listaSeries = daodbSerie.obtenerTodasLasSeries();
+            Collections.shuffle(listaSeries);
+            listenerDeLaView.finish(listaSeries);
         }
     }
     public void getTVAiringToday(final ResultListener<List<Serie>> listenerDeLaView){
@@ -122,6 +141,12 @@ public class ControllerContenido {
                 }
             };
             daoInternetSerie.getTVAiringToday(escuchadorDelControlador);
+        }else{
+            // offline
+            DAODBSerie daodbSerie = new DAODBSerie(context);
+            List<Serie> listaSeries = daodbSerie.obtenerTodasLasSeries();
+            Collections.shuffle(listaSeries);
+            listenerDeLaView.finish(listaSeries);
         }
     }
     public void getSerie(Integer unID, final ResultListener<Serie> listenerDeLaView){
@@ -143,8 +168,8 @@ public class ControllerContenido {
     public List<Contenido> getListaMixta(){
         DAODBSerie daodbSerie = new DAODBSerie(context);
         DAODBPelicula daodbPelicula = new DAODBPelicula(context);
-        List<Serie> listaSeriesPopulares = daodbSerie.obtenerSeriesPopulares();
-        List<Pelicula> listaPeliculasPopulares = daodbPelicula.obtenerPeliculasPopulares();
+        List<Serie> listaSeriesPopulares = daodbSerie.obtenerSeriesPopulares(10);
+        List<Pelicula> listaPeliculasPopulares = daodbPelicula.obtenerPeliculasPopulares(10);
         List<Contenido> listaMista = new ArrayList<>();
         listaMista.addAll(listaPeliculasPopulares);
         listaMista.addAll(listaSeriesPopulares);
