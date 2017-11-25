@@ -24,7 +24,7 @@
             android:name=".View.DetalleActivity"
             android:parentActivityName=".View.PachorraActivity" />
         <activity android:name=".View.PachorraActivity"
-            android:label="@string/app_name"
+            android:parentActivityName=".View.MainActivity"
             />
         <activity android:name=".View.ActivityOnBoarding"></activity>
     </application>

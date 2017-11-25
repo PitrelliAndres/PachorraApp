@@ -1,6 +1,5 @@
 package com.example.edu.a0817moacn01c_3.View;
 
-import android.app.ActionBar;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -8,6 +7,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -39,6 +39,9 @@ public class PachorraActivity extends AppCompatActivity implements PachorraFragm
 
         Toolbar toolbarPachorra = (Toolbar) findViewById(R.id.toolbar_pachorra);
         setSupportActionBar(toolbarPachorra);
+        ActionBar actionBarPachorra = getSupportActionBar();
+        actionBarPachorra.setDisplayHomeAsUpEnabled(true);
+
 
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {

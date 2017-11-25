@@ -4,8 +4,10 @@ import android.content.Intent;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.example.edu.a0817moacn01c_3.Controller.ControllerContenido;
@@ -34,6 +36,12 @@ public class DetalleActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalle);
+
+        Toolbar toolbarPachorra = (Toolbar) findViewById(R.id.toolbar_detalle);
+        setSupportActionBar(toolbarPachorra);
+        ActionBar actionBarPachorra = getSupportActionBar();
+        actionBarPachorra.setDisplayHomeAsUpEnabled(true);
+
         listaSeleccionada= new ArrayList<>();
 
         final ViewPager viewPager = (ViewPager) findViewById(R.id.viewPager_Detalles);
