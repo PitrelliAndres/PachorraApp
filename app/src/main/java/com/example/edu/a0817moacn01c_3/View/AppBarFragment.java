@@ -87,8 +87,8 @@ public class AppBarFragment extends Fragment {
         AdaptadorFragmentsViewPager adapter = new AdaptadorFragmentsViewPager(getChildFragmentManager());
 
 
-        adapter.addFragment(PachorraFragment.damePachorraFragment("peli-top"), "Top Rate Peliculas");
-        adapter.addFragment(PachorraFragment.damePachorraFragment("peli-recom"), "Peliculas Recomendadas");
+        adapter.addFragment(PachorraFragment.damePachorraFragment("peli-top"), "Top Rated \n Peliculas");
+        adapter.addFragment(PachorraFragment.damePachorraFragment("peli-recom"), "Peliculas \n Recomendadas");
         viewPager.setAdapter(adapter);
 
     }
@@ -97,8 +97,8 @@ public class AppBarFragment extends Fragment {
         AdaptadorFragmentsViewPager adapter = new AdaptadorFragmentsViewPager(getChildFragmentManager());
 
 
-        adapter.addFragment(PachorraFragment.damePachorraFragment("serie-pop"), "Series Populares");
-        adapter.addFragment(PachorraFragment.damePachorraFragment("serie-topRate"), "Series Top Rate");
+        adapter.addFragment(PachorraFragment.damePachorraFragment("serie-pop"), "Series \n Populares");
+        adapter.addFragment(PachorraFragment.damePachorraFragment("serie-topRate"), "Top Rated \n Series");
         viewPager.setAdapter(adapter);
 
     }

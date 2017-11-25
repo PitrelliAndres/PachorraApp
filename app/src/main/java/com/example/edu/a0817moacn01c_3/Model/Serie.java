@@ -21,7 +21,7 @@ public class Serie extends Contenido implements Serializable{
         tipoContenido = Contenido.SERIE;
     }
 
-    public Serie(Integer id, String nombre, String sinopsis, String urlafiche, String urlfondo, Double popularidad, String estreno, Integer duracion, String estado, Double puntuacion, Integer cantidadvotos, String type, Integer cantidadTemporadas, Integer cantidadCapitulos, String canalTV,String imbdid) {
+    public Serie(Integer id, String nombre, String sinopsis, String urlafiche, String urlfondo, Double popularidad, String estreno, Integer duracion, String estado, Double puntuacion, Integer cantidadvotos, String type, Integer cantidadTemporadas, Integer cantidadCapitulos, String canalTV) {
         super(id, nombre, sinopsis, urlafiche, urlfondo, popularidad, estreno, duracion, estado, puntuacion, cantidadvotos, Contenido.SERIE);
         this.type = type;
         this.nroSeasons = cantidadTemporadas;
@@ -43,8 +43,7 @@ public class Serie extends Contenido implements Serializable{
                 unContenido.getEstado(),
                 unContenido.getPuntuacion(),
                 unContenido.getCantidadvotos(),
-                type, nroSeasons, nroEpisodes, canalTV,
-                null
+                type, nroSeasons, nroEpisodes, canalTV
         );
         super.setTipoContenido(Contenido.SERIE);
     }
@@ -63,7 +62,6 @@ public class Serie extends Contenido implements Serializable{
         }
         return nroSeasons;
     }
-
 
     public Integer getNroEpisodios() {
         if(nroEpisodios == null){

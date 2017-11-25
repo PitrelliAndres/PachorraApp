@@ -35,7 +35,6 @@ public class DetalleFragment extends Fragment {
     private TextView episodios;
 
 
-
     public static final String TIPOCONTENIDO = "tipo de contenido";
     public static final String ID = "id";
     public static final String NOMBRE = "titulo";
@@ -57,10 +56,10 @@ public class DetalleFragment extends Fragment {
     public static final String VIDEO = "video";
 
     // Atributos adicionales Serie
-    public static final String TYPE="type";
-    public static final String NROSEASONS="nroSeasons";
-    public static final String NROEPISODES="nroEpisodes";
-    public static final String CANALTV="canaltv";
+    public static final String TYPE = "type";
+    public static final String NROSEASONS = "nroSeasons";
+    public static final String NROEPISODES = "nroEpisodes";
+    public static final String CANALTV = "canaltv";
 
     public DetalleFragment() {
         // Required empty public constructor
@@ -125,18 +124,18 @@ public class DetalleFragment extends Fragment {
         );
 
 
-        if (unBundle.get(ADULTO)!=null) {
+        if (unBundle.get(ADULTO) != null) {
             view = inflater.inflate(R.layout.fragment_detallepeliculas, container, false);
             // Construir un objeto Pelicula con un constructor que recibe un objeto Contenido + los atributos adicionales de Pelicula
 
-                unaPelicula = new Pelicula(unaPeliculaOSerie,
+            unaPelicula = new Pelicula(unaPeliculaOSerie,
 
                     unBundle.getString(TITULOORG),
                     unBundle.getBoolean(ADULTO),
                     unBundle.getString(LEMA),
                     unBundle.getString(VIDEO),
-                        unBundle.getString(IMDBID)
-                    );
+                    unBundle.getString(IMDBID)
+            );
 
             this.imagen = view.findViewById(R.id.imageView_ImagenContenidoPeliculas);
             this.imagenPortada = view.findViewById(R.id.imageview_detalleBackdropPeliculas);
@@ -154,7 +153,7 @@ public class DetalleFragment extends Fragment {
                     unBundle.getInt(NROSEASONS),
                     unBundle.getInt(NROEPISODES),
                     unBundle.getString(CANALTV)
-                    );
+            );
 
             this.imagen = view.findViewById(R.id.imageView_ImagenContenidoSeries);
             this.imagenPortada = view.findViewById(R.id.imageview_detalleBackdropSeries);
@@ -173,9 +172,9 @@ public class DetalleFragment extends Fragment {
     public void mostrarInformacion(Pelicula pelicula) {
         String imagenAfiche;
         String imagenFondo;
-        // TODO: objeto Pelicula con Generos, traer imagenes con Glide
-        imagenAfiche=TMDBHelper.getImagePoster(TMDBHelper.IMAGE_SIZE_W300,pelicula.getUrlafiche());
-        imagenFondo=TMDBHelper.getImagePoster(TMDBHelper.IMAGE_SIZE_W780,pelicula.getUrlfondo());
+        // TODO: objeto Pelicula con Generos
+        imagenAfiche = TMDBHelper.getImagePoster(TMDBHelper.IMAGE_SIZE_W300, pelicula.getUrlafiche());
+        imagenFondo = TMDBHelper.getImagePoster(TMDBHelper.IMAGE_SIZE_W780, pelicula.getUrlfondo());
         Glide.with(getContext()).load(imagenAfiche).into(imagen);
         Glide.with(getContext()).load(imagenFondo).into(imagenPortada);
 
@@ -188,17 +187,11 @@ public class DetalleFragment extends Fragment {
     }
 
     public void mostrarInformacion(Serie serie) {
-        /*
-        // TODO: objeto Pelicula con Generos, traer imagenes con Glide
-        String generoTexto = serie.getGenero().replace(", ", "\r\n");
-        imagen.setImageResource(serie.getImagen());
-        imagenPortada.setImageResource(serie.getImagenPortada());
-        */
         String imagenAfiche;
         String imagenFondo;
-        // TODO: objeto Pelicula con Generos, traer imagenes con Glide
-        imagenAfiche=TMDBHelper.getImagePoster(TMDBHelper.IMAGE_SIZE_W300,serie.getUrlafiche());
-        imagenFondo=TMDBHelper.getImagePoster(TMDBHelper.IMAGE_SIZE_W780,serie.getUrlfondo());
+        // TODO: objeto Pelicula con Generos
+        imagenAfiche = TMDBHelper.getImagePoster(TMDBHelper.IMAGE_SIZE_W300, serie.getUrlafiche());
+        imagenFondo = TMDBHelper.getImagePoster(TMDBHelper.IMAGE_SIZE_W780, serie.getUrlfondo());
         Glide.with(getContext()).load(imagenAfiche).into(imagen);
         Glide.with(getContext()).load(imagenFondo).into(imagenPortada);
         puntuacion.setText(serie.getPuntuacion().toString());
