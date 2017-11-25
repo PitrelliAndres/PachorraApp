@@ -11,7 +11,7 @@
     <item
         android:id="@+id/action_mostrarFiltros"
         android:enabled="true"
-        android:icon="@drawable/ic_filter_list_black_24dp"
+        android:icon="@drawable/ic_filter_list_24dp"
         android:title="@string/tabFiltros"
       />
     <item

@@ -10,6 +10,8 @@ import android.support.v4.view.ViewPager;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Adapter;
@@ -35,6 +37,8 @@ public class PachorraActivity extends AppCompatActivity implements PachorraFragm
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pachorra);
 
+        Toolbar toolbarPachorra = (Toolbar) findViewById(R.id.toolbar_pachorra);
+        setSupportActionBar(toolbarPachorra);
 
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -62,11 +66,8 @@ public class PachorraActivity extends AppCompatActivity implements PachorraFragm
     }
 
     @Override
-
-    //metodo para enviar la informacion de la pelicula al detalle activity
-
-    //Todo : preguntar como hacer el seralizable para pasar una lista de objetos
     public void mandarDatos(Integer position, List<Contenido> listaContenidoClickeada) {
+        //metodo para enviar la informacion de la pelicula al detalle activity
         Intent unIntent = new Intent(this,DetalleActivity.class);
 
         Bundle unBundle = new Bundle();
@@ -79,6 +80,7 @@ public class PachorraActivity extends AppCompatActivity implements PachorraFragm
     }
     public void cargarFragment(Integer tipoCargar){
         AppBarFragment appBarFragment= new AppBarFragment();
+        
 
         Bundle bundle= new Bundle();
         bundle.putInt("tipocargar",tipoCargar);
@@ -88,5 +90,11 @@ public class PachorraActivity extends AppCompatActivity implements PachorraFragm
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.contenedorfragments_pachorra,appBarFragment);
         fragmentTransaction.commit();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_appbar_pachorra, menu);
+        return true;
     }
 }

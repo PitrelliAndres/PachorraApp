@@ -5,7 +5,9 @@
     <string name="tabPeliculas">Peliculas</string>
     <string name="tabSeries">Series</string>
     <string name="tabFiltros">Inicio</string>
+    <string name="pachorraTitulo">Pachorra</string>
+    <string name="pochocleTitulo">Pochoclo</string>
+    <string name="actionFavoritos">Agregar a favoritos</string>
+    <string name="actionFiltros">Filtrar</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

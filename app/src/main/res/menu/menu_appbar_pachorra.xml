@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_mostrarFavoritos"
+        android:enabled="true"
+        android:icon="@drawable/ic_favorite_24dp"
+        android:title="@string/actionFavoritos"
+        android:iconTint="@color/colorPeliculas"
+        app:showAsAction="always"
+        />
+    <item
+        android:id="@+id/action_mostrarFiltros"
+        android:enabled="true"
+        android:icon="@drawable/ic_filter_list_24dp"
+        android:title="@string/actionFiltros"
+        android:iconTint="@color/colorPeliculas"
+        app:showAsAction="always"
+        />
+</menu>
