@@ -18,10 +18,8 @@
 
             <ImageView
                 android:id="@+id/imageview_detalleBackdropSeries"
-                android:layout_width="match_parent"
-                android:layout_height="160dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/derek_backdrop" />
+                style="@style/detalleImagenDeFondo"
+                 />
 
             <ImageView
                 android:id="@+id/imageView_ImagenContenidoSeries"

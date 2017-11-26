@@ -18,10 +18,7 @@
 
         <ImageView
             android:id="@+id/imageview_detalleBackdropPeliculas"
-            android:layout_width="match_parent"
-            android:layout_height="210dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/derek_backdrop" />
+            style="@style/detalleImagenDeFondo" />
 
         <ImageView
             android:id="@+id/imageView_ImagenContenidoPeliculas"
