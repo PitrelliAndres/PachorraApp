@@ -3,6 +3,9 @@ package com.example.edu.a0817moacn01c_3.View;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -166,6 +169,11 @@ public class DetalleFragment extends Fragment {
             mostrarInformacion(unaSerie);
 
         }
+
+        Toolbar toolbarPachorra = (Toolbar) view.findViewById(R.id.toolbar_detalle);
+        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbarPachorra);
+        ActionBar actionBarPachorra = ((AppCompatActivity) getActivity()).getSupportActionBar();
+        //actionBarPachorra.setDisplayHomeAsUpEnabled(true);
         return view;
     }
 

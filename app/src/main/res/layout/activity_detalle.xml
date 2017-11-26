@@ -15,18 +15,6 @@
 
     </android.support.v4.view.ViewPager>
 
-    <android.support.v7.widget.Toolbar
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/toolbar_detalle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:minHeight="?attr/actionBarSize"
-        app:theme="@style/ThemeOverlay.MiVieja.ActionBar"
-        app:title="@string/app_name"
-        style="@style/toolbar"
-        android:background="#11000000"
-        />
 
     <com.github.clans.fab.FloatingActionMenu
         android:id="@+id/fabDetalle"
