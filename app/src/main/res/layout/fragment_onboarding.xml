@@ -1,0 +1,45 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
+    android:padding="20dp"
+    tools:context="com.example.edu.a0817moacn01c_3.View.OnboardingFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+
+
+    <TextView
+        android:textColor="#fff"
+        android:id="@+id/textViewOnboarding"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="safsd"
+        android:layout_centerInParent="true"
+
+        />
+
+    <TextView
+        android:textColor="#fff"
+        android:id="@+id/textViewTituloONBOARDING"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="sadfasf"
+        android:layout_above="@id/textViewOnboarding"
+        android:layout_marginBottom="20dp"
+        />
+
+    <Button
+        android:id="@+id/BotonViewPager"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textViewOnboarding"
+        android:onClick="irAPantallaPrincipal"
+        android:layout_centerHorizontal="true"
+        />
+
+
+</RelativeLayout>

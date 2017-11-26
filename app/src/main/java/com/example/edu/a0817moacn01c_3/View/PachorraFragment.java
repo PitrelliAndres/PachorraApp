@@ -4,18 +4,13 @@ package com.example.edu.a0817moacn01c_3.View;
 import android.app.ActionBar;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TableLayout;
-import android.widget.TextView;
 
 import com.example.edu.a0817moacn01c_3.Controller.ControllerContenido;
 import com.example.edu.a0817moacn01c_3.Model.Contenido;
@@ -24,7 +19,6 @@ import com.example.edu.a0817moacn01c_3.Model.Serie;
 import com.example.edu.a0817moacn01c_3.R;
 import com.example.edu.a0817moacn01c_3.utils.ResultListener;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,7 +36,7 @@ public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapt
     private ActionBar aBar;
     private Bundle bundle;
     public static final String TIPOCONTENIDO= "key";
-    private  String nroContenido;
+    private  String nombreContenido;
 
     public PachorraFragment()
     // Required empty public constructor
@@ -57,7 +51,7 @@ public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapt
 
     public static PachorraFragment damePachorraFragment(String tipo) {
         Bundle topBundle = new Bundle();
-        topBundle.putString("key",tipo);
+        topBundle.putString(TIPOCONTENIDO,tipo);
         PachorraFragment pachorraFragment = new PachorraFragment();
         pachorraFragment.setArguments(topBundle);
 
@@ -76,40 +70,49 @@ public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapt
 
 
         unRecyclerView.setLayoutManager(unLayoutManager);
-        unAdapter = new PeliculasRecyclerAdapter(new ArrayList<Contenido>(), getContext(), this);
+        unRecyclerView.setHasFixedSize(true);
         // 3: Adapter con recycler
+        unAdapter = new PeliculasRecyclerAdapter(new ArrayList<Contenido>(), getContext(), this);
         unRecyclerView.setAdapter(unAdapter);
-        controllerContenido = new ControllerContenido(getContext());
-        updatePeliculas();
-
-
-      unRecyclerView.setHasFixedSize(true);
+        // 3: Adapter con recycler
            bundle = getArguments();
-           nroContenido = bundle.getString(TIPOCONTENIDO);
-            switch (nroContenido) {
+           nombreContenido = bundle.getString(TIPOCONTENIDO);
+            switch (nombreContenido) {
                 case "peli-recom":
-                    unAdapter = new PeliculasRecyclerAdapter(new ArrayList<Contenido>(), getContext(), this);
-                    // 3: Adapter con recycler
-                    unRecyclerView.setAdapter(unAdapter);
+
                     controllerContenido = new ControllerContenido(getContext());
-                    updatePeliculas();
+                    updatePeliculasPopulares();
                     break;
                 case "peli-top":
-                    unAdapter = new PeliculasRecyclerAdapter(new ArrayList<Contenido>(), getContext(), this);
-                    // 3: Adapter con recycler
-                    unRecyclerView.setAdapter(unAdapter);
+
                     controllerContenido = new ControllerContenido(getContext());
                    // viewpagerContenido(viewPager);
                    // tabs.setupWithViewPager(viewPager);
-                    updateSeries();
+                    updatePeliculasUpcoming();
+                    break;
+                case "serie-topRate":
 
-
+                    controllerContenido = new ControllerContenido(getContext());
+                    // viewpagerContenido(viewPager);
+                    // tabs.setupWithViewPager(viewPager);
+                    updateSeriesTopRated();
+                    break;
+                case "serie-pop":
+                    controllerContenido = new ControllerContenido(getContext());
+                    // viewpagerContenido(viewPager);
+                    // tabs.setupWithViewPager(viewPager);
+                    updateSeriesPopulares();
+                    break;
+                case "mixto":
+                    controllerContenido = new ControllerContenido(getContext());
+                    updateListaMixta();
 
             }
 
         return view;
 
     }
+
 
 
     @Override
@@ -122,7 +125,7 @@ public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapt
         public void mandarDatos(Integer position, List<Contenido> listaContenidoClickeada);
    }
 
-    private void updatePeliculas() {
+    private void updatePeliculasPopulares() {
 
         controllerContenido.getPeliculasPopulares(new ResultListener<List<Pelicula>>() {
             @Override
@@ -136,21 +139,23 @@ public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapt
 
             }
         });
-/*        controllerContenido.getUpcomingPeliculas(new ResultListener<List<Pelicula>>() {
+    }
+    private void updatePeliculasUpcoming(){
+     controllerContenido.getUpcomingPeliculas(new ResultListener<List<Pelicula>>() {
             @Override
             public void finish(List<Pelicula> resultado) {
 
                 List<Contenido> blablub = new ArrayList<>();
                 blablub.addAll(resultado);
 
-                unAdapter2.setListaContenidos(blablub);
-                unAdapter2.notifyDataSetChanged();
+                unAdapter.setListaContenidos(blablub);
+                unAdapter.notifyDataSetChanged();
 
             }
-        });*/
+        });
 
     }
-    private void updateSeries(){
+    private void updateSeriesPopulares(){
         controllerContenido.getSeriesPopulares(new ResultListener<List<Serie>>() {
             @Override
             public void finish(List<Serie> resultado) {
@@ -161,26 +166,34 @@ public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapt
 
             }
         });
-/*        controllerContenido.getSeriesTopRate(new ResultListener<List<Serie>>() {
+    }
+    private void updateSeriesTopRated(){
+       controllerContenido.getSeriesTopRated(new ResultListener<List<Serie>>() {
             @Override
             public void finish(List<Serie> resultado) {
                 List<Contenido>blablud= new ArrayList<>();
                 blablud.addAll(resultado);
-                unAdapter2.setListaContenidos(blablud);
-                unAdapter2.notifyDataSetChanged();
+                unAdapter.setListaContenidos(blablud);
+                unAdapter.notifyDataSetChanged();
 
             }
         });
+        }
+    private void updateSeriesTVAiringToday(){
         controllerContenido.getTVAiringToday(new ResultListener<List<Serie>>() {
             @Override
             public void finish(List<Serie> resultado) {
                 List<Contenido>blablud= new ArrayList<>();
                 blablud.addAll(resultado);
-                unAdapter3.setListaContenidos(blablud);
-                unAdapter3.notifyDataSetChanged();
+                unAdapter.setListaContenidos(blablud);
+                unAdapter.notifyDataSetChanged();
 
             }
-        });*/
+        });
     }
 
+    private void updateListaMixta() {
+        unAdapter.setListaContenidos(controllerContenido.getListaMixta());
+        unAdapter.notifyDataSetChanged();
+    }
 }

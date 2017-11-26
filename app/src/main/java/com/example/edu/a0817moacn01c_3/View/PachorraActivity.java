@@ -1,6 +1,5 @@
 package com.example.edu.a0817moacn01c_3.View;
 
-import android.app.ActionBar;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -8,8 +7,11 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Adapter;
@@ -35,21 +37,26 @@ public class PachorraActivity extends AppCompatActivity implements PachorraFragm
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pachorra);
 
+        Toolbar toolbarPachorra = (Toolbar) findViewById(R.id.toolbar_pachorra);
+        setSupportActionBar(toolbarPachorra);
+        ActionBar actionBarPachorra = getSupportActionBar();
+        actionBarPachorra.setDisplayHomeAsUpEnabled(true);
+
 
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
                     @Override
                     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                        Integer i = item.getOrder();
+                        Integer i = item.getItemId();
                         switch (i){
-                            case 0:
-                                cargarFragment();
+                            case R.id.action_mostrarSoloPeliculas:
+                                cargarFragment(0);
                                 break;
-                            case 1:
-                                cargarFragment();
+                            case R.id.action_mostrarFiltros:
+                                cargarFragment(1);
                                 break;
-                            case 2:
-                                cargarFragment();
+                            case R.id.action_mostrarSoloSeries:
+                                cargarFragment(2);
                                 break;
                         }
 
@@ -57,14 +64,13 @@ public class PachorraActivity extends AppCompatActivity implements PachorraFragm
                     }
                 }
         );
+
+        cargarFragment(1);
     }
 
     @Override
-
-    //metodo para enviar la informacion de la pelicula al detalle activity
-
-    //Todo : preguntar como hacer el seralizable para pasar una lista de objetos
     public void mandarDatos(Integer position, List<Contenido> listaContenidoClickeada) {
+        //metodo para enviar la informacion de la pelicula al detalle activity
         Intent unIntent = new Intent(this,DetalleActivity.class);
 
         Bundle unBundle = new Bundle();
@@ -75,17 +81,23 @@ public class PachorraActivity extends AppCompatActivity implements PachorraFragm
         startActivity(unIntent);
 
     }
-    public void cargarFragment(){
+    public void cargarFragment(Integer tipoCargar){
         AppBarFragment appBarFragment= new AppBarFragment();
+        
+
+        Bundle bundle= new Bundle();
+        bundle.putInt("tipocargar",tipoCargar);
+        appBarFragment.setArguments(bundle);
 
         FragmentManager fragmentManager = getSupportFragmentManager();
-
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-
         fragmentTransaction.replace(R.id.contenedorfragments_pachorra,appBarFragment);
-
-
-
         fragmentTransaction.commit();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_appbar_pachorra, menu);
+        return true;
     }
 }

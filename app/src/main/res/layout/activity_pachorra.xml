@@ -6,6 +6,18 @@
     android:layout_height="match_parent"
     tools:context="com.example.edu.a0817moacn01c_3.View.PachorraActivity">
 
+    <android.support.v7.widget.Toolbar
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/toolbar_pachorra"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="?attr/actionBarSize"
+        app:theme="@style/ThemeOverlay.MiVieja.ActionBar"
+        app:title="@string/app_name"
+        style="@style/toolbar"
+        />
+
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
@@ -22,6 +34,7 @@
         android:id="@+id/contenedorfragments_pachorra"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@id/toolbar_pachorra"
         android:layout_above="@id/bottom_navigation"
         >
 

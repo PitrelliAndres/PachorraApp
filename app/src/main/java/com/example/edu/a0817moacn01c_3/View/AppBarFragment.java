@@ -20,7 +20,7 @@ import java.util.List;
  * A simple {@link Fragment} subclass.
  */
 public class AppBarFragment extends Fragment {
-
+    private Integer nroContenido;
     private AdaptadorFragmentsViewPager tAdapter;
     public AppBarFragment() {
         // Required empty public constructor
@@ -35,7 +35,19 @@ public class AppBarFragment extends Fragment {
         tAdapter = new AdaptadorFragmentsViewPager(getFragmentManager());
         ViewPager viewPager= (ViewPager)view.findViewById(R.id.viewpager);
         TabLayout tabs= (TabLayout) view.findViewById(R.id.result_tabs);
-        viewpagerPelicula(viewPager);
+        Bundle bundle= getArguments();
+        nroContenido= bundle.getInt("tipocargar");
+        switch (nroContenido){
+            case 0:
+                viewpagerPelicula(viewPager);
+                break;
+            case 1:
+                viewpagerMixto(viewPager);
+                break;
+            case 2:
+                viewpagerSerie(viewPager);
+                break;
+        }
         tabs.setupWithViewPager(viewPager);
 
          return view;
@@ -75,8 +87,8 @@ public class AppBarFragment extends Fragment {
         AdaptadorFragmentsViewPager adapter = new AdaptadorFragmentsViewPager(getChildFragmentManager());
 
 
-        adapter.addFragment(PachorraFragment.damePachorraFragment("peli-top"), "Top Rate Peliculas");
-        adapter.addFragment(PachorraFragment.damePachorraFragment("peli-recom"), "Peliculas Recomendadas");
+        adapter.addFragment(PachorraFragment.damePachorraFragment("peli-top"), "Top Rated \n Peliculas");
+        adapter.addFragment(PachorraFragment.damePachorraFragment("peli-recom"), "Peliculas \n Recomendadas");
         viewPager.setAdapter(adapter);
 
     }
@@ -85,15 +97,15 @@ public class AppBarFragment extends Fragment {
         AdaptadorFragmentsViewPager adapter = new AdaptadorFragmentsViewPager(getChildFragmentManager());
 
 
-        adapter.addFragment(PachorraFragment.damePachorraFragment("serie-top"), "Top Rate Series");
-        adapter.addFragment(PachorraFragment.damePachorraFragment("serie-recom"), "Series Recomendadas");
+        adapter.addFragment(PachorraFragment.damePachorraFragment("serie-pop"), "Series \n Populares");
+        adapter.addFragment(PachorraFragment.damePachorraFragment("serie-topRate"), "Top Rated \n Series");
         viewPager.setAdapter(adapter);
 
     }
     private void viewpagerMixto(ViewPager viewPager) {
 
         AdaptadorFragmentsViewPager adapter = new AdaptadorFragmentsViewPager(getChildFragmentManager());
-        adapter.addFragment(new AppBarFragment(), "Recomendado del Dia");
+        adapter.addFragment(PachorraFragment.damePachorraFragment("mixto"), "Recomendado del Dia");
 
         viewPager.setAdapter(adapter);
 

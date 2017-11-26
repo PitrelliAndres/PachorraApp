@@ -1,11 +1,26 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <!--<item name="actionBarStyle">@style/appbar</item>-->
+    </style>
+
+    <style name="toolbar" parent="Widget.AppCompat.ActionBar">
+        <item name="android:titleTextStyle">@style/appbarTitulo</item>
+        <item name="elevation">4dp</item>
+        <item name="android:background">@color/colorPrimary</item>
+    </style>
+    <style name="appbarTitulo" parent="TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse">
+        <item name="android:textColor">#ddffffff</item>
+        <item name="android:background">@color/cardview_light_background</item>
+    </style>
+
+    <style name="ThemeOverlay.MiVieja.ActionBar" parent="ThemeOverlay.AppCompat.ActionBar">
+        <item name="android:textColorPrimary">#ddffffff</item>
     </style>
 
     <style name="detalleAfiche">

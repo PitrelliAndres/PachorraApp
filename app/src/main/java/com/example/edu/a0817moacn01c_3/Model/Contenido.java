@@ -34,6 +34,7 @@ public class Contenido implements Serializable{
     }
 
     public Contenido(Integer id, String nombre, String sinopsis, String urlafiche, String urlfondo, Double popularidad, String estreno, Integer duracion, String estado, Double puntuacion, Integer cantidadvotos, String tipoContenido) {
+        if(estreno.equals("")){estreno = "0000-00-00";}
         this.id = id;
         this.nombre = nombre;
         this.sinopsis = sinopsis;
@@ -45,7 +46,7 @@ public class Contenido implements Serializable{
         this.estado = estado;
         this.puntuacion = puntuacion;
         this.cantidadvotos = cantidadvotos;
-        if(estreno==null){this.year = "0";}else{this.year = estreno.substring(0,4);}
+        if(estreno==null){this.year = "0";}else{this.year = this.estreno.substring(0,4);}
         this.tipoContenido = tipoContenido;
 
     }

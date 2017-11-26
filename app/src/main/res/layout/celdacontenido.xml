@@ -14,6 +14,7 @@
         android:layout_marginTop="@dimen/espacioStd"
         android:paddingBottom="@dimen/espacioS"
         app:cardCornerRadius="@dimen/espacioS"
+        app:cardPreventCornerOverlap="false"
         app:cardElevation="2dp">
 <RelativeLayout
     android:layout_width="match_parent"

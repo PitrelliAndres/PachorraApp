@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.example.edu.a0817moacn01c_3.Model.Pelicula;
+import com.example.edu.a0817moacn01c_3.Model.Serie;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -78,31 +79,62 @@ public class DAODBPelicula extends DatabaseHelper {
         String query = "SELECT * FROM " + TABLENAME + ";";
         Cursor cursor = sqLiteDatabase.rawQuery(query, null);
         while (cursor.moveToNext()) {
-
-                Pelicula unaPelicula = new Pelicula(
-                    cursor.getInt(cursor.getColumnIndex(ID)),
-                    cursor.getString(cursor.getColumnIndex(NOMBRE)),
-                    cursor.getString(cursor.getColumnIndex(SINOPSIS)),
-                    cursor.getString(cursor.getColumnIndex(URLAFICHE)),
-                    cursor.getString(cursor.getColumnIndex(URLFONDO)),
-                    cursor.getDouble(cursor.getColumnIndex(POPULARIDAD)),
-                    cursor.getString(cursor.getColumnIndex(ESTRENO)),
-                    cursor.getInt(cursor.getColumnIndex(DURACION)),
-                    cursor.getString(cursor.getColumnIndex(ESTADO)),
-                    cursor.getDouble(cursor.getColumnIndex(PUNTUACION)),
-                    cursor.getInt(cursor.getColumnIndex(CANTIDADVOTOS)),
-                        cursor.getString(cursor.getColumnIndex(TITULOORG)),
-                        (cursor.getInt(cursor.getColumnIndex(ADULTO))==1),
-                        cursor.getString(cursor.getColumnIndex(LEMA)),
-                        cursor.getString(cursor.getColumnIndex(VIDEO)),
-                    cursor.getString(cursor.getColumnIndex(IMDBID))
-
-            );
-            listaPeliculas.add(unaPelicula);
+            listaPeliculas.add(cursorAPelicula(cursor));
         }
         cursor.close();
         sqLiteDatabase.close();
 
         return listaPeliculas;
+    }
+    public List<Pelicula> obtenerPeliculasPopulares(){
+        return obtenerPeliculasPopulares(null);
+    }
+
+    public List<Pelicula> obtenerPeliculasPopulares(Integer limite) {
+        String filtroLimite = "";
+        if(limite != null){
+            filtroLimite = " LIMIT " +limite.toString();
+        }
+        List<Pelicula> listaPeliculas = new ArrayList<>();
+        SQLiteDatabase sqLiteDatabase = getReadableDatabase();
+        String query = "SELECT * FROM " + TABLENAME + " ORDER BY "+ POPULARIDAD +" DESC" + filtroLimite + ";";
+        Cursor cursor = sqLiteDatabase.rawQuery(query, null);
+        while (cursor.moveToNext()) {
+            listaPeliculas.add(cursorAPelicula(cursor));
+        }
+        cursor.close();
+        sqLiteDatabase.close();
+
+        return listaPeliculas;
+    }
+    public Pelicula obtenerPeliculaPorID(Integer unID){
+        SQLiteDatabase sqLiteDatabase = getReadableDatabase();
+        String query = "SELECT * FROM " + TABLENAME + " WHERE " + ID + "=" + unID + ";";
+        Cursor cursor = sqLiteDatabase.rawQuery(query, null);
+        cursor.moveToFirst();
+        // Creamos el objeto Serie que vamos a agregar a la lista
+        return cursorAPelicula(cursor);
+    }
+    private Pelicula cursorAPelicula(Cursor cursor){
+        Pelicula unaPelicula = new Pelicula(
+                cursor.getInt(cursor.getColumnIndex(ID)),
+                cursor.getString(cursor.getColumnIndex(NOMBRE)),
+                cursor.getString(cursor.getColumnIndex(SINOPSIS)),
+                cursor.getString(cursor.getColumnIndex(URLAFICHE)),
+                cursor.getString(cursor.getColumnIndex(URLFONDO)),
+                cursor.getDouble(cursor.getColumnIndex(POPULARIDAD)),
+                cursor.getString(cursor.getColumnIndex(ESTRENO)),
+                cursor.getInt(cursor.getColumnIndex(DURACION)),
+                cursor.getString(cursor.getColumnIndex(ESTADO)),
+                cursor.getDouble(cursor.getColumnIndex(PUNTUACION)),
+                cursor.getInt(cursor.getColumnIndex(CANTIDADVOTOS)),
+                cursor.getString(cursor.getColumnIndex(TITULOORG)),
+                (cursor.getInt(cursor.getColumnIndex(ADULTO))==1),
+                cursor.getString(cursor.getColumnIndex(LEMA)),
+                cursor.getString(cursor.getColumnIndex(VIDEO)),
+                cursor.getString(cursor.getColumnIndex(IMDBID))
+
+        );
+        return unaPelicula;
     }
 }
