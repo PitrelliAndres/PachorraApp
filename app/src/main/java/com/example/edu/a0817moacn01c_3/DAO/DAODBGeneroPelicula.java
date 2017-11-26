@@ -6,13 +6,13 @@ import android.content.Context;
  * Created by ma on 13/11/17.
  */
 
-public class DAODBGenero extends DatabaseHelper{
-    public static final String TABLENAME = "generos";
+public class DAODBGeneroPelicula extends DatabaseHelper{
+    public static final String TABLENAME = "generos_peliculas";
 
     public static final String ID = "id";
     public static final String NAME = "nombre";
 
-    public DAODBGenero(Context context) {
+    public DAODBGeneroPelicula(Context context) {
         super(context);
     }
 }
