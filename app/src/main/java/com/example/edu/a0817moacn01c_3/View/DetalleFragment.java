@@ -82,12 +82,6 @@ public class DetalleFragment extends Fragment {
         unBundle.putString(ESTADO, unContenido.getEstado());
         unBundle.putInt(CANTIDADVOTOS, unContenido.getCantidadvotos());
         unBundle.putString(TYPE, unContenido.getTipoContenido());
-        /*if(unContenido.getAdulto().equals(null)){
-            unBundle.putBoolean(ADULTO, unContenido.getAdulto());
-            }*/
-
-        //Log.v(DetalleActivity.LISTASELECCIONADA,unBundle.getSerializable(DetalleActivity.LISTASELECCIONADA).toString());
-
         if (unContenido.getTipoContenido().equals(Contenido.PELICULA)) {
             Pelicula unapelicula = (Pelicula) unContenido;
             unBundle.putBoolean(ADULTO, unapelicula.getAdulto());
@@ -104,7 +98,6 @@ public class DetalleFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        // Inflar el layout para este fragment
         View view;
 
         Bundle unBundle = getArguments();
@@ -126,7 +119,6 @@ public class DetalleFragment extends Fragment {
 
         if (unBundle.get(ADULTO) != null) {
             view = inflater.inflate(R.layout.fragment_detallepeliculas, container, false);
-            // Construir un objeto Pelicula con un constructor que recibe un objeto Contenido + los atributos adicionales de Pelicula
 
             unaPelicula = new Pelicula(unaPeliculaOSerie,
 
