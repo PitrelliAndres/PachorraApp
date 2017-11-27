@@ -40,6 +40,12 @@
         <item name="android:textColor">@color/colorAccent</item>
         <item name="android:textSize">@dimen/textoEspecial</item>
     </style>
+    <style name="detalleImagenDeFondo">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">210dp</item>
+        <item name="android:scaleType">centerCrop</item>
+        <item name="android:src">@drawable/derek_backdrop</item>
+    </style>
 
     <style name="infoAficheLista">
         <item name="android:orientation">horizontal</item>

@@ -48,8 +48,8 @@ public class DAODBPelicula extends DatabaseHelper {
 
     public void agregarPeliculas(List<Pelicula> listaPeliculas) {
         SQLiteDatabase sqLiteDatabase = getWritableDatabase();
-
         for (Pelicula unaPelicula : listaPeliculas) {
+            Boolean esNueva = !yaExiste(TABLENAME, ID, unaPelicula.getId().toString());
             ContentValues row = new ContentValues();
             row.put(ID, unaPelicula.getId());
             row.put(TITULOORG, unaPelicula.getTituloorg());
@@ -67,7 +67,11 @@ public class DAODBPelicula extends DatabaseHelper {
             row.put(PUNTUACION, unaPelicula.getPuntuacion());
             row.put(CANTIDADVOTOS, unaPelicula.getCantidadvotos());
             row.put(IMDBID, unaPelicula.getImbdid());
-            sqLiteDatabase.insert(TABLENAME, null, row);
+            if (esNueva) {
+                sqLiteDatabase.insert(TABLENAME, null, row);
+            } else {
+                sqLiteDatabase.update(TABLENAME, row, ID + "=?", new String[]{unaPelicula.getId().toString()});
+            }
         }
 
         sqLiteDatabase.close();
@@ -86,18 +90,19 @@ public class DAODBPelicula extends DatabaseHelper {
 
         return listaPeliculas;
     }
-    public List<Pelicula> obtenerPeliculasPopulares(){
+
+    public List<Pelicula> obtenerPeliculasPopulares() {
         return obtenerPeliculasPopulares(null);
     }
 
     public List<Pelicula> obtenerPeliculasPopulares(Integer limite) {
         String filtroLimite = "";
-        if(limite != null){
-            filtroLimite = " LIMIT " +limite.toString();
+        if (limite != null) {
+            filtroLimite = " LIMIT " + limite.toString();
         }
         List<Pelicula> listaPeliculas = new ArrayList<>();
         SQLiteDatabase sqLiteDatabase = getReadableDatabase();
-        String query = "SELECT * FROM " + TABLENAME + " ORDER BY "+ POPULARIDAD +" DESC" + filtroLimite + ";";
+        String query = "SELECT * FROM " + TABLENAME + " ORDER BY " + POPULARIDAD + " DESC" + filtroLimite + ";";
         Cursor cursor = sqLiteDatabase.rawQuery(query, null);
         while (cursor.moveToNext()) {
             listaPeliculas.add(cursorAPelicula(cursor));
@@ -107,7 +112,8 @@ public class DAODBPelicula extends DatabaseHelper {
 
         return listaPeliculas;
     }
-    public Pelicula obtenerPeliculaPorID(Integer unID){
+
+    public Pelicula obtenerPeliculaPorID(Integer unID) {
         SQLiteDatabase sqLiteDatabase = getReadableDatabase();
         String query = "SELECT * FROM " + TABLENAME + " WHERE " + ID + "=" + unID + ";";
         Cursor cursor = sqLiteDatabase.rawQuery(query, null);
@@ -115,7 +121,8 @@ public class DAODBPelicula extends DatabaseHelper {
         // Creamos el objeto Serie que vamos a agregar a la lista
         return cursorAPelicula(cursor);
     }
-    private Pelicula cursorAPelicula(Cursor cursor){
+
+    private Pelicula cursorAPelicula(Cursor cursor) {
         Pelicula unaPelicula = new Pelicula(
                 cursor.getInt(cursor.getColumnIndex(ID)),
                 cursor.getString(cursor.getColumnIndex(NOMBRE)),
@@ -129,7 +136,7 @@ public class DAODBPelicula extends DatabaseHelper {
                 cursor.getDouble(cursor.getColumnIndex(PUNTUACION)),
                 cursor.getInt(cursor.getColumnIndex(CANTIDADVOTOS)),
                 cursor.getString(cursor.getColumnIndex(TITULOORG)),
-                (cursor.getInt(cursor.getColumnIndex(ADULTO))==1),
+                (cursor.getInt(cursor.getColumnIndex(ADULTO)) == 1),
                 cursor.getString(cursor.getColumnIndex(LEMA)),
                 cursor.getString(cursor.getColumnIndex(VIDEO)),
                 cursor.getString(cursor.getColumnIndex(IMDBID))

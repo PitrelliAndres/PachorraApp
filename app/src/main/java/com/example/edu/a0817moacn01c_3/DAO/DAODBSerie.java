@@ -47,6 +47,7 @@ public class DAODBSerie extends DatabaseHelper {
     public void agregarSeries(List<Serie> listaSeries) {
         SQLiteDatabase sqLiteDatabase = getWritableDatabase();
         for (Serie unaSerie : listaSeries) {
+            Boolean esNueva = !yaExiste(TABLENAME, ID, unaSerie.getId().toString());
             ContentValues row = new ContentValues();
             row.put(ID, unaSerie.getId());
             row.put(NOMBRE, unaSerie.getNombre());
@@ -64,6 +65,11 @@ public class DAODBSerie extends DatabaseHelper {
             row.put(SINOPSIS, unaSerie.getSinopsis());
             row.put(POPULARIDAD, unaSerie.getPopularidad());
             sqLiteDatabase.insert(TABLENAME, null, row);
+            if (esNueva) {
+                sqLiteDatabase.insert(TABLENAME, null, row);
+            } else {
+                sqLiteDatabase.update(TABLENAME, row, ID + "=?", new String[]{unaSerie.getId().toString()});
+            }
         }
 
         sqLiteDatabase.close();
@@ -83,17 +89,19 @@ public class DAODBSerie extends DatabaseHelper {
         sqLiteDatabase.close();
         return listaSeries;
     }
-    public List<Serie> obtenerSeriesPopulares(){
+
+    public List<Serie> obtenerSeriesPopulares() {
         return obtenerSeriesPopulares(null);
     }
+
     public List<Serie> obtenerSeriesPopulares(Integer limite) {
         String filtroLimite = "";
-        if(limite != null){
-            filtroLimite = " LIMIT " +limite.toString();
+        if (limite != null) {
+            filtroLimite = " LIMIT " + limite.toString();
         }
         List<Serie> listaSeries = new ArrayList<>();
         SQLiteDatabase sqLiteDatabase = getReadableDatabase();
-        String query = "SELECT * FROM " + TABLENAME + " ORDER BY "+ POPULARIDAD +" DESC" + filtroLimite + ";";
+        String query = "SELECT * FROM " + TABLENAME + " ORDER BY " + POPULARIDAD + " DESC" + filtroLimite + ";";
         Cursor cursor = sqLiteDatabase.rawQuery(query, null);
         while (cursor.moveToNext()) {
             // Creamos el objeto Serie que vamos a agregar a la lista
@@ -104,16 +112,16 @@ public class DAODBSerie extends DatabaseHelper {
         return listaSeries;
     }
 
-    public Serie obtenerSeriePorID(Integer unID){
+    public Serie obtenerSeriePorID(Integer unID) {
         SQLiteDatabase sqLiteDatabase = getReadableDatabase();
         String query = "SELECT * FROM " + TABLENAME + " WHERE " + ID + "=" + unID + ";";
         Cursor cursor = sqLiteDatabase.rawQuery(query, null);
         cursor.moveToFirst();
-            // Creamos el objeto Serie que vamos a agregar a la lista
+        // Creamos el objeto Serie que vamos a agregar a la lista
         return cursorASerie(cursor);
     }
 
-    public Serie cursorASerie(Cursor cursor){
+    public Serie cursorASerie(Cursor cursor) {
         Serie unaSerie = new Serie(
                 cursor.getInt(cursor.getColumnIndex(ID)),
                 cursor.getString(cursor.getColumnIndex(NOMBRE)),

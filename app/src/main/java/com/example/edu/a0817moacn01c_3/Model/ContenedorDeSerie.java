@@ -11,6 +11,18 @@ import java.util.List;
 public class ContenedorDeSerie {
     @SerializedName("results")
     List<Serie> contenidos;
+    private String idLista;
+    private String nombreLista;
+
+    public ContenedorDeSerie(List<Serie> contenidos) {
+        this.contenidos = contenidos;
+    }
+
+    public ContenedorDeSerie(List<Serie> contenidos, String idLista, String nombreLista) {
+        this.contenidos = contenidos;
+        this.idLista = idLista;
+        this.nombreLista = nombreLista;
+    }
 
     public List<Serie> getContenidos(){
         return contenidos;

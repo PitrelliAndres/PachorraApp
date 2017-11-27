@@ -29,11 +29,7 @@ import java.util.List;
 public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapter.ContenidoClickeable {
     private PeliculasRecyclerAdapter unAdapter;
     private NotificadorDatos escuchadorPelicula;
-    private PeliculasRecyclerAdapter unAdapter2;
-    private PeliculasRecyclerAdapter unAdapter3;
     private ControllerContenido controllerContenido;
-    private ViewPager vPager;
-    private ActionBar aBar;
     private Bundle bundle;
     public static final String TIPOCONTENIDO= "key";
     private  String nombreContenido;
@@ -86,26 +82,24 @@ public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapt
                 case "peli-top":
 
                     controllerContenido = new ControllerContenido(getContext());
-                   // viewpagerContenido(viewPager);
-                   // tabs.setupWithViewPager(viewPager);
                     updatePeliculasUpcoming();
                     break;
                 case "serie-topRate":
 
                     controllerContenido = new ControllerContenido(getContext());
-                    // viewpagerContenido(viewPager);
-                    // tabs.setupWithViewPager(viewPager);
                     updateSeriesTopRated();
                     break;
                 case "serie-pop":
                     controllerContenido = new ControllerContenido(getContext());
-                    // viewpagerContenido(viewPager);
-                    // tabs.setupWithViewPager(viewPager);
                     updateSeriesPopulares();
                     break;
                 case "mixto":
                     controllerContenido = new ControllerContenido(getContext());
                     updateListaMixta();
+                    break;
+                case "favoritos":
+                    controllerContenido = new ControllerContenido(getContext());
+                    updateSeriesPopulares();
 
             }
 

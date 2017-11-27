@@ -22,8 +22,6 @@ public class OnboardingFragment extends Fragment {
     private String segundoString;
     private Button unButton;
 
-
-
     public OnboardingFragment() {
         // Required empty public constructor
     }

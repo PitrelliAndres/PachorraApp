@@ -15,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Adapter;
+import android.widget.Button;
 
 import com.example.edu.a0817moacn01c_3.Model.Contenido;
 import com.example.edu.a0817moacn01c_3.R;
@@ -39,8 +40,9 @@ public class PachorraActivity extends AppCompatActivity implements PachorraFragm
 
         Toolbar toolbarPachorra = (Toolbar) findViewById(R.id.toolbar_pachorra);
         setSupportActionBar(toolbarPachorra);
-        ActionBar actionBarPachorra = getSupportActionBar();
-        actionBarPachorra.setDisplayHomeAsUpEnabled(true);
+        actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
 
 
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
@@ -99,5 +101,23 @@ public class PachorraActivity extends AppCompatActivity implements PachorraFragm
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_appbar_pachorra, menu);
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()){
+            case R.id.action_mostrarFavoritos:
+                PachorraFragment pachorraFragment= new PachorraFragment();
+                Bundle bundle = new Bundle();
+                bundle.putString(PachorraFragment.TIPOCONTENIDO,"favoritos");
+                pachorraFragment.setArguments(bundle);
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.contenedorfragments_pachorra,pachorraFragment);
+                fragmentTransaction.commit();
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

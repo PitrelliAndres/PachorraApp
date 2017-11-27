@@ -3,13 +3,18 @@ package com.example.edu.a0817moacn01c_3.View;
 import android.content.Context;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.edu.a0817moacn01c_3.Controller.ControllerContenido;
 import com.example.edu.a0817moacn01c_3.Model.Contenido;
 import com.example.edu.a0817moacn01c_3.R;
 import com.example.edu.a0817moacn01c_3.utils.TMDBHelper;
@@ -58,6 +63,14 @@ public class PeliculasRecyclerAdapter extends RecyclerView.Adapter implements Se
                 contenidoClickeable.mandarSeleccion(position,listaContenidos);
             }
         });
+
+        peliculasViewHolder.botonFavoritos.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view){
+                ControllerContenido controllerContenido= new ControllerContenido();
+                controllerContenido.agregarFavoritos(peliculas,contexto);
+            }
+        });
+
     }
 
     @Override
@@ -72,6 +85,7 @@ public class PeliculasRecyclerAdapter extends RecyclerView.Adapter implements Se
         private ImageView iconoContenido;
         private TextView tituloContenido;
         private String urlImagenAfiche;
+        private Button botonFavoritos;
 
         public PeliculasViewHolder(View itemView){
             super(itemView);
@@ -79,6 +93,8 @@ public class PeliculasRecyclerAdapter extends RecyclerView.Adapter implements Se
             cardPeli=itemView.findViewById(R.id.cardview_ImagenPelicula);
             iconoContenido = itemView.findViewById(R.id.imageView_IconoContenido);
             tituloContenido = itemView.findViewById(R.id.textView_tituloContenido);
+            botonFavoritos= itemView.findViewById(R.id.button_agregar_favoritos);
+
         }
         public void cargarContenido(Contenido unContenido){
             Integer icono;
