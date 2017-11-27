@@ -12,12 +12,12 @@ import java.util.List;
  * Created by Administrador on 26/11/2017.
  */
 
-public class DAODBListasContenidos extends DatabaseHelper{
+public class DAODBListaContenido extends DatabaseHelper{
     public static final String TABLENAME = "listas_contenidos";
     public static final String IDLISTA = "id_lista";
     public static final String IDITEM = "id_contenido";
 
-    public DAODBListasContenidos(Context context) {
+    public DAODBListaContenido(Context context) {
         super(context);
     }
 

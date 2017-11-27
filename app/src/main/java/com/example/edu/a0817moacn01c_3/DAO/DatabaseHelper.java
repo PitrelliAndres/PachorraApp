@@ -4,7 +4,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,15 +67,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + DAODBSerie.SINOPSIS + " TEXT, "
                 + DAODBSerie.POPULARIDAD + " REAL)");
 
-        tablasACrear.add("CREATE TABLE " + DAODBListas.TABLENAME + " ("
-                + DAODBListas.ID + " TEXT PRIMARY KEY, "
-                + DAODBListas.NOMBRE + " TEXT, "
-                + DAODBListas.TIPOCONTENIDO + " TEXT NOT NULL)");
+        tablasACrear.add("CREATE TABLE " + DAODBLista.TABLENAME + " ("
+                + DAODBLista.ID + " TEXT PRIMARY KEY, "
+                + DAODBLista.NOMBRE + " TEXT, "
+                + DAODBLista.TIPOCONTENIDO + " TEXT NOT NULL)");
 
-         tablasACrear.add("CREATE TABLE " + DAODBListasContenidos.TABLENAME + " ("
-                 + DAODBListasContenidos.IDLISTA + " TEXT, "
-                 + DAODBListasContenidos.IDITEM  + " INTEGER NOT NULL,"
-                 + " PRIMARY KEY (" + DAODBListasContenidos.IDLISTA + ", " + DAODBListasContenidos.IDITEM + ")"
+         tablasACrear.add("CREATE TABLE " + DAODBListaContenido.TABLENAME + " ("
+                 + DAODBListaContenido.IDLISTA + " TEXT, "
+                 + DAODBListaContenido.IDITEM  + " INTEGER NOT NULL,"
+                 + " PRIMARY KEY (" + DAODBListaContenido.IDLISTA + ", " + DAODBListaContenido.IDITEM + ")"
                  + ")");
 
         iniciarTablasBD(tablasACrear);

@@ -1,17 +1,17 @@
 package com.example.edu.a0817moacn01c_3.Controller;
 
 import android.content.Context;
-import android.support.v4.content.ContextCompat;
-import android.view.ContextMenu;
 import android.widget.Toast;
 
-import com.example.edu.a0817moacn01c_3.DAO.DAOContenido;
+import com.example.edu.a0817moacn01c_3.DAO.DAODBLista;
+import com.example.edu.a0817moacn01c_3.DAO.DAODBListaContenido;
 import com.example.edu.a0817moacn01c_3.DAO.DAODBPelicula;
 import com.example.edu.a0817moacn01c_3.DAO.DAODBSerie;
 import com.example.edu.a0817moacn01c_3.DAO.DAOInternetPelicula;
 import com.example.edu.a0817moacn01c_3.DAO.DAOInternetSerie;
 import com.example.edu.a0817moacn01c_3.DAO.DatabaseHelper;
 import com.example.edu.a0817moacn01c_3.Model.Contenido;
+import com.example.edu.a0817moacn01c_3.Model.Lista;
 import com.example.edu.a0817moacn01c_3.Model.Pelicula;
 import com.example.edu.a0817moacn01c_3.Model.Serie;
 import com.example.edu.a0817moacn01c_3.R;
@@ -177,6 +177,27 @@ public class ControllerContenido {
         Collections.shuffle(listaMista);
         return listaMista;
     }
+
+    public void agregarFavoritos (Contenido contenido,Context contexto){
+        DAODBLista daodbLista = new DAODBLista(contexto);
+        DAODBListaContenido daodbListaContenido = new DAODBListaContenido(contexto);
+        String favoritos;
+        switch(contenido.getTipoContenido()){
+            case Contenido.PELICULA:
+                favoritos = Lista.FAVORITOSPELICULA;
+                break;
+            case Contenido.SERIE:
+                favoritos = Lista.FAVORITOSSERIE;
+                break;
+            default:
+                return;
+        }
+        daodbLista.crearLista(favoritos,"Favoritos",contenido.getTipoContenido());
+        daodbListaContenido.agregarItemALista(favoritos,contenido.getId());
+        System.out.println("Se agrego a favoritos " + contenido.getId() + contenido.getTipoContenido()+contenido.getNombre());
+        Toast.makeText(contexto, "Se agrego a favoritos " + contenido.getId() + contenido.getTipoContenido()+contenido.getNombre() , Toast.LENGTH_SHORT).show();
+    }
+
     public Integer getColor(Contenido contenido){
         Integer color;
         switch (contenido.getTipoContenido()){
@@ -192,11 +213,6 @@ public class ControllerContenido {
         }
 
         return color;
-    }
-
-    public void agregarFavoritos (Contenido contenido,Context contexto){
-        System.out.println("Se agrego a favoritos" + contenido.getId() + contenido.getTipoContenido()+contenido.getNombre());
-        Toast.makeText(contexto, "Se agrego a favoritos" + contenido.getId() + contenido.getTipoContenido()+contenido.getNombre() , Toast.LENGTH_SHORT).show();
     }
 
 
