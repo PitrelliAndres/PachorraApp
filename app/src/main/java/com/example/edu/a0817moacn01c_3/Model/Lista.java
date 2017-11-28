@@ -5,6 +5,8 @@ package com.example.edu.a0817moacn01c_3.Model;
  */
 
 public class Lista {
+    public static final String FAVORITOSPELICULA = "favoritos peliculas";
+    public static final String FAVORITOSSERIE = "favoritos series";
     private String idLista;
     private String nombreLista;
     private String tipoContenido;
