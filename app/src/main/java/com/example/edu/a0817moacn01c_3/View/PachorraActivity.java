@@ -54,7 +54,7 @@ public class PachorraActivity extends AppCompatActivity implements PachorraFragm
                             case R.id.action_mostrarSoloPeliculas:
                                 cargarFragment(0);
                                 break;
-                            case R.id.action_mostrarFiltros:
+                            case R.id.action_mostrarMixto:
                                 cargarFragment(1);
                                 break;
                             case R.id.action_mostrarSoloSeries:
@@ -105,16 +105,24 @@ public class PachorraActivity extends AppCompatActivity implements PachorraFragm
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
+        FragmentManager fragmentManager;
+        FragmentTransaction fragmentTransaction;
         switch (item.getItemId()){
             case R.id.action_mostrarFavoritos:
                 PachorraFragment pachorraFragment= new PachorraFragment();
                 Bundle bundle = new Bundle();
                 bundle.putString(PachorraFragment.TIPOCONTENIDO,"favoritos");
                 pachorraFragment.setArguments(bundle);
-                FragmentManager fragmentManager = getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentManager = getSupportFragmentManager();
+                fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.contenedorfragments_pachorra,pachorraFragment);
+                fragmentTransaction.commit();
+                break;
+            case R.id.action_mostrarFiltros:
+                FiltrosFragment filtrosFragment= new FiltrosFragment();
+                fragmentManager = getSupportFragmentManager();
+                fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.contenedorfragments_pachorra,filtrosFragment);
                 fragmentTransaction.commit();
         }
 
