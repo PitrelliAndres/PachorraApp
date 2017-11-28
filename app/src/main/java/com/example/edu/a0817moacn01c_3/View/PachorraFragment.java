@@ -100,7 +100,9 @@ public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapt
                 case "favoritos":
                     controllerContenido = new ControllerContenido(getContext());
                     updateSeriesPopulares();
-
+                case "filtro":
+                    controllerContenido = new ControllerContenido(getContext());
+                    unAdapter.setListaContenidos(controllerContenido.getListaFiltrada());
             }
 
         return view;
@@ -115,9 +117,14 @@ public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapt
         escuchadorPelicula.mandarDatos(position, listaContenidoClickeada);
     }
 
+
+
     public interface NotificadorDatos {
         public void mandarDatos(Integer position, List<Contenido> listaContenidoClickeada);
-   }
+    }
+
+
+
 
     private void updatePeliculasPopulares() {
 
@@ -190,4 +197,5 @@ public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapt
         unAdapter.setListaContenidos(controllerContenido.getListaMixta());
         unAdapter.notifyDataSetChanged();
     }
+
 }

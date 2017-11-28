@@ -214,7 +214,14 @@ public class ControllerContenido {
 
         return color;
     }
+    public List<Contenido> getListaFiltrada(String genero,String tipoContenido, Integer fecha){
+        DAODBSerie daodbSerie = new DAODBSerie(context);
+        List<Serie> listaSeries = daodbSerie.obtenerTodasLasSeries();
+        List<Contenido> blablub = new ArrayList<>();
+        blablub.addAll(listaSeries);
+        return blablub;
 
+    }
 
 }
 

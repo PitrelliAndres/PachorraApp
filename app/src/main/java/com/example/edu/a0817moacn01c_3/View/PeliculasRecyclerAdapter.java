@@ -124,5 +124,6 @@ public class PeliculasRecyclerAdapter extends RecyclerView.Adapter implements Se
     public interface ContenidoClickeable{
         public void mandarSeleccion(Integer position,List<Contenido> listaContenidoClickeada);
 
+
     }
 }

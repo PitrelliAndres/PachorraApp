@@ -3,6 +3,7 @@ package com.example.edu.a0817moacn01c_3.View;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
@@ -19,19 +20,22 @@ import android.widget.Button;
 
 import com.example.edu.a0817moacn01c_3.Model.Contenido;
 import com.example.edu.a0817moacn01c_3.R;
+import com.example.edu.a0817moacn01c_3.View.FiltrosFragment.ContenidoFiltrado;
 import com.google.gson.Gson;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PachorraActivity extends AppCompatActivity implements PachorraFragment.NotificadorDatos,Serializable{
+public class PachorraActivity extends AppCompatActivity implements PachorraFragment.NotificadorDatos,Serializable,ContenidoFiltrado{
     private BottomNavigationView bottomNavigationView;
     public static final String tituloFragmentPeliculas = "Peliculas";
     public static final String tituloFragmentSeries = "Series";
     public static final String tituloFragmentMixto = "Inicio";
     private ViewPager viewPager;
     private ActionBar actionBar;
+    private AppBarFragment appBarFragment;
+    Fragment fragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,21 +48,22 @@ public class PachorraActivity extends AppCompatActivity implements PachorraFragm
         actionBar.setDisplayHomeAsUpEnabled(true);
 
 
-
+        appBarFragment = new AppBarFragment();
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-                    @Override
+
+            @Override
                     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                         Integer i = item.getItemId();
                         switch (i){
                             case R.id.action_mostrarSoloPeliculas:
-                                cargarFragment(0);
+                                cargarFragment(0,appBarFragment);
                                 break;
                             case R.id.action_mostrarMixto:
-                                cargarFragment(1);
+                                cargarFragment(1,appBarFragment);
                                 break;
                             case R.id.action_mostrarSoloSeries:
-                                cargarFragment(2);
+                                cargarFragment(2,appBarFragment);
                                 break;
                         }
 
@@ -67,7 +72,7 @@ public class PachorraActivity extends AppCompatActivity implements PachorraFragm
                 }
         );
 
-        cargarFragment(1);
+        cargarFragment(1,appBarFragment);
     }
 
     @Override
@@ -83,20 +88,30 @@ public class PachorraActivity extends AppCompatActivity implements PachorraFragm
         startActivity(unIntent);
 
     }
-    public void cargarFragment(Integer tipoCargar){
-        AppBarFragment appBarFragment= new AppBarFragment();
-        
+    public void cargarFragment(Integer tipoCargar,Fragment fragment){
 
         Bundle bundle= new Bundle();
         bundle.putInt("tipocargar",tipoCargar);
-        appBarFragment.setArguments(bundle);
+        fragment.setArguments(bundle);
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.contenedorfragments_pachorra,appBarFragment);
+        fragmentTransaction.replace(R.id.contenedorfragments_pachorra,fragment);
         fragmentTransaction.commit();
     }
-
+public void cargarFragmentFiltrado(String genero,String contenido,Integer fecha){
+    Bundle bundle= new Bundle();
+    bundle.putString(PachorraFragment.TIPOCONTENIDO,"filtro");
+    bundle.putString("genero",genero);
+    bundle.putString("contenido",contenido);
+    bundle.putInt("fecha",fecha);
+    PachorraFragment pachorraFragment = new PachorraFragment();
+    FragmentManager fragmentManager = getSupportFragmentManager();
+    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+    fragmentTransaction.replace(R.id.contenedorfragments_pachorra,pachorraFragment);
+    pachorraFragment.setArguments(bundle);
+    fragmentTransaction.commit();
+}
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_appbar_pachorra, menu);
@@ -128,4 +143,11 @@ public class PachorraActivity extends AppCompatActivity implements PachorraFragm
 
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    public void mandarSeleccionFiltrada(String genero,String contenido,Integer fecha) {
+        cargarFragmentFiltrado(genero,contenido,fecha);
+
+    }
+
 }
