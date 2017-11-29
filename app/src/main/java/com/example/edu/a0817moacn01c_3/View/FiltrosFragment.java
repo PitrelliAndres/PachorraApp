@@ -43,8 +43,8 @@ public class FiltrosFragment extends Fragment {
                              Bundle savedInstanceState) {
       View view =inflater.inflate(R.layout.fragment_filtros, container, false);
         spinnerGenero = (Spinner) view.findViewById(R.id.spinner_genero);
-        spinnerTipoContenido= view.findViewById(R.id.spinner_tipoContenido);
-        fecha= view.findViewById(R.id.editext_introducir_fecha);
+        spinnerTipoContenido= (Spinner)view.findViewById(R.id.spinner_tipoContenido);
+        fecha=(EditText) view.findViewById(R.id.editext_introducir_fecha);
 // Create an ArrayAdapter using the string array and a default spinner layout
 
         ArrayAdapter<String> adapter1 = new ArrayAdapter(getContext(),android.R.layout.simple_spinner_item ,contenido);
@@ -55,7 +55,7 @@ public class FiltrosFragment extends Fragment {
 
         spinnerGenero.setAdapter(adapter);
         spinnerTipoContenido.setAdapter(adapter1);
-        botonFiltrar= view.findViewById(R.id.boton_filtrar);
+        botonFiltrar=(Button) view.findViewById(R.id.boton_filtrar);
 
 
         botonFiltrar.setOnClickListener(new View.OnClickListener(){

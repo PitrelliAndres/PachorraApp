@@ -61,7 +61,7 @@ public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapt
         View view = inflater.inflate(R.layout.fragment_pachorra, container, false);
         
 
-        RecyclerView unRecyclerView = view.findViewById(R.id.recyclerPachorra);
+        RecyclerView unRecyclerView =(RecyclerView) view.findViewById(R.id.recyclerPachorra);
         GridLayoutManager unLayoutManager = new GridLayoutManager(getContext(), 3, GridLayoutManager.VERTICAL, false);
 
 

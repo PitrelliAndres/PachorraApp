@@ -5,9 +5,9 @@
         android:id="@+id/action_mostrarSoloPeliculas"
         android:enabled="true"
         android:icon="@drawable/ic_peliculas_24dp"
-        android:title="@string/tabPeliculas"
-        android:iconTint="@color/colorPeliculas"
-      />
+        android:title="@string/tabPeliculas"/>
+       // android:iconTint="@color/colorPeliculas"
+
     <item
         android:id="@+id/action_mostrarMixto"
         android:enabled="true"
@@ -18,7 +18,7 @@
         android:id="@+id/action_mostrarSoloSeries"
         android:enabled="true"
         android:icon="@drawable/ic_series_24dp"
-        android:title="@string/tabSeries"
-        android:iconTint="@color/colorSeries"
-    />
+        android:title="@string/tabSeries"/>
+       // android:iconTint="@color/colorSeries"
+
 </menu>

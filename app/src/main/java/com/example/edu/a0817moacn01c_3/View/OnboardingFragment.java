@@ -43,9 +43,9 @@ public class OnboardingFragment extends Fragment {
 
        Bundle unBundle = getArguments();
        Integer posicion=unBundle.getInt("posicion");
-        unTextView=view.findViewById(R.id.textViewTituloONBOARDING);
-        segundoTextView =view.findViewById(R.id.textViewOnboarding);
-        unButton=view.findViewById(R.id.BotonViewPager);
+        unTextView=(TextView)view.findViewById(R.id.textViewTituloONBOARDING);
+        segundoTextView =(TextView)view.findViewById(R.id.textViewOnboarding);
+        unButton=(Button)view.findViewById(R.id.BotonViewPager);
 
        switch (posicion){
            case 0 :
