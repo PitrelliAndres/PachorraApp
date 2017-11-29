@@ -34,8 +34,7 @@ public class PachorraActivity extends AppCompatActivity implements PachorraFragm
     public static final String tituloFragmentMixto = "Inicio";
     private ViewPager viewPager;
     private ActionBar actionBar;
-    private AppBarFragment appBarFragment;
-    Fragment fragment;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +47,7 @@ public class PachorraActivity extends AppCompatActivity implements PachorraFragm
         actionBar.setDisplayHomeAsUpEnabled(true);
 
 
-        appBarFragment = new AppBarFragment();
+
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -57,13 +56,13 @@ public class PachorraActivity extends AppCompatActivity implements PachorraFragm
                         Integer i = item.getItemId();
                         switch (i){
                             case R.id.action_mostrarSoloPeliculas:
-                                cargarFragment(0,appBarFragment);
+                                cargarFragment(0);
                                 break;
                             case R.id.action_mostrarMixto:
-                                cargarFragment(1,appBarFragment);
+                                cargarFragment(1);
                                 break;
                             case R.id.action_mostrarSoloSeries:
-                                cargarFragment(2,appBarFragment);
+                                cargarFragment(2);
                                 break;
                         }
 
@@ -72,7 +71,7 @@ public class PachorraActivity extends AppCompatActivity implements PachorraFragm
                 }
         );
 
-        cargarFragment(1,appBarFragment);
+        cargarFragment(1);
     }
 
     @Override
@@ -88,15 +87,15 @@ public class PachorraActivity extends AppCompatActivity implements PachorraFragm
         startActivity(unIntent);
 
     }
-    public void cargarFragment(Integer tipoCargar,Fragment fragment){
-
+    public void cargarFragment(Integer tipoCargar){
+        AppBarFragment appBarFragment = new AppBarFragment();
         Bundle bundle= new Bundle();
         bundle.putInt("tipocargar",tipoCargar);
-        fragment.setArguments(bundle);
+        appBarFragment.setArguments(bundle);
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.contenedorfragments_pachorra,fragment);
+        fragmentTransaction.replace(R.id.contenedorfragments_pachorra,appBarFragment);
         fragmentTransaction.commit();
     }
 public void cargarFragmentFiltrado(String genero,String contenido,Integer fecha){
