@@ -1,6 +1,7 @@
 package com.example.edu.a0817moacn01c_3.Controller;
 
 import android.content.Context;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.example.edu.a0817moacn01c_3.DAO.DAODBLista;
@@ -216,9 +217,10 @@ public class ControllerContenido {
     }
     public List<Contenido> getListaFiltrada(String genero,String tipoContenido, Integer fecha){
         DAODBSerie daodbSerie = new DAODBSerie(context);
-        List<Serie> listaSeries = daodbSerie.obtenerTodasLasSeries();
+        List<Serie> listaSeries = daodbSerie.obtenerSeriesFiltradas(genero, tipoContenido, fecha);
         List<Contenido> blablub = new ArrayList<>();
         blablub.addAll(listaSeries);
+        Log.v("Filtrado:", listaSeries.size()+"");
         return blablub;
 
     }

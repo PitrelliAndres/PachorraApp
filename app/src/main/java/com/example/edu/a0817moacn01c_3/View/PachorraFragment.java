@@ -102,7 +102,11 @@ public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapt
                     updateSeriesPopulares();
                 case "filtro":
                     controllerContenido = new ControllerContenido(getContext());
-                    unAdapter.setListaContenidos(controllerContenido.getListaFiltrada());
+
+                    String genero = bundle.getString("genero");
+                    String contenido = bundle.getString("contenido");
+                    Integer fecha = bundle.getInt("fecha");
+                    unAdapter.setListaContenidos(controllerContenido.getListaFiltrada(genero,contenido,fecha));
             }
 
         return view;

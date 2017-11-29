@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.example.edu.a0817moacn01c_3.Model.Pelicula;
 import com.example.edu.a0817moacn01c_3.Model.Serie;
@@ -121,6 +122,32 @@ public class DAODBSerie extends DatabaseHelper {
         return cursorASerie(cursor);
     }
 
+    public List<Serie> obtenerSeriesFiltradas(String genero, String tipoContenido, Integer fecha) {
+        List<Serie> listaSeries = new ArrayList<>();
+        SQLiteDatabase sqLiteDatabase = getReadableDatabase();
+
+        String query = "SELECT * FROM "+TABLENAME+
+                " WHERE " + FECHAESTRENO + " LIKE '%" + fecha.toString() + "%';"
+                ;
+        /*
+        String query = "SELECT s.*, g."+DAODBGeneroSerie.NAME+" FROM "+TABLENAME+ " s, " + DAODBGeneroSerie.TABLENAME + " g " +
+                "WHERE g." + DAODBGeneroSerie.ID +" = s."+ID +
+                " AND g." + DAODBGeneroSerie.NAME +" = '"+ genero +"'" +
+                " AND s." + FECHAESTRENO + " LIKE '" + fecha.toString() + "%';"
+                ;
+        */
+        Cursor cursor = sqLiteDatabase.rawQuery(query, null);
+        while (cursor.moveToNext()) {
+            // Creamos el objeto Serie que vamos a agregar a la lista
+            listaSeries.add(cursorASerie(cursor));
+        }
+        cursor.close();
+        sqLiteDatabase.close();
+        Log.d("Query",query);
+        return listaSeries;
+    }
+
+
     public Serie cursorASerie(Cursor cursor) {
         Serie unaSerie = new Serie(
                 cursor.getInt(cursor.getColumnIndex(ID)),
@@ -141,6 +168,4 @@ public class DAODBSerie extends DatabaseHelper {
         );
         return unaSerie;
     }
-
-
 }
