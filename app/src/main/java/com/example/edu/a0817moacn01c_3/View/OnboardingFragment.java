@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,6 +36,9 @@ public class OnboardingFragment extends Fragment {
     private String segundoString;
     private Button unButton;
     private CallbackManager callbackManager;
+    private ImageView imageView;
+    private TextView qtPintaHoy;
+    private String tituloArriba;
 
     public OnboardingFragment() {
         // Required empty public constructor
@@ -53,35 +58,53 @@ public class OnboardingFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view =  inflater.inflate(R.layout.fragment_onboarding, container, false);
-  //      callbackManager = CallbackManager.Factory.create();
+       callbackManager = CallbackManager.Factory.create();
        Bundle unBundle = getArguments();
        Integer posicion=unBundle.getInt("posicion");
         unTextView=(TextView)view.findViewById(R.id.textViewTituloONBOARDING);
         segundoTextView =(TextView)view.findViewById(R.id.textViewOnboarding);
         unButton=(Button)view.findViewById(R.id.BotonViewPager);
-     //   LoginButton loginButton = (LoginButton) view.findViewById(R.id.botonFacebook);
+        imageView=(ImageView)view.findViewById(R.id.imagen_onboarding);
+        LoginButton loginButton = (LoginButton) view.findViewById(R.id.botonFacebook);
+        RelativeLayout fondoOnboarding = (RelativeLayout) view.findViewById(R.id.fondo_onboarding);
+        qtPintaHoy = (TextView)view.findViewById(R.id.textview_TITULO_sin_Cambio);
 
        switch (posicion){
            case 0 :
 
-          unString = "BIENVENIDOS A PACHORRAPP";
-          segundoString= " Si tenes ganas de quedarte en tu casa este dia, pachorra es ideal para vos. Podes ver nuestras recomendaciones, guardar tus favoritos o chusmear cuales son las tendencias";
+          unString = "SOLO PACHORREAR";
+          segundoString= "Tene tus series y peliculas favoritas al alcance de tu mano";
+               tituloArriba="¿Que te pinta hoy...?";
                unTextView.setText(unString);
                segundoTextView.setText(segundoString);
-               unButton.setText("Saltearse los pasos e ir a la pantalla principal");
-             //loginButton.setVisibility(View.GONE);
+               unButton.setText("Omitir");
+               qtPintaHoy.setText(tituloArriba);
+
+             loginButton.setVisibility(View.GONE);
+               imageView.setImageResource(R.drawable.pachorra);
        break;
            case 1 :
-               segundoString="Pero si hoy estas mas sociable pochoclo es tu pantalla. Podes organizar salidas con tus amigos, ver sus actividades, pedir alguna recomendacion o darla";
+               tituloArriba="¿Que te pinta hoy...?";
+               unString = "CLAVATE UN POCHOCLO";
+               segundoString="Podes organizar salidas con tus amigos, ver sus actividades, pedir alguna recomendacion o darla";
             segundoTextView.setText(segundoString);
-               unButton.setText("Saltearse los pasos e ir a la pantalla principal");
-               //loginButton.setVisibility(View.GONE);
+               unTextView.setText(unString);
+               unButton.setText("Omitir");
+               qtPintaHoy.setText(tituloArriba);
+               loginButton.setVisibility(View.GONE);
+               imageView.setImageResource(R.drawable.cine);
+
+               fondoOnboarding.setBackgroundResource(R.color.colorAccent);
                break;
            case 2 :
+               unString = "CONECTATE CON TUS AMIGOS";
                segundoString="Para tener una experiencia mas satifactoria conectate con facebook";
                segundoTextView.setText(segundoString);
-               unButton.setText("Saltar esto");
-               /*loginButton.setReadPermissions("email");
+               unButton.setText("Ahora no");
+               unTextView.setText(unString);
+               imageView.setImageResource(R.drawable.ic_people_black_24dp);
+               fondoOnboarding.setBackgroundResource(R.color.colorPrimary);
+               loginButton.setReadPermissions("email");
                loginButton.setFragment(this);
                loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
                    @Override
@@ -102,7 +125,7 @@ public class OnboardingFragment extends Fragment {
                        // App code
                        Toast.makeText(getContext(), exception.toString(), Toast.LENGTH_SHORT).show();
                    }
-               });*/
+               });
                break;
 
 
@@ -110,7 +133,7 @@ public class OnboardingFragment extends Fragment {
         return view;
     }
 
-/*    @Override
+   @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         callbackManager.onActivityResult(requestCode, resultCode, data);
@@ -140,7 +163,7 @@ public class OnboardingFragment extends Fragment {
         parameters.putString("fields", "id,name,link");
         request.setParameters(parameters);
         request.executeAsync();
-    }*/
+    }
 
 
 }
