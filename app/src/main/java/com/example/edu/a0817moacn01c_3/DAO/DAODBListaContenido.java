@@ -13,6 +13,7 @@ import java.util.List;
  */
 
 public class DAODBListaContenido extends DatabaseHelper{
+    // para la tabla que une serie o pelicula con un id de lista (relacion muchos a muchos entre listas y contenidos)
     public static final String TABLENAME = "listas_contenidos";
     public static final String IDLISTA = "id_lista";
     public static final String IDITEM = "id_contenido";
@@ -21,7 +22,7 @@ public class DAODBListaContenido extends DatabaseHelper{
         super(context);
     }
 
-    public void agregarItemsDeListaEntera(String idLista, List<Integer> items){
+    public void sobreescribirLista(String idLista, List<Integer> items){
         SQLiteDatabase db = getWritableDatabase();
         // Borrar todos y agregar los nuevos
         db.delete(TABLENAME, IDLISTA + "='?'", new String[]{idLista});
@@ -43,7 +44,7 @@ public class DAODBListaContenido extends DatabaseHelper{
         db.close();
     }
 
-    public List<Integer> obtenerListaporID(String idLista){
+    public List<Integer> obtenerListaDeContenidosPorID(String idLista){
         List<Integer> listaItems = new ArrayList<>();
         SQLiteDatabase db = getReadableDatabase();
         String query = "SELECT " + IDITEM + " FROM " + TABLENAME + " WHERE " + IDLISTA + "='" + idLista + "';";

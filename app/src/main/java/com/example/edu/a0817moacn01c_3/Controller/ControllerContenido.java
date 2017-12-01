@@ -196,7 +196,73 @@ public class ControllerContenido {
         daodbLista.crearLista(favoritos,"Favoritos",contenido.getTipoContenido());
         daodbListaContenido.agregarItemALista(favoritos,contenido.getId());
         System.out.println("Se agrego a favoritos " + contenido.getId() + contenido.getTipoContenido()+contenido.getNombre());
-        Toast.makeText(contexto, "Se agrego a favoritos " + contenido.getId() + contenido.getTipoContenido()+contenido.getNombre() , Toast.LENGTH_SHORT).show();
+        Toast.makeText(contexto, "¡Listo!, tu " + contenido.getTipoContenido() + " '" + contenido.getNombre()+"' se agrego a favoritos.", Toast.LENGTH_SHORT).show();
+    }
+
+    public List<Serie> getSeriesFavoritas(){
+        List<Integer> listaIDs = getLista(Lista.FAVORITOSSERIE);
+        DAODBSerie daodbSerie = new DAODBSerie(context);
+        return daodbSerie.obtenerSeriePorID(listaIDs);
+    }
+    public List<Pelicula> getPeliculasFavoritas(){
+        List<Integer> listaIDs = getLista(Lista.FAVORITOSPELICULA);
+        DAODBPelicula daodbPelicula = new DAODBPelicula(context);
+        return daodbPelicula.obtenerPeliculaPorID(listaIDs);
+    }
+    public List<Contenido> getFavoritos(){
+        List<Contenido> listaFavoritos = new ArrayList<>();
+        listaFavoritos.addAll(getSeriesFavoritas());
+        listaFavoritos.addAll(getPeliculasFavoritas());
+        return listaFavoritos;
+    }
+
+    public List<Integer> getLista(String idLista){
+        //consultar DAO DB Lista Contenidos por los IDs que estan en una lista
+        DAODBListaContenido daodbListaContenido = new DAODBListaContenido(context);
+        return daodbListaContenido.obtenerListaDeContenidosPorID(idLista);
+    }
+
+    public List<Contenido> getListaFiltrada(String genero,String tipoContenido, Integer fecha){
+        List<Contenido> blablub = new ArrayList<>();
+        List<Serie> listaSeries = new ArrayList<>();
+        List<Pelicula> listaPeliculas = new ArrayList<>();
+        DAODBSerie daodbSerie = new DAODBSerie(context);
+        DAODBPelicula daodbPelicula = new DAODBPelicula(context);
+        switch (tipoContenido){
+            case Contenido.SERIE:
+                listaSeries = daodbSerie.obtenerSeriesFiltradas(genero, fecha);
+                blablub.addAll(listaSeries);
+                break;
+            case Contenido.PELICULA:
+                listaPeliculas = daodbPelicula.obtenerPeliculasFiltradas(genero, fecha);
+                blablub.addAll(listaPeliculas);
+                break;
+            default:
+                listaSeries = daodbSerie.obtenerSeriesFiltradas(genero, fecha);
+                listaPeliculas = daodbPelicula.obtenerPeliculasFiltradas(genero, fecha);
+                blablub.addAll(listaSeries);
+                blablub.addAll(listaPeliculas);
+                break;
+        }
+        return blablub;
+    }
+
+    public String[] getGenerosNombres() {
+        List<String> lista = new ArrayList<>();
+        lista.add("Acción");
+        lista.add("Aventura");
+        lista.add("Documental");
+        lista.add("Romance");
+        lista.add("Ciencia ficción");
+        lista.add("Western");
+        return lista.toArray(new String[lista.size()]);
+    }
+
+    public String[] getTiposDeContenido() {
+        List<String>tiposDeContenido = new ArrayList<>();
+        tiposDeContenido.add(Contenido.PELICULA);
+        tiposDeContenido.add(Contenido.SERIE);
+        return tiposDeContenido.toArray(new String[tiposDeContenido.size()]);
     }
 
     public Integer getColor(Contenido contenido){
@@ -215,16 +281,6 @@ public class ControllerContenido {
 
         return color;
     }
-    public List<Contenido> getListaFiltrada(String genero,String tipoContenido, Integer fecha){
-        DAODBSerie daodbSerie = new DAODBSerie(context);
-        List<Serie> listaSeries = daodbSerie.obtenerSeriesFiltradas(genero, tipoContenido, fecha);
-        List<Contenido> blablub = new ArrayList<>();
-        blablub.addAll(listaSeries);
-        Log.v("Filtrado:", listaSeries.size()+"");
-        return blablub;
-
-    }
-
 }
 
 

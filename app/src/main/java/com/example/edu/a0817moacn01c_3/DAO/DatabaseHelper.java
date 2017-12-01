@@ -43,12 +43,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + DAODBPelicula.PUNTUACION + " REAL, "
                 + DAODBPelicula.CANTIDADVOTOS + " INTEGER)");
 
-        tablasACrear.add("CREATE TABLE " + DAODBGeneroSerie.TABLENAME + " ("
-                + DAODBGeneroSerie.ID + " INTEGER PRIMARY KEY, "
-                + DAODBGeneroSerie.NAME + "TEXT NOT NULL)");
-        tablasACrear.add("CREATE TABLE " + DAODBGeneroPelicula.TABLENAME + " ("
-                + DAODBGeneroPelicula.ID + " INTEGER PRIMARY KEY, "
-                + DAODBGeneroPelicula.NAME + "TEXT NOT NULL)");
+        tablasACrear.add("CREATE TABLE " + DAODBGenero.TABLENAME + " ("
+                + DAODBGenero.ID + " INTEGER PRIMARY KEY, "
+                + DAODBGenero.NAME + "TEXT NOT NULL)");
 
         tablasACrear.add("CREATE TABLE " + DAODBSerie.TABLENAME + " ("
                 + DAODBSerie.ID + " INTEGER PRIMARY KEY, "

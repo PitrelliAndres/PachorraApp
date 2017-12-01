@@ -112,7 +112,6 @@ public class DAODBSerie extends DatabaseHelper {
         sqLiteDatabase.close();
         return listaSeries;
     }
-
     public Serie obtenerSeriePorID(Integer unID) {
         SQLiteDatabase sqLiteDatabase = getReadableDatabase();
         String query = "SELECT * FROM " + TABLENAME + " WHERE " + ID + "=" + unID + ";";
@@ -121,8 +120,23 @@ public class DAODBSerie extends DatabaseHelper {
         // Creamos el objeto Serie que vamos a agregar a la lista
         return cursorASerie(cursor);
     }
+    public List<Serie> obtenerSeriePorID(List<Integer> listaIDs){
+        List<Serie> listaSeries = new ArrayList<>();
+        SQLiteDatabase sqliteDatabase = getReadableDatabase();
+        String ids = "";
+        for (Integer ID:listaIDs) {
+            ids += ID + ",";
+        }
+        ids.substring(0,ids.length()-1);
+        String query = "SELECT * FROM "+TABLENAME+" WHERE "+ID+" IN("+ids+");";
+        Cursor cursor = sqliteDatabase.rawQuery(query, null);
+        while (cursor.moveToNext()){
+            listaSeries.add(cursorASerie(cursor));
+        }
+        return listaSeries;
+    }
 
-    public List<Serie> obtenerSeriesFiltradas(String genero, String tipoContenido, Integer fecha) {
+    public List<Serie> obtenerSeriesFiltradas(String genero, Integer fecha) {
         List<Serie> listaSeries = new ArrayList<>();
         SQLiteDatabase sqLiteDatabase = getReadableDatabase();
 
@@ -130,9 +144,9 @@ public class DAODBSerie extends DatabaseHelper {
                 " WHERE " + FECHAESTRENO + " LIKE '%" + fecha.toString() + "%';"
                 ;
         /*
-        String query = "SELECT s.*, g."+DAODBGeneroSerie.NAME+" FROM "+TABLENAME+ " s, " + DAODBGeneroSerie.TABLENAME + " g " +
-                "WHERE g." + DAODBGeneroSerie.ID +" = s."+ID +
-                " AND g." + DAODBGeneroSerie.NAME +" = '"+ genero +"'" +
+        String query = "SELECT s.*, g."+DAODBGenero.NAME+" FROM "+TABLENAME+ " s, " + DAODBGenero.TABLENAME + " g " +
+                "WHERE g." + DAODBGenero.ID +" = s."+ID +
+                " AND g." + DAODBGenero.NAME +" = '"+ genero +"'" +
                 " AND s." + FECHAESTRENO + " LIKE '" + fecha.toString() + "%';"
                 ;
         */

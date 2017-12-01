@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import com.example.edu.a0817moacn01c_3.Model.Pelicula;
 import com.example.edu.a0817moacn01c_3.Model.Serie;
@@ -113,6 +114,22 @@ public class DAODBPelicula extends DatabaseHelper {
         return listaPeliculas;
     }
 
+    public List<Pelicula> obtenerPeliculaPorID(List<Integer> listaIDs){
+        List<Pelicula> listaPeliculas = new ArrayList<>();
+        SQLiteDatabase sqliteDatabase = getReadableDatabase();
+        String ids = "";
+        for (Integer ID:listaIDs) {
+            ids += ID + ",";
+        }
+        ids.substring(0,ids.length()-1);
+        String query = "SELECT * FROM "+TABLENAME+" WHERE "+ID+" IN("+ids+");";
+        Cursor cursor = sqliteDatabase.rawQuery(query, null);
+        while (cursor.moveToNext()){
+            listaPeliculas.add(cursorAPelicula(cursor));
+        }
+        return listaPeliculas;
+    }
+
     public Pelicula obtenerPeliculaPorID(Integer unID) {
         SQLiteDatabase sqLiteDatabase = getReadableDatabase();
         String query = "SELECT * FROM " + TABLENAME + " WHERE " + ID + "=" + unID + ";";
@@ -144,4 +161,30 @@ public class DAODBPelicula extends DatabaseHelper {
         );
         return unaPelicula;
     }
+
+    public List<Pelicula> obtenerPeliculasFiltradas(String genero, Integer fecha) {
+        List<Pelicula> lista = new ArrayList<>();
+        SQLiteDatabase sqLiteDatabase = getReadableDatabase();
+
+        String query = "SELECT * FROM " + TABLENAME +
+                " WHERE " + ESTRENO + " LIKE '%" + fecha.toString() + "%';";
+
+        /*
+        String query = "SELECT s.*, g."+DAODBGenero.NAME+" FROM "+TABLENAME+ " s, " + DAODBGenero.TABLENAME + " g " +
+                "WHERE g." + DAODBGenero.ID +" = s."+ID +
+                " AND g." + DAODBGenero.NAME +" = '"+ genero +"'" +
+                " AND s." + ESTRENO + " LIKE '" + fecha.toString() + "%';"
+                ;
+        */
+
+        Cursor cursor = sqLiteDatabase.rawQuery(query, null);
+        while (cursor.moveToNext()) {
+            lista.add(cursorAPelicula(cursor));
+        }
+        cursor.close();
+        sqLiteDatabase.close();
+        Log.d("Query", query);
+        return lista;
+    }
 }
+
