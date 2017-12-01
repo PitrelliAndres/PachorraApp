@@ -65,26 +65,22 @@ public class OnboardingFragment extends Fragment {
            case 0 :
 
           unString = "BIENVENIDOS A PACHORRAPP";
-          segundoString= " A CONTINUACION TE MOSTRARE COMO UTILIZARLA PARA EXPRIMIRLA AL MANGO";
+          segundoString= " Si tenes ganas de quedarte en tu casa este dia, pachorra es ideal para vos. Podes ver nuestras recomendaciones, guardar tus favoritos o chusmear cuales son las tendencias";
                unTextView.setText(unString);
                segundoTextView.setText(segundoString);
                unButton.setText("Saltearse los pasos e ir a la pantalla principal");
              //loginButton.setVisibility(View.GONE);
        break;
            case 1 :
-               unString= "TENES 2 PANTALLAS";
-               segundoString="UNA PARA USO PERSONAL QUE DENOMINAREMOS PACHORRA Y OTRA PARA USO SOCIABLE QUE DENOMINAREMOS POCHOCLO";
-            unTextView.setText(unString);
+               segundoString="Pero si hoy estas mas sociable pochoclo es tu pantalla. Podes organizar salidas con tus amigos, ver sus actividades, pedir alguna recomendacion o darla";
             segundoTextView.setText(segundoString);
                unButton.setText("Saltearse los pasos e ir a la pantalla principal");
                //loginButton.setVisibility(View.GONE);
                break;
            case 2 :
-               unString="PACHORRA ES RECOMENDADA PARA CUANDO ESTAS EN TU CASA, TIRADO EN EL SILLON Y NO SABES A QUE DARLE PLAY, ENTONCES NOSOTROS TE MOSTRAMOS CUALES SON LAS TENDENCIAS DE ACUERDO A TUS GUSTOS Y CUALES TE VAN A GUSTAR";
-               segundoString="Y NO SOLO ESO SINO QUE TAMBIEN PODES DAR RECOMENDACIONES A OTROS AMIGOS O CHUSMEAR QUE ES LO QUE VEN";
-               unTextView.setText(unString);
+               segundoString="Para tener una experiencia mas satifactoria conectate con facebook";
                segundoTextView.setText(segundoString);
-               unButton.setText("Ir a la pantalla principal");
+               unButton.setText("Saltar esto");
                /*loginButton.setReadPermissions("email");
                loginButton.setFragment(this);
                loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
