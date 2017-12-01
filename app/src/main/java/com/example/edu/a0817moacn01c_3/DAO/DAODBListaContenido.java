@@ -2,6 +2,7 @@ package com.example.edu.a0817moacn01c_3.DAO;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
@@ -40,7 +41,11 @@ public class DAODBListaContenido extends DatabaseHelper{
         ContentValues row = new ContentValues();
         row.put(IDLISTA, idLista);
         row.put(IDITEM, idItem);
-        db.insert(TABLENAME, null, row);
+        if(yaExiste(idLista, idItem)){
+            db.update(TABLENAME,row,IDLISTA+"='"+idLista+"' AND "+IDITEM+"="+idItem+";",null);
+        }else {
+            db.insert(TABLENAME, null, row);
+        }
         db.close();
     }
 
@@ -57,4 +62,17 @@ public class DAODBListaContenido extends DatabaseHelper{
         return listaItems;
     }
 
+    public Boolean yaExiste(String listaID, Integer itemID) {
+            SQLiteDatabase database = getReadableDatabase();
+
+            String query = "SELECT " + IDLISTA + ", " + IDITEM
+                    + " FROM " + TABLENAME
+                    + " WHERE " + IDLISTA + "= '" + listaID
+                    + "' AND " + IDITEM + " = '" + itemID + "';";
+
+            Cursor result = database.rawQuery(query, null);
+            Integer count = result.getCount();
+            //      database.close();
+            return (count > 0);
+    }
 }
