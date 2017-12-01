@@ -41,5 +41,14 @@
         android:layout_centerHorizontal="true"
         />
 
+<!--    <com.facebook.login.widget.LoginButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/botonFacebook"
+        android:layout_below="@id/BotonViewPager"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
+      />-->
+
 
 </RelativeLayout>
