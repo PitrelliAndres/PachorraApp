@@ -65,7 +65,6 @@ public class DAODBSerie extends DatabaseHelper {
             row.put(CANALTV, unaSerie.getCanalTV());
             row.put(SINOPSIS, unaSerie.getSinopsis());
             row.put(POPULARIDAD, unaSerie.getPopularidad());
-            sqLiteDatabase.insert(TABLENAME, null, row);
             if (esNueva) {
                 sqLiteDatabase.insert(TABLENAME, null, row);
             } else {

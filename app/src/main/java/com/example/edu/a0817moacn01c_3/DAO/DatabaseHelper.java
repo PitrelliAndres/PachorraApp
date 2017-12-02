@@ -14,7 +14,7 @@ import java.util.List;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASENAME="pachoDB";
-    private static final Integer DATABASEVERSION = 1;
+    private static final Integer DATABASEVERSION = 2;
     SQLiteDatabase db;
 
     public DatabaseHelper(Context context) {
@@ -97,10 +97,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + " FROM " + nombreTabla
                 + " WHERE " + nombreCampoID + "= '" + valorID + "';";
 
-        Cursor result = database.rawQuery(query, null);
-        Integer count = result.getCount();
-  //      database.close();
-        return (count > 0);
+        Cursor result;
+
+        Integer count = null;
+        try {
+            result = database.rawQuery(query, null);
+            count = result.getCount();
+        } catch (Exception e) {
+            e.printStackTrace();
+            count = 0;
+        }
+        finally {
+            //      database.close();
+            return (count > 0);
+        }
     }
 
 }
