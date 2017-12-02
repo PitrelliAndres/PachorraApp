@@ -6,15 +6,19 @@
         android:enabled="true"
         android:icon="@drawable/ic_favorite_24dp"
         android:title="@string/actionFavoritos"
-        android:iconTint="@color/colorPeliculas"
         app:showAsAction="always"
         />
+       // android:iconTint="@color/colorPeliculas"
+
+
     <item
         android:id="@+id/action_mostrarFiltros"
         android:enabled="true"
         android:icon="@drawable/ic_filter_list_24dp"
         android:title="@string/actionFiltros"
-        android:iconTint="@color/colorPeliculas"
         app:showAsAction="always"
-        />
+       />
+    // android:iconTint="@color/colorPeliculas"
+
+
 </menu>

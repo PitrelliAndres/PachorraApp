@@ -15,7 +15,7 @@ import java.util.List;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASENAME="pachoDB";
-    private static final Integer DATABASEVERSION = 1;
+    private static final Integer DATABASEVERSION = 2;
     SQLiteDatabase db;
 
     public DatabaseHelper(Context context) {
@@ -44,12 +44,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + DAODBPelicula.PUNTUACION + " REAL, "
                 + DAODBPelicula.CANTIDADVOTOS + " INTEGER)");
 
-        tablasACrear.add("CREATE TABLE " + DAODBGeneroSerie.TABLENAME + " ("
-                + DAODBGeneroSerie.ID + " INTEGER PRIMARY KEY, "
-                + DAODBGeneroSerie.NAME + "TEXT NOT NULL)");
-        tablasACrear.add("CREATE TABLE " + DAODBGeneroPelicula.TABLENAME + " ("
-                + DAODBGeneroPelicula.ID + " INTEGER PRIMARY KEY, "
-                + DAODBGeneroPelicula.NAME + "TEXT NOT NULL)");
+        tablasACrear.add("CREATE TABLE " + DAODBGenero.TABLENAME + " ("
+                + DAODBGenero.ID + " INTEGER PRIMARY KEY, "
+                + DAODBGenero.NAME + "TEXT NOT NULL)");
 
         tablasACrear.add("CREATE TABLE " + DAODBSerie.TABLENAME + " ("
                 + DAODBSerie.ID + " INTEGER PRIMARY KEY, "
@@ -68,15 +65,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + DAODBSerie.SINOPSIS + " TEXT, "
                 + DAODBSerie.POPULARIDAD + " REAL)");
 
-        tablasACrear.add("CREATE TABLE " + DAODBListas.TABLENAME + " ("
-                + DAODBListas.ID + " TEXT PRIMARY KEY, "
-                + DAODBListas.NOMBRE + " TEXT, "
-                + DAODBListas.TIPOCONTENIDO + " TEXT NOT NULL)");
+        tablasACrear.add("CREATE TABLE " + DAODBLista.TABLENAME + " ("
+                + DAODBLista.ID + " TEXT PRIMARY KEY, "
+                + DAODBLista.NOMBRE + " TEXT, "
+                + DAODBLista.TIPOCONTENIDO + " TEXT NOT NULL)");
 
-         tablasACrear.add("CREATE TABLE " + DAODBListasContenidos.TABLENAME + " ("
-                 + DAODBListasContenidos.IDLISTA + " TEXT, "
-                 + DAODBListasContenidos.IDITEM  + " INTEGER NOT NULL,"
-                 + " PRIMARY KEY (" + DAODBListasContenidos.IDLISTA + ", " + DAODBListasContenidos.IDITEM + ")"
+         tablasACrear.add("CREATE TABLE " + DAODBListaContenido.TABLENAME + " ("
+                 + DAODBListaContenido.IDLISTA + " TEXT, "
+                 + DAODBListaContenido.IDITEM  + " INTEGER NOT NULL,"
+                 + " PRIMARY KEY (" + DAODBListaContenido.IDLISTA + ", " + DAODBListaContenido.IDITEM + ")"
                  + ")");
 
         iniciarTablasBD(tablasACrear);
@@ -101,10 +98,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + " FROM " + nombreTabla
                 + " WHERE " + nombreCampoID + "= '" + valorID + "';";
 
-        Cursor result = database.rawQuery(query, null);
-        Integer count = result.getCount();
-  //      database.close();
-        return (count > 0);
+        Cursor result;
+
+        Integer count = null;
+        try {
+            result = database.rawQuery(query, null);
+            count = result.getCount();
+        } catch (Exception e) {
+            e.printStackTrace();
+            count = 0;
+        }
+        finally {
+            //      database.close();
+            return (count > 0);
+        }
     }
 
 }

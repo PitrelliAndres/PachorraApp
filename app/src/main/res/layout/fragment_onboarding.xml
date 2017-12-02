@@ -4,21 +4,28 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryDark"
     android:padding="20dp"
-    tools:context="com.example.edu.a0817moacn01c_3.View.OnboardingFragment">
+    tools:context="com.example.edu.a0817moacn01c_3.View.OnboardingFragment"
+    android:id="@+id/fondo_onboarding"
+    android:gravity="center">
 
     <!-- TODO: Update blank fragment layout -->
 
-
-
+    <TextView
+        android:id="@+id/textview_TITULO_sin_Cambio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:textColor="#fff"
+        android:textSize="25sp"/>
     <TextView
         android:textColor="#fff"
         android:id="@+id/textViewOnboarding"
         android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="safsd"
+        android:text=""
         android:layout_centerInParent="true"
-
+        android:textSize="15sp"
         />
 
     <TextView
@@ -27,19 +34,40 @@
         android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="sadfasf"
+        android:text=""
         android:layout_above="@id/textViewOnboarding"
         android:layout_marginBottom="20dp"
+        android:textSize="20sp"
         />
-
+    <ImageView
+        android:id="@+id/imagen_onboarding"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp"
+        android:paddingTop="20dp"
+        android:layout_above="@id/textViewTituloONBOARDING"
+        android:layout_marginBottom="20dp"
+        android:layout_below="@id/textview_TITULO_sin_Cambio"/>
+    <com.facebook.login.widget.LoginButton
+        android:id="@+id/botonFacebook"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/textViewOnboarding"
+        />
     <Button
         android:id="@+id/BotonViewPager"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textViewOnboarding"
         android:onClick="irAPantallaPrincipal"
+        android:layout_below="@id/botonFacebook"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
         />
+
+
 
 
 </RelativeLayout>

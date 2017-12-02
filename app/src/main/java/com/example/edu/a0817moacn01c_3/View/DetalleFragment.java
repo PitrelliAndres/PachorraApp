@@ -132,12 +132,12 @@ public class DetalleFragment extends Fragment {
                     unBundle.getString(IMDBID)
             );
 
-            this.imagen = view.findViewById(R.id.imageView_ImagenContenidoPeliculas);
-            this.imagenPortada = view.findViewById(R.id.imageview_detalleBackdropPeliculas);
-            this.puntuacion = view.findViewById(R.id.textview_detallePuntuacionPeliculas);
-            this.genero = view.findViewById(R.id.textview_generoPeliculas);
-            this.clasificacion = view.findViewById(R.id.textview_clasificacionPeliculas);
-            this.sinopsis = view.findViewById(R.id.textview_descripcionPeliculas);
+            this.imagen =(ImageView) view.findViewById(R.id.imageView_ImagenContenidoPeliculas);
+            this.imagenPortada =(ImageView) view.findViewById(R.id.imageview_detalleBackdropPeliculas);
+            this.puntuacion =(TextView) view.findViewById(R.id.textview_detallePuntuacionPeliculas);
+            this.genero =(TextView) view.findViewById(R.id.textview_generoPeliculas);
+            this.clasificacion =(TextView) view.findViewById(R.id.textview_clasificacionPeliculas);
+            this.sinopsis =(TextView) view.findViewById(R.id.textview_descripcionPeliculas);
             mostrarInformacion(unaPelicula);
 
         } else {
@@ -150,14 +150,14 @@ public class DetalleFragment extends Fragment {
                     unBundle.getString(CANALTV)
             );
 
-            this.imagen = view.findViewById(R.id.imageView_ImagenContenidoSeries);
-            this.imagenPortada = view.findViewById(R.id.imageview_detalleBackdropSeries);
-            this.puntuacion = view.findViewById(R.id.textview_detallePuntuacionSeries);
-            this.clasificacion = view.findViewById(R.id.textview_clasificacionSeries);
-            this.genero = view.findViewById(R.id.textview_generoSeries);
-            this.sinopsis = view.findViewById(R.id.textview_descripcionSeries);
-            this.temporadas = view.findViewById(R.id.textview_temporadasSerie);
-            this.episodios = view.findViewById(R.id.textview_episodiosSerie);
+            this.imagen =(ImageView) view.findViewById(R.id.imageView_ImagenContenidoSeries);
+            this.imagenPortada = (ImageView)view.findViewById(R.id.imageview_detalleBackdropSeries);
+            this.puntuacion = (TextView)view.findViewById(R.id.textview_detallePuntuacionSeries);
+            this.clasificacion =(TextView) view.findViewById(R.id.textview_clasificacionSeries);
+            this.genero =(TextView) view.findViewById(R.id.textview_generoSeries);
+            this.sinopsis =(TextView) view.findViewById(R.id.textview_descripcionSeries);
+            this.temporadas =(TextView) view.findViewById(R.id.textview_temporadasSerie);
+            this.episodios = (TextView)view.findViewById(R.id.textview_episodiosSerie);
             mostrarInformacion(unaSerie);
 
         }

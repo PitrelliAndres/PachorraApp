@@ -6,8 +6,16 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.edu.a0817moacn01c_3.R;
+import com.facebook.AccessToken;
+import com.facebook.CallbackManager;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
+import com.facebook.login.LoginManager;
+
+import org.json.JSONObject;
 
 public class ActivityOnBoarding extends AppCompatActivity {
 
@@ -16,7 +24,7 @@ public class ActivityOnBoarding extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_on_boarding);
 
-ViewPager viewPager = (ViewPager)findViewById(R.id.viewPagerOnboarding);
+        ViewPager viewPager = (ViewPager)findViewById(R.id.viewPagerOnboarding);
 
         FragmentManager fragmentManager = getSupportFragmentManager();
 
@@ -29,4 +37,8 @@ ViewPager viewPager = (ViewPager)findViewById(R.id.viewPagerOnboarding);
         startActivity(intent);
         
     }
+
+
+
 }
+

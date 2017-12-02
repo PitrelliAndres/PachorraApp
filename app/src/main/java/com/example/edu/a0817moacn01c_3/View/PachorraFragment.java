@@ -61,7 +61,7 @@ public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapt
         View view = inflater.inflate(R.layout.fragment_pachorra, container, false);
         
 
-        RecyclerView unRecyclerView = view.findViewById(R.id.recyclerPachorra);
+        RecyclerView unRecyclerView =(RecyclerView) view.findViewById(R.id.recyclerPachorra);
         GridLayoutManager unLayoutManager = new GridLayoutManager(getContext(), 3, GridLayoutManager.VERTICAL, false);
 
 
@@ -99,8 +99,15 @@ public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapt
                     break;
                 case "favoritos":
                     controllerContenido = new ControllerContenido(getContext());
-                    updateSeriesPopulares();
-
+                    unAdapter.setListaContenidos(controllerContenido.getFavoritos());
+                    break;
+                case "filtro":
+                    controllerContenido = new ControllerContenido(getContext());
+                    String genero = bundle.getString("genero");
+                    String contenido = bundle.getString("contenido");
+                    Integer fecha = bundle.getInt("fecha");
+                    unAdapter.setListaContenidos(controllerContenido.getListaFiltrada(genero,contenido,fecha));
+                    break;
             }
 
         return view;
@@ -115,9 +122,14 @@ public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapt
         escuchadorPelicula.mandarDatos(position, listaContenidoClickeada);
     }
 
+
+
     public interface NotificadorDatos {
         public void mandarDatos(Integer position, List<Contenido> listaContenidoClickeada);
-   }
+    }
+
+
+
 
     private void updatePeliculasPopulares() {
 
@@ -190,4 +202,5 @@ public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapt
         unAdapter.setListaContenidos(controllerContenido.getListaMixta());
         unAdapter.notifyDataSetChanged();
     }
+
 }

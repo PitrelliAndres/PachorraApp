@@ -14,14 +14,14 @@ import com.example.edu.a0817moacn01c_3.Model.Lista;
  * Created by Administrador on 26/11/2017.
  */
 
-public class DAODBListas<T> extends DatabaseHelper {
+public class DAODBLista<T> extends DatabaseHelper {
     public static final String TABLENAME = "listas";
 
     public static final String ID = "id";
     public static final String NOMBRE = "nombre";
     public static final String TIPOCONTENIDO = "tipo_de_items";
 
-    public DAODBListas(Context context) {
+    public DAODBLista(Context context) {
         super(context);
     }
 

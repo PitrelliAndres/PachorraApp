@@ -89,11 +89,11 @@ public class PeliculasRecyclerAdapter extends RecyclerView.Adapter implements Se
 
         public PeliculasViewHolder(View itemView){
             super(itemView);
-            imagenPelicula=itemView.findViewById(R.id.imageView_ImagenContenidoPeliculas);
-            cardPeli=itemView.findViewById(R.id.cardview_ImagenPelicula);
-            iconoContenido = itemView.findViewById(R.id.imageView_IconoContenido);
-            tituloContenido = itemView.findViewById(R.id.textView_tituloContenido);
-            botonFavoritos= itemView.findViewById(R.id.button_agregar_favoritos);
+            imagenPelicula=(ImageView)itemView.findViewById(R.id.imageView_ImagenContenidoPeliculas);
+            cardPeli=(CardView)itemView.findViewById(R.id.cardview_ImagenPelicula);
+            iconoContenido =(ImageView) itemView.findViewById(R.id.imageView_IconoContenido);
+            tituloContenido =(TextView) itemView.findViewById(R.id.textView_tituloContenido);
+            botonFavoritos=(Button) itemView.findViewById(R.id.button_agregar_favoritos);
 
         }
         public void cargarContenido(Contenido unContenido){
@@ -123,6 +123,7 @@ public class PeliculasRecyclerAdapter extends RecyclerView.Adapter implements Se
     }
     public interface ContenidoClickeable{
         public void mandarSeleccion(Integer position,List<Contenido> listaContenidoClickeada);
+
 
     }
 }

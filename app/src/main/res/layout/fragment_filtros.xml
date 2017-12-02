@@ -1,28 +1,48 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="bottom"
+
     tools:context="com.example.edu.a0817moacn01c_3.View.FiltrosFragment">
 
-    <FrameLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal|center_vertical">
 
     <Spinner
         android:id="@+id/spinner_genero"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"></Spinner>
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        ></Spinner>
     <Spinner
         android:id="@+id/spinner_tipoContenido"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"></Spinner>
+        android:layout_height="wrap_content"
+        android:layout_below="@id/spinner_genero"
+        android:layout_marginBottom="20dp">
+
+    </Spinner>
 <android.support.design.widget.TextInputLayout
+    android:id="@+id/textinputlayout"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content" />
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="20dp"
+    android:layout_below="@id/spinner_tipoContenido"/>
     <EditText
+        android:id="@+id/editext_introducir_fecha"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="Introduzca Fecha"/>
-    </FrameLayout>
-</RelativeLayout>
+        android:hint="Introduzca Fecha"
+        android:layout_below="@id/spinner_tipoContenido"/>
+        <Button
+            android:id="@+id/boton_filtrar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/editext_introducir_fecha"
+            android:onClick="filtrarLista"
+            android:text="Filtrar"
+         />
+    </RelativeLayout>
+</FrameLayout>

@@ -1,17 +1,18 @@
 package com.example.edu.a0817moacn01c_3.Controller;
 
 import android.content.Context;
-import android.support.v4.content.ContextCompat;
-import android.view.ContextMenu;
+import android.util.Log;
 import android.widget.Toast;
 
-import com.example.edu.a0817moacn01c_3.DAO.DAOContenido;
+import com.example.edu.a0817moacn01c_3.DAO.DAODBLista;
+import com.example.edu.a0817moacn01c_3.DAO.DAODBListaContenido;
 import com.example.edu.a0817moacn01c_3.DAO.DAODBPelicula;
 import com.example.edu.a0817moacn01c_3.DAO.DAODBSerie;
 import com.example.edu.a0817moacn01c_3.DAO.DAOInternetPelicula;
 import com.example.edu.a0817moacn01c_3.DAO.DAOInternetSerie;
 import com.example.edu.a0817moacn01c_3.DAO.DatabaseHelper;
 import com.example.edu.a0817moacn01c_3.Model.Contenido;
+import com.example.edu.a0817moacn01c_3.Model.Lista;
 import com.example.edu.a0817moacn01c_3.Model.Pelicula;
 import com.example.edu.a0817moacn01c_3.Model.Serie;
 import com.example.edu.a0817moacn01c_3.R;
@@ -177,6 +178,93 @@ public class ControllerContenido {
         Collections.shuffle(listaMista);
         return listaMista;
     }
+
+    public void agregarFavoritos (Contenido contenido,Context contexto){
+        DAODBLista daodbLista = new DAODBLista(contexto);
+        DAODBListaContenido daodbListaContenido = new DAODBListaContenido(contexto);
+        String favoritos;
+        switch(contenido.getTipoContenido()){
+            case Contenido.PELICULA:
+                favoritos = Lista.FAVORITOSPELICULA;
+                break;
+            case Contenido.SERIE:
+                favoritos = Lista.FAVORITOSSERIE;
+                break;
+            default:
+                return;
+        }
+        daodbLista.crearLista(favoritos,"Favoritos",contenido.getTipoContenido());
+        daodbListaContenido.agregarItemALista(favoritos,contenido.getId());
+        System.out.println("Se agrego a favoritos " + contenido.getId() + contenido.getTipoContenido()+contenido.getNombre());
+        Toast.makeText(contexto, "¡Listo!, tu " + contenido.getTipoContenido() + " '" + contenido.getNombre()+"' se agrego a favoritos.", Toast.LENGTH_SHORT).show();
+    }
+
+    public List<Serie> getSeriesFavoritas(){
+        List<Integer> listaIDs = getLista(Lista.FAVORITOSSERIE);
+        DAODBSerie daodbSerie = new DAODBSerie(context);
+        return daodbSerie.obtenerSeriePorID(listaIDs);
+    }
+    public List<Pelicula> getPeliculasFavoritas(){
+        List<Integer> listaIDs = getLista(Lista.FAVORITOSPELICULA);
+        DAODBPelicula daodbPelicula = new DAODBPelicula(context);
+        return daodbPelicula.obtenerPeliculaPorID(listaIDs);
+    }
+    public List<Contenido> getFavoritos(){
+        List<Contenido> listaFavoritos = new ArrayList<>();
+        listaFavoritos.addAll(getSeriesFavoritas());
+        listaFavoritos.addAll(getPeliculasFavoritas());
+        return listaFavoritos;
+    }
+
+    public List<Integer> getLista(String idLista){
+        //consultar DAO DB Lista Contenidos por los IDs que estan en una lista
+        DAODBListaContenido daodbListaContenido = new DAODBListaContenido(context);
+        return daodbListaContenido.obtenerListaDeContenidosPorID(idLista);
+    }
+
+    public List<Contenido> getListaFiltrada(String genero,String tipoContenido, Integer fecha){
+        List<Contenido> blablub = new ArrayList<>();
+        List<Serie> listaSeries = new ArrayList<>();
+        List<Pelicula> listaPeliculas = new ArrayList<>();
+        DAODBSerie daodbSerie = new DAODBSerie(context);
+        DAODBPelicula daodbPelicula = new DAODBPelicula(context);
+        switch (tipoContenido){
+            case Contenido.SERIE:
+                listaSeries = daodbSerie.obtenerSeriesFiltradas(genero, fecha);
+                blablub.addAll(listaSeries);
+                break;
+            case Contenido.PELICULA:
+                listaPeliculas = daodbPelicula.obtenerPeliculasFiltradas(genero, fecha);
+                blablub.addAll(listaPeliculas);
+                break;
+            default:
+                listaSeries = daodbSerie.obtenerSeriesFiltradas(genero, fecha);
+                listaPeliculas = daodbPelicula.obtenerPeliculasFiltradas(genero, fecha);
+                blablub.addAll(listaSeries);
+                blablub.addAll(listaPeliculas);
+                break;
+        }
+        return blablub;
+    }
+
+    public String[] getGenerosNombres() {
+        List<String> lista = new ArrayList<>();
+        lista.add("Acción");
+        lista.add("Aventura");
+        lista.add("Documental");
+        lista.add("Romance");
+        lista.add("Ciencia ficción");
+        lista.add("Western");
+        return lista.toArray(new String[lista.size()]);
+    }
+
+    public String[] getTiposDeContenido() {
+        List<String>tiposDeContenido = new ArrayList<>();
+        tiposDeContenido.add(Contenido.PELICULA);
+        tiposDeContenido.add(Contenido.SERIE);
+        return tiposDeContenido.toArray(new String[tiposDeContenido.size()]);
+    }
+
     public Integer getColor(Contenido contenido){
         Integer color;
         switch (contenido.getTipoContenido()){
@@ -193,13 +281,6 @@ public class ControllerContenido {
 
         return color;
     }
-
-    public void agregarFavoritos (Contenido contenido,Context contexto){
-        System.out.println("Se agrego a favoritos" + contenido.getId() + contenido.getTipoContenido()+contenido.getNombre());
-        Toast.makeText(contexto, "Se agrego a favoritos" + contenido.getId() + contenido.getTipoContenido()+contenido.getNombre() , Toast.LENGTH_SHORT).show();
-    }
-
-
 }
 
 
