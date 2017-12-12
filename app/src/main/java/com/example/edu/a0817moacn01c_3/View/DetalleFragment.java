@@ -181,6 +181,7 @@ public class DetalleFragment extends Fragment {
     public void mostrarInformacion(Serie serie) {
         String imagenAfiche;
         String imagenFondo;
+
         // TODO: objeto Pelicula con Generos
         imagenAfiche = TMDBHelper.getImagePoster(TMDBHelper.IMAGE_SIZE_W300, serie.getUrlafiche());
         imagenFondo = TMDBHelper.getImagePoster(TMDBHelper.IMAGE_SIZE_W780, serie.getUrlfondo());

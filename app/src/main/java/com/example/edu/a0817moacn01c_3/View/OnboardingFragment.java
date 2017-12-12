@@ -97,6 +97,7 @@ public class OnboardingFragment extends Fragment {
                     // FirebaseUser.getToken() instead.
                     String uid = user.getUid();
 
+
                 } else {
                     // User is signed out
 
@@ -196,6 +197,8 @@ public class OnboardingFragment extends Fragment {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+
+
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();

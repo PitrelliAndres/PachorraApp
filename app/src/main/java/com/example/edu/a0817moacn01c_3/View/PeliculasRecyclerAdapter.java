@@ -18,6 +18,10 @@ import com.example.edu.a0817moacn01c_3.Controller.ControllerContenido;
 import com.example.edu.a0817moacn01c_3.Model.Contenido;
 import com.example.edu.a0817moacn01c_3.R;
 import com.example.edu.a0817moacn01c_3.utils.TMDBHelper;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.io.Serializable;
 import java.util.List;
@@ -68,6 +72,12 @@ public class PeliculasRecyclerAdapter extends RecyclerView.Adapter implements Se
             public void onClick(View view){
                 ControllerContenido controllerContenido= new ControllerContenido();
                 controllerContenido.agregarFavoritos(peliculas,contexto);
+
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                DatabaseReference myRef = database.getReference("Favoritos");
+                myRef.push().setValue(peliculas);
+
+
             }
         });
 
