@@ -2,8 +2,11 @@ package com.example.edu.a0817moacn01c_3.View;
 
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +26,13 @@ import com.facebook.GraphResponse;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FacebookAuthProvider;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import org.json.JSONObject;
 
@@ -39,7 +49,9 @@ public class OnboardingFragment extends Fragment {
     private ImageView imageView;
     private TextView qtPintaHoy;
     private String tituloArriba;
-
+    private FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener mAuthListener;
+    private static final String TAG = "FacebookLogin";
     public OnboardingFragment() {
         // Required empty public constructor
     }
@@ -68,6 +80,31 @@ public class OnboardingFragment extends Fragment {
         LoginButton loginButton = (LoginButton) view.findViewById(R.id.botonFacebook);
         RelativeLayout fondoOnboarding = (RelativeLayout) view.findViewById(R.id.fondo_onboarding);
         qtPintaHoy = (TextView)view.findViewById(R.id.textview_TITULO_sin_Cambio);
+        loginButton.setReadPermissions("email", "public_profile");
+        callbackManager = CallbackManager.Factory.create();
+        mAuth = FirebaseAuth.getInstance();
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getInstance().getCurrentUser();
+                if (user != null) {
+                    String name = user.getDisplayName();
+                    String email = user.getEmail();
+                    Uri photoUrl = user.getPhotoUrl();
+
+                    // The user's ID, unique to the Firebase project. Do NOT use this value to
+                    // authenticate with your backend server, if you have one. Use
+                    // FirebaseUser.getToken() instead.
+                    String uid = user.getUid();
+
+                } else {
+                    // User is signed out
+
+                }
+
+
+            }
+        };
 
        switch (posicion){
            case 0 :
@@ -110,7 +147,9 @@ public class OnboardingFragment extends Fragment {
                    @Override
                    public void onSuccess(LoginResult loginResult) {
                        // App code
-
+                       handleFacebookAccessToken(loginResult.getAccessToken());
+                       Intent unIntent= new Intent(getActivity(),MainActivity.class);
+                       startActivity(unIntent);
                        Toast.makeText(getContext(), loginResult.toString(), Toast.LENGTH_SHORT).show();
                    }
 
@@ -148,22 +187,29 @@ public class OnboardingFragment extends Fragment {
         LoginManager.getInstance().logOut();
     }
 
-    public void showMe(View view){
-        GraphRequest request = GraphRequest.newMeRequest(
-                AccessToken.getCurrentAccessToken(),
-                new GraphRequest.GraphJSONObjectCallback() {
+    private void handleFacebookAccessToken(AccessToken token) {
+        Log.d(TAG, "handleFacebookAccessToken:" + token);
+
+        AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
+        mAuth.signInWithCredential(credential)
+                .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
                     @Override
-                    public void onCompleted(
-                            JSONObject object,
-                            GraphResponse response) {
-                        Toast.makeText(getContext(), response.toString(), Toast.LENGTH_SHORT).show();
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d(TAG, "signInWithCredential:success");
+                            FirebaseUser user = mAuth.getCurrentUser();
+
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Log.w(TAG, "signInWithCredential:failure", task.getException());
+                            Toast.makeText(getContext(), "Authentication failed.",
+                                    Toast.LENGTH_SHORT).show();
+
+                        }
+
                     }
                 });
-        Bundle parameters = new Bundle();
-        parameters.putString("fields", "id,name,link");
-        request.setParameters(parameters);
-        request.executeAsync();
     }
-
 
 }
