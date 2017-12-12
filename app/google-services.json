@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "732333119248",
+    "firebase_url": "https://pachorrapp-98b6b.firebaseio.com",
+    "project_id": "pachorrapp-98b6b",
+    "storage_bucket": "pachorrapp-98b6b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:732333119248:android:6a4a086f72832e0e",
+        "android_client_info": {
+          "package_name": "com.example.edu.a0817moacn01c_3"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "732333119248-bc3vnh0brvgelo22keqg15dknru38v0d.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.edu.a0817moacn01c_3",
+            "certificate_hash": "0beb04c7c0581feeba35d212486f2e016728765c"
+          }
+        },
+        {
+          "client_id": "732333119248-eiiibohvs9akm0vp5k2br0dd67sde4mf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCpi-tf2udNsHLMTc-cYEf4ouz4e1GwRag"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "732333119248-eiiibohvs9akm0vp5k2br0dd67sde4mf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
