@@ -37,11 +37,6 @@ public class DetalleActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalle);
 
-        Toolbar toolbarPachorra = (Toolbar) findViewById(R.id.toolbar_detalle);
-        setSupportActionBar(toolbarPachorra);
-        ActionBar actionBarPachorra = getSupportActionBar();
-        actionBarPachorra.setDisplayHomeAsUpEnabled(true);
-
         listaSeleccionada= new ArrayList<>();
 
         final ViewPager viewPager = (ViewPager) findViewById(R.id.viewPager_Detalles);
@@ -105,7 +100,7 @@ public class DetalleActivity extends AppCompatActivity{
             }
         });
 
-        getSupportActionBar().setTitle(listaSeleccionada.get(unBundle.getInt(POSITION)).getNombre());
+     //   getSupportActionBar().setTitle(listaSeleccionada.get(unBundle.getInt(POSITION)).getNombre());
 
 
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {

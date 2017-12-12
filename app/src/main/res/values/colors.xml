@@ -8,4 +8,5 @@
     <color name="colorAccent">#bf2a2a</color>
     <color name="colorSeries">#f2c777</color>
     <color name="colorPeliculas">#f24738</color>
+    <color name="negroTransp">#cc000000</color>
 </resources>
