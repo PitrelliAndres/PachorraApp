@@ -44,7 +44,6 @@ public class DAOInternetSerie {
         unMinion.execute();
     }
 
-
     public class Minion extends AsyncTask<String,Void,List<Serie>>{
         private ResultListener<List<Serie>>escuchadorSeriesControlador;
         private String url;

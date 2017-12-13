@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         editor.commit();
         if (primeraVez == true) {
             irAOnBoarding();
-        }else {irAOnBoarding();}
+        }
 
     }
     public void irAOnBoarding(){

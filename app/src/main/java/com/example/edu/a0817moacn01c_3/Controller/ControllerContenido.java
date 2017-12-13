@@ -10,11 +10,13 @@ import com.example.edu.a0817moacn01c_3.DAO.DAODBPelicula;
 import com.example.edu.a0817moacn01c_3.DAO.DAODBSerie;
 import com.example.edu.a0817moacn01c_3.DAO.DAOInternetPelicula;
 import com.example.edu.a0817moacn01c_3.DAO.DAOInternetSerie;
+import com.example.edu.a0817moacn01c_3.DAO.DAOInternetTrailer;
 import com.example.edu.a0817moacn01c_3.DAO.DatabaseHelper;
 import com.example.edu.a0817moacn01c_3.Model.Contenido;
 import com.example.edu.a0817moacn01c_3.Model.Lista;
 import com.example.edu.a0817moacn01c_3.Model.Pelicula;
 import com.example.edu.a0817moacn01c_3.Model.Serie;
+import com.example.edu.a0817moacn01c_3.Model.Trailer;
 import com.example.edu.a0817moacn01c_3.R;
 import com.example.edu.a0817moacn01c_3.utils.HTTPConnectionManager;
 import com.example.edu.a0817moacn01c_3.utils.ResultListener;
@@ -32,6 +34,7 @@ public class ControllerContenido {
     private DatabaseHelper databaseHelper;
     private DAOInternetPelicula daoInternetPelicula = new DAOInternetPelicula();
     private DAOInternetSerie daoInternetSerie = new DAOInternetSerie();
+    private DAOInternetTrailer daoInternetTrailer= new DAOInternetTrailer();
 
     public ControllerContenido() {
     }
@@ -58,6 +61,20 @@ public class ControllerContenido {
             DAODBPelicula daodbPelicula = new DAODBPelicula(context);
             List<Pelicula> listaPeliculas = daodbPelicula.obtenerPeliculasPopulares();
             listenerDeLaView.finish(listaPeliculas);
+        }
+    }
+    public void getTrailer(final ResultListener <Trailer> listenerDeLaView, String id) {
+        if (HTTPConnectionManager.isNetworkingOnline(context)) {
+
+            ResultListener<Trailer> escuchadorDelControlador = new ResultListener<Trailer>() {
+                @Override
+                public void finish(Trailer resultado) {
+
+                    listenerDeLaView.finish(resultado);
+                }
+            };
+            daoInternetTrailer.getTrailerPelicula(escuchadorDelControlador,id);
+
         }
     }
     public void getUltimasPeliculas(final ResultListener<List<Pelicula>> listenerDeLaView){
@@ -281,6 +298,7 @@ public class ControllerContenido {
 
         return color;
     }
+
 }
 
 

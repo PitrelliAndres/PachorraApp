@@ -185,6 +185,14 @@
                         android:text="@string/lorem_ipsum"
                         android:textSize="15sp" />
 
+                    <Button
+                        android:id="@+id/button_verTrailer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ver Trailer"
+                        android:layout_above="@id/textview_descripcionPeliculas"
+                        android:layout_centerHorizontal="true"/>
+
                 </RelativeLayout>
             </ScrollView>
         </RelativeLayout>

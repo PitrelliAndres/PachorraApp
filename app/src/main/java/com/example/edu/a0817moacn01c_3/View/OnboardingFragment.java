@@ -119,7 +119,7 @@ public class OnboardingFragment extends Fragment {
                tituloArriba="¿Que te pinta hoy...?";
                unTextView.setText(unString);
                segundoTextView.setText(segundoString);
-               unButton.setText("Omitir");
+               unButton.setVisibility(View.GONE);
                qtPintaHoy.setText(tituloArriba);
 
              loginButton.setVisibility(View.GONE);
@@ -131,7 +131,7 @@ public class OnboardingFragment extends Fragment {
                segundoString="Podes organizar salidas con tus amigos, ver sus actividades, pedir alguna recomendacion o darla";
             segundoTextView.setText(segundoString);
                unTextView.setText(unString);
-               unButton.setText("Omitir");
+               unButton.setVisibility(View.GONE);
                qtPintaHoy.setText(tituloArriba);
                loginButton.setVisibility(View.GONE);
                imageView.setImageResource(R.drawable.cine);

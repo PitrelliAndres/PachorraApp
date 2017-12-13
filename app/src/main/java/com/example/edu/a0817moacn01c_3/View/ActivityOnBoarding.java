@@ -6,6 +6,8 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.edu.a0817moacn01c_3.R;
@@ -37,7 +39,6 @@ public class ActivityOnBoarding extends AppCompatActivity {
         startActivity(intent);
         
     }
-
 
 
 }

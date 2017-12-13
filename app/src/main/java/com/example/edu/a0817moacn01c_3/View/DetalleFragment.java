@@ -1,6 +1,10 @@
 package com.example.edu.a0817moacn01c_3.View;
 
 
+import android.content.ActivityNotFoundException;
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
@@ -10,14 +14,18 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.edu.a0817moacn01c_3.Controller.ControllerContenido;
 import com.example.edu.a0817moacn01c_3.Model.Contenido;
 import com.example.edu.a0817moacn01c_3.Model.Pelicula;
+import com.example.edu.a0817moacn01c_3.Model.Trailer;
 import com.example.edu.a0817moacn01c_3.R;
 import com.example.edu.a0817moacn01c_3.Model.Serie;
+import com.example.edu.a0817moacn01c_3.utils.ResultListener;
 import com.example.edu.a0817moacn01c_3.utils.TMDBHelper;
 
 
@@ -36,6 +44,7 @@ public class DetalleFragment extends Fragment {
     private TextView sinopsis;
     private TextView temporadas;
     private TextView episodios;
+    public Trailer trailer;
 
 
     public static final String TIPOCONTENIDO = "tipo de contenido";
@@ -63,6 +72,7 @@ public class DetalleFragment extends Fragment {
     public static final String NROSEASONS = "nroSeasons";
     public static final String NROEPISODES = "nroEpisodes";
     public static final String CANALTV = "canaltv";
+
 
     public DetalleFragment() {
         // Required empty public constructor
@@ -138,6 +148,13 @@ public class DetalleFragment extends Fragment {
             this.genero =(TextView) view.findViewById(R.id.textview_generoPeliculas);
             this.clasificacion =(TextView) view.findViewById(R.id.textview_clasificacionPeliculas);
             this.sinopsis =(TextView) view.findViewById(R.id.textview_descripcionPeliculas);
+            Button button= (Button)view.findViewById(R.id.button_verTrailer);
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    watchYoutubeVideo(getContext(),trailer.getId());
+                }
+            });
             mostrarInformacion(unaPelicula);
 
         } else {
@@ -178,6 +195,14 @@ public class DetalleFragment extends Fragment {
         Glide.with(getContext()).load(imagenAfiche).into(imagen);
         Glide.with(getContext()).load(imagenFondo).into(imagenPortada);
 
+        ControllerContenido controllerContenido = new ControllerContenido(getContext());
+        controllerContenido.getTrailer(new ResultListener<Trailer>() {
+            @Override
+            public void finish(Trailer resultado) {
+                trailer = resultado;
+            }
+        },pelicula.getId().toString());
+
         puntuacion.setText(pelicula.getPuntuacion().toString());
         //ano.setText(unaPelicula.getAno());
         genero.setText("Genero");
@@ -205,5 +230,15 @@ public class DetalleFragment extends Fragment {
 
     }
 
+    public static void watchYoutubeVideo(Context context, String id){
 
+        Intent appIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube:" + id));
+        Intent webIntent = new Intent(Intent.ACTION_VIEW,
+                Uri.parse("http://www.youtube.com/watch?v=" + id));
+        try {
+            context.startActivity(appIntent);
+        } catch (ActivityNotFoundException ex) {
+            context.startActivity(webIntent);
+        }
+    }
 }
