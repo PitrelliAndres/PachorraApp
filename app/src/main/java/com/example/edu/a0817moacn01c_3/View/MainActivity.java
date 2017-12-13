@@ -7,10 +7,14 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.edu.a0817moacn01c_3.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity {
     public static final String CONFIGURACION = "configuraciones";
     public static final String PRIMERAVEZ = "primera vez";
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         editor.commit();
         if (primeraVez == true) {
             irAOnBoarding();
-        }
+        }else {irAOnBoarding();}
 
     }
     public void irAOnBoarding(){

@@ -16,6 +16,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.edu.a0817moacn01c_3.Model.Usuario;
 import com.example.edu.a0817moacn01c_3.R;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
@@ -33,6 +34,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import org.json.JSONObject;
 
@@ -52,6 +55,7 @@ public class OnboardingFragment extends Fragment {
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private static final String TAG = "FacebookLogin";
+    private Usuario usuario;
     public OnboardingFragment() {
         // Required empty public constructor
     }
@@ -142,7 +146,6 @@ public class OnboardingFragment extends Fragment {
                unTextView.setText(unString);
                imageView.setImageResource(R.drawable.ic_people_black_24dp);
                fondoOnboarding.setBackgroundResource(R.color.colorPrimary);
-               loginButton.setReadPermissions("email");
                loginButton.setFragment(this);
                loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
                    @Override
@@ -179,7 +182,7 @@ public class OnboardingFragment extends Fragment {
         callbackManager.onActivityResult(requestCode, resultCode, data);
     }
 
-    private Boolean isLogin(){
+    public Boolean isLogin(){
         AccessToken accesToken = AccessToken.getCurrentAccessToken();
         return accesToken != null;
     }
@@ -198,10 +201,9 @@ public class OnboardingFragment extends Fragment {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
 
-
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
+
 
                         } else {
                             // If sign in fails, display a message to the user.
