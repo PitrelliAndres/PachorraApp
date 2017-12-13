@@ -18,6 +18,7 @@ import com.example.edu.a0817moacn01c_3.Controller.ControllerContenido;
 import com.example.edu.a0817moacn01c_3.Model.Contenido;
 import com.example.edu.a0817moacn01c_3.R;
 import com.example.edu.a0817moacn01c_3.utils.TMDBHelper;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -72,9 +73,10 @@ public class PeliculasRecyclerAdapter extends RecyclerView.Adapter implements Se
             public void onClick(View view){
                 ControllerContenido controllerContenido= new ControllerContenido();
                 controllerContenido.agregarFavoritos(peliculas,contexto);
-
+                FirebaseAuth mauth = FirebaseAuth.getInstance();
+                String uid = mauth.getCurrentUser().getUid();
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
-                DatabaseReference myRef = database.getReference("Favoritos");
+                DatabaseReference myRef = database.getReference("Users").child(uid).child("Favoritos");
                 myRef.push().setValue(peliculas);
 
 
