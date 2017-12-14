@@ -25,8 +25,10 @@ public class MainActivity extends AppCompatActivity implements OnboardingFragmen
         setContentView(R.layout.activity_main);
 
         Intent unIntent = getIntent();
-        this.unBundle = unIntent.getExtras();
-        vioOnBoarding = unBundle.getBoolean(VIOONBOARDING,false);
+        if(unIntent.hasExtra(VIOONBOARDING)) {
+            this.unBundle = unIntent.getExtras();
+            vioOnBoarding = unBundle.getBoolean(VIOONBOARDING, false);
+        }
         SharedPreferences settings = getSharedPreferences(CONFIGURACION, 0);
         Boolean primeraVez = settings.getBoolean(PRIMERAVEZ, true);
         SharedPreferences.Editor editor = settings.edit();

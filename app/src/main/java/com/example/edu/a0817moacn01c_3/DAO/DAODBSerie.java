@@ -126,11 +126,13 @@ public class DAODBSerie extends DatabaseHelper {
         for (Integer ID:listaIDs) {
             ids += ID + ",";
         }
-        ids = ids.substring(0,ids.length()-1);
-        String query = "SELECT * FROM "+TABLENAME+" WHERE "+ID+" IN("+ids+");";
-        Cursor cursor = sqliteDatabase.rawQuery(query, null);
-        while (cursor.moveToNext()){
-            listaSeries.add(cursorASerie(cursor));
+        if(ids.length()>0) {
+            ids = ids.substring(0, ids.length() - 1);
+            String query = "SELECT * FROM " + TABLENAME + " WHERE " + ID + " IN(" + ids + ");";
+            Cursor cursor = sqliteDatabase.rawQuery(query, null);
+            while (cursor.moveToNext()) {
+                listaSeries.add(cursorASerie(cursor));
+            }
         }
         return listaSeries;
     }
