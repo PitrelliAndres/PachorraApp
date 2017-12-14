@@ -242,7 +242,8 @@ public class DetalleFragment extends Fragment {
     public static void watchYoutubeVideo(Context context, Trailer trailer){
         String id = trailer.getId();
         String key = trailer.getKey();
-        Intent appIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube:" + id));
+        //Intent appIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube:" + id));
+        Intent appIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(id));
         Intent webIntent = new Intent(Intent.ACTION_VIEW,
                 Uri.parse("http://www.youtube.com/watch?v=" + key));
         try {
