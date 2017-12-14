@@ -10,7 +10,7 @@ import android.view.View;
 import com.example.edu.a0817moacn01c_3.R;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class MainActivity extends AppCompatActivity implements OnboardingFragment.Notificador {
+public class MainActivity extends AppCompatActivity{
     public static final String CONFIGURACION = "configuraciones";
     public static final String PRIMERAVEZ = "primera vez";
     public static final String VIOONBOARDING = "vio onBoarding";
@@ -38,6 +38,11 @@ public class MainActivity extends AppCompatActivity implements OnboardingFragmen
             irAOnBoarding();
         }
 
+        // verificar si no esta logeado (tanto en FB como en Firebase)
+        mAuth = FirebaseAuth.getInstance();
+        mAuth.getCurrentUser();
+        // si no lo está hacer el registro anonimo de Firebase
+
     }
     public void irAOnBoarding(){
         vioOnBoarding = true;
@@ -52,8 +57,4 @@ public class MainActivity extends AppCompatActivity implements OnboardingFragmen
 
     }
 
-    @Override
-    public void setVioOnboarding() {
-        this.vioOnBoarding = true;
-    }
 }

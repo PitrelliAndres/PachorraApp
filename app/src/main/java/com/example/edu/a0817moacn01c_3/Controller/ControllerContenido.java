@@ -20,6 +20,9 @@ import com.example.edu.a0817moacn01c_3.Model.Trailer;
 import com.example.edu.a0817moacn01c_3.R;
 import com.example.edu.a0817moacn01c_3.utils.HTTPConnectionManager;
 import com.example.edu.a0817moacn01c_3.utils.ResultListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -212,6 +215,18 @@ public class ControllerContenido {
         }
         daodbLista.crearLista(favoritos,"Favoritos",contenido.getTipoContenido());
         daodbListaContenido.agregarItemALista(favoritos,contenido.getId());
+
+        FirebaseAuth mauth = FirebaseAuth.getInstance();
+        try {
+            String uid = mauth.getCurrentUser().getUid();
+            FirebaseDatabase database = FirebaseDatabase.getInstance();
+            DatabaseReference myRef = database.getReference("Users").child(uid).child("Favoritos");
+            myRef.push().setValue(contenido);
+        } catch (Exception e) {
+            // TODO: pedir login para mas mejor
+            e.printStackTrace();
+        }
+
         System.out.println("Se agrego a favoritos " + contenido.getId() + contenido.getTipoContenido()+contenido.getNombre());
         Toast.makeText(contexto, "¡Listo!, tu " + contenido.getTipoContenido() + " '" + contenido.getNombre()+"' se agrego a favoritos.", Toast.LENGTH_SHORT).show();
     }

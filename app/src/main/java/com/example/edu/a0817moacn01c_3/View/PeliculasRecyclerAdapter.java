@@ -73,11 +73,7 @@ public class PeliculasRecyclerAdapter extends RecyclerView.Adapter implements Se
             public void onClick(View view){
                 ControllerContenido controllerContenido= new ControllerContenido();
                 controllerContenido.agregarFavoritos(peliculas,contexto);
-                FirebaseAuth mauth = FirebaseAuth.getInstance();
-                String uid = mauth.getCurrentUser().getUid();
-                FirebaseDatabase database = FirebaseDatabase.getInstance();
-                DatabaseReference myRef = database.getReference("Users").child(uid).child("Favoritos");
-                myRef.push().setValue(peliculas);
+
 
 
             }
