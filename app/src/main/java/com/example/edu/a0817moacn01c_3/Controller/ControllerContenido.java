@@ -8,6 +8,7 @@ import com.example.edu.a0817moacn01c_3.DAO.DAODBLista;
 import com.example.edu.a0817moacn01c_3.DAO.DAODBListaContenido;
 import com.example.edu.a0817moacn01c_3.DAO.DAODBPelicula;
 import com.example.edu.a0817moacn01c_3.DAO.DAODBSerie;
+import com.example.edu.a0817moacn01c_3.DAO.DAOFirebaseLista;
 import com.example.edu.a0817moacn01c_3.DAO.DAOInternetPelicula;
 import com.example.edu.a0817moacn01c_3.DAO.DAOInternetSerie;
 import com.example.edu.a0817moacn01c_3.DAO.DAOInternetTrailer;
@@ -200,6 +201,7 @@ public class ControllerContenido {
     }
 
     public void agregarFavoritos (Contenido contenido,Context contexto){
+        DAOFirebaseLista daoFirebaseLista = new DAOFirebaseLista();
         DAODBLista daodbLista = new DAODBLista(contexto);
         DAODBListaContenido daodbListaContenido = new DAODBListaContenido(contexto);
         String favoritos;
@@ -216,16 +218,8 @@ public class ControllerContenido {
         daodbLista.crearLista(favoritos,"Favoritos",contenido.getTipoContenido());
         daodbListaContenido.agregarItemALista(favoritos,contenido.getId());
 
-        FirebaseAuth mauth = FirebaseAuth.getInstance();
-        try {
-            String uid = mauth.getCurrentUser().getUid();
-            FirebaseDatabase database = FirebaseDatabase.getInstance();
-            DatabaseReference myRef = database.getReference("Users").child(uid).child("Favoritos");
-            myRef.push().setValue(contenido);
-        } catch (Exception e) {
-            // TODO: pedir login para mas mejor
-            e.printStackTrace();
-        }
+        daoFirebaseLista.agregarFavorito(contenido);
+
 
         System.out.println("Se agrego a favoritos " + contenido.getId() + contenido.getTipoContenido()+contenido.getNombre());
         Toast.makeText(contexto, "¡Listo!, tu " + contenido.getTipoContenido() + " '" + contenido.getNombre()+"' se agrego a favoritos.", Toast.LENGTH_SHORT).show();
