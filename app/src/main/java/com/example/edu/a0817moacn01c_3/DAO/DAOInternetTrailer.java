@@ -4,6 +4,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 import com.example.edu.a0817moacn01c_3.Model.ContenedorDeSerie;
+import com.example.edu.a0817moacn01c_3.Model.ContenedorDeTrailer;
 import com.example.edu.a0817moacn01c_3.Model.Serie;
 import com.example.edu.a0817moacn01c_3.Model.Trailer;
 import com.example.edu.a0817moacn01c_3.utils.HTTPConnectionManager;
@@ -22,7 +23,7 @@ public class DAOInternetTrailer {
     private Minion unMinion;
     public void getTrailerPelicula(ResultListener <Trailer> listener,String id){
 
-        String url = TMDBHelper.getTrailerURL(id,TMDBHelper.language_SPANISH);
+        String url = TMDBHelper.getTrailerURL(id);
         unMinion = new DAOInternetTrailer.Minion(url);
         unMinion.setEscuchadorSeriesControlador(listener);
         unMinion.execute();
@@ -55,10 +56,9 @@ public class DAOInternetTrailer {
 
             Gson gson = new Gson();
 
+            ContenedorDeTrailer trailer = gson.fromJson(input,ContenedorDeTrailer.class);
 
-            Trailer trailer = gson.fromJson(input,Trailer.class);
-
-            return trailer;
+            return trailer.getTrailer();
 
         }
         @Override

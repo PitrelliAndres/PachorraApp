@@ -33,6 +33,7 @@ import com.example.edu.a0817moacn01c_3.utils.TMDBHelper;
  * A simple {@link Fragment} subclass.
  */
 public class DetalleFragment extends Fragment {
+    private static final String TAG = "Detalle Fragment";
     private Pelicula unaPelicula;
     private Serie unaSerie;
     private ImageView imagen;
@@ -44,6 +45,7 @@ public class DetalleFragment extends Fragment {
     private TextView sinopsis;
     private TextView temporadas;
     private TextView episodios;
+    private Button verTrailer;
     public Trailer trailer;
 
 
@@ -148,11 +150,11 @@ public class DetalleFragment extends Fragment {
             this.genero =(TextView) view.findViewById(R.id.textview_generoPeliculas);
             this.clasificacion =(TextView) view.findViewById(R.id.textview_clasificacionPeliculas);
             this.sinopsis =(TextView) view.findViewById(R.id.textview_descripcionPeliculas);
-            Button button= (Button)view.findViewById(R.id.button_verTrailer);
-            button.setOnClickListener(new View.OnClickListener() {
+            this.verTrailer = (Button)view.findViewById(R.id.button_verTrailer);
+            verTrailer.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    watchYoutubeVideo(getContext(),trailer.getId());
+                    watchYoutubeVideo(getContext(),trailer);
                 }
             });
             mostrarInformacion(unaPelicula);
@@ -200,6 +202,7 @@ public class DetalleFragment extends Fragment {
             @Override
             public void finish(Trailer resultado) {
                 trailer = resultado;
+                toggleVerTrailer();
             }
         },pelicula.getId().toString());
 
@@ -208,7 +211,7 @@ public class DetalleFragment extends Fragment {
         genero.setText("Genero");
         clasificacion.setText(pelicula.getAptoParaPublico());
         sinopsis.setText(pelicula.getSinopsis());
-
+       toggleVerTrailer();
     }
 
     public void mostrarInformacion(Serie serie) {
@@ -229,16 +232,25 @@ public class DetalleFragment extends Fragment {
         this.episodios.setText("E" + serie.getNroEpisodios().toString());
 
     }
-
-    public static void watchYoutubeVideo(Context context, String id){
-
+    public void toggleVerTrailer(){
+        if(trailer != null) {
+            this.verTrailer.setVisibility(View.VISIBLE);
+        }else{
+            this.verTrailer.setVisibility(View.GONE);
+        }
+    }
+    public static void watchYoutubeVideo(Context context, Trailer trailer){
+        String id = trailer.getId();
+        String key = trailer.getKey();
         Intent appIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube:" + id));
         Intent webIntent = new Intent(Intent.ACTION_VIEW,
-                Uri.parse("http://www.youtube.com/watch?v=" + id));
+                Uri.parse("http://www.youtube.com/watch?v=" + key));
         try {
             context.startActivity(appIntent);
+            Log.d(TAG, "watchYoutubeVideo: "+id);
         } catch (ActivityNotFoundException ex) {
             context.startActivity(webIntent);
+            Log.d(TAG, "watchYoutubeVideo: "+key);
         }
     }
 }

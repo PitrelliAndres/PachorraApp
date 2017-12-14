@@ -67,9 +67,11 @@ public class TMDBHelper {
     public static String getMovieDetailURL(String movieID, String language){
         return baseUrl + "/movie/" + movieID + "?api_key=" + apiKey +"&language="+language;
     }
-
+    public static String getTrailerURL(String movideID){
+        return baseUrl + "/movie/" + movideID + "/videos?api_key=" +apiKey;
+    }
     public static String getTrailerURL(String movideID, String language){
-        return baseUrl + "/movie/" + movideID + "/videos?api_key=" +apiKey +"&language="+language;
+        return getTrailerURL(movideID) + "&language="+language;
     }
 
     public static String getMoviesRecomended(String movideID, String language, Integer page){
