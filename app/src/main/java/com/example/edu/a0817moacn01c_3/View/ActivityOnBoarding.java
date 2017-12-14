@@ -16,6 +16,8 @@ import com.facebook.CallbackManager;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
 import com.facebook.login.LoginManager;
+import com.rd.PageIndicatorView;
+import com.rd.draw.data.Orientation;
 
 import org.json.JSONObject;
 
@@ -32,7 +34,12 @@ public class ActivityOnBoarding extends AppCompatActivity {
 
         AdapterViewPagerOnBoarding adapterViewPagerOnBoarding= new AdapterViewPagerOnBoarding(fragmentManager);
         viewPager.setAdapter(adapterViewPagerOnBoarding);
-
+        PageIndicatorView pageIndicatorView = (PageIndicatorView) findViewById(R.id.pageIndicatorView);
+        pageIndicatorView.setViewPager(viewPager);
+        pageIndicatorView.setCount(3);
+        pageIndicatorView.setOrientation(Orientation.HORIZONTAL);
+        pageIndicatorView.setUnselectedColor(R.color.colorTransparenteWhite);
+        pageIndicatorView.setAutoVisibility(true);
     }
     public void irAPantallaPrincipal(View view){
         Intent intent= new Intent(this,MainActivity.class);
