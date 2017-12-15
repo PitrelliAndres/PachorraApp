@@ -7,7 +7,7 @@ import com.google.firebase.auth.FirebaseAuth;
  */
 
 public class FirebaseHelper {
-    FirebaseAuth mauth;
+    protected FirebaseAuth mauth;
 
     public FirebaseHelper() {
         mauth = FirebaseAuth.getInstance();
@@ -15,5 +15,9 @@ public class FirebaseHelper {
 
     public void login(){
 
+    }
+
+    public void logout(){
+        mauth.signOut();
     }
 }

@@ -35,7 +35,7 @@ import java.util.List;
 
 public class ControllerContenido {
     private Context context;
-    private DatabaseHelper databaseHelper;
+    //private DatabaseHelper databaseHelper;
     private DAOInternetPelicula daoInternetPelicula = new DAOInternetPelicula();
     private DAOInternetSerie daoInternetSerie = new DAOInternetSerie();
     private DAOInternetTrailer daoInternetTrailer= new DAOInternetTrailer();
@@ -86,6 +86,8 @@ public class ControllerContenido {
             ResultListener<List<Pelicula>> escuchadorDelControlador = new ResultListener<List<Pelicula>>() {
                 @Override
                 public void finish(List<Pelicula> resultado) {
+                    DAODBPelicula daodbPelicula = new DAODBPelicula(context);
+                    daodbPelicula.agregarPeliculas(resultado);
                     listenerDeLaView.finish(resultado);
                 }
             };
@@ -97,6 +99,8 @@ public class ControllerContenido {
             ResultListener<List<Pelicula>> escuchadorDelControlador = new ResultListener<List<Pelicula>>() {
                 @Override
                 public void finish(List<Pelicula> resultado) {
+                    DAODBPelicula daodbPelicula = new DAODBPelicula(context);
+                    daodbPelicula.agregarPeliculas(resultado);
                     listenerDeLaView.finish(resultado);
                 }
             };
@@ -108,6 +112,8 @@ public class ControllerContenido {
             ResultListener<List<Pelicula>> escuchadorDelControlador = new ResultListener<List<Pelicula>>() {
                 @Override
                 public void finish(List<Pelicula> resultado) {
+                    DAODBPelicula daodbPelicula = new DAODBPelicula(context);
+                    daodbPelicula.agregarPeliculas(resultado);
                     listenerDeLaView.finish(resultado);
                 }
             };
@@ -143,6 +149,8 @@ public class ControllerContenido {
             ResultListener<List<Serie>> escuchadorDelControlador = new ResultListener<List<Serie>>() {
                 @Override
                 public void finish(List<Serie> resultado) {
+                    DAODBSerie daodbSerie = new DAODBSerie(context);
+                    daodbSerie.agregarSeries(resultado);
                     listenerDeLaView.finish(resultado);
                 }
             };
@@ -160,6 +168,8 @@ public class ControllerContenido {
             ResultListener<List<Serie>> escuchadorDelControlador = new ResultListener<List<Serie>>() {
                 @Override
                 public void finish(List<Serie> resultado) {
+                    DAODBSerie daodbSerie = new DAODBSerie(context);
+                    daodbSerie.agregarSeries(resultado);
                     listenerDeLaView.finish(resultado);
                 }
             };
@@ -177,6 +187,8 @@ public class ControllerContenido {
             ResultListener<Serie> escuchadorDelControlador = new ResultListener<Serie>() {
                 @Override
                 public void finish(Serie resultado) {
+                    DAODBSerie daodbSerie = new DAODBSerie(context);
+                    daodbSerie.agregarSerie(resultado);
                     listenerDeLaView.finish(resultado);
                 }
             };
