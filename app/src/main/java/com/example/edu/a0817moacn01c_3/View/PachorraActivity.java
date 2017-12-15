@@ -71,7 +71,7 @@ public class PachorraActivity extends AppCompatActivity implements PachorraFragm
                 }
         );
 
-        cargarFragment(1);
+        cargarFragment(0);
     }
 
     @Override

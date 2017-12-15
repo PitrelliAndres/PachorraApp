@@ -152,7 +152,10 @@ public class OnboardingFragment extends Fragment {
                    public void onSuccess(LoginResult loginResult) {
                        // App code
                        handleFacebookAccessToken(loginResult.getAccessToken());
+                       Bundle unBundle = new Bundle();
+                       unBundle.putBoolean(MainActivity.VIOONBOARDING,true);
                        Intent unIntent= new Intent(getActivity(),MainActivity.class);
+                       unIntent.putExtras(unBundle);
                        startActivity(unIntent);
                        Toast.makeText(getContext(), loginResult.toString(), Toast.LENGTH_SHORT).show();
                    }
