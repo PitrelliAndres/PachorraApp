@@ -9,33 +9,37 @@
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar_detallePelicula"
         android:layout_width="match_parent"
-        android:layout_height="210dp">
+        android:layout_height="210dp"
+        android:fitsSystemWindows="true"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
         <android.support.design.widget.CollapsingToolbarLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            app:contentScrim="?attr/colorAccent"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+            android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
             <ImageView
                 android:id="@+id/imageview_detalleBackdropPeliculas"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
+                android:fitsSystemWindows="true"
                 android:src="@drawable/derek_backdrop"
                 app:layout_collapseMode="parallax" />
 
-            <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:app="http://schemas.android.com/apk/res-auto"
+            <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar_detalle"
-                style="@style/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#11000000"
-                android:minHeight="?attr/actionBarSize"
-                app:layout_collapseMode="parallax"
-                app:theme="@style/ThemeOverlay.MiVieja.ActionBar"
-                app:title="@string/app_name" />
+            style="@style/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="#11000000"
+            app:layout_collapseMode="pin"
+            app:theme="@style/ThemeOverlay.MiVieja.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            app:title="@string/app_name" />
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
     <!--
