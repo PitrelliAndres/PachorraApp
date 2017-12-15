@@ -217,7 +217,7 @@ public class DetalleFragment extends Fragment {
                     scrollRange = appBarLayout.getTotalScrollRange();
                 }
                 if (scrollRange + verticalOffset == 0) {
-                    imagenPortada.animate().alpha(0);
+                    //imagenPortada.animate().alpha(0);
                     //collapsingToolbarLayout.setTitle(titulo);
                     isShow = true;
                 } else if(isShow) {
