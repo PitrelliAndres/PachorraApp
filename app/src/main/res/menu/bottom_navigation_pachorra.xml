@@ -11,7 +11,7 @@
     <item
         android:id="@+id/action_mostrarMixto"
         android:enabled="true"
-        android:icon="@drawable/ic_filter_list_24dp"
+        android:icon="@drawable/ic_local_movies_white_24dp"
         android:title="@string/tabFiltros"
       />
     <item
