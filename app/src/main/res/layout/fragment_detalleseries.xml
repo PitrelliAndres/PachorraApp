@@ -38,8 +38,7 @@
                 android:layout_height="?attr/actionBarSize"
                 android:background="#11000000"
                 app:layout_collapseMode="pin"
-
-                app:title=""
+                app:title=" "
                 />
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
@@ -236,6 +235,7 @@
     </android.support.v4.widget.NestedScrollView>
     <!--</FrameLayout>-->
     <android.support.v7.widget.CardView
+        android:animateLayoutChanges="true"
         android:layout_width="100dp"
         android:layout_height="150dp"
         android:layout_marginStart="@dimen/espacioStd"

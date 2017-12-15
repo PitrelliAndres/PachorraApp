@@ -189,21 +189,24 @@ public class DetalleFragment extends Fragment {
             this.temporadas =(TextView) view.findViewById(R.id.textview_temporadasSerie);
             this.episodios = (TextView)view.findViewById(R.id.textview_episodiosSerie);
             mostrarInformacion(unaSerie);
-
-        }
+        cargarTitulo(unaSerie.getNombre());
 
         toolbarPachorra = (Toolbar) view.findViewById(R.id.toolbar_detalleSerie);
         collapsingToolbarLayout = view.findViewById(R.id.colpasingDetallesSerie);
         appBarLayout = view.findViewById(R.id.appbar_detalleSerie);
 
+        }
+
+
 
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbarPachorra);
         ActionBar actionBarPachorra = ((AppCompatActivity) getActivity()).getSupportActionBar();
         //actionBarPachorra.setDisplayHomeAsUpEnabled(true);
-        cargarTitulo(unaSerie.getNombre());
         return view;
     }
     public void cargarTitulo(final String titulo){
+        collapsingToolbarLayout.setTitle(titulo);
+        collapsingToolbarLayout.setExpandedTitleMarginStart(240);
         appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
             boolean isShow = false;
             int scrollRange = -1;
@@ -214,10 +217,14 @@ public class DetalleFragment extends Fragment {
                     scrollRange = appBarLayout.getTotalScrollRange();
                 }
                 if (scrollRange + verticalOffset == 0) {
-                    collapsingToolbarLayout.setTitle(titulo);
+                    imagenPortada.animate().alpha(0);
+                    //collapsingToolbarLayout.setTitle(titulo);
                     isShow = true;
                 } else if(isShow) {
-                    collapsingToolbarLayout.setTitle(" ");//carefull there should a space between double quote otherwise it wont work
+                    /*layout.setPivot(0);
+                    layout.animate().scaleY(scaleFactor).setDuration(500);*/
+                    //collapsingToolbarLayout.setTitle(titulo);
+                    collapsingToolbarLayout.setExpandedTitleMarginStart(240);
                     isShow = false;
                 }
             }
