@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -47,6 +49,9 @@ public class DetalleFragment extends Fragment {
     private TextView episodios;
     private Button verTrailer;
     public Trailer trailer;
+    private CollapsingToolbarLayout collapsingToolbarLayout;
+    private AppBarLayout appBarLayout;
+    private Toolbar toolbarPachorra;
 
 
     public static final String TIPOCONTENIDO = "tipo de contenido";
@@ -157,7 +162,13 @@ public class DetalleFragment extends Fragment {
                     watchYoutubeVideo(getContext(),trailer);
                 }
             });
+            collapsingToolbarLayout = view.findViewById(R.id.colpasingDetallesPelicula);
+            appBarLayout = view.findViewById(R.id.appbar_detallePelicula);
+            toolbarPachorra = (Toolbar) view.findViewById(R.id.toolbar_detallePelicula);
+
+
             mostrarInformacion(unaPelicula);
+            cargarTitulo(unaPelicula.getNombre());
 
         } else {
             view = inflater.inflate(R.layout.fragment_detalleseries, container, false);
@@ -181,11 +192,36 @@ public class DetalleFragment extends Fragment {
 
         }
 
-        Toolbar toolbarPachorra = (Toolbar) view.findViewById(R.id.toolbar_detalle);
+        toolbarPachorra = (Toolbar) view.findViewById(R.id.toolbar_detalleSerie);
+        collapsingToolbarLayout = view.findViewById(R.id.colpasingDetallesSerie);
+        appBarLayout = view.findViewById(R.id.appbar_detalleSerie);
+
+
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbarPachorra);
         ActionBar actionBarPachorra = ((AppCompatActivity) getActivity()).getSupportActionBar();
         //actionBarPachorra.setDisplayHomeAsUpEnabled(true);
+        cargarTitulo(unaSerie.getNombre());
         return view;
+    }
+    public void cargarTitulo(final String titulo){
+        appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+            boolean isShow = false;
+            int scrollRange = -1;
+
+            @Override
+            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+                if (scrollRange == -1) {
+                    scrollRange = appBarLayout.getTotalScrollRange();
+                }
+                if (scrollRange + verticalOffset == 0) {
+                    collapsingToolbarLayout.setTitle(titulo);
+                    isShow = true;
+                } else if(isShow) {
+                    collapsingToolbarLayout.setTitle(" ");//carefull there should a space between double quote otherwise it wont work
+                    isShow = false;
+                }
+            }
+        });
     }
 
     public void mostrarInformacion(Pelicula pelicula) {
