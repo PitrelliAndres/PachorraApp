@@ -200,7 +200,7 @@ public class DetalleFragment extends Fragment {
 
 
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbarPachorra);
-        ActionBar actionBarPachorra = ((AppCompatActivity) getActivity()).getSupportActionBar();
+       
         //actionBarPachorra.setDisplayHomeAsUpEnabled(true);
         return view;
     }
