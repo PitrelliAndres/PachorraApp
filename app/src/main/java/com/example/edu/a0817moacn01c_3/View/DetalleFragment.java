@@ -188,13 +188,13 @@ public class DetalleFragment extends Fragment {
             this.sinopsis =(TextView) view.findViewById(R.id.textview_descripcionSeries);
             this.temporadas =(TextView) view.findViewById(R.id.textview_temporadasSerie);
             this.episodios = (TextView)view.findViewById(R.id.textview_episodiosSerie);
-            mostrarInformacion(unaSerie);
-        cargarTitulo(unaSerie.getNombre());
 
         toolbarPachorra = (Toolbar) view.findViewById(R.id.toolbar_detalleSerie);
         collapsingToolbarLayout = view.findViewById(R.id.colpasingDetallesSerie);
         appBarLayout = view.findViewById(R.id.appbar_detalleSerie);
 
+            mostrarInformacion(unaSerie);
+        cargarTitulo(unaSerie.getNombre());
         }
 
 
