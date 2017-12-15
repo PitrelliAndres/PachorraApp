@@ -103,11 +103,14 @@ public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapt
                     updateListaMixta();
                     break;
                 case "favoritos":
+                    OnboardingFragment onboardingFragment = new OnboardingFragment();
+                    if(onboardingFragment.isLogin()){
                     controllerContenido = new ControllerContenido(getContext());
                     updateFirebaseFavoritos();
-
-                    /* controllerContenido = new ControllerContenido(getContext());
-                    unAdapter.setListaContenidos(controllerContenido.getFavoritos());*/
+                    } else {
+                        controllerContenido = new ControllerContenido(getContext());
+                        unAdapter.setListaContenidos(controllerContenido.getFavoritos());
+                    }
                     break;
                 case "filtro":
                     controllerContenido = new ControllerContenido(getContext());

@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity{
         SharedPreferences.Editor editor = settings.edit();
         editor.putBoolean(PRIMERAVEZ, false);
         editor.commit();
-        if (primeraVez == true || vioOnBoarding==true) {
+        if (primeraVez == true && vioOnBoarding==false) {
             irAOnBoarding();
         }
 
