@@ -36,12 +36,16 @@ public class DAOFirebaseLista extends FirebaseHelper{
 
     public DAOFirebaseLista(){
         database= FirebaseDatabase.getInstance();
-        uid= mauth.getCurrentUser().getUid();
-        myRef= database.getReference("Users").child(uid).child("Favoritos");
+
+        try {
+            uid= mauth.getCurrentUser().getUid();
+            myRef= database.getReference("Users").child(uid).child("Favoritos");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void getFavoritosFirebase(ResultListener <List<Contenido>> listener){
-
         unMinion = new Minion(myRef);
         unMinion.setEscuchadorSeriesControlador(listener);
         unMinion.execute();
