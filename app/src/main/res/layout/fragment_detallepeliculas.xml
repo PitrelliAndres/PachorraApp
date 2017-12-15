@@ -39,7 +39,7 @@
             app:layout_collapseMode="pin"
             app:theme="@style/ThemeOverlay.MiVieja.ActionBar"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-            app:title="@string/app_name" />
+            app:title="" />
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
     <!--
