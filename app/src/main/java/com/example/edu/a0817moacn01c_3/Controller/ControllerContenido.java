@@ -39,6 +39,7 @@ public class ControllerContenido {
     private DAOInternetPelicula daoInternetPelicula = new DAOInternetPelicula();
     private DAOInternetSerie daoInternetSerie = new DAOInternetSerie();
     private DAOInternetTrailer daoInternetTrailer= new DAOInternetTrailer();
+    private DAOFirebaseLista daoFirebaseLista = new DAOFirebaseLista();
 
     public ControllerContenido() {
     }
@@ -213,6 +214,7 @@ public class ControllerContenido {
     }
 
     public void agregarFavoritos (Contenido contenido,Context contexto){
+
         DAOFirebaseLista daoFirebaseLista = new DAOFirebaseLista();
         DAODBLista daodbLista = new DAODBLista(contexto);
         DAODBListaContenido daodbListaContenido = new DAODBListaContenido(contexto);
@@ -235,6 +237,21 @@ public class ControllerContenido {
 
         System.out.println("Se agrego a favoritos " + contenido.getId() + contenido.getTipoContenido()+contenido.getNombre());
         Toast.makeText(contexto, "¡Listo!, tu " + contenido.getTipoContenido() + " '" + contenido.getNombre()+"' se agrego a favoritos.", Toast.LENGTH_SHORT).show();
+    }
+
+    public void getFavoritosFireBase(final ResultListener<List<Contenido>>resultListener){
+        if (HTTPConnectionManager.isNetworkingOnline(context)) {
+
+            ResultListener<List<Contenido>> escuchadorDelControlador = new ResultListener<List<Contenido>>() {
+                @Override
+                public void finish(List<Contenido> resultado) {
+
+                    resultListener.finish(resultado);
+                }
+            };
+            daoFirebaseLista.getFavoritosFirebase(escuchadorDelControlador);
+
+        }
     }
 
     public List<Serie> getSeriesFavoritas(){
@@ -319,6 +336,7 @@ public class ControllerContenido {
 
         return color;
     }
+
 
 }
 

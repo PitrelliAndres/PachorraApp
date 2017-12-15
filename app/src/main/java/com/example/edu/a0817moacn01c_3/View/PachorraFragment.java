@@ -13,11 +13,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.edu.a0817moacn01c_3.Controller.ControllerContenido;
+import com.example.edu.a0817moacn01c_3.DAO.DAOFirebaseLista;
 import com.example.edu.a0817moacn01c_3.Model.Contenido;
 import com.example.edu.a0817moacn01c_3.Model.Pelicula;
 import com.example.edu.a0817moacn01c_3.Model.Serie;
 import com.example.edu.a0817moacn01c_3.R;
 import com.example.edu.a0817moacn01c_3.utils.ResultListener;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +36,8 @@ public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapt
     private Bundle bundle;
     public static final String TIPOCONTENIDO= "key";
     private  String nombreContenido;
+
+
 
     public PachorraFragment()
     // Required empty public constructor
@@ -99,7 +104,10 @@ public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapt
                     break;
                 case "favoritos":
                     controllerContenido = new ControllerContenido(getContext());
-                    unAdapter.setListaContenidos(controllerContenido.getFavoritos());
+                    updateFirebaseFavoritos();
+
+                    /* controllerContenido = new ControllerContenido(getContext());
+                    unAdapter.setListaContenidos(controllerContenido.getFavoritos());*/
                     break;
                 case "filtro":
                     controllerContenido = new ControllerContenido(getContext());
@@ -129,6 +137,15 @@ public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapt
     }
 
 
+    private void updateFirebaseFavoritos(){
+        controllerContenido.getFavoritosFireBase(new ResultListener<List<Contenido>>() {
+            @Override
+            public void finish(List<Contenido> resultado) {
+                unAdapter.setListaContenidos(resultado);
+                unAdapter.notifyDataSetChanged();
+            }
+        });
+    }
 
 
     private void updatePeliculasPopulares() {
