@@ -134,7 +134,7 @@ public class DetalleActivity extends AppCompatActivity{
 
         Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
         sharingIntent.setType("text/plain");
-        String shareBody = "Comparto una " + contenido.getTipoContenido() + ", Edu:\n"+contenido.getNombre() + "\n" + contenido.getSinopsis();
+        String shareBody = "Comparto una " + contenido.getTipoContenido() + "\n"+contenido.getNombre() + "\n" + contenido.getSinopsis();
         sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, contenido.getNombre());
         sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
         startActivity(Intent.createChooser(sharingIntent, "Compartir por"));
