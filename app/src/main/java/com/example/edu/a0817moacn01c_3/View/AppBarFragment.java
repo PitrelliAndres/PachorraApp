@@ -1,6 +1,5 @@
 package com.example.edu.a0817moacn01c_3.View;
 
-
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -95,8 +94,6 @@ public class AppBarFragment extends Fragment {
     private void viewpagerSerie(ViewPager viewPager) {
 
         AdaptadorFragmentsViewPager adapter = new AdaptadorFragmentsViewPager(getChildFragmentManager());
-
-
         adapter.addFragment(PachorraFragment.damePachorraFragment("serie-pop"), "Series \n Populares");
         adapter.addFragment(PachorraFragment.damePachorraFragment("serie-topRate"), "Top Rated \n Series");
         viewPager.setAdapter(adapter);
@@ -106,7 +103,6 @@ public class AppBarFragment extends Fragment {
 
         AdaptadorFragmentsViewPager adapter = new AdaptadorFragmentsViewPager(getChildFragmentManager());
         adapter.addFragment(PachorraFragment.damePachorraFragment("mixto"), "Recomendado del Dia");
-
         viewPager.setAdapter(adapter);
 
     }

@@ -40,6 +40,9 @@ public class ControllerContenido {
     private DAOInternetSerie daoInternetSerie = new DAOInternetSerie();
     private DAOInternetTrailer daoInternetTrailer= new DAOInternetTrailer();
     private DAOFirebaseLista daoFirebaseLista = new DAOFirebaseLista();
+    private Integer offset = 1;
+    private static final Integer PAGE_SIZE = 20;
+    private Boolean hayPaginas = true;
 
     public ControllerContenido() {
     }
@@ -48,6 +51,27 @@ public class ControllerContenido {
         this.context = context;
     }
 
+
+    public void getPostListPaginated(final ResultListener<List<Pelicula>> listenerFromView, Context context) {
+        DAOInternetPelicula daoInternetPelicula1 = new DAOInternetPelicula();
+        daoInternetPelicula1.getUpcomingPeliculas(new ResultListener<List<Pelicula>>() {
+            @Override
+            public void finish(List<Pelicula> resultado) {
+                if(resultado.size()<PAGE_SIZE){
+                    hayPaginas = false;
+                }
+
+                offset++;
+                listenerFromView.finish(resultado);
+            }
+        },offset);
+        offset++;
+
+    }
+
+    public Boolean isAnyPageAvailable(){
+        return hayPaginas;
+    }
     public void getPeliculasPopulares(final ResultListener<List<Pelicula>> listenerDeLaView){
         if(HTTPConnectionManager.isNetworkingOnline(context)) {
 
@@ -108,7 +132,7 @@ public class ControllerContenido {
             daoInternetPelicula.getTopRatedPeliculas(escuchadorDelControlador);
         }
     }
-    public void getUpcomingPeliculas(final ResultListener<List<Pelicula>> listenerDeLaView){
+/*    public void getUpcomingPeliculas(final ResultListener<List<Pelicula>> listenerDeLaView){
         if(HTTPConnectionManager.isNetworkingOnline(context)) {
             ResultListener<List<Pelicula>> escuchadorDelControlador = new ResultListener<List<Pelicula>>() {
                 @Override
@@ -126,7 +150,7 @@ public class ControllerContenido {
             Collections.shuffle(listaPeliculas);
             listenerDeLaView.finish(listaPeliculas);
         }
-    }
+    }*/
     public void getSeriesPopulares(final ResultListener<List<Serie>> listenerDeLaView){
         if(HTTPConnectionManager.isNetworkingOnline(context)) {
             ResultListener<List<Serie>> escuchadorDelControlador = new ResultListener<List<Serie>>() {

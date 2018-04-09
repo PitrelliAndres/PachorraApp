@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.example.edu.a0817moacn01c_3.Controller.ControllerContenido;
 import com.example.edu.a0817moacn01c_3.DAO.DAOFirebaseLista;
@@ -36,7 +37,8 @@ public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapt
     private Bundle bundle;
     public static final String TIPOCONTENIDO= "key";
     private  String nombreContenido;
-
+    private Boolean isLoading = false;
+    private ProgressBar progressBar;
 
 
     public PachorraFragment()
@@ -64,10 +66,10 @@ public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapt
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_pachorra, container, false);
-        
 
+        progressBar = (ProgressBar)view.findViewById(R.id.progressBar);
         RecyclerView unRecyclerView =(RecyclerView) view.findViewById(R.id.recyclerPachorra);
-        GridLayoutManager unLayoutManager = new GridLayoutManager(getContext(), 3, GridLayoutManager.VERTICAL, false);
+        final GridLayoutManager unLayoutManager = new GridLayoutManager(getContext(), 2, GridLayoutManager.VERTICAL, false);
 
 
         unRecyclerView.setLayoutManager(unLayoutManager);
@@ -80,14 +82,51 @@ public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapt
            nombreContenido = bundle.getString(TIPOCONTENIDO);
             switch (nombreContenido) {
                 case "peli-recom":
-
                     controllerContenido = new ControllerContenido(getContext());
+ /*                   getNewPage();
+                    unRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+                        @Override
+                        public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                            super.onScrolled(recyclerView, dx, dy);
+
+                            if (isLoading) {
+                                return;
+                            }
+
+                            Integer posicionActual = unLayoutManager.findLastVisibleItemPosition();
+                            Integer ultimaCelda = unLayoutManager.getItemCount();
+
+                            if (posicionActual.equals(ultimaCelda - 4)) {
+                                getNewPage();
+                            }
+
+                        }
+                    });*/
                     updatePeliculasPopulares();
+
                     break;
                 case "peli-top":
-
                     controllerContenido = new ControllerContenido(getContext());
-                    updatePeliculasUpcoming();
+                    getNewPage();
+                    unRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+                        @Override
+                        public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                            super.onScrolled(recyclerView, dx, dy);
+
+                            if (isLoading) {
+                                return;
+                            }
+
+                            Integer posicionActual = unLayoutManager.findLastVisibleItemPosition();
+                            Integer ultimaCelda = unLayoutManager.getItemCount();
+
+                            if (posicionActual.equals(ultimaCelda - 4)) {
+                                getNewPage();
+                            }
+
+                        }
+                    });
+                   // updatePeliculasUpcoming();
                     break;
                 case "serie-topRate":
 
@@ -120,6 +159,7 @@ public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapt
                     unAdapter.setListaContenidos(controllerContenido.getListaFiltrada(genero,contenido,fecha));
                     break;
             }
+
 
         return view;
 
@@ -166,7 +206,27 @@ public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapt
             }
         });
     }
-    private void updatePeliculasUpcoming(){
+    public void getNewPage() {
+
+        if (controllerContenido.isAnyPageAvailable()){
+            isLoading = true;
+            progressBar.setIndeterminate(true);
+            progressBar.setVisibility(View.VISIBLE);
+            controllerContenido.getPostListPaginated(new ResultListener<List<Pelicula>>() {
+                @Override
+                public void finish(List<Pelicula> resultado) {
+                    List<Contenido> blablub = new ArrayList<>();
+                    blablub.addAll(resultado);
+                    unAdapter.addPostList(blablub);
+                    unAdapter.notifyDataSetChanged();
+                    isLoading = false;
+                    progressBar.setIndeterminate(false);
+                    progressBar.setVisibility(View.INVISIBLE);
+                }
+            }, getContext());
+        }
+    }
+/*    private void updatePeliculasUpcoming(){
      controllerContenido.getUpcomingPeliculas(new ResultListener<List<Pelicula>>() {
             @Override
             public void finish(List<Pelicula> resultado) {
@@ -180,7 +240,7 @@ public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapt
             }
         });
 
-    }
+    }*/
     private void updateSeriesPopulares(){
         controllerContenido.getSeriesPopulares(new ResultListener<List<Serie>>() {
             @Override

@@ -114,11 +114,11 @@ public class TMDBHelper {
                 "&language=" + language_ENGLISH + "&page=" + page.toString();
     }
 
-    public static String getTopRatedMovies(String language, Integer page){
-        return baseUrl + "/discover/movie/" + "?api_key=" +apiKey +"&sort_by=vote_average.desc&language="+language+"&page="+page.toString();
+    public static String getTopRatedMovies(String language){
+        return baseUrl + "/discover/movie/" + "?api_key=" +apiKey +"&sort_by=vote_average.desc&language="+language+"&page=";
     }
 
-    public static String getUpcomingMovies(String language, Integer page){
+    public static String getUpcomingMovies(String language,Integer page){
         return baseUrl + "/movie/" + "upcoming?api_key=" +apiKey +"&language="+language+"&page="+page.toString();
     }
 

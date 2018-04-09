@@ -35,62 +35,74 @@ import java.util.List;
 public class DAOInternetPelicula {
     private Minion unMinion;
 
+
     public void getPeliculasPopulares(ResultListener<List<Pelicula>> listener){
 
         String url = TMDBHelper.getPopularMovies(TMDBHelper.language_SPANISH,1);
-        unMinion = new Minion(url);
-        unMinion.setEscuchadorPeliculasControlador(listener);
+        unMinion = new Minion(url,listener);
+
         unMinion.execute();
     }
     public void getUltimasPeliculas(ResultListener<List<Pelicula>> listener){
         String url= TMDBHelper.getLastestMovie(TMDBHelper.language_SPANISH,1);
-        unMinion= new Minion(url);
-        unMinion.setEscuchadorPeliculasControlador(listener);
+        unMinion= new Minion(url,listener);
+
         unMinion.execute();
     }
     public void getTopRatedPeliculas(ResultListener<List<Pelicula>> listener){
-        String url= TMDBHelper.getTopRatedMovies(TMDBHelper.language_SPANISH,2);
-        unMinion= new Minion(url);
-        unMinion.setEscuchadorPeliculasControlador(listener);
-        unMinion.execute();
-    }
-    public void getUpcomingPeliculas(ResultListener<List<Pelicula>> listener){
-        String url= TMDBHelper.getUpcomingMovies(TMDBHelper.language_SPANISH,2);
-        unMinion= new Minion(url);
-        unMinion.setEscuchadorPeliculasControlador(listener);
-        unMinion.execute();
-    }
+        String url= TMDBHelper.getTopRatedMovies(TMDBHelper.language_SPANISH);
+        unMinion= new Minion(url,listener);
 
+        unMinion.execute();
+    }
+    public void getUpcomingPeliculas(ResultListener<List<Pelicula>> listener, Integer pageSize){
+        String url= TMDBHelper.getUpcomingMovies(TMDBHelper.language_SPANISH,pageSize);
+        unMinion= new Minion(url,listener);
+
+        unMinion.execute();
+    }
+    public void getPostsPaginated(final ResultListener<List<Pelicula>> listener, Integer pageSize) {
+        String url= TMDBHelper.getTopRatedMovies(TMDBHelper.language_SPANISH);
+        unMinion = new Minion(url,listener);
+        unMinion.execute();
+
+    }
 
 
     public class Minion extends AsyncTask<String,Void,List<Pelicula>>{
         private ResultListener<List<Pelicula>>escuchadorPeliculasControlador;
         private String url;
 
-        public Minion(String url){
+
+
+        public Minion(String url,ResultListener<List<Pelicula>>escuchadorPeliculasControlador){
             this.url=url;
+            this.escuchadorPeliculasControlador=escuchadorPeliculasControlador;
+
         }
 
-        public void setEscuchadorPeliculasControlador(ResultListener<List<Pelicula>> escuchadorPeliculasControlador) {
-            this.escuchadorPeliculasControlador = escuchadorPeliculasControlador;
-        }
+
 
         @Override
         protected List<Pelicula> doInBackground(String... strings) {
 
             HTTPConnectionManager connectionManager = new HTTPConnectionManager();
-            String input = null;
+            String input;
+            ContenedorDePelicula contenedorDePelicula= null;
             try{
+
                 input = connectionManager.getRequestString(url);
+
                 Log.v("[G3] fetching URL", url);
                 Log.v("[G3] input", input);
+                Gson gson = new Gson();
+
+                contenedorDePelicula = gson.fromJson(input,ContenedorDePelicula.class);
             } catch (Exception e) {
                 e.printStackTrace();
             }
 
-            Gson gson = new Gson();
 
-            ContenedorDePelicula contenedorDePelicula = gson.fromJson(input,ContenedorDePelicula.class);
 
             return contenedorDePelicula.getContenidos();
 
@@ -101,4 +113,5 @@ public class DAOInternetPelicula {
             this.escuchadorPeliculasControlador.finish(listaPeliculas);
         }
     }
+
 }

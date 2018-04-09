@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.edu.a0817moacn01c_3.Controller.ControllerContenido;
 import com.example.edu.a0817moacn01c_3.Model.Contenido;
+import com.example.edu.a0817moacn01c_3.Model.Pelicula;
 import com.example.edu.a0817moacn01c_3.R;
 import com.example.edu.a0817moacn01c_3.utils.TMDBHelper;
 import com.google.firebase.auth.FirebaseAuth;
@@ -45,7 +46,10 @@ public class PeliculasRecyclerAdapter extends RecyclerView.Adapter implements Se
     public void setListaContenidos(List<Contenido> listaPeliculas) {
         this.listaContenidos = listaPeliculas;
     }
+    public void addPostList(List<Contenido> postList) {
+        this.listaContenidos.addAll(postList);
 
+    }
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater unInflador= LayoutInflater.from(contexto);

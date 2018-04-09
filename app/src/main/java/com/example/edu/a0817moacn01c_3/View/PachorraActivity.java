@@ -72,7 +72,9 @@ public class PachorraActivity extends AppCompatActivity implements PachorraFragm
         );
 
         cargarFragment(0);
+
     }
+
 
     @Override
     public void mandarDatos(Integer position, List<Contenido> listaContenidoClickeada) {

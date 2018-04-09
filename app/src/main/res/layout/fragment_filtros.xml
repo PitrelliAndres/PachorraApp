@@ -15,13 +15,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
+
         ></Spinner>
     <Spinner
         android:id="@+id/spinner_tipoContenido"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/spinner_genero"
-        android:layout_marginBottom="20dp">
+        android:layout_marginBottom="20dp"
+        >
 
     </Spinner>
 <android.support.design.widget.TextInputLayout
@@ -43,6 +45,7 @@
             android:layout_below="@id/editext_introducir_fecha"
             android:onClick="filtrarLista"
             android:text="Filtrar"
+
          />
     </RelativeLayout>
 </FrameLayout>
