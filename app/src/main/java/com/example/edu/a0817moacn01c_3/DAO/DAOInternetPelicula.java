@@ -79,6 +79,7 @@ public class DAOInternetPelicula {
             this.url=url;
             this.escuchadorPeliculasControlador=escuchadorPeliculasControlador;
 
+
         }
 
 

@@ -4,6 +4,7 @@ package com.example.edu.a0817moacn01c_3.View;
 import android.app.ActionBar;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.GridLayoutManager;
@@ -12,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.ScrollView;
 
 import com.example.edu.a0817moacn01c_3.Controller.ControllerContenido;
 import com.example.edu.a0817moacn01c_3.DAO.DAOFirebaseLista;
@@ -39,6 +41,7 @@ public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapt
     private  String nombreContenido;
     private Boolean isLoading = false;
     private ProgressBar progressBar;
+    private ScrollView scrollView;
 
 
     public PachorraFragment()
@@ -68,8 +71,9 @@ public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapt
         View view = inflater.inflate(R.layout.fragment_pachorra, container, false);
 
         progressBar = (ProgressBar)view.findViewById(R.id.progressBar);
-        RecyclerView unRecyclerView =(RecyclerView) view.findViewById(R.id.recyclerPachorra);
+        final RecyclerView unRecyclerView =(RecyclerView) view.findViewById(R.id.recyclerPachorra);
         final GridLayoutManager unLayoutManager = new GridLayoutManager(getContext(), 2, GridLayoutManager.VERTICAL, false);
+
 
 
         unRecyclerView.setLayoutManager(unLayoutManager);
@@ -117,10 +121,9 @@ public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapt
                                 return;
                             }
 
-                            Integer posicionActual = unLayoutManager.findLastVisibleItemPosition();
-                            Integer ultimaCelda = unLayoutManager.getItemCount();
-
-                            if (posicionActual.equals(ultimaCelda - 4)) {
+                            Integer visibleItemCount  = unLayoutManager.findLastVisibleItemPosition();
+                            Integer totalItemCount  = unLayoutManager.getItemCount();
+                            if ((visibleItemCount + 4)>= totalItemCount) {
                                 getNewPage();
                             }
 
@@ -164,6 +167,8 @@ public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapt
         return view;
 
     }
+
+
 
 
 

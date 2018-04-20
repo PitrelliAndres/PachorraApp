@@ -20,9 +20,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
-<ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+
+    <LinearLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
 
    <RelativeLayout
        android:layout_width="match_parent"
@@ -56,6 +61,6 @@
 
 
 
-</ScrollView>
+    </LinearLayout>
 
 </android.support.design.widget.CoordinatorLayout>
