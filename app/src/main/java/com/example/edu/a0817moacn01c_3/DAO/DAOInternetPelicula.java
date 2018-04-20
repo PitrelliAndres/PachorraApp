@@ -91,7 +91,7 @@ public class DAOInternetPelicula {
             String input;
             ContenedorDePelicula contenedorDePelicula= null;
             try{
-
+                Thread.sleep(2000);
                 input = connectionManager.getRequestString(url);
 
                 Log.v("[G3] fetching URL", url);

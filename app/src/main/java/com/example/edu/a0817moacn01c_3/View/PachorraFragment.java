@@ -78,6 +78,7 @@ public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapt
 
         unRecyclerView.setLayoutManager(unLayoutManager);
         unRecyclerView.setHasFixedSize(true);
+
         // 3: Adapter con recycler
         unAdapter = new PeliculasRecyclerAdapter(new ArrayList<Contenido>(), getContext(), this);
         unRecyclerView.setAdapter(unAdapter);
