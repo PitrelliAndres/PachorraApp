@@ -22,16 +22,16 @@ import java.util.List;
 public class DAOInternetSerie {
     private Minion unMinion;
 
-    public void getSeriesPopulares(ResultListener<List<Serie>> listener){
+    public void getSeriesPopulares(ResultListener<List<Serie>> listener, Integer pageSize){
 
-        String url = TMDBHelper.getTVPopular(TMDBHelper.language_SPANISH,1);
+        String url = TMDBHelper.getTVPopular(TMDBHelper.language_SPANISH,pageSize);
         unMinion = new Minion(url);
         unMinion.setEscuchadorSeriesControlador(listener);
         unMinion.execute();
     }
-    public void getSeriesTopRate(ResultListener<List<Serie>> listener){
+    public void getSeriesTopRate(ResultListener<List<Serie>> listener, Integer pageSize){
 
-        String url = TMDBHelper.getTVTopRated(TMDBHelper.language_SPANISH,1);
+        String url = TMDBHelper.getTVTopRated(TMDBHelper.language_SPANISH,pageSize);
         unMinion = new Minion(url);
         unMinion.setEscuchadorSeriesControlador(listener);
         unMinion.execute();

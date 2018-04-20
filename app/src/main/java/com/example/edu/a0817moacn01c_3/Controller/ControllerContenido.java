@@ -40,7 +40,10 @@ public class ControllerContenido {
     private DAOInternetSerie daoInternetSerie = new DAOInternetSerie();
     private DAOInternetTrailer daoInternetTrailer= new DAOInternetTrailer();
     private DAOFirebaseLista daoFirebaseLista = new DAOFirebaseLista();
-    private Integer offset = 1;
+    private Integer paginasUpcoming = 1;
+    private Integer paginasPeliPop = 1;
+    private Integer paginasSeriesPop = 1;
+    private Integer paginasSeriesTopRate = 1;
     private static final Integer PAGE_SIZE = 20;
     private Boolean hayPaginas = true;
 
@@ -52,45 +55,58 @@ public class ControllerContenido {
     }
 
 
-    public void getPostListPaginated(final ResultListener<List<Pelicula>> listenerFromView, Context context) {
-        DAOInternetPelicula daoInternetPelicula1 = new DAOInternetPelicula();
-        daoInternetPelicula1.getUpcomingPeliculas(new ResultListener<List<Pelicula>>() {
-            @Override
-            public void finish(List<Pelicula> resultado) {
-                if(resultado.size()<PAGE_SIZE){
-                    hayPaginas = false;
+    public void getPeliculasRecomendadas(final ResultListener<List<Pelicula>> listenerFromView,final Context context) {
+        if (HTTPConnectionManager.isNetworkingOnline(context)) {
+
+            daoInternetPelicula.getUpcomingPeliculas(new ResultListener<List<Pelicula>>() {
+                @Override
+                public void finish(List<Pelicula> resultado) {
+                    if (resultado.size() < PAGE_SIZE) {
+                        hayPaginas = false;
+                        Toast.makeText(context, "No quedan mas peliculas", Toast.LENGTH_SHORT).show();
+                    }
+
+                    paginasUpcoming++;
+                    listenerFromView.finish(resultado);
                 }
+            }, paginasUpcoming);
 
-                offset++;
-                listenerFromView.finish(resultado);
-            }
-        },offset);
-        offset++;
+            paginasUpcoming++;
 
+        }else{
+            // estamos offline vamos directo a base de datos
+            DAODBPelicula daodbPelicula = new DAODBPelicula(context);
+            List<Pelicula> listaPeliculas = daodbPelicula.obtenerPeliculasPopulares();
+            listenerFromView.finish(listaPeliculas);
+        }
     }
-
     public Boolean isAnyPageAvailable(){
         return hayPaginas;
     }
-    public void getPeliculasPopulares(final ResultListener<List<Pelicula>> listenerDeLaView){
+    public void getPeliculasPopulares(final ResultListener<List<Pelicula>> listenerDeLaView,final Context context){
         if(HTTPConnectionManager.isNetworkingOnline(context)) {
-
-            ResultListener<List<Pelicula>> escuchadorDelControlador = new ResultListener<List<Pelicula>>() {
+            daoInternetPelicula.getPeliculasPopulares(new ResultListener<List<Pelicula>>() {
                 @Override
                 public void finish(List<Pelicula> resultado) {
-                    //databaseHelper = new DatabaseHelper(context);
-                    DAODBPelicula daodbPelicula = new DAODBPelicula(context);
-                    daodbPelicula.agregarPeliculas(resultado);
+                    if (resultado.size() < PAGE_SIZE) {
+                        hayPaginas = false;
+                        Toast.makeText(context, "No quedan mas peliculas", Toast.LENGTH_SHORT).show();
+                    }
+
+                    paginasPeliPop++;
                     listenerDeLaView.finish(resultado);
                 }
-            };
-            daoInternetPelicula.getPeliculasPopulares(escuchadorDelControlador);
+            }, paginasPeliPop);
+
+            paginasPeliPop++;
+
         }else{
             // estamos offline vamos directo a base de datos
             DAODBPelicula daodbPelicula = new DAODBPelicula(context);
             List<Pelicula> listaPeliculas = daodbPelicula.obtenerPeliculasPopulares();
             listenerDeLaView.finish(listaPeliculas);
         }
+
     }
     public void getTrailer(final ResultListener <Trailer> listenerDeLaView, String id) {
         if (HTTPConnectionManager.isNetworkingOnline(context)) {
@@ -116,7 +132,7 @@ public class ControllerContenido {
                     listenerDeLaView.finish(resultado);
                 }
             };
-            daoInternetPelicula.getUltimasPeliculas(escuchadorDelControlador);
+            daoInternetPelicula.getUltimasPeliculas(escuchadorDelControlador,paginasSeriesPop);
         }
     }
     public void getTopRatedPeliculas(final ResultListener<List<Pelicula>> listenerDeLaView){
@@ -132,56 +148,51 @@ public class ControllerContenido {
             daoInternetPelicula.getTopRatedPeliculas(escuchadorDelControlador);
         }
     }
-/*    public void getUpcomingPeliculas(final ResultListener<List<Pelicula>> listenerDeLaView){
+
+    public void getSeriesPopulares(final ResultListener<List<Serie>> listenerDeLaView,final Context context){
         if(HTTPConnectionManager.isNetworkingOnline(context)) {
-            ResultListener<List<Pelicula>> escuchadorDelControlador = new ResultListener<List<Pelicula>>() {
-                @Override
-                public void finish(List<Pelicula> resultado) {
-                    DAODBPelicula daodbPelicula = new DAODBPelicula(context);
-                    daodbPelicula.agregarPeliculas(resultado);
-                    listenerDeLaView.finish(resultado);
-                }
-            };
-            daoInternetPelicula.getUpcomingPeliculas(escuchadorDelControlador);
-        }else{
-            // estamos offline vamos directo a base de datos
-            DAODBPelicula daodbPelicula = new DAODBPelicula(context);
-            List<Pelicula> listaPeliculas = daodbPelicula.obtenerTodasLasPeliculas();
-            Collections.shuffle(listaPeliculas);
-            listenerDeLaView.finish(listaPeliculas);
-        }
-    }*/
-    public void getSeriesPopulares(final ResultListener<List<Serie>> listenerDeLaView){
-        if(HTTPConnectionManager.isNetworkingOnline(context)) {
-            ResultListener<List<Serie>> escuchadorDelControlador = new ResultListener<List<Serie>>() {
+            daoInternetSerie.getSeriesPopulares(new ResultListener<List<Serie>>() {
                 @Override
                 public void finish(List<Serie> resultado) {
-                    DAODBSerie daodbSerie = new DAODBSerie(context);
-                    daodbSerie.agregarSeries(resultado);
+                    if (resultado.size() < PAGE_SIZE) {
+                        hayPaginas = false;
+                        Toast.makeText(context, "No quedan mas peliculas", Toast.LENGTH_SHORT).show();
+                    }
+
+                    paginasSeriesPop++;
                     listenerDeLaView.finish(resultado);
                 }
-            };
-            daoInternetSerie.getSeriesPopulares(escuchadorDelControlador);
+            }, paginasSeriesPop);
+
+            paginasSeriesPop++;
+
         }else{
-            // offline
+
             DAODBSerie daodbSerie = new DAODBSerie(context);
             List<Serie> listaSeries = daodbSerie.obtenerTodasLasSeries();
+            Collections.shuffle(listaSeries);
             listenerDeLaView.finish(listaSeries);
         }
     }
-    public void getSeriesTopRated(final ResultListener<List<Serie>> listenerDeLaView){
+    public void getSeriesTopRated(final ResultListener<List<Serie>> listenerDeLaView,final Context context){
         if(HTTPConnectionManager.isNetworkingOnline(context)) {
-            ResultListener<List<Serie>> escuchadorDelControlador = new ResultListener<List<Serie>>() {
+            daoInternetSerie.getSeriesTopRate(new ResultListener<List<Serie>>() {
                 @Override
                 public void finish(List<Serie> resultado) {
-                    DAODBSerie daodbSerie = new DAODBSerie(context);
-                    daodbSerie.agregarSeries(resultado);
+                    if (resultado.size() < PAGE_SIZE) {
+                        hayPaginas = false;
+                        Toast.makeText(context, "No quedan mas peliculas", Toast.LENGTH_SHORT).show();
+                    }
+
+                    paginasSeriesTopRate++;
                     listenerDeLaView.finish(resultado);
                 }
-            };
-            daoInternetSerie.getSeriesTopRate(escuchadorDelControlador);
+            }, paginasSeriesTopRate);
+
+            paginasSeriesTopRate++;
+
         }else{
-            // offline
+
             DAODBSerie daodbSerie = new DAODBSerie(context);
             List<Serie> listaSeries = daodbSerie.obtenerTodasLasSeries();
             Collections.shuffle(listaSeries);

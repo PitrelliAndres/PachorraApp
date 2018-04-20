@@ -88,31 +88,7 @@ public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapt
             switch (nombreContenido) {
                 case "peli-recom":
                     controllerContenido = new ControllerContenido(getContext());
- /*                   getNewPage();
-                    unRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-                        @Override
-                        public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                            super.onScrolled(recyclerView, dx, dy);
-
-                            if (isLoading) {
-                                return;
-                            }
-
-                            Integer posicionActual = unLayoutManager.findLastVisibleItemPosition();
-                            Integer ultimaCelda = unLayoutManager.getItemCount();
-
-                            if (posicionActual.equals(ultimaCelda - 4)) {
-                                getNewPage();
-                            }
-
-                        }
-                    });*/
-                    updatePeliculasPopulares();
-
-                    break;
-                case "peli-top":
-                    controllerContenido = new ControllerContenido(getContext());
-                    getNewPage();
+                    getNewPagePeliculasPop();
                     unRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
                         @Override
                         public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
@@ -125,7 +101,29 @@ public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapt
                             Integer visibleItemCount  = unLayoutManager.findLastVisibleItemPosition();
                             Integer totalItemCount  = unLayoutManager.getItemCount();
                             if ((visibleItemCount + 4)>= totalItemCount) {
-                                getNewPage();
+                                getNewPagePeliculasPop();
+                            }
+
+                        }
+                    });
+
+                    break;
+                case "peli-top":
+                    controllerContenido = new ControllerContenido(getContext());
+                    getNewPagePeliculasRecom();
+                    unRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+                        @Override
+                        public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                            super.onScrolled(recyclerView, dx, dy);
+
+                            if (isLoading) {
+                                return;
+                            }
+
+                            Integer visibleItemCount  = unLayoutManager.findLastVisibleItemPosition();
+                            Integer totalItemCount  = unLayoutManager.getItemCount();
+                            if ((visibleItemCount + 4)>= totalItemCount) {
+                                getNewPagePeliculasRecom();
                             }
 
                         }
@@ -136,10 +134,44 @@ public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapt
 
                     controllerContenido = new ControllerContenido(getContext());
                     updateSeriesTopRated();
+                    unRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+                        @Override
+                        public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                            super.onScrolled(recyclerView, dx, dy);
+
+                            if (isLoading) {
+                                return;
+                            }
+
+                            Integer visibleItemCount  = unLayoutManager.findLastVisibleItemPosition();
+                            Integer totalItemCount  = unLayoutManager.getItemCount();
+                            if ((visibleItemCount + 4)>= totalItemCount) {
+                                updateSeriesTopRated();
+                            }
+
+                        }
+                    });
                     break;
                 case "serie-pop":
                     controllerContenido = new ControllerContenido(getContext());
                     updateSeriesPopulares();
+                    unRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+                        @Override
+                        public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                            super.onScrolled(recyclerView, dx, dy);
+
+                            if (isLoading) {
+                                return;
+                            }
+
+                            Integer visibleItemCount  = unLayoutManager.findLastVisibleItemPosition();
+                            Integer totalItemCount  = unLayoutManager.getItemCount();
+                            if ((visibleItemCount + 4)>= totalItemCount) {
+                                updateSeriesPopulares();
+                            }
+
+                        }
+                    });
                     break;
                 case "mixto":
                     controllerContenido = new ControllerContenido(getContext());
@@ -197,28 +229,13 @@ public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapt
     }
 
 
-    private void updatePeliculasPopulares() {
-
-        controllerContenido.getPeliculasPopulares(new ResultListener<List<Pelicula>>() {
-            @Override
-            public void finish(List<Pelicula> resultado) {
-
-                List<Contenido> blablub = new ArrayList<>();
-                blablub.addAll(resultado);
-
-                unAdapter.setListaContenidos(blablub);
-                unAdapter.notifyDataSetChanged();
-
-            }
-        });
-    }
-    public void getNewPage() {
+    private void getNewPagePeliculasPop() {
 
         if (controllerContenido.isAnyPageAvailable()){
             isLoading = true;
             progressBar.setIndeterminate(true);
             progressBar.setVisibility(View.VISIBLE);
-            controllerContenido.getPostListPaginated(new ResultListener<List<Pelicula>>() {
+            controllerContenido.getPeliculasPopulares(new ResultListener<List<Pelicula>>() {
                 @Override
                 public void finish(List<Pelicula> resultado) {
                     List<Contenido> blablub = new ArrayList<>();
@@ -232,44 +249,64 @@ public class PachorraFragment extends Fragment implements PeliculasRecyclerAdapt
             }, getContext());
         }
     }
-/*    private void updatePeliculasUpcoming(){
-     controllerContenido.getUpcomingPeliculas(new ResultListener<List<Pelicula>>() {
-            @Override
-            public void finish(List<Pelicula> resultado) {
+    public void getNewPagePeliculasRecom() {
 
-                List<Contenido> blablub = new ArrayList<>();
-                blablub.addAll(resultado);
+        if (controllerContenido.isAnyPageAvailable()){
+            isLoading = true;
+            progressBar.setIndeterminate(true);
+            progressBar.setVisibility(View.VISIBLE);
+            controllerContenido.getPeliculasRecomendadas(new ResultListener<List<Pelicula>>() {
+                @Override
+                public void finish(List<Pelicula> resultado) {
+                    List<Contenido> blablub = new ArrayList<>();
+                    blablub.addAll(resultado);
+                    unAdapter.addPostList(blablub);
+                    unAdapter.notifyDataSetChanged();
+                    isLoading = false;
+                    progressBar.setIndeterminate(false);
+                    progressBar.setVisibility(View.INVISIBLE);
+                }
+            }, getContext());
+        }
+    }
 
-                unAdapter.setListaContenidos(blablub);
-                unAdapter.notifyDataSetChanged();
-
-            }
-        });
-
-    }*/
     private void updateSeriesPopulares(){
-        controllerContenido.getSeriesPopulares(new ResultListener<List<Serie>>() {
-            @Override
-            public void finish(List<Serie> resultado) {
-                List<Contenido>blablud= new ArrayList<>();
-                blablud.addAll(resultado);
-                unAdapter.setListaContenidos(blablud);
-                unAdapter.notifyDataSetChanged();
-
-            }
-        });
+        if (controllerContenido.isAnyPageAvailable()){
+            isLoading = true;
+            progressBar.setIndeterminate(true);
+            progressBar.setVisibility(View.VISIBLE);
+            controllerContenido.getSeriesPopulares(new ResultListener<List<Serie>>() {
+                @Override
+                public void finish(List<Serie> resultado) {
+                    List<Contenido> blablub = new ArrayList<>();
+                    blablub.addAll(resultado);
+                    unAdapter.addPostList(blablub);
+                    unAdapter.notifyDataSetChanged();
+                    isLoading = false;
+                    progressBar.setIndeterminate(false);
+                    progressBar.setVisibility(View.INVISIBLE);
+                }
+            }, getContext());
+        }
     }
     private void updateSeriesTopRated(){
-       controllerContenido.getSeriesTopRated(new ResultListener<List<Serie>>() {
-            @Override
-            public void finish(List<Serie> resultado) {
-                List<Contenido>blablud= new ArrayList<>();
-                blablud.addAll(resultado);
-                unAdapter.setListaContenidos(blablud);
-                unAdapter.notifyDataSetChanged();
-
-            }
-        });
+        if (controllerContenido.isAnyPageAvailable()){
+            isLoading = true;
+            progressBar.setIndeterminate(true);
+            progressBar.setVisibility(View.VISIBLE);
+            controllerContenido.getSeriesTopRated(new ResultListener<List<Serie>>() {
+                @Override
+                public void finish(List<Serie> resultado) {
+                    List<Contenido> blablub = new ArrayList<>();
+                    blablub.addAll(resultado);
+                    unAdapter.addPostList(blablub);
+                    unAdapter.notifyDataSetChanged();
+                    isLoading = false;
+                    progressBar.setIndeterminate(false);
+                    progressBar.setVisibility(View.INVISIBLE);
+                }
+            }, getContext());
+        }
         }
     private void updateSeriesTVAiringToday(){
         controllerContenido.getTVAiringToday(new ResultListener<List<Serie>>() {

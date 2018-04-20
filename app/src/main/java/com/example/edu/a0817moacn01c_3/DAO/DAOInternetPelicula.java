@@ -36,15 +36,15 @@ public class DAOInternetPelicula {
     private Minion unMinion;
 
 
-    public void getPeliculasPopulares(ResultListener<List<Pelicula>> listener){
+    public void getPeliculasPopulares(ResultListener<List<Pelicula>> listener, Integer pageSize){
 
-        String url = TMDBHelper.getPopularMovies(TMDBHelper.language_SPANISH,1);
+        String url = TMDBHelper.getPopularMovies(TMDBHelper.language_SPANISH,pageSize);
         unMinion = new Minion(url,listener);
 
         unMinion.execute();
     }
-    public void getUltimasPeliculas(ResultListener<List<Pelicula>> listener){
-        String url= TMDBHelper.getLastestMovie(TMDBHelper.language_SPANISH,1);
+    public void getUltimasPeliculas(ResultListener<List<Pelicula>> listener,Integer pageSize){
+        String url= TMDBHelper.getLastestMovie(TMDBHelper.language_SPANISH,pageSize);
         unMinion= new Minion(url,listener);
 
         unMinion.execute();
@@ -61,12 +61,7 @@ public class DAOInternetPelicula {
 
         unMinion.execute();
     }
-    public void getPostsPaginated(final ResultListener<List<Pelicula>> listener, Integer pageSize) {
-        String url= TMDBHelper.getTopRatedMovies(TMDBHelper.language_SPANISH);
-        unMinion = new Minion(url,listener);
-        unMinion.execute();
 
-    }
 
 
     public class Minion extends AsyncTask<String,Void,List<Pelicula>>{
