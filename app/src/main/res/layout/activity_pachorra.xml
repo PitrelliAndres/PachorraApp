@@ -14,8 +14,9 @@
         android:layout_height="wrap_content"
         android:minHeight="?attr/actionBarSize"
         app:theme="@style/ThemeOverlay.MiVieja.ActionBar"
-        app:title="@string/app_name"
+        app:title="Pachorreando"
         style="@style/toolbar"
+        android:titleTextColor="#000dff"
         />
 
     <android.support.design.widget.BottomNavigationView

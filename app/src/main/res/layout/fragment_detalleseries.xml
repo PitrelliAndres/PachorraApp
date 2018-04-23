@@ -219,7 +219,8 @@
                         android:text="Sinopsis de Serie"
                         android:textColor="@color/colorSeries"
                         android:textSize="18sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:layout_marginTop="15dp"/>
 
                     <TextView
                         android:id="@+id/textview_descripcionSeries"
