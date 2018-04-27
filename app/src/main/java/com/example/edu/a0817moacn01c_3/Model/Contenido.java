@@ -6,9 +6,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
-/**
- * Created by Andy on 26/10/2017.
- */
+
 //todo contenido fhgghchvcgfgjhg
 public class Contenido implements Serializable{
     public static final String PELICULA = "Pelicula";

@@ -164,7 +164,7 @@ public class DetalleFragment extends Fragment {
             });
             collapsingToolbarLayout = view.findViewById(R.id.colpasingDetallesPelicula);
             appBarLayout = view.findViewById(R.id.appbar_detallePelicula);
-            toolbarPachorra = (Toolbar) view.findViewById(R.id.toolbar_pantallaPachorra);
+            toolbarPachorra = (Toolbar) view.findViewById(R.id.toolbar_detallePelicula);
 
 
             mostrarInformacion(unaPelicula);

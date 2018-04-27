@@ -30,7 +30,15 @@
                 android:fitsSystemWindows="true"
                 android:src="@drawable/derek_backdrop"
                 app:layout_collapseMode="parallax" />
-
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar_detallePelicula"
+                style="@style/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="#11000000"
+                app:layout_collapseMode="pin"
+                app:title=" "
+                />
 
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
@@ -172,7 +180,7 @@
                         android:text="Sinopsis"
                         android:textSize="18sp"
                         android:textStyle="bold"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="30dp"
                       />
 
                     <TextView
